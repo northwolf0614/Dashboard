@@ -45,7 +45,7 @@
 {
     self.requestUrlString=url;
     self.requestBody=s;
-    NSLog(@"Post request: request address:%@\n request body:%@", url, s);
+    //NSLog(@"Post request: request address:%@\n request body:%@", url, s);
     NSData* postBody= [self.requestBody dataUsingEncoding:NSUTF8StringEncoding];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)postBody.length];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
@@ -75,7 +75,7 @@
 {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
     self.code=httpResponse.statusCode;
-    NSLog(@"the response is %ld",(long)self.code);
+    //NSLog(@"the response is %ld",(long)self.code);
     if (self.code!=kcRequestComplete) {
         [self.mutableData setLength:0];
     }

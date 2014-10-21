@@ -15,12 +15,16 @@
 //subviews：
 @property(nonatomic,strong) MKMapView *mapView;
 @property (nonatomic,strong) GradientPercentView* percentageView;
-//location related
+@property (nonatomic,strong) GradientPercentView* percentageView1;
+//@property (nonatomic,strong) GradientPercentView* percentageView2;
+//@property (nonatomic,strong) GradientPercentView* percentageView3;
+
+//locations related
 @property(nonatomic,strong) CLLocationManager *locationManager;
 @property(nonatomic,strong) CLLocation *currentLocation;
 @property (nonatomic,strong) NSNumber* distance;
 //constraints related
-@property (nonatomic,assign) BOOL didSetupConstraints;
+//@property (nonatomic,assign) BOOL didSetupConstraints;
 //
 -(void)setupLocationManager;
 
@@ -29,6 +33,8 @@
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
     [self.percentageView setPercent:percent animated:animated];
+    [self.percentageView1 setPercent:percent animated:animated];
+    
 }
 
 -(id)initWithFrame:(CGRect)frame
@@ -36,20 +42,28 @@
     self= [super initWithFrame:frame];
     if (self!=nil) {
         self.percentageView= [[GradientPercentView alloc] init];
+        self.percentageView1= [[GradientPercentView alloc] init];
+        //self.percentageView2= [[GradientPercentView alloc] init];
+        //self.percentageView3= [[GradientPercentView alloc] init];
+        
         
         self.mapView=[[MKMapView alloc] init];
         self.mapView.delegate=self;
-        self.mapView.alpha=0.25;
+        self.mapView.alpha=kcMapViewAlpha;
         //show the user's location
         self.mapView.showsUserLocation=YES;
         
         [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.percentageView1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
         
+        //map view is supposed to be added firstly
         [self addSubview:self.mapView];
         [self addSubview:self.percentageView];
-        self.didSetupConstraints=NO;
+        [self addSubview:self.percentageView1];
+        
+        //self.didSetupConstraints=NO;
         [self setupLocationManager];
         
         
@@ -74,29 +88,45 @@
 {
     
     [super updateConstraints];
-    if (self.didSetupConstraints) {
-        return;
-    }
-    else
+    //if (self.didSetupConstraints) {
+    //    return;
+    //}
+    //else
     {
         
-            NSArray *tmpConstraints;
+        NSArray *tmpConstraints;
+        
+        NSDictionary* views    = @{
+                                   @"mapView"      :      self.mapView,
+                                   @"percentageView0" :      self.percentageView,
+                                   @"percentageView1" :      self.percentageView1,
+                                   //@"percentageView2" :      self.percentageView2,
+                                   //@"percentageView3" :      self.percentageView3,
+                                   
+                                            };
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[percentageView0(==percentageView1)]-10-[percentageView1]-10-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView0]-20-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1]-20-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
 
-            NSDictionary* views    = @{ @"mapView"      :   self.mapView,
-                                        @"percentageView1" :      self.percentageView,
-                                        
-                                        };
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
-            [self addConstraints:tmpConstraints];
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[percentageView1]-50-|" options:0 metrics:nil views:views];
-            [self addConstraints:tmpConstraints];
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
-            [self addConstraints:tmpConstraints];
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1]-20-|" options:0 metrics:nil views:views];
-            [self addConstraints:tmpConstraints];
-            self.didSetupConstraints=YES;
-            
-            
+        //tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView2]-20-|" options:0 metrics:nil views:views];
+        //[self addConstraints:tmpConstraints];
+
+        //tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView3]-20-|" options:0 metrics:nil views:views];
+        //[self addConstraints:tmpConstraints];
+
+        //self.didSetupConstraints=YES;
+        
+        
             
         }
     

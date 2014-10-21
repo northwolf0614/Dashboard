@@ -24,9 +24,7 @@
 #define kcProgress_Line_Width 10
 #define kcTrack_LineE_Width 2
 #define kcAnimationTime 0.8
-
 #define kcMapViewAlpha 0.25
 
-#define kcMantle
 
 #endif

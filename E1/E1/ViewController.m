@@ -40,7 +40,7 @@
 -(void)setupDashBoardView
 {
     self.dashBoardView=[[DashBoardView alloc] initWithFrame:self.view.frame];
-    self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+    self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.dashBoardView];
 }
 -(void)setupStatisticsRetrieveWorker

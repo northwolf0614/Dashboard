@@ -95,7 +95,7 @@
     CGFloat radius= self.animationLayer.frame.size.width>self.animationLayer.frame.size.height? self.animationLayer.frame.size.height/2:self.animationLayer.frame.size.width/2;
     radius-=kcProgress_Line_Width/2;
     [circlePath addArcWithCenter:CGPointMake(CGRectGetMidX(self.animationLayer.bounds), CGRectGetMidY(self.animationLayer.bounds)) radius: radius startAngle:0 endAngle:2*M_PI clockwise:YES];
-    self.trackLayer.path =[circlePath CGPath]; //把path传递給layer，然后layer会处理相应的渲染，整个逻辑和CoreGraph是一致的。
+    self.trackLayer.path =[circlePath CGPath];
     //setup progress layer
     self.progressLayer.frame = self.animationLayer.bounds;
     self.progressLayer.fillColor =  [[UIColor clearColor] CGColor];
@@ -119,7 +119,7 @@
     [self.gradientLayer2 setStartPoint:CGPointMake(0.5, 0)];
     [self.gradientLayer2 setEndPoint:CGPointMake(0.5, 1)];
     //set up the mask layer of self.gradientLayer as self.progressLayer
-    [self.gradientLayer setMask:self.progressLayer]; //用progressLayer来截取渐变层
+    [self.gradientLayer setMask:self.progressLayer]; //using progressLayer to get the gradient layer
     
     [super layoutSubviews];
    
@@ -132,11 +132,11 @@
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
     
-    NSLog(@"this is animationID=%s stopping",[[animation valueForKey:@"animation"] UTF8String]);
+    //NSLog(@"this is animationID=%s stopping",[[animation valueForKey:@"animation"] UTF8String]);
 }
 -(void)animationDidStart:(CAAnimation *)animation
 {
-    NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animation"] UTF8String]);
+    //NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animation"] UTF8String]);
     
 }
 
