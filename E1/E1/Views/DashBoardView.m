@@ -10,12 +10,14 @@
 #import <MapKit/MapKit.h>
 #import "Definations.h"
 #import "GradientPercentView.h"
+#import "StatisticsAnalyzerView.h"
 
 @interface DashBoardView()<CLLocationManagerDelegate,MKMapViewDelegate>
 //subviews：
 @property(nonatomic,strong) MKMapView *mapView;
 @property (nonatomic,strong) GradientPercentView* percentageView;
 @property (nonatomic,strong) GradientPercentView* percentageView1;
+@property(nonatomic,strong ) StatisticsAnalyzerView* statisticsAnalyzerView;
 //@property (nonatomic,strong) GradientPercentView* percentageView2;
 //@property (nonatomic,strong) GradientPercentView* percentageView3;
 
@@ -43,6 +45,7 @@
     if (self!=nil) {
         self.percentageView= [[GradientPercentView alloc] init];
         self.percentageView1= [[GradientPercentView alloc] init];
+        self.statisticsAnalyzerView=[[StatisticsAnalyzerView alloc] init];
         //self.percentageView2= [[GradientPercentView alloc] init];
         //self.percentageView3= [[GradientPercentView alloc] init];
         
@@ -56,10 +59,12 @@
         [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.percentageView1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
         //map view is supposed to be added firstly
         [self addSubview:self.mapView];
         [self addSubview:self.percentageView];
         [self addSubview:self.percentageView1];
+        [self addSubview:self.statisticsAnalyzerView];
         
         //self.didSetupConstraints=NO;
         [self setupLocationManager];
@@ -98,11 +103,14 @@
                                    @"mapView"      :      self.mapView,
                                    @"percentageView0" :      self.percentageView,
                                    @"percentageView1" :      self.percentageView1,
-                                   //@"percentageView2" :      self.percentageView2,
+                                   @"statisticsView" :      self.statisticsAnalyzerView,
                                    //@"percentageView3" :      self.percentageView3,
                                    
                                             };
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[statisticsView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[percentageView0(==percentageView1)]-10-[percentageView1]-10-|" options:0 metrics:nil views:views];
@@ -111,9 +119,9 @@
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView0]-20-|" options:0 metrics:nil views:views];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView0(50)]-[statisticsView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1]-20-|" options:0 metrics:nil views:views];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1(==percentageView0)]-[statisticsView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
 
         //tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView2]-20-|" options:0 metrics:nil views:views];
@@ -151,7 +159,15 @@
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
 }
-
+-(void)startAnalyzeStatistics
+{
+    [self.statisticsAnalyzerView startAnalyzeStatistics];
+}
+-(void)setNeedsDisplay
+{
+    [super setNeedsDisplay];
+    [self.statisticsAnalyzerView setNeedsDisplay];
+}
 
 
 

@@ -10,5 +10,5 @@
 
 @interface DashBoardView : UIView
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated;
-
+-(void)startAnalyzeStatistics;
 @end

@@ -46,6 +46,8 @@
     self.dashBoardView=[[DashBoardView alloc] initWithFrame:self.view.frame];
     self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.dashBoardView];
+    [self.dashBoardView setNeedsDisplay];
+    [self.dashBoardView startAnalyzeStatistics];
 }
 
 -(void)setupStatisticsView
@@ -78,8 +80,8 @@
     [self setupStatisticsRetrieveWorker];
     [self setupStateChanges];
     
-    //[self setupDashBoardView];
-    [self setupStatisticsView];
+    [self setupDashBoardView];
+    //[self setupStatisticsView];
     
 }
 

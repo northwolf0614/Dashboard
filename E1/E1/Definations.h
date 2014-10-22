@@ -26,5 +26,9 @@
 #define kcAnimationTime 0.8
 #define kcMapViewAlpha 0.25
 
+#define kReferenceToAnchorPointOfLayer CGPointMake(0,0)//camera's positon with reference to anchor
+#define kRotationAngle M_PI/3
+#define kDistanceFromCameraAndSurfaceOfZEqualToZero 200
+
 
 #endif

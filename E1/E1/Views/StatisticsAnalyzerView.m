@@ -9,6 +9,9 @@
 #import "StatisticsAnalyzerView.h"
 #import "AnalyzerLayerDelegate.h"
 #import "CATransform3DPerspect.h"
+#import "Definations.h"
+
+#define kcLayerNumber 2
 
 @interface StatisticsAnalyzerView()
 @property(nonatomic, strong) CALayer* statisticsLayer1;
@@ -26,9 +29,9 @@
     // Drawing code
 }
 */
--(id)initWithFrame:(CGRect)frame
+-(id)init
 {
-    self=[super initWithFrame:frame];
+    self=[super init];
     if (self!=nil) {
         self.backgroundColor=[UIColor whiteColor];
         self.layer1Delegate= [[AnalyzerLayerDelegate alloc] init];
@@ -42,7 +45,7 @@
         self.statisticsLayer1.shadowOpacity = 0.5;
         
         self.statisticsLayer2=[CALayer layer];
-        self.statisticsLayer2.backgroundColor=[[UIColor redColor] CGColor];
+        self.statisticsLayer2.backgroundColor=[[UIColor lightGrayColor] CGColor];
         
         self.statisticsLayer2.shadowOffset = CGSizeMake(10, 10);
         self.statisticsLayer2.shadowRadius = 5;
@@ -50,8 +53,7 @@
 
 
         
-        self.statisticsLayer1.frame=CGRectMake(0,240,frame.size.width/3,100);
-        self.statisticsLayer2.frame=CGRectMake(160,240,frame.size.width/3,100);
+        
         [self.layer addSublayer:self.statisticsLayer1];
         [self.layer addSublayer:self.statisticsLayer2];
         self.statisticsLayer1.delegate=self.layer1Delegate;
@@ -59,6 +61,14 @@
         
     }
     return self;
+    
+}
+-(void)layoutSubviews
+{
+    CGRect bounds=self.bounds;
+    
+    self.statisticsLayer1.frame=CGRectMake(bounds.origin.x,CGRectGetMidY(bounds),bounds.size.width/kcLayerNumber,CGRectGetMidY(bounds));
+    self.statisticsLayer2.frame=CGRectMake(bounds.origin.x+CGRectGetMidX(bounds),CGRectGetMidY(bounds),bounds.size.width/kcLayerNumber,CGRectGetMidY(bounds));
     
 }
 -(void)setNeedsDisplay
@@ -70,11 +80,11 @@
 }
 
 
--(void) startAnalyzeStatistics
+-(void) startAnalyzeStatistics//0, 1, 0 means that rotatioin is around Y axis
 {
-    CATransform3D rotate = CATransform3DMakeRotation(M_PI/3, 0, 1, 0);
-    self.statisticsLayer1.transform=CATransform3DPerspect(rotate, CGPointMake(0, 0), 200);
-    self.statisticsLayer2.transform=CATransform3DPerspect(rotate, CGPointMake(0, 0), 200);
+    CATransform3D rotate = CATransform3DMakeRotation(kRotationAngle, 0, 1, 0);
+    self.statisticsLayer1.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
+    self.statisticsLayer2.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
 }
 
 
