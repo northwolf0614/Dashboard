@@ -12,13 +12,15 @@
 #import "StatisticsModel.h"
 #import "Definations.h"
 #import "DashBoardView.h"
+#import "StatisticsAnalyzerView.h"
 
 
 
 @interface ViewController ()//animated view related
-@property(nonatomic,strong) StatisticsPostWorker* statisticsRetrieveWorker;
+@property(nonatomic,strong) StatisticsPostWorker* statisticsRetrieveWorker;//HTTP service worker
 @property(nonatomic,strong) StatisticsModel* statisticModelInstance;
 @property(nonatomic,strong) DashBoardView* dashBoardView;
+@property(nonatomic,strong) StatisticsAnalyzerView* statisticsView;//
 
 
 
@@ -27,6 +29,8 @@
 -(void)setupStatisticsRetrieveWorker;
 -(void)setupStateChanges;
 -(void)setupDashBoardView;
+
+
 
 
 
@@ -43,6 +47,23 @@
     self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.dashBoardView];
 }
+
+-(void)setupStatisticsView
+{
+    self.statisticsView=[[StatisticsAnalyzerView alloc] initWithFrame:self.view.frame];
+    self.statisticsView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.statisticsView];
+    
+    [self.statisticsView setNeedsDisplay];
+    [self.statisticsView startAnalyzeStatistics];
+}
+
+
+
+
+
+
+
 -(void)setupStatisticsRetrieveWorker
 {
     self.statisticsRetrieveWorker= [[StatisticsPostWorker alloc] init];
@@ -57,7 +78,8 @@
     [self setupStatisticsRetrieveWorker];
     [self setupStateChanges];
     
-    [self setupDashBoardView];
+    //[self setupDashBoardView];
+    [self setupStatisticsView];
     
 }
 

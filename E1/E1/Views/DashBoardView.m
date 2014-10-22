@@ -56,8 +56,6 @@
         [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.percentageView1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
-        
         //map view is supposed to be added firstly
         [self addSubview:self.mapView];
         [self addSubview:self.percentageView];
