@@ -13,6 +13,7 @@
 
 #define kcLayerNumber 2
 
+
 @interface StatisticsAnalyzerView()
 @property(nonatomic, strong) CALayer* statisticsLayer1;
 @property(nonatomic, strong) CALayer* statisticsLayer2;
@@ -21,35 +22,27 @@
 @end
 
 @implementation StatisticsAnalyzerView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 -(id)init
 {
     self=[super init];
     if (self!=nil) {
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor=[UIColor lightGrayColor];
         self.layer1Delegate= [[AnalyzerLayerDelegate alloc] init];
         self.layer2Delegate= [[AnalyzerLayerDelegate alloc] init];
         self.statisticsLayer1=[CALayer layer];
-        self.statisticsLayer1.backgroundColor=[[UIColor lightGrayColor] CGColor];
+        self.statisticsLayer1.backgroundColor=[[UIColor clearColor] CGColor];
         
         
-        self.statisticsLayer1.shadowOffset = CGSizeMake(10, 10);
-        self.statisticsLayer1.shadowRadius = 5;
-        self.statisticsLayer1.shadowOpacity = 0.5;
+        self.statisticsLayer1.shadowOffset =kcDefaultShadowOffset;
+        self.statisticsLayer1.shadowRadius =kcDefaultShadowRadius;
+        self.statisticsLayer1.shadowOpacity = kcDefaultShadowOpacity;
         
         self.statisticsLayer2=[CALayer layer];
-        self.statisticsLayer2.backgroundColor=[[UIColor lightGrayColor] CGColor];
+        self.statisticsLayer2.backgroundColor=[[UIColor clearColor] CGColor];
         
-        self.statisticsLayer2.shadowOffset = CGSizeMake(10, 10);
-        self.statisticsLayer2.shadowRadius = 5;
-        self.statisticsLayer2.shadowOpacity = 0.5;
+        self.statisticsLayer2.shadowOffset = kcDefaultShadowOffset;
+        self.statisticsLayer2.shadowRadius = kcDefaultShadowRadius;
+        self.statisticsLayer2.shadowOpacity = kcDefaultShadowOpacity;
 
 
         

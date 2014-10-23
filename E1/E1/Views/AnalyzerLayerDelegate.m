@@ -13,7 +13,6 @@
 {
     //this function shall be override by your real content
     UIGraphicsPushContext(ctx);
-    
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(16.72, 7.22)];
     [path addLineToPoint:CGPointMake(3.29, 20.83)];

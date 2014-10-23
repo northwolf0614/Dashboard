@@ -30,5 +30,9 @@
 #define kRotationAngle M_PI/3
 #define kDistanceFromCameraAndSurfaceOfZEqualToZero 200
 
+#define kcDefaultShadowRadius 5
+#define kcDefaultShadowOpacity 0.5
+#define kcDefaultShadowOffset CGSizeMake(10,10)
+
 
 #endif
