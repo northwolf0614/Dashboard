@@ -27,7 +27,7 @@
 #define kcMapViewAlpha 0.25
 
 #define kReferenceToAnchorPointOfLayer CGPointMake(0,0)//camera's positon with reference to anchor
-#define kRotationAngle M_PI/3
+#define kRotationAngle M_PI/3.5
 #define kDistanceFromCameraAndSurfaceOfZEqualToZero 200
 
 #define kcDefaultShadowRadius 5

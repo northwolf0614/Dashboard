@@ -29,7 +29,7 @@
 @property(nonatomic,strong) CLLocation *currentLocation;
 @property (nonatomic,strong) NSNumber* distance;
 //constraints related
-//@property (nonatomic,assign) BOOL didSetupConstraints;
+@property (nonatomic,assign) BOOL didSetupConstraints;
 
 //plot related
 @property(nonatomic,strong) CPTXYGraph * graph;
@@ -70,12 +70,12 @@
         [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
         //map view is supposed to be added firstly
         [self addSubview:self.mapView];
-        [self addSubview:self.percentageView];
-        [self addSubview:self.percentageView1];
-        [self addSubview:self.statisticsAnalyzerView];
+        //[self addSubview:self.percentageView];
+        //[self addSubview:self.percentageView1];
+        //[self addSubview:self.statisticsAnalyzerView];
         [self addSubview:self.paragraphView];
         
-        //self.didSetupConstraints=NO;
+        self.didSetupConstraints=NO;
         [self setupLocationManager];
         
         
@@ -86,11 +86,13 @@
 
 -(void)layoutSubviews
 {
-    
-    //[super layoutSubviews];
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
-    [super layoutSubviews];
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [super layoutSubviews];
+    }];
+    
     
     
     
@@ -100,10 +102,10 @@
 {
     
     [super updateConstraints];
-    //if (self.didSetupConstraints) {
-    //    return;
-    //}
-    //else
+    if (self.didSetupConstraints) {
+        return;
+    }
+    else
     {
         
         NSArray *tmpConstraints;
@@ -116,6 +118,7 @@
                                    @"paragraphView" :      self.paragraphView,
                                    
                                             };
+        /*
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
@@ -135,6 +138,18 @@
         [self addConstraints:tmpConstraints];
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[percentageView1(==percentageView0)]-[statisticsView(100)]-[paragraphView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
+         */
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView(==paragraphView)]-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        self.didSetupConstraints=YES;
+
+
     }
     
         
