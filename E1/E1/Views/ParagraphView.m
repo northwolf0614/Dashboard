@@ -19,9 +19,9 @@
 -(void)setupCoreplotViews;
 -(CPTPlotRange *)CPTPlotRangeFromFloat:(float)location length:(float)length;
 @end
+
+
 @implementation ParagraphView
-
-
 -(id)init
 {
     self=[super init];
@@ -34,7 +34,7 @@
 -(void)setupCoreplotViews
 {
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
-    // Create graph from theme: 设置主题
+    // Create graph from theme
     self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme * theme = [CPTTheme themeNamed:kCPTSlateTheme];
     [self.graph applyTheme:theme];
@@ -42,17 +42,15 @@
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph = self.graph;
     
-    self.graph.paddingLeft = self.graph.paddingRight = 10.0;
-    self.graph.paddingTop = self.graph.paddingBottom = 10.0;
-    
-    // Setup plot space: 设置一屏内可显示的x,y量度范围
-    //
+    self.graph.paddingLeft = self.graph.paddingRight = 10.0;// config the distance frome edge of the view to contents of graph
+    self.graph.paddingTop = self.graph.paddingBottom = 10.0;// config the distance frome edge of the view to contents of graph
+
     CPTXYPlotSpace * plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
-    plotSpace.allowsUserInteraction = YES;
+    plotSpace.allowsUserInteraction = NO;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(2.0)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(3.0)];
     
-    // Axes: 设置x,y轴属性，如原点，量度间隔，标签，刻度，颜色等
+    // Axes: 设置x:如原点，量度间隔，标签，刻度，颜色等
     //
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     
@@ -67,26 +65,28 @@
     x.minorTickLineStyle = lineStyle;
     
     // 需要排除的不显示数字的主刻度
-    NSArray * exclusionRanges = [NSArray arrayWithObjects:
+    NSArray * exclusionRanges = [
+                                 NSArray arrayWithObjects:
                                  [self CPTPlotRangeFromFloat:0.99 length:0.02],
                                  [self CPTPlotRangeFromFloat:2.99 length:0.02],
-                                 nil];
+                                 nil
+                              ];
     x.labelExclusionRanges = exclusionRanges;
     
+    // Axes: 设置Y:如原点，量度间隔，标签，刻度，颜色等
     CPTXYAxis * y = axisSet.yAxis;
     y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2"); // 原点的 y 位置
     y.majorIntervalLength = CPTDecimalFromString(@"0.5");   // y轴主刻度：显示数字标签的量度间隔
     y.minorTicksPerInterval = 4;    // y轴细分刻度：每一个主刻度范围内显示细分刻度的个数
     y.minorTickLineStyle = lineStyle;
-    exclusionRanges = [NSArray arrayWithObjects:
+    exclusionRanges = [
+                       NSArray arrayWithObjects:
                        [self CPTPlotRangeFromFloat:1.99 length:0.02],
                        [self CPTPlotRangeFromFloat:2.99 length:0.02],
-                       nil];
+                       nil
+                       ];
     y.labelExclusionRanges = exclusionRanges;
     y.delegate = self;
-    
-    
-    
 }
 
 
@@ -101,10 +101,6 @@
     boundLinePlot.dataLineStyle = lineStyle;
     boundLinePlot.identifier    = BLUE_PLOT_IDENTIFIER;
     boundLinePlot.dataSource    =[self viewController];
-    
-
-    
-    
     // Do a red-blue gradient: 渐变色区域
     //
     CPTColor * blueColor        = [CPTColor colorWithComponentRed:0.3 green:0.3 blue:1.0 alpha:0.8];
@@ -115,7 +111,6 @@
     CPTFill * areaGradientFill  = [CPTFill fillWithGradient:areaGradient1];
     boundLinePlot.areaFill      = areaGradientFill;
     boundLinePlot.areaBaseValue = [[NSDecimalNumber numberWithFloat:1.0] decimalValue]; // 渐变色的起点位置
-    
     // Add plot symbols: 表示数值的符号的形状
     //
     CPTMutableLineStyle * symbolLineStyle = [CPTMutableLineStyle lineStyle];
@@ -127,7 +122,7 @@
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(10.0, 10.0);
     boundLinePlot.plotSymbol = plotSymbol;
-    
+    //draw the data from the delegate to the area
     [self.graph addPlot:boundLinePlot];
 
 }
@@ -163,19 +158,22 @@
 {
     static CPTTextStyle * positiveStyle = nil;
     static CPTTextStyle * negativeStyle = nil;
-    
-    //NSNumberFormatter * formatter   = axis.labelFormatter;//Jack Lin remended
-    NSFormatter * formatter   = axis.labelFormatter;
+    //Jack Lin remended
+    //NSNumberFormatter * formatter   = axis.labelFormatter;
+    NSFormatter * formatter     =  axis.labelFormatter;
+    //Jack Lin remended
     CGFloat labelOffset         = axis.labelOffset;
     NSDecimalNumber * zero         = [NSDecimalNumber zero];
-    
     NSMutableSet * newLabels      = [NSMutableSet set];
     
-    for (NSDecimalNumber * tickLocation in locations) {
+    for (NSDecimalNumber * tickLocation in locations)
+    {
         CPTTextStyle *theLabelTextStyle;
         
-        if ([tickLocation isGreaterThanOrEqualTo:zero]) {
-            if (!positiveStyle) {
+        if ([tickLocation isGreaterThanOrEqualTo:zero])
+        {
+            if (!positiveStyle)
+            {
                 CPTMutableTextStyle * newStyle = [axis.labelTextStyle mutableCopy];
                 newStyle.color = [CPTColor greenColor];
                 positiveStyle  = newStyle;
@@ -183,8 +181,10 @@
             
             theLabelTextStyle = positiveStyle;
         }
-        else {
-            if (!negativeStyle) {
+        else
+        {
+            if (!negativeStyle)
+            {
                 CPTMutableTextStyle * newStyle = [axis.labelTextStyle mutableCopy];
                 newStyle.color = [CPTColor redColor];
                 negativeStyle  = newStyle;
@@ -194,17 +194,13 @@
         }
         
         NSString * labelString      = [formatter stringForObjectValue:tickLocation];
-        CPTTextLayer * newLabelLayer= [[CPTTextLayer alloc] initWithText:labelString style:theLabelTextStyle];
-        
+        CPTTextLayer * newLabelLayer  = [[CPTTextLayer alloc] initWithText:labelString style:theLabelTextStyle];
         CPTAxisLabel * newLabel     = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
         newLabel.tickLocation       = tickLocation.decimalValue;
         newLabel.offset             = labelOffset;
-        
         [newLabels addObject:newLabel];
     }
     axis.axisLabels = newLabels;
     return NO;
 }
-
-
 @end

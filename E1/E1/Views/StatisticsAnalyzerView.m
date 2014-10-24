@@ -80,19 +80,6 @@
     self.statisticsLayer1.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
     self.statisticsLayer2.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 @end
 
 

@@ -112,25 +112,28 @@
                                    @"mapView"      :      self.mapView,
                                    @"percentageView0" :      self.percentageView,
                                    @"percentageView1" :      self.percentageView1,
-                                   //@"statisticsView" :      self.statisticsAnalyzerView,
-                                   @"statisticsView" :      self.paragraphView,
+                                   @"statisticsView" :      self.statisticsAnalyzerView,
+                                   @"paragraphView" :      self.paragraphView,
                                    
                                             };
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
+        [self addConstraints:tmpConstraints];
+        
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[statisticsView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[percentageView0(==percentageView1)]-10-[percentageView1]-10-|" options:0 metrics:nil views:views];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[percentageView0(==percentageView1)]-10-[percentageView1(50)]-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView0(50)]-[statisticsView]-0-|" options:0 metrics:nil views:views];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[percentageView0(50)]-[statisticsView(100)]-[paragraphView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1(==percentageView0)]-[statisticsView]-0-|" options:0 metrics:nil views:views];
+        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[percentageView1(==percentageView0)]-[statisticsView(100)]-[paragraphView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
     }
     
