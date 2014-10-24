@@ -34,5 +34,8 @@
 #define kcDefaultShadowOpacity 0.5
 #define kcDefaultShadowOffset CGSizeMake(10,10)
 
+#define GREEN_PLOT_IDENTIFIER       @"Green Plot"
+#define BLUE_PLOT_IDENTIFIER        @"Blue Plot"
+
 
 #endif

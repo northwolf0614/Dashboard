@@ -11,15 +11,18 @@
 #import "Definations.h"
 #import "GradientPercentView.h"
 #import "StatisticsAnalyzerView.h"
+#import "CorePlot-CocoaTouch.h"
+#import "ParagraphView.h"
+
+
 
 @interface DashBoardView()<CLLocationManagerDelegate,MKMapViewDelegate>
 //subviews：
-@property(nonatomic,strong) MKMapView *mapView;
+@property (nonatomic,strong) MKMapView *mapView;
 @property (nonatomic,strong) GradientPercentView* percentageView;
 @property (nonatomic,strong) GradientPercentView* percentageView1;
-@property(nonatomic,strong ) StatisticsAnalyzerView* statisticsAnalyzerView;
-//@property (nonatomic,strong) GradientPercentView* percentageView2;
-//@property (nonatomic,strong) GradientPercentView* percentageView3;
+@property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
+@property(nonatomic,strong)  ParagraphView* paragraphView;
 
 //locations related
 @property(nonatomic,strong) CLLocationManager *locationManager;
@@ -27,8 +30,13 @@
 @property (nonatomic,strong) NSNumber* distance;
 //constraints related
 //@property (nonatomic,assign) BOOL didSetupConstraints;
-//
+
+//plot related
+@property(nonatomic,strong) CPTXYGraph * graph;
+
+
 -(void)setupLocationManager;
+
 
 @end
 @implementation DashBoardView
@@ -46,8 +54,7 @@
         self.percentageView= [[GradientPercentView alloc] init];
         self.percentageView1= [[GradientPercentView alloc] init];
         self.statisticsAnalyzerView=[[StatisticsAnalyzerView alloc] init];
-        //self.percentageView2= [[GradientPercentView alloc] init];
-        //self.percentageView3= [[GradientPercentView alloc] init];
+        self.paragraphView= [[ParagraphView alloc] init];
         
         
         self.mapView=[[MKMapView alloc] init];
@@ -60,11 +67,13 @@
         [self.percentageView1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
         //map view is supposed to be added firstly
         [self addSubview:self.mapView];
         [self addSubview:self.percentageView];
         [self addSubview:self.percentageView1];
         [self addSubview:self.statisticsAnalyzerView];
+        [self addSubview:self.paragraphView];
         
         //self.didSetupConstraints=NO;
         [self setupLocationManager];
@@ -103,8 +112,8 @@
                                    @"mapView"      :      self.mapView,
                                    @"percentageView0" :      self.percentageView,
                                    @"percentageView1" :      self.percentageView1,
-                                   @"statisticsView" :      self.statisticsAnalyzerView,
-                                   //@"percentageView3" :      self.percentageView3,
+                                   //@"statisticsView" :      self.statisticsAnalyzerView,
+                                   @"statisticsView" :      self.paragraphView,
                                    
                                             };
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
@@ -123,18 +132,7 @@
         [self addConstraints:tmpConstraints];
         tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView1(==percentageView0)]-[statisticsView]-0-|" options:0 metrics:nil views:views];
         [self addConstraints:tmpConstraints];
-
-        //tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView2]-20-|" options:0 metrics:nil views:views];
-        //[self addConstraints:tmpConstraints];
-
-        //tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-200-[percentageView3]-20-|" options:0 metrics:nil views:views];
-        //[self addConstraints:tmpConstraints];
-
-        //self.didSetupConstraints=YES;
-        
-        
-            
-        }
+    }
     
         
 }
@@ -169,6 +167,13 @@
     [self.statisticsAnalyzerView setNeedsDisplay];
 }
 
+-(CPTPlotRange *)CPTPlotRangeFromFloat:(float)location length:(float)length
+{
+    return [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(location) length:CPTDecimalFromFloat(length)];
+    
+}
+
+
 
 
 
@@ -188,4 +193,5 @@
     
     
 }
+
 @end

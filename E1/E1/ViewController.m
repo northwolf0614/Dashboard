@@ -13,27 +13,23 @@
 #import "Definations.h"
 #import "DashBoardView.h"
 #import "StatisticsAnalyzerView.h"
-
-
-
-@interface ViewController ()//animated view related
-@property(nonatomic,strong) StatisticsPostWorker* statisticsRetrieveWorker;//HTTP service worker
-@property(nonatomic,strong) StatisticsModel* statisticModelInstance;
+#import "CorePlot-CocoaTouch.h"
+@interface ViewController () <CPTPlotDataSource>
+//view related
 @property(nonatomic,strong) DashBoardView* dashBoardView;
-@property(nonatomic,strong) StatisticsAnalyzerView* statisticsView;//
-
-
-
-
+//data for paragraphView
+@property(nonatomic,strong) NSMutableArray * dataForPlot;
+//statistics retrieve worker
+@property(nonatomic,strong) StatisticsPostWorker* statisticsRetrieveWorker;//HTTP service worker
+//model related
+@property(nonatomic,strong) StatisticsModel* statisticModelInstance;
 
 -(void)setupStatisticsRetrieveWorker;
--(void)setupStateChanges;
 -(void)setupDashBoardView;
-
-
-
-
-
+//setup data for Views
+-(void)setupDataForViews;
+// applicatioin related
+-(void)setupStateChanges;
 @end
 
 @implementation ViewController
@@ -49,23 +45,16 @@
     [self.dashBoardView setNeedsDisplay];
     [self.dashBoardView startAnalyzeStatistics];
 }
-
--(void)setupStatisticsView
+-(void)setupDataForViews
 {
-    self.statisticsView=[[StatisticsAnalyzerView alloc] initWithFrame:self.view.frame];
-    self.statisticsView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.view addSubview:self.statisticsView];
-    
-    [self.statisticsView setNeedsDisplay];
-    [self.statisticsView startAnalyzeStatistics];
+    self.dataForPlot = [NSMutableArray arrayWithCapacity:100];
+    NSUInteger i;
+    for ( i = 0; i < 100; i++ ) {
+        id x = [NSNumber numberWithFloat:0 + i * 0.05];
+        id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
+        [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+    }
 }
-
-
-
-
-
-
-
 -(void)setupStatisticsRetrieveWorker
 {
     self.statisticsRetrieveWorker= [[StatisticsPostWorker alloc] init];
@@ -79,8 +68,8 @@
     
     [self setupStatisticsRetrieveWorker];
     [self setupStateChanges];
-    
     [self setupDashBoardView];
+    [self setupDataForViews];
     //[self setupStatisticsView];
     
 }
@@ -166,6 +155,30 @@
 -(void)applicationDidBecomeActive:(NSNotification*)notification
 {
     NSLog(@"enter applicationDidBecomeActive ");
+}
+
+
+#pragma mark -
+#pragma mark Plot Data Source Methods
+
+-(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+{
+    return [ self.dataForPlot count];
+}
+
+-(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+{
+    NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+    NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+    
+    // Green plot gets shifted above the blue
+    if ([(NSString *)plot.identifier isEqualToString:GREEN_PLOT_IDENTIFIER]) {
+        if (fieldEnum == CPTScatterPlotFieldY) {
+            num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+        }
+    }
+    
+    return num;
 }
 
 

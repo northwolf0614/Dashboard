@@ -75,6 +75,7 @@
 
 -(void) startAnalyzeStatistics//0, 1, 0 means that rotatioin is around Y axis
 {
+    
     CATransform3D rotate = CATransform3DMakeRotation(kRotationAngle, 0, 1, 0);
     self.statisticsLayer1.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
     self.statisticsLayer2.transform=CATransform3DPerspect(rotate, kReferenceToAnchorPointOfLayer, kDistanceFromCameraAndSurfaceOfZEqualToZero);
