@@ -181,7 +181,7 @@
     MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
     [self.mapView setRegion:adjustedRegion animated:YES];
 }
--(void)startAnalyzeStatistics
+-(void)updateAnalysis
 {
     [self.statisticsAnalyzerView startAnalyzeStatistics];
 }

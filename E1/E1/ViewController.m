@@ -44,8 +44,7 @@
     self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.dashBoardView];
     [self.dashBoardView setNeedsDisplay];
-    [self.dashBoardView startAnalyzeStatistics];
-}
+    }
 -(void)setupDataForViews
 {
     self.dataForPlot = [NSMutableArray arrayWithCapacity:100];
@@ -110,6 +109,8 @@
     [super viewDidAppear:animated];
     [self.dashBoardView setPercent:0.9 animated:YES];
     [self.dashBoardView updateCorePlotViews];
+    [self.dashBoardView updateAnalysis];
+
     
     
 }
