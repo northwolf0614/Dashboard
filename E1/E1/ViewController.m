@@ -14,11 +14,12 @@
 #import "DashBoardView.h"
 #import "StatisticsAnalyzerView.h"
 #import "CorePlot-CocoaTouch.h"
-@interface ViewController () <CPTPlotDataSource>
+@interface ViewController () <CPTPlotDataSource,CPTPieChartDataSource>
 //view related
 @property(nonatomic,strong) DashBoardView* dashBoardView;
 //data for paragraphView
 @property(nonatomic,strong) NSMutableArray * dataForPlot;
+@property(nonatomic,strong) NSMutableArray * dataForPieChart;
 //statistics retrieve worker
 @property(nonatomic,strong) StatisticsPostWorker* statisticsRetrieveWorker;//HTTP service worker
 //model related
@@ -54,6 +55,7 @@
         id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
         [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
     }
+    self.dataForPieChart = [[ NSMutableArray alloc ] initWithObjects : @"0.2" , @"0.3" , @"0.1" , @"0.2" , @"0.2" , nil ];
 }
 -(void)setupStatisticsRetrieveWorker
 {
@@ -107,6 +109,7 @@
     
     [super viewDidAppear:animated];
     [self.dashBoardView setPercent:0.9 animated:YES];
+    [self.dashBoardView updateCorePlotViews];
     
     
 }
@@ -158,28 +161,77 @@
 }
 
 
+
+
+#pragma mark -CPTPlotDataSource
+#pragma mark Plot Data Source Methods for ParagraphView
+/*
+ -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+ {
+ return [ self.dataForPlot count];
+ }
+ 
+ -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+ {
+ NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+ NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+ 
+ // Green plot gets shifted above the blue
+ if ([(NSString *)plot.identifier isEqualToString:GREEN_PLOT_IDENTIFIER]) {
+ if (fieldEnum == CPTScatterPlotFieldY) {
+ num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+ }
+ }
+ 
+ return num;
+ }
+ */
+
 #pragma mark -
-#pragma mark Plot Data Source Methods
+#pragma mark Plot Data Source Methods for PieChartView
 
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+// 返回扇形数目
+
+- (NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
+
 {
-    return [ self.dataForPlot count];
+    
+    return [self.dataForPieChart count] ;
+    
 }
 
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+// 返回每个扇形的比例
+
+- (NSNumber*)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
+
 {
-    NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-    NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
-    
-    // Green plot gets shifted above the blue
-    if ([(NSString *)plot.identifier isEqualToString:GREEN_PLOT_IDENTIFIER]) {
-        if (fieldEnum == CPTScatterPlotFieldY) {
-            num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-        }
-    }
-    
-    return num;
+    return [ self.dataForPieChart objectAtIndex :idx];
 }
+
+// 凡返回每个扇形的标题
+- ( CPTLayer *)dataLabelForPlot:( CPTPlot *)plot recordIndex:( NSUInteger )idx
+
+{
+    
+    CPTTextLayer *label = [[ CPTTextLayer alloc ] initWithText :[ NSString stringWithFormat : @"hello,%@" ,[ self. dataForPieChart objectAtIndex :idx]]];
+    CPTMutableTextStyle *text = [ label. textStyle mutableCopy ];
+    text. color = [ CPTColor whiteColor ];
+    return label;
+    
+}
+#pragma mark -CPTPieChartDataSource
+#pragma mark Plot Data Source Methods for PieChartView
+// 返回图例
+
+- ( NSAttributedString  *)attributedLegendTitleForPieChart:( CPTPieChart  *)pieChart recordIndex:( NSUInteger )idx
+
+{
+    
+    NSAttributedString  *title = [[ NSAttributedString   alloc ] initWithString :[ NSString stringWithFormat : @"hi:%i" ,idx]];
+    return  title;
+    
+}
+
 
 
 

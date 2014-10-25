@@ -13,6 +13,7 @@
 #import "StatisticsAnalyzerView.h"
 #import "CorePlot-CocoaTouch.h"
 #import "ParagraphView.h"
+#import "PieChartView.h"
 
 
 
@@ -23,6 +24,8 @@
 @property (nonatomic,strong) GradientPercentView* percentageView1;
 @property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
 @property(nonatomic,strong)  ParagraphView* paragraphView;
+@property(nonatomic,strong)  PieChartView* pieCharView;
+
 
 //locations related
 @property(nonatomic,strong) CLLocationManager *locationManager;
@@ -55,6 +58,7 @@
         self.percentageView1= [[GradientPercentView alloc] init];
         self.statisticsAnalyzerView=[[StatisticsAnalyzerView alloc] init];
         self.paragraphView= [[ParagraphView alloc] init];
+        self.pieCharView = [[PieChartView alloc] init];
         
         
         self.mapView=[[MKMapView alloc] init];
@@ -68,12 +72,15 @@
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.pieCharView setTranslatesAutoresizingMaskIntoConstraints:NO];
         //map view is supposed to be added firstly
         [self addSubview:self.mapView];
         //[self addSubview:self.percentageView];
         //[self addSubview:self.percentageView1];
         //[self addSubview:self.statisticsAnalyzerView];
-        [self addSubview:self.paragraphView];
+        //[self addSubview:self.paragraphView];
+        [self addSubview:self.pieCharView];
+        
         
         self.didSetupConstraints=NO;
         [self setupLocationManager];
@@ -92,11 +99,9 @@
         
         [super layoutSubviews];
     }];
-    
-    
-    
-    
 }
+
+
 
 -(void)updateConstraints
 {
@@ -115,7 +120,8 @@
                                    @"percentageView0" :      self.percentageView,
                                    @"percentageView1" :      self.percentageView1,
                                    @"statisticsView" :      self.statisticsAnalyzerView,
-                                   @"paragraphView" :      self.paragraphView,
+                                   //@"paragraphView" :      self.paragraphView,
+                                   @"paragraphView" :      self.pieCharView,
                                    
                                             };
         /*
@@ -189,6 +195,11 @@
 {
     return [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(location) length:CPTDecimalFromFloat(length)];
     
+}
+-(void)updateCorePlotViews
+{
+    [self.paragraphView updateCorePlotViews];
+    [self.pieCharView  updateCorePlotViews];
 }
 
 

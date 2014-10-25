@@ -25,9 +25,10 @@
 -(id)init
 {
     self=[super init];
-    if (self!=nil) {
+    if (self!=nil)
+    {
+        self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
         [self setupCoreplotViews];
-        [self updateParagraph];
     }
     return self;
 }
@@ -35,7 +36,7 @@
 {
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     // Create graph from theme
-    self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    
     CPTTheme * theme = [CPTTheme themeNamed:kCPTSlateTheme];
     [self.graph applyTheme:theme];
     CPTGraphHostingView * hostingView = self;
@@ -90,7 +91,7 @@
 }
 
 
--(void)updateParagraph
+-(void)updateCorePlotViews
 {
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit        = 1.0f;

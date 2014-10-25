@@ -13,4 +13,5 @@
 
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated;
 -(void)startAnalyzeStatistics;
+-(void)updateCorePlotViews;
 @end
