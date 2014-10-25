@@ -14,9 +14,6 @@
 #import "CorePlot-CocoaTouch.h"
 #import "ParagraphView.h"
 #import "PieChartView.h"
-
-
-
 @interface DashBoardView()<CLLocationManagerDelegate,MKMapViewDelegate>
 //subviews：
 @property (nonatomic,strong) MKMapView *mapView;
@@ -25,23 +22,17 @@
 @property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
 @property(nonatomic,strong)  ParagraphView* paragraphView;
 @property(nonatomic,strong)  PieChartView* pieCharView;
-
-
 //locations related
 @property(nonatomic,strong) CLLocationManager *locationManager;
 @property(nonatomic,strong) CLLocation *currentLocation;
 @property (nonatomic,strong) NSNumber* distance;
 //constraints related
 @property (nonatomic,assign) BOOL didSetupConstraints;
-
 //plot related
 @property(nonatomic,strong) CPTXYGraph * graph;
-
-
 -(void)setupLocationManager;
-
-
 @end
+
 @implementation DashBoardView
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
@@ -201,10 +192,6 @@
     [self.paragraphView updateCorePlotViews];
     [self.pieCharView  updateCorePlotViews];
 }
-
-
-
-
 
 #pragma CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager

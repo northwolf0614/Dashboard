@@ -38,4 +38,11 @@
 #define BLUE_PLOT_IDENTIFIER        @"Blue Plot"
 
 
+
+
+#define kcPieChartRadius  50
+#define kcCorePlotGraphPadding 10
+#define kcPieChartTitleFontSize 10
+
+
 #endif

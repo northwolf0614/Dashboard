@@ -188,55 +188,39 @@
  }
  */
 
-#pragma mark -
-#pragma mark Plot Data Source Methods for PieChartView
-
-// 返回扇形数目
-
+#pragma mark -CPTPieDataSource
+// return the number of sectors
 - (NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
-
 {
-    
     return [self.dataForPieChart count] ;
-    
 }
-
-// 返回每个扇形的比例
-
-- (NSNumber*)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
-
+// return the proportion of every sector
+-(NSNumber*)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
 {
     return [ self.dataForPieChart objectAtIndex :idx];
 }
-
-// 凡返回每个扇形的标题
-- ( CPTLayer *)dataLabelForPlot:( CPTPlot *)plot recordIndex:( NSUInteger )idx
-
+// return the title for every proportion
+-(CPTLayer*)dataLabelForPlot:( CPTPlot *)plot recordIndex:( NSUInteger )idx
 {
     
     CPTTextLayer *label = [[ CPTTextLayer alloc ] initWithText :[ NSString stringWithFormat : @"hello,%@" ,[ self. dataForPieChart objectAtIndex :idx]]];
-    CPTMutableTextStyle *text = [ label. textStyle mutableCopy ];
-    text. color = [ CPTColor whiteColor ];
+    CPTMutableTextStyle *text = [label.textStyle mutableCopy ];
+    text.color = [ CPTColor whiteColor ];
     return label;
     
 }
-#pragma mark -CPTPieChartDataSource
-#pragma mark Plot Data Source Methods for PieChartView
-// 返回图例
+#pragma CPTPieChartDataSource
+//-(NSAttributedString *)attributedLegendTitleForPieChart:(CPTPieChart*)pieChart recordIndex:(NSUInteger)idx
+//{
+//    NSAttributedString* title = [[NSAttributedString   alloc] initWithString:[NSString stringWithFormat:@"hi:%i",idx]];
+//    return  title;
+//}
 
-- ( NSAttributedString  *)attributedLegendTitleForPieChart:( CPTPieChart  *)pieChart recordIndex:( NSUInteger )idx
-
+-(NSString*)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
 {
-    
-    NSAttributedString  *title = [[ NSAttributedString   alloc ] initWithString :[ NSString stringWithFormat : @"hi:%i" ,idx]];
-    return  title;
+    return @"this is legend!";
     
 }
-
-
-
-
-
 
 
 @end

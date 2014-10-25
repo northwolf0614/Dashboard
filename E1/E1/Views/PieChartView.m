@@ -8,9 +8,10 @@
 
 #import "PieChartView.h"
 #import "ViewController.h"
+#import "Definations.h"
 @interface PieChartView()<CPTPieChartDelegate>
-@property ( retain , nonatomic ) CPTXYGraph *graph;
-@property ( retain , nonatomic ) CPTPieChart *piePlot;
+@property (strong , nonatomic ) CPTXYGraph *graph;
+@property (strong , nonatomic ) CPTPieChart *piePlot;
 -(void)setupCoreplotViews;
 -(id) viewController;
 
@@ -23,9 +24,9 @@
     self=[super init];
     if (self!=nil)
     {
-        // 创建画布
+        // initialize the graph
         self.graph = [[ CPTXYGraph alloc ] init];
-        //创建饼图
+        //initilize the pie plot
         self.piePlot = [[ CPTPieChart alloc ] init];
         [self setupCoreplotViews];
     }
@@ -58,77 +59,59 @@
 
 -(void)setupCoreplotViews
 {
-    // 设置画布主题
-    CPTTheme *theme = [ CPTTheme themeNamed : kCPTPlainWhiteTheme ];
+
+    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme ];
     [self.graph applyTheme:theme];
-    // 画布与周围的距离
-    self.graph.paddingBottom = 10 ;
-    self.graph.paddingLeft = 5 ;
-    self.graph.paddingRight = 5 ;
-    self.graph.paddingTop = 10 ;
-    // 将画布的坐标轴设为空
+    self.graph.paddingBottom = kcCorePlotGraphPadding ;
+    self.graph.paddingLeft  =kcCorePlotGraphPadding;
+    self.graph.paddingRight  =kcCorePlotGraphPadding ;
+    self.graph.paddingTop = kcCorePlotGraphPadding ;
+    // set the axis of the graph as nil
     self.graph.axisSet = nil ;
-    // 创建画板
-    CPTGraphHostingView *hostView=self;
-    // 设置画板的画布
-    hostView.hostedGraph = self.graph ;
-    // 设置画布标题的风格
-    CPTMutableTextStyle *whiteText = [ CPTMutableTextStyle textStyle ];
-    whiteText.color = [ CPTColor blackColor ];
-    whiteText.fontSize = 18 ;
-    whiteText.fontName = @"Helvetica-Bold" ;
+    // configue the graph for view
+    self.hostedGraph = self.graph ;
+    // configue the style of graph
+    CPTMutableTextStyle *whiteText = [CPTMutableTextStyle textStyle ];
+    whiteText.color = [CPTColor blackColor];
+    whiteText.fontSize = kcPieChartTitleFontSize ;
+    whiteText.fontName = @"Helvetica-Bold";
     self.graph.titleTextStyle = whiteText;
-    self.graph.title = @" 饼状图 " ;
+    self.graph.title = @"QBE Composition";
     // 创建图例
-    CPTLegend *theLegeng = [ CPTLegend legendWithGraph : self.graph ];
-    theLegeng.numberOfColumns = 1 ;
-    theLegeng.fill = [ CPTFill fillWithColor :[ CPTColor whiteColor ]];
-    theLegeng.borderLineStyle = [ CPTLineStyle lineStyle ];
-    theLegeng.cornerRadius = 5.0 ;
-    theLegeng.delegate = self ;
-    self.graph.legend = theLegeng;
+    CPTLegend *aLegend = [CPTLegend legendWithGraph:self.graph];
+    aLegend.numberOfColumns = 1 ;
+    aLegend.fill = [CPTFill fillWithColor:[ CPTColor whiteColor ]];
+    aLegend.borderLineStyle = [CPTLineStyle lineStyle];
+    aLegend.cornerRadius = 5.0 ;
+    aLegend.delegate = [self viewController];
+    self.graph.legend = aLegend;
     self.graph.legendAnchor = CPTRectAnchorRight ;
-    self.graph.legendDisplacement = CGPointMake (- 10 , 100 );
+    self.graph.legendDisplacement = CGPointMake (-10,100);
 }
 
 
 -(void)updateCorePlotViews
 {
-    // 设置数据源
     self.piePlot.dataSource = [self viewController];
-    // 设置饼图半径
-    self.piePlot.pieRadius = 50 ;
-    // 设置饼图表示符
+    self.piePlot.pieRadius = kcPieChartRadius ;
     self.piePlot.identifier = @"pie chart" ;
-    // 饼图开始绘制的位置
-    self.piePlot.startAngle = M_PI_4 ;
-    // 饼图绘制的方向（顺时针 / 逆时针）
+    self.piePlot.startAngle = M_PI_4;
     self.piePlot.sliceDirection = CPTPieDirectionCounterClockwise ;
-    // 饼图的重心
-    self.piePlot.centerAnchor = CGPointMake (0.5,0.38);
-    // 饼图的线条风格
+    // set up the center anchor
+    self.piePlot.centerAnchor = CGPointMake (0.5,0.5);
+    // set up the border line style of pie plot
     self.piePlot.borderLineStyle = [CPTLineStyle lineStyle];
-    // 设置代理
-    self.piePlot.delegate = self ;
-    // 将饼图加到画布上
-    [ self.graph addPlot:self.piePlot ];
-    
-    
-    
+    // setup the delegate
+    self.piePlot.delegate=self;
+    // add the pie chart to the graph
+    [self.graph addPlot:self.piePlot ];
 }
 #pragma CPTPieChartDelegate
-
-
-// 选中某个扇形时的操作
-
-- ( void )pieChart:( CPTPieChart *)plot sliceWasSelectedAtRecordIndex:( NSUInteger )idx
-
+// method will be call when any part of the pie chart is being selected
+-(void)pieChart:(CPTPieChart *)plot sliceWasSelectedAtRecordIndex:(NSUInteger)idx
 {
-    
-    //self.graph.title = [NSString stringWithFormat : @"比例 :%@" ,[ self.arr objectAtIndex :idx]];
-    
+    //do something when selecting any part of the pie chart
 }
-
 
 
 
