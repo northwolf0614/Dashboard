@@ -14,7 +14,7 @@
 #import "DashBoardView.h"
 #import "StatisticsAnalyzerView.h"
 #import "CorePlot-CocoaTouch.h"
-@interface ViewController () <CPTPlotDataSource,CPTPieChartDataSource>
+@interface ViewController ()
 //view related
 @property(nonatomic,strong) DashBoardView* dashBoardView;
 //data for paragraphView
@@ -187,40 +187,58 @@
  return num;
  }
  */
+// 返回扇形数目
 
-#pragma mark -CPTPieDataSource
-// return the number of sectors
-- (NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
-{
-    return [self.dataForPieChart count] ;
-}
-// return the proportion of every sector
--(NSNumber*)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
-{
-    return [ self.dataForPieChart objectAtIndex :idx];
-}
-// return the title for every proportion
--(CPTLayer*)dataLabelForPlot:( CPTPlot *)plot recordIndex:( NSUInteger )idx
+-(NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
 {
     
-    CPTTextLayer *label = [[ CPTTextLayer alloc ] initWithText :[ NSString stringWithFormat : @"hello,%@" ,[ self. dataForPieChart objectAtIndex :idx]]];
-    CPTMutableTextStyle *text = [label.textStyle mutableCopy ];
-    text.color = [ CPTColor whiteColor ];
+    return self.dataForPieChart.count ;
+    
+}
+
+// 返回每个扇形的比例
+
+- (NSNumber *)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
+{
+    return [ self.dataForPieChart objectAtIndex:idx];
+}
+
+// 凡返回每个扇形的标题
+
+-(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)idx
+
+{
+    
+    CPTTextLayer *label = [[CPTTextLayer alloc] initWithText:[NSString stringWithFormat:@"hello,%@" ,[ self. dataForPieChart objectAtIndex:idx]]];
+    CPTMutableTextStyle* text = [ label.textStyle mutableCopy ];
+    text.color = [CPTColor whiteColor];
     return label;
     
 }
-#pragma CPTPieChartDataSource
-//-(NSAttributedString *)attributedLegendTitleForPieChart:(CPTPieChart*)pieChart recordIndex:(NSUInteger)idx
+
+#pragma ===========CPTPieChart   Delegate========================
+
+// 选中某个扇形时的操作
+
+//- ( void )pieChart:( CPTPieChart *)plot sliceWasSelectedAtRecordIndex:( NSUInteger )idx
+
 //{
-//    NSAttributedString* title = [[NSAttributedString   alloc] initWithString:[NSString stringWithFormat:@"hi:%i",idx]];
-//    return  title;
+    
+//    self . graph . title = [ NSString stringWithFormat : @" 比例 :%@" ,[ self .arr objectAtIndex :idx]];
+    
 //}
 
--(NSString*)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index
+// 返回图例
+
+-(NSAttributedString*)attributedLegendTitleForPieChart:(CPTPieChart*)pieChart recordIndex:(NSUInteger)idx
+
 {
-    return @"this is legend!";
+    NSAttributedString* title = [[NSAttributedString alloc ] initWithString :[ NSString stringWithFormat:@"hi:%i",idx]];
+    return  title;
     
 }
+
+
 
 
 @end

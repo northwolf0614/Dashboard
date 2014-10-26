@@ -9,9 +9,9 @@
 #import "PieChartView.h"
 #import "ViewController.h"
 #import "Definations.h"
-@interface PieChartView()<CPTPieChartDelegate>
-@property (strong , nonatomic ) CPTXYGraph *graph;
-@property (strong , nonatomic ) CPTPieChart *piePlot;
+@interface PieChartView()//<CPTPieChartDelegate,CPTPieChartDataSource>
+@property (strong,nonatomic)CPTXYGraph* graph;
+@property (strong,nonatomic)CPTPieChart* piePlot;
 -(void)setupCoreplotViews;
 -(id) viewController;
 
@@ -28,7 +28,7 @@
         self.graph = [[ CPTXYGraph alloc ] init];
         //initilize the pie plot
         self.piePlot = [[ CPTPieChart alloc ] init];
-        [self setupCoreplotViews];
+    
     }
     return self;
 }
@@ -77,7 +77,9 @@
     whiteText.fontName = @"Helvetica-Bold";
     self.graph.titleTextStyle = whiteText;
     self.graph.title = @"QBE Composition";
-    // 创建图例
+    
+    [self updatePieChartViews];
+
     CPTLegend *aLegend = [CPTLegend legendWithGraph:self.graph];
     aLegend.numberOfColumns = 1 ;
     aLegend.fill = [CPTFill fillWithColor:[ CPTColor whiteColor ]];
@@ -90,8 +92,12 @@
 }
 
 
--(void)updateCorePlotViews
+
+
+
+-(void)updatePieChartViews
 {
+
     self.piePlot.dataSource = [self viewController];
     self.piePlot.pieRadius = kcPieChartRadius ;
     self.piePlot.identifier = @"pie chart" ;
@@ -102,17 +108,21 @@
     // set up the border line style of pie plot
     self.piePlot.borderLineStyle = [CPTLineStyle lineStyle];
     // setup the delegate
-    self.piePlot.delegate=self;
+    self.piePlot.delegate=[self viewController];
     // add the pie chart to the graph
+    // 3 - Create gradient
+    CPTGradient *overlayGradient = [[CPTGradient alloc] init];
+    overlayGradient.gradientType = CPTGradientTypeRadial;
+    overlayGradient = [overlayGradient addColorStop:[[CPTColor blackColor] colorWithAlphaComponent:0.0] atPosition:0.9];
+    overlayGradient = [overlayGradient addColorStop:[[CPTColor blackColor] colorWithAlphaComponent:0.4] atPosition:1.0];
+    self.piePlot.overlayFill = [CPTFill fillWithGradient:overlayGradient];
     [self.graph addPlot:self.piePlot ];
+    
+
 }
-#pragma CPTPieChartDelegate
-// method will be call when any part of the pie chart is being selected
--(void)pieChart:(CPTPieChart *)plot sliceWasSelectedAtRecordIndex:(NSUInteger)idx
+-(void)updateCorePlotViews
 {
-    //do something when selecting any part of the pie chart
+    [self setupCoreplotViews];
 }
-
-
 
 @end
