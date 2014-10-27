@@ -31,6 +31,7 @@
     
     }
     return self;
+    self.backgroundColor=[UIColor yellowColor];
 }
 -(void)layoutSubviews
 {

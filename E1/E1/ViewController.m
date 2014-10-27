@@ -14,9 +14,14 @@
 #import "DashBoardView.h"
 #import "StatisticsAnalyzerView.h"
 #import "CorePlot-CocoaTouch.h"
+#import "PieChartView.h"
+
 @interface ViewController ()
 //view related
 @property(nonatomic,strong) DashBoardView* dashBoardView;
+@property(nonatomic,strong) PieChartView* pieChartView;
+@property(nonatomic,strong) UIScrollView* scrollView;
+@property(nonatomic,strong) UIView* contentView;
 //data for paragraphView
 @property(nonatomic,strong) NSMutableArray * dataForPlot;
 @property(nonatomic,strong) NSMutableArray * dataForPieChart;
@@ -26,7 +31,7 @@
 @property(nonatomic,strong) StatisticsModel* statisticModelInstance;
 
 -(void)setupStatisticsRetrieveWorker;
--(void)setupDashBoardView;
+//-(void)setupDashBoardView;
 //setup data for Views
 -(void)setupDataForViews;
 // applicatioin related
@@ -38,13 +43,66 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+/*
 -(void)setupDashBoardView
 {
     self.dashBoardView=[[DashBoardView alloc] initWithFrame:self.view.frame];
     self.dashBoardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.dashBoardView];
     [self.dashBoardView setNeedsDisplay];
-    }
+}
+ */
+-(void)setupAutoLayout
+{
+    UIScrollView* scrollView = [[UIScrollView alloc] init];
+    scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+    scrollView.backgroundColor = [UIColor redColor];
+    [self.view addSubview:scrollView];
+    
+    UIView* contentView = [[UIView alloc] init];
+    contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    contentView.backgroundColor = [UIColor greenColor];
+    [scrollView addSubview:contentView];
+    
+    UILabel *randomLabel = [[UILabel alloc] init];
+    randomLabel.text = @"this is a test";
+    randomLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    randomLabel.backgroundColor = [UIColor clearColor];
+    [contentView addSubview:randomLabel];
+    
+     DashBoardView* dashBoardView=[[DashBoardView alloc] init];
+    self.dashBoardView=dashBoardView;
+    dashBoardView.translatesAutoresizingMaskIntoConstraints=NO;
+    dashBoardView.backgroundColor=[UIColor yellowColor];
+    [contentView addSubview:dashBoardView];
+    
+    PieChartView* pieChartView1=[[PieChartView alloc] init];
+    pieChartView1.translatesAutoresizingMaskIntoConstraints=NO;
+    pieChartView1.backgroundColor=[UIColor yellowColor];
+    [contentView addSubview:pieChartView1];
+    
+    PieChartView* pieChartView2=[[PieChartView alloc] init];
+    pieChartView2.translatesAutoresizingMaskIntoConstraints=NO;
+    pieChartView2.backgroundColor=[UIColor yellowColor];
+    [contentView addSubview:pieChartView2];
+    
+    NSDictionary* viewDict = NSDictionaryOfVariableBindings(scrollView, contentView, randomLabel,dashBoardView,pieChartView1,pieChartView2);
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:0 views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:0 views:viewDict]];
+    
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:0 views:viewDict]];
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:0 views:viewDict]];
+    
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[randomLabel(==dashBoardView)]-[dashBoardView(300)]-|" options:0 metrics:0 views:viewDict]];
+    
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[randomLabel(==dashBoardView)]-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[dashBoardView(300)]-|" options:0 metrics:0 views:viewDict]];
+    
+    [self.dashBoardView setNeedsDisplay];
+
+ 
+}
 -(void)setupDataForViews
 {
     self.dataForPlot = [NSMutableArray arrayWithCapacity:100];
@@ -69,10 +127,13 @@
     
     [self setupStatisticsRetrieveWorker];
     [self setupStateChanges];
-    [self setupDashBoardView];
     [self setupDataForViews];
-    //[self setupStatisticsView];
-    
+    [self setupAutoLayout];
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {

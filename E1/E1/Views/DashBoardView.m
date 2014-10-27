@@ -41,9 +41,9 @@
     
 }
 
--(id)initWithFrame:(CGRect)frame
+-(id)init
 {
-    self= [super initWithFrame:frame];
+    self= [super init];
     if (self!=nil) {
         self.percentageView= [[GradientPercentView alloc] init];
         self.percentageView1= [[GradientPercentView alloc] init];
