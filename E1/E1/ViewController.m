@@ -94,12 +94,14 @@
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:0 views:viewDict]];
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[randomLabel(==dashBoardView)]-[dashBoardView(300)]-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=10-[randomLabel(==dashBoardView)]-20-[dashBoardView(300)]->=10-|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[randomLabel(==dashBoardView)]-|" options:0 metrics:0 views:viewDict]];
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[dashBoardView(300)]-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=10-[pieChartView1(==pieChartView2)]-20-[pieChartView2(300)]->=10-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=10-[randomLabel(==pieChartView1)]-20-[pieChartView1(300)]->=10-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=10-[dashBoardView(==pieChartView2)]-20-[pieChartView2(300)]->=10-|" options:0 metrics:0 views:viewDict]];
     
     [self.dashBoardView setNeedsDisplay];
+    
 
  
 }
