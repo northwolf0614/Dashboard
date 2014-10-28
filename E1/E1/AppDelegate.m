@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "DashboardTableViewController.h"
 
 @interface AppDelegate ()
 @property(nonatomic,strong) UINavigationController* navigationController;
@@ -17,7 +18,8 @@
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window= [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.rootViewController= [[ViewController alloc] init ];
+//    self.rootViewController= [[ViewController alloc] init ];
+    self.rootViewController = [[DashboardTableViewController alloc] init];
     self.navigationController= [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
     self.window.rootViewController= self.navigationController;
     [self.window makeKeyAndVisible];

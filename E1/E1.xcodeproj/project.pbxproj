@@ -28,6 +28,9 @@
 		09B0B28B19F5D99A008DCE56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09B0B28919F5D99A008DCE56 /* InfoPlist.strings */; };
 		09B0B28D19F5D99A008DCE56 /* E1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B28C19F5D99A008DCE56 /* E1Tests.m */; };
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
+		ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */; };
+		ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */; };
+		ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */; };
 		E7747AB719FB944C00508730 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7747AB619FB944C00508730 /* PieChartView.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */; };
@@ -95,6 +98,11 @@
 		09B0B28A19F5D99A008DCE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09B0B28C19F5D99A008DCE56 /* E1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E1Tests.m; sourceTree = "<group>"; };
 		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		ABE8A46819FF5E32004E35E1 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewController.h; sourceTree = "<group>"; };
+		ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewController.m; sourceTree = "<group>"; };
+		ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardTwinCell.xib; sourceTree = "<group>"; };
+		ABE8A47019FF6785004E35E1 /* DashboardTwinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTwinCell.h; sourceTree = "<group>"; };
+		ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTwinCell.m; sourceTree = "<group>"; };
 		E7747AB519FB944C00508730 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
 		E7747AB619FB944C00508730 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		E7760E8F19F711E500AFFC4B /* CATransform3DPerspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DPerspect.h; sourceTree = "<group>"; };
@@ -225,6 +233,7 @@
 		09B0B26419F5D99A008DCE56 /* E1 */ = {
 			isa = PBXGroup;
 			children = (
+				ABE8A46719FF5DF2004E35E1 /* DashboardTableView */,
 				090FB6E019F5DA6A008F437F /* Models */,
 				090FB6E319F5DA6A008F437F /* Services */,
 				090FB6E819F5DA6A008F437F /* Views */,
@@ -267,6 +276,18 @@
 				09B0B28919F5D99A008DCE56 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ABE8A46719FF5DF2004E35E1 /* DashboardTableView */ = {
+			isa = PBXGroup;
+			children = (
+				ABE8A46819FF5E32004E35E1 /* DashboardTableViewController.h */,
+				ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */,
+				ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */,
+				ABE8A47019FF6785004E35E1 /* DashboardTwinCell.h */,
+				ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */,
+			);
+			path = DashboardTableView;
 			sourceTree = "<group>";
 		};
 		E7760E8E19F711E500AFFC4B /* 3DPerspect */ = {
@@ -371,6 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */,
 				09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */,
 				ABE8A46519FF5912004E35E1 /* .gitignore in Resources */,
 				09B0B26919F5D99A008DCE56 /* InfoPlist.strings in Resources */,
@@ -394,12 +416,14 @@
 			files = (
 				E78256D819F8922C005E42C1 /* ClaimManager.m in Sources */,
 				E78256D219F74356005E42C1 /* AnalyzerLayerDelegate.m in Sources */,
+				ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */,
 				090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */,
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
 				090FB6F119F5DA6A008F437F /* GradientPercentView.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
+				ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */,
 				09B0B27819F5D99A008DCE56 /* ViewController.m in Sources */,
 				E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
