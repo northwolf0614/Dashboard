@@ -34,8 +34,9 @@
 #define kcDefaultShadowOpacity 0.5
 #define kcDefaultShadowOffset CGSizeMake(10,10)
 
-#define GREEN_PLOT_IDENTIFIER       @"Green Plot"
-#define BLUE_PLOT_IDENTIFIER        @"Blue Plot"
+//#define GREEN_PLOT_IDENTIFIER       @"Green Plot"
+#define kcQBE_Products_History       @"QBE_Product_History"
+#define kcQBE_Products_PieChart     @"QBE Product Piechart"
 
 
 

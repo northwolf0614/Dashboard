@@ -7,21 +7,10 @@
 //
 
 #import "DashBoardView.h"
-#import <MapKit/MapKit.h>
-#import "Definations.h"
-#import "GradientPercentView.h"
-#import "StatisticsAnalyzerView.h"
-#import "CorePlot-CocoaTouch.h"
-#import "ParagraphView.h"
-#import "PieChartView.h"
+
 @interface DashBoardView()<CLLocationManagerDelegate,MKMapViewDelegate>
 //subviews：
-@property (nonatomic,strong) MKMapView *mapView;
-@property (nonatomic,strong) GradientPercentView* percentageView;
-@property (nonatomic,strong) GradientPercentView* percentageView1;
-@property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
-@property(nonatomic,strong)  ParagraphView* paragraphView;
-@property(nonatomic,strong)  PieChartView* pieCharView;
+
 //locations related
 @property(nonatomic,strong) CLLocationManager *locationManager;
 @property(nonatomic,strong) CLLocation *currentLocation;
@@ -37,7 +26,7 @@
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
     [self.percentageView setPercent:percent animated:animated];
-    [self.percentageView1 setPercent:percent animated:animated];
+    //[self.percentageView1 setPercent:percent animated:animated];
     
 }
 
@@ -46,12 +35,10 @@
     self= [super init];
     if (self!=nil) {
         self.percentageView= [[GradientPercentView alloc] init];
-        self.percentageView1= [[GradientPercentView alloc] init];
+        //self.percentageView1= [[GradientPercentView alloc] init];
         self.statisticsAnalyzerView=[[StatisticsAnalyzerView alloc] init];
         self.paragraphView= [[ParagraphView alloc] init];
         self.pieCharView = [[PieChartView alloc] init];
-        
-        
         self.mapView=[[MKMapView alloc] init];
         self.mapView.delegate=self;
         self.mapView.alpha=kcMapViewAlpha;
@@ -59,20 +46,17 @@
         self.mapView.showsUserLocation=YES;
         
         [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.percentageView1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.pieCharView setTranslatesAutoresizingMaskIntoConstraints:NO];
         //map view is supposed to be added firstly
+        
         [self addSubview:self.mapView];
-        //[self addSubview:self.percentageView];
-        //[self addSubview:self.percentageView1];
-        //[self addSubview:self.statisticsAnalyzerView];
-        //[self addSubview:self.paragraphView];
+        [self addSubview:self.percentageView];
+        [self addSubview:self.statisticsAnalyzerView];
+        [self addSubview:self.paragraphView];
         [self addSubview:self.pieCharView];
-        
-        
         self.didSetupConstraints=NO;
         [self setupLocationManager];
         
@@ -86,8 +70,8 @@
 {
     [self setNeedsUpdateConstraints];
     [self updateConstraintsIfNeeded];
-    [UIView animateWithDuration:0.5 animations:^{
-        
+    [UIView animateWithDuration:0.5 animations:
+     ^{
         [super layoutSubviews];
     }];
 }
@@ -103,47 +87,25 @@
     }
     else
     {
+       
+        NSDictionary* viewDict    = @{      @"mapView":         self.mapView,
+                                       @"pieChartView":      self.pieCharView,
+                                       @"statisticsView":     self.statisticsAnalyzerView,
+                                       @"paragraphView":      self.paragraphView,
+                                       @"percentageView":     self.percentageView
+                                            
+                                    };
         
-        NSArray *tmpConstraints;
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[mapView(==pieChartView)]-20-[pieChartView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
         
-        NSDictionary* views    = @{
-                                   @"mapView"      :      self.mapView,
-                                   @"percentageView0" :      self.percentageView,
-                                   @"percentageView1" :      self.percentageView1,
-                                   @"statisticsView" :      self.statisticsAnalyzerView,
-                                   //@"paragraphView" :      self.paragraphView,
-                                   @"paragraphView" :      self.pieCharView,
-                                   
-                                            };
-        /*
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[statisticsView(==paragraphView)]-20-[paragraphView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[mapView(==statisticsView)]-20-[statisticsView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[statisticsView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[pieChartView(==paragraphView)]-20-[paragraphView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[percentageView0(==percentageView1)]-10-[percentageView1(50)]-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
         
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
-        
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[percentageView0(50)]-[statisticsView(100)]-[paragraphView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-100-[percentageView1(==percentageView0)]-[statisticsView(100)]-[paragraphView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
-         */
-        
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
-        
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
-        tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView(==paragraphView)]-0-[paragraphView]-0-|" options:0 metrics:nil views:views];
-        [self addConstraints:tmpConstraints];
+
         self.didSetupConstraints=YES;
 
 
@@ -192,6 +154,7 @@
     [self.paragraphView updateCorePlotViews];
     [self.pieCharView  updateCorePlotViews];
 }
+
 
 #pragma CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager

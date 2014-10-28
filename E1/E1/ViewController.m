@@ -19,7 +19,6 @@
 @interface ViewController ()
 //view related
 @property(nonatomic,strong) DashBoardView* dashBoardView;
-@property(nonatomic,strong) PieChartView* pieChartView;
 @property(nonatomic,strong) UIScrollView* scrollView;
 @property(nonatomic,strong) UIView* contentView;
 //data for paragraphView
@@ -55,20 +54,16 @@
 -(void)setupAutoLayout
 {
     UIScrollView* scrollView = [[UIScrollView alloc] init];
+    self.scrollView=scrollView;
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     scrollView.backgroundColor = [UIColor redColor];
     [self.view addSubview:scrollView];
     
     UIView* contentView = [[UIView alloc] init];
+    self.contentView=contentView;
     contentView.translatesAutoresizingMaskIntoConstraints = NO;
     contentView.backgroundColor = [UIColor greenColor];
     [scrollView addSubview:contentView];
-    
-    UILabel *randomLabel = [[UILabel alloc] init];
-    randomLabel.text = @"this is a test";
-    randomLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    randomLabel.backgroundColor = [UIColor clearColor];
-    [contentView addSubview:randomLabel];
     
      DashBoardView* dashBoardView=[[DashBoardView alloc] init];
     self.dashBoardView=dashBoardView;
@@ -76,17 +71,7 @@
     dashBoardView.backgroundColor=[UIColor yellowColor];
     [contentView addSubview:dashBoardView];
     
-    PieChartView* pieChartView1=[[PieChartView alloc] init];
-    pieChartView1.translatesAutoresizingMaskIntoConstraints=NO;
-    pieChartView1.backgroundColor=[UIColor yellowColor];
-    [contentView addSubview:pieChartView1];
-    
-    PieChartView* pieChartView2=[[PieChartView alloc] init];
-    pieChartView2.translatesAutoresizingMaskIntoConstraints=NO;
-    pieChartView2.backgroundColor=[UIColor yellowColor];
-    [contentView addSubview:pieChartView2];
-    
-    NSDictionary* viewDict = NSDictionaryOfVariableBindings(scrollView, contentView, randomLabel,dashBoardView,pieChartView1,pieChartView2);
+    NSDictionary* viewDict=@{@"scrollView":self.scrollView,@"contentView":self.contentView,@"dashBoardView":self.dashBoardView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:0 views:viewDict]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:0 views:viewDict]];
@@ -94,13 +79,10 @@
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:0 views:viewDict]];
     [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=10-[randomLabel(==dashBoardView)]-20-[dashBoardView(300)]->=10-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=10-[pieChartView1(==pieChartView2)]-20-[pieChartView2(300)]->=10-|" options:0 metrics:0 views:viewDict]];
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=10-[randomLabel(==pieChartView1)]-20-[pieChartView1(300)]->=10-|" options:0 metrics:0 views:viewDict]];
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=10-[dashBoardView(==pieChartView2)]-20-[pieChartView2(300)]->=10-|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
     
-    [self.dashBoardView setNeedsDisplay];
     
 
  
@@ -135,10 +117,12 @@
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
+    [self.dashBoardView setNeedsDisplay];
 
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -226,36 +210,54 @@
 
 
 
-
+/*
 #pragma mark -CPTPlotDataSource
 #pragma mark Plot Data Source Methods for ParagraphView
-/*
+
  -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
  {
- return [ self.dataForPlot count];
+     if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+     {
+         return self.dataForPlot.count;
+     }
+     return 0;
  }
  
  -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
  {
- NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
- NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+     if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+     {
+         
+     
+         NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+         NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+         if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
+         {
+             if (fieldEnum == CPTScatterPlotFieldY)
+             {
+                 num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+             }
+         }
  
- // Green plot gets shifted above the blue
- if ([(NSString *)plot.identifier isEqualToString:GREEN_PLOT_IDENTIFIER]) {
- if (fieldEnum == CPTScatterPlotFieldY) {
- num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+         return num;
+        }
+        return nil;
  }
- }
- 
- return num;
- }
- */
+*/
+
 // 返回扇形数目
 
 -(NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
 {
+    if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart]) {
+        return self.dataForPieChart.count ;
+    }
+    //else if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+    //{
+       // return [ self.dataForPlot count];
+    //}
+    return 0;
     
-    return self.dataForPieChart.count ;
     
 }
 
@@ -263,7 +265,23 @@
 
 - (NSNumber *)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
 {
+    if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart])
     return [ self.dataForPieChart objectAtIndex:idx];
+    //else if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+    //{
+        //NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+        //NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
+        
+        // Green plot gets shifted above the blue
+        //if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History]) {
+            //if (fieldEnum == CPTScatterPlotFieldY) {
+                //num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+            //}
+        //}
+        
+        //return num;
+    //}
+    return nil;
 }
 
 // 凡返回每个扇形的标题
@@ -271,15 +289,19 @@
 -(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)idx
 
 {
+    if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart])
+    {
     
-    CPTTextLayer *label = [[CPTTextLayer alloc] initWithText:[NSString stringWithFormat:@"hello,%@" ,[ self. dataForPieChart objectAtIndex:idx]]];
-    CPTMutableTextStyle* text = [ label.textStyle mutableCopy ];
-    text.color = [CPTColor whiteColor];
-    return label;
+        CPTTextLayer *label = [[CPTTextLayer alloc] initWithText:[NSString stringWithFormat:@"hello,%@" ,[ self.dataForPieChart objectAtIndex:idx]]];
+        CPTMutableTextStyle* text = [ label.textStyle mutableCopy ];
+        text.color = [CPTColor whiteColor];
+        return label;
+    }
+    return nil;
     
 }
 
-#pragma ===========CPTPieChart   Delegate========================
+#pragma CPTPieChartDelegate
 
 // 选中某个扇形时的操作
 
@@ -293,13 +315,21 @@
 
 // 返回图例
 
+
 -(NSAttributedString*)attributedLegendTitleForPieChart:(CPTPieChart*)pieChart recordIndex:(NSUInteger)idx
 
 {
-    NSAttributedString* title = [[NSAttributedString alloc ] initWithString :[ NSString stringWithFormat:@"hi:%i",idx]];
-    return  title;
+    if ([pieChart isKindOfClass:[CPTPieChart class]]&& [pieChart.identifier isEqual:kcQBE_Products_PieChart])
+        
+    {
+        NSAttributedString* title = [[NSAttributedString alloc ] initWithString :[ NSString stringWithFormat:@"hi:%i",idx]];
+        return  title;
+        
+    }
+    return nil;
     
 }
+
 
 
 

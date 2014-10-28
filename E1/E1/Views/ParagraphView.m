@@ -100,7 +100,7 @@
     
     CPTScatterPlot * boundLinePlot  = [[CPTScatterPlot alloc] init];
     boundLinePlot.dataLineStyle = lineStyle;
-    boundLinePlot.identifier    = BLUE_PLOT_IDENTIFIER;
+    boundLinePlot.identifier    = kcQBE_Products_History;
     boundLinePlot.dataSource    =[self viewController];
     // Do a red-blue gradient: 渐变色区域
     //

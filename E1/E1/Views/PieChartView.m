@@ -101,7 +101,7 @@
 
     self.piePlot.dataSource = [self viewController];
     self.piePlot.pieRadius = kcPieChartRadius ;
-    self.piePlot.identifier = @"pie chart" ;
+    self.piePlot.identifier = kcQBE_Products_PieChart ;
     self.piePlot.startAngle = M_PI_4;
     self.piePlot.sliceDirection = CPTPieDirectionCounterClockwise ;
     // set up the center anchor
