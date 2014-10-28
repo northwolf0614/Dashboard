@@ -56,54 +56,35 @@
     self.scrollView = [[UIScrollView alloc] init];
 
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.scrollView.backgroundColor = [UIColor redColor];
+    self.scrollView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.scrollView];
     
     self.contentView = [[UIView alloc] init];
     
     self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.contentView.backgroundColor = [UIColor greenColor];
+    //self.contentView.backgroundColor = [UIColor greenColor];
     [self.scrollView addSubview:self.contentView];
     
     self.dashBoardView=[[DashBoardView alloc] init];
     self.dashBoardView.translatesAutoresizingMaskIntoConstraints=NO;
-    self.dashBoardView.backgroundColor=[UIColor yellowColor];
+    //self.dashBoardView.backgroundColor=[UIColor yellowColor];
     [self.contentView addSubview:self.dashBoardView];
 
     
 }
 -(void)setupAutoLayout
 {
-    /*
-    UIScrollView* scrollView = [[UIScrollView alloc] init];
-    self.scrollView=scrollView;
-    scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    scrollView.backgroundColor = [UIColor redColor];
-    [self.view addSubview:scrollView];
-    
-    UIView* contentView = [[UIView alloc] init];
-    self.contentView=contentView;
-    contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    contentView.backgroundColor = [UIColor greenColor];
-    [scrollView addSubview:contentView];
-    
-    DashBoardView* dashBoardView=[[DashBoardView alloc] init];
-    self.dashBoardView=dashBoardView;
-    dashBoardView.translatesAutoresizingMaskIntoConstraints=NO;
-    dashBoardView.backgroundColor=[UIColor yellowColor];
-    [contentView addSubview:dashBoardView];
-    */
     NSDictionary* viewDict=@{@"scrollView":self.scrollView,@"contentView":self.contentView,@"dashBoardView":self.dashBoardView};
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:0 views:viewDict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollView]-0-|" options:0 metrics:0 views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:0 views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:0 views:viewDict]];
     
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:0 views:viewDict]];
-    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[contentView]-0-|" options:0 metrics:0 views:viewDict]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:0 views:viewDict]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:0 views:viewDict]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[dashBoardView]-0-|" options:0 metrics:0 views:viewDict]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[dashBoardView]-0-|" options:0 metrics:0 views:viewDict]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
     
     
 
@@ -142,32 +123,6 @@
     }
     
 
-}
--(void)viewDidLayoutSubviews
-{
-    NSLog(@"the view frame's origin.x is %f",self.view.frame.origin.x);
-    NSLog(@"the view frame's origin.y is %f",self.view.frame.origin.y);
-    NSLog(@"the view frame's width is %f",self.view.frame.size.width);
-    NSLog(@"the view frame's height is %f",self.view.frame.size.height);
-    
-    NSLog(@"the scrollView frame's origin.x is %f",self.scrollView.frame.origin.x);
-    NSLog(@"the scrollView frame's origin.y is %f",self.scrollView.frame.origin.y);
-    NSLog(@"the scrollView frame's width is %f",self.scrollView.frame.size.width);
-    NSLog(@"the scrollView frame's height is %f",self.scrollView.frame.size.height);
-    
-    NSLog(@"the contentView frame's origin.x is %f",self.contentView.frame.origin.x);
-    NSLog(@"the contentView frame's origin.y is %f",self.contentView.frame.origin.y);
-    NSLog(@"the contentView frame's width is %f",self.contentView.frame.size.width);
-    NSLog(@"the contentView frame's height is %f",self.contentView.frame.size.height);
-    
-    NSLog(@"the dashboardView frame's origin.x is %f",self.dashBoardView.frame.origin.x);
-    NSLog(@"the dashboardView frame's origin.y is %f",self.dashBoardView.frame.origin.y);
-    NSLog(@"the dashboardView frame's width is %f",self.dashBoardView.frame.size.width);
-    NSLog(@"the dashboardView frame's height is %f",self.dashBoardView.frame.size.height);
-    
-    
-    [super viewDidLayoutSubviews];
-    [self setupAutoLayout];
 }
 
 - (void)didReceiveMemoryWarning

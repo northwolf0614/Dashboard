@@ -82,41 +82,71 @@
 {
     
     [super updateConstraints];
-    if (self.didSetupConstraints) {
+    if (self.didSetupConstraints)
         return;
-    }
+    
     else
     {
        
         NSDictionary* viewDict    = @{      @"mapView":         self.mapView,
-                                       @"pieChartView":      self.pieCharView,
-                                       @"statisticsView":     self.statisticsAnalyzerView,
-                                       @"paragraphView":      self.paragraphView,
-                                       @"percentageView":     self.percentageView
                                             
-                                    };
+                                            @"pieChartView":      self.pieCharView,
+                                            
+                                            @"statisticsView":     self.statisticsAnalyzerView,
+                                            
+                                            @"paragraphView":      self.paragraphView,
+                                            
+                                            @"percentageView":     self.percentageView
+                                            
+                                            
+                                            
+                                            };
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[mapView(==pieChartView)]-20-[pieChartView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
+        NSDictionary* metrics    = @{      @"smallPadding": @56,
+                                           
+                                           @"largerPadding":      @141,
+                                           
+                                           @"size":@400,
+                                           
+                                           @"standardPadding":@10
+                                           
+                                           };
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[statisticsView(==paragraphView)]-20-[paragraphView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[percentageView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[mapView(==statisticsView)]-20-[statisticsView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
-        
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[pieChartView(==paragraphView)]-20-[paragraphView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[mapView(==statisticsView)]-20-[statisticsView(300)]-20-[percentageView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[mapView(==pieChartView)]-largerPadding-[pieChartView(size)]-largerPadding-|" options:0 metrics:metrics views:viewDict]];
+            
+            
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[statisticsView(==paragraphView)]-largerPadding-[paragraphView(size)]-largerPadding-|" options:0 metrics:metrics views:viewDict]];
+            
+            
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict]];
+            
+            
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-largerPadding-[pieChartView(==paragraphView)]-largerPadding-[paragraphView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict]];
+            
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-largerPadding-[mapView(size)]-largerPadding-[statisticsView(size)]-largerPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict]];
+            
 
         
-        
-        
-
         self.didSetupConstraints=YES;
 
 
-    }
+        
     
         
+    }
 }
 
 -(void)setupLocationManager
