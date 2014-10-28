@@ -27,6 +27,7 @@
 		09B0B28319F5D99A008DCE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0B26219F5D99A008DCE56 /* UIKit.framework */; };
 		09B0B28B19F5D99A008DCE56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09B0B28919F5D99A008DCE56 /* InfoPlist.strings */; };
 		09B0B28D19F5D99A008DCE56 /* E1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B28C19F5D99A008DCE56 /* E1Tests.m */; };
+		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
 		E7747AB719FB944C00508730 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7747AB619FB944C00508730 /* PieChartView.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */; };
@@ -93,6 +94,7 @@
 		09B0B28819F5D99A008DCE56 /* E1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "E1Tests-Info.plist"; sourceTree = "<group>"; };
 		09B0B28A19F5D99A008DCE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09B0B28C19F5D99A008DCE56 /* E1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E1Tests.m; sourceTree = "<group>"; };
+		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E7747AB519FB944C00508730 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
 		E7747AB619FB944C00508730 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		E7760E8F19F711E500AFFC4B /* CATransform3DPerspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DPerspect.h; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		09B0B25219F5D99A008DCE56 = {
 			isa = PBXGroup;
 			children = (
+				ABE8A46419FF5912004E35E1 /* .gitignore */,
 				09331BB719F9005C004EDFEA /* CorePlot-CocoaTouch.xcodeproj */,
 				09B0B26419F5D99A008DCE56 /* E1 */,
 				09B0B28619F5D99A008DCE56 /* E1Tests */,
@@ -369,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */,
+				ABE8A46519FF5912004E35E1 /* .gitignore in Resources */,
 				09B0B26919F5D99A008DCE56 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +536,7 @@
 					"$(inherited)",
 					/Volumes/MACOS/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"/Users/jacklin/Documents/EY_Entertainment/E1/E1/core-plot-master/framework/**",
+					"/Users/lei/Workspace/EY/**",
 				);
 				INFOPLIST_FILE = "E1/E1-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -556,6 +561,7 @@
 					"$(inherited)",
 					/Volumes/MACOS/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"/Users/jacklin/Documents/EY_Entertainment/E1/E1/core-plot-master/framework/**",
+					"/Users/lei/Workspace/EY/**",
 				);
 				INFOPLIST_FILE = "E1/E1-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
