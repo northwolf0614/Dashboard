@@ -56,32 +56,32 @@
     UIScrollView* scrollView = [[UIScrollView alloc] init];
     self.scrollView=scrollView;
     scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    scrollView.backgroundColor = [UIColor redColor];
+    //scrollView.backgroundColor = [UIColor redColor];
     [self.view addSubview:scrollView];
     
     UIView* contentView = [[UIView alloc] init];
     self.contentView=contentView;
     contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    contentView.backgroundColor = [UIColor greenColor];
+    //contentView.backgroundColor = [UIColor greenColor];
     [scrollView addSubview:contentView];
     
-     DashBoardView* dashBoardView=[[DashBoardView alloc] init];
+    DashBoardView* dashBoardView=[[DashBoardView alloc] init];
     self.dashBoardView=dashBoardView;
     dashBoardView.translatesAutoresizingMaskIntoConstraints=NO;
-    dashBoardView.backgroundColor=[UIColor yellowColor];
+    //dashBoardView.backgroundColor=[UIColor yellowColor];
     [contentView addSubview:dashBoardView];
     
     NSDictionary* viewDict=@{@"scrollView":self.scrollView,@"contentView":self.contentView,@"dashBoardView":self.dashBoardView};
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[scrollView]|" options:0 metrics:0 views:viewDict]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[scrollView]|" options:0 metrics:0 views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollView]-0-|" options:0 metrics:0 views:viewDict]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollView]-0-|" options:0 metrics:0 views:viewDict]];
     
-    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:0 views:viewDict]];
-    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:0 views:viewDict]];
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:0 views:viewDict]];
+    [scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[contentView]-0-|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[dashBoardView]-0-|" options:0 metrics:0 views:viewDict]];
     
-    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[dashBoardView]|" options:0 metrics:0 views:viewDict]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[dashBoardView]-0-|" options:0 metrics:0 views:viewDict]];
     
     
 
@@ -208,55 +208,18 @@
 {
     NSLog(@"enter applicationDidBecomeActive ");
 }
-
-
-
-/*
-#pragma mark -CPTPlotDataSource
-#pragma mark Plot Data Source Methods for ParagraphView
-
- -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
- {
-     if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-     {
-         return self.dataForPlot.count;
-     }
-     return 0;
- }
- 
- -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
- {
-     if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-     {
-         
-     
-         NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-         NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
-         if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
-         {
-             if (fieldEnum == CPTScatterPlotFieldY)
-             {
-                 num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-             }
-         }
- 
-         return num;
-        }
-        return nil;
- }
-*/
-
 // 返回扇形数目
 
 -(NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
 {
-    if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart]) {
+    if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart])
+    {
         return self.dataForPieChart.count ;
     }
- if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
- {
- return self.dataForPlot.count;
- }
+    if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+    {
+        return self.dataForPlot.count;
+    }
     return 0;
  
     
@@ -267,23 +230,23 @@
 - (NSNumber *)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
 {
     if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart])
-    return [ self.dataForPieChart objectAtIndex:idx];
- if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
- {
+        return [ self.dataForPieChart objectAtIndex:idx];
+    if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+    {
  
  
- NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
- NSNumber * num = [[_dataForPlot objectAtIndex:idx] valueForKey:key];
- if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
- {
- if (fieldEnum == CPTScatterPlotFieldY)
- {
- num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
- }
- }
+        NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+        NSNumber * num = [[_dataForPlot objectAtIndex:idx] valueForKey:key];
+        if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
+        {
+            if (fieldEnum == CPTScatterPlotFieldY)
+            {
+                num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+            }
+        }
  
- return num;
- }
+        return num;
+    }
     return nil;
 }
 

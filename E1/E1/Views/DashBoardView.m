@@ -100,9 +100,14 @@
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[statisticsView(==paragraphView)]-20-[paragraphView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
         
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=100-[percentageView(300)]->=100-|" options:0 metrics:0 views:viewDict]];
+        
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[mapView(==statisticsView)]-20-[statisticsView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[pieChartView(==paragraphView)]-20-[paragraphView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=200-[mapView(==statisticsView)]-20-[statisticsView(300)]-20-[percentageView(300)]->=200-|" options:0 metrics:0 views:viewDict]];
+
+        
         
         
 
