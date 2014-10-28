@@ -117,7 +117,7 @@
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    [self.dashBoardView setNeedsDisplay];
+    
 
 }
 
@@ -157,6 +157,7 @@
     [self.dashBoardView setPercent:0.9 animated:YES];
     [self.dashBoardView updateCorePlotViews];
     [self.dashBoardView updateAnalysis];
+    [self.dashBoardView setNeedsDisplay];
 
     
     
@@ -252,12 +253,12 @@
     if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart]) {
         return self.dataForPieChart.count ;
     }
-    //else if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-    //{
-       // return [ self.dataForPlot count];
-    //}
+ if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+ {
+ return self.dataForPlot.count;
+ }
     return 0;
-    
+ 
     
 }
 
@@ -267,20 +268,22 @@
 {
     if ([plot isKindOfClass:[CPTPieChart class]]&& [plot.identifier isEqual:kcQBE_Products_PieChart])
     return [ self.dataForPieChart objectAtIndex:idx];
-    //else if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-    //{
-        //NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-        //NSNumber * num = [[_dataForPlot objectAtIndex:index] valueForKey:key];
-        
-        // Green plot gets shifted above the blue
-        //if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History]) {
-            //if (fieldEnum == CPTScatterPlotFieldY) {
-                //num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-            //}
-        //}
-        
-        //return num;
-    //}
+ if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
+ {
+ 
+ 
+ NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+ NSNumber * num = [[_dataForPlot objectAtIndex:idx] valueForKey:key];
+ if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
+ {
+ if (fieldEnum == CPTScatterPlotFieldY)
+ {
+ num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+ }
+ }
+ 
+ return num;
+ }
     return nil;
 }
 
@@ -329,6 +332,7 @@
     return nil;
     
 }
+
 
 
 
