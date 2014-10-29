@@ -12,6 +12,8 @@
 #import "DashboardMapViewController.h"
 #import "DashboardGradientPercentViewController.h"
 #import "DashboardStatisticsAnalyzerViewController.h"
+#import "DashBoardPieChartViewController.h"
+#import "ParagraphViewController.h"
 
 @interface DashboardTableViewController ()
 @property(nonatomic, strong)NSMutableArray* dashboardItemViewControllers;
@@ -29,9 +31,8 @@
     [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
-    //Examples for other items.
-    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[DashBoardPieChartViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[ParagraphViewController alloc] init]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

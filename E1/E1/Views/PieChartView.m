@@ -11,7 +11,7 @@
 #import "Definations.h"
 @interface PieChartView()//<CPTPieChartDelegate,CPTPieChartDataSource>
 @property (strong,nonatomic)CPTXYGraph* graph;
-@property (strong,nonatomic)CPTPieChart* piePlot;
+
 -(void)setupCoreplotViews;
 -(id) viewController;
 
@@ -81,13 +81,13 @@
     
     [self updatePieChartViews];
 
-    CPTLegend *aLegend = [CPTLegend legendWithGraph:self.graph];
-    aLegend.numberOfColumns = 1 ;
-    aLegend.fill = [CPTFill fillWithColor:[ CPTColor whiteColor ]];
-    aLegend.borderLineStyle = [CPTLineStyle lineStyle];
-    aLegend.cornerRadius = 5.0 ;
-    aLegend.delegate = [self viewController];
-    self.graph.legend = aLegend;
+    self.legend = [CPTLegend legendWithGraph:self.graph];
+    self.legend.numberOfColumns = 1 ;
+    self.legend.fill = [CPTFill fillWithColor:[ CPTColor whiteColor ]];
+    self.legend.borderLineStyle = [CPTLineStyle lineStyle];
+    self.legend.cornerRadius = 5.0 ;
+    //self.legend.delegate = [self viewController];
+    self.graph.legend = self.legend;
     self.graph.legendAnchor = CPTRectAnchorRight ;
     self.graph.legendDisplacement = CGPointMake (-10,100);
 }
@@ -99,7 +99,7 @@
 -(void)updatePieChartViews
 {
 
-    self.piePlot.dataSource = [self viewController];
+    //self.piePlot.dataSource = [self viewController];
     self.piePlot.pieRadius = kcPieChartRadius ;
     self.piePlot.identifier = kcQBE_Products_PieChart ;
     self.piePlot.startAngle = M_PI_4;
@@ -109,7 +109,7 @@
     // set up the border line style of pie plot
     self.piePlot.borderLineStyle = [CPTLineStyle lineStyle];
     // setup the delegate
-    self.piePlot.delegate=[self viewController];
+    //self.piePlot.delegate=[self viewController];
     // add the pie chart to the graph
     // 3 - Create gradient
     CPTGradient *overlayGradient = [[CPTGradient alloc] init];

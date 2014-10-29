@@ -12,5 +12,6 @@
 
 
 @interface ParagraphView : CPTGraphHostingView
+@property(nonatomic,strong)CPTScatterPlot* boundLinePlot;
 -(void)updateCorePlotViews;
 @end

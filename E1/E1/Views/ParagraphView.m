@@ -98,10 +98,10 @@
     lineStyle.lineWidth         = 3.0f;
     lineStyle.lineColor         = [CPTColor blueColor];
     
-    CPTScatterPlot * boundLinePlot  = [[CPTScatterPlot alloc] init];
-    boundLinePlot.dataLineStyle = lineStyle;
-    boundLinePlot.identifier    = kcQBE_Products_History;
-    boundLinePlot.dataSource    =[self viewController];
+    self.boundLinePlot  = [[CPTScatterPlot alloc] init];
+    self.boundLinePlot.dataLineStyle = lineStyle;
+    self.boundLinePlot.identifier    = kcQBE_Products_History;
+    //self.boundLinePlot.dataSource    =[self viewController];
     // Do a red-blue gradient: 渐变色区域
     //
     CPTColor * blueColor        = [CPTColor colorWithComponentRed:0.3 green:0.3 blue:1.0 alpha:0.8];
@@ -110,8 +110,8 @@
                                                               endingColor:redColor];
     areaGradient1.angle = -90.0f;
     CPTFill * areaGradientFill  = [CPTFill fillWithGradient:areaGradient1];
-    boundLinePlot.areaFill      = areaGradientFill;
-    boundLinePlot.areaBaseValue = [[NSDecimalNumber numberWithFloat:1.0] decimalValue]; // 渐变色的起点位置
+    self.boundLinePlot.areaFill      = areaGradientFill;
+    self.boundLinePlot.areaBaseValue = [[NSDecimalNumber numberWithFloat:1.0] decimalValue]; // 渐变色的起点位置
     // Add plot symbols: 表示数值的符号的形状
     //
     CPTMutableLineStyle * symbolLineStyle = [CPTMutableLineStyle lineStyle];
@@ -122,9 +122,9 @@
     plotSymbol.fill          = [CPTFill fillWithColor:[CPTColor blueColor]];
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(10.0, 10.0);
-    boundLinePlot.plotSymbol = plotSymbol;
+    self.boundLinePlot.plotSymbol = plotSymbol;
     //draw the data from the delegate to the area
-    [self.graph addPlot:boundLinePlot];
+    [self.graph addPlot:self.boundLinePlot];
 
 }
 

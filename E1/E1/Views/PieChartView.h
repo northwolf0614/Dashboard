@@ -10,5 +10,7 @@
 #import "CorePlot-CocoaTouch.h"
 
 @interface PieChartView : CPTGraphHostingView
+@property (strong,nonatomic)CPTPieChart* piePlot;
+@property (strong,nonatomic)CPTLegend* legend;
 -(void)updateCorePlotViews;
 @end
