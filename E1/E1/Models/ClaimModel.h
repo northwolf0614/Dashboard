@@ -18,39 +18,33 @@
  [21/10/2014 5:15:07 pm] billy huang: 过几天看看怎么去给你所有这些数据
  */
 #import <Foundation/Foundation.h>
-typedef NS_ENUM(NSUInteger, ClaimProcess)
-{
+typedef NS_ENUM(NSUInteger, ClaimProcess) {
     UnderDispute,
     UnderInvestigation,
 };
-typedef NS_ENUM(NSUInteger, ClaimStatus)
-{
+typedef NS_ENUM(NSUInteger, ClaimStatus) {
     Reopened,
     Closed,
     Initial,
 };
-typedef NS_ENUM(NSUInteger, ProductForClaim)
-{
+typedef NS_ENUM(NSUInteger, ProductForClaim) {
     CarInsurance,
     HomeInsurance,
     LifeInsurance,
 };
-typedef NS_ENUM(NSUInteger, ChannelForClaim)
-{
+typedef NS_ENUM(NSUInteger, ChannelForClaim) {
     ChannelSydney,
     ChannelMelbourne,
 };
 @interface ClaimModel : NSObject
-@property(nonatomic,strong) NSString* claimDiscription;
-@property(nonatomic,strong) NSString* claimTitle;
-@property(nonatomic,strong) NSNumber* claimID;
-@property(nonatomic,strong) NSString* location;
-@property(nonatomic,strong) NSDate* claimSubmissionTime;
-@property(nonatomic,assign) ProductForClaim* product;
-@property(nonatomic,assign) ChannelForClaim* channel;
-@property(nonatomic,assign) ClaimStatus* claimStatus;
-@property(nonatomic,assign) BOOL isLayerInvolved;
-@property(nonatomic,assign) ClaimProcess* process;
+@property (nonatomic, strong) NSString* claimDiscription;
+@property (nonatomic, strong) NSString* claimTitle;
+@property (nonatomic, strong) NSNumber* claimID;
+@property (nonatomic, strong) NSString* location;
+@property (nonatomic, strong) NSDate* claimSubmissionTime;
+@property (nonatomic, assign) ProductForClaim* product;
+@property (nonatomic, assign) ChannelForClaim* channel;
+@property (nonatomic, assign) ClaimStatus* claimStatus;
+@property (nonatomic, assign) BOOL isLayerInvolved;
+@property (nonatomic, assign) ClaimProcess* process;
 @end
-
-

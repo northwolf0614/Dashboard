@@ -10,5 +10,5 @@
 #import "StatisticsAnalyzerView.h"
 
 @interface DashboardStatisticsAnalyzerViewController : DashboardItemViewController
-@property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
+@property (nonatomic, strong) StatisticsAnalyzerView* statisticsAnalyzerView;
 @end

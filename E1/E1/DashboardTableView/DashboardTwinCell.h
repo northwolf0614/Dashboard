@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardTwinCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIView *leftView;
-@property (weak, nonatomic) IBOutlet UIView *rightView;
+@property (weak, nonatomic) IBOutlet UIView* leftView;
+@property (weak, nonatomic) IBOutlet UIView* rightView;
 
 @end

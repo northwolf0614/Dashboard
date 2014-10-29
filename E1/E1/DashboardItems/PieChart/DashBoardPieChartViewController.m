@@ -26,13 +26,12 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
     [self.pieChartView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    self.pieChartView.piePlot.delegate=self;
-    self.pieChartView.piePlot.dataSource=(id)self;
-    self.pieChartView.legend.delegate=self;
-    
+
+    self.pieChartView.piePlot.delegate = self;
+    self.pieChartView.piePlot.dataSource = (id)self;
+    self.pieChartView.legend.delegate = self;
+
     [self setupDataForPieChartView];
-    
 
     // Do any additional setup after loading the view.
 }
@@ -47,7 +46,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.pieChartView updateCorePlotViews];

@@ -9,48 +9,37 @@
 #import "HTTPService.h"
 #import "Notifications.h"
 #import "Definations.h"
-@interface StatisticsPostWorker()
-@property(nonatomic,strong ) HTTPService* httpService;
+@interface StatisticsPostWorker ()
+@property (nonatomic, strong) HTTPService* httpService;
 
 @end
 
 @implementation StatisticsPostWorker
--(id)init
+- (id)init
 {
-    if (self=[super init]) {
-        self.httpService=[[HTTPService alloc] initWithDelegate:self];
-        
+    if (self = [super init]) {
+        self.httpService = [[HTTPService alloc] initWithDelegate:self];
     }
-    
-    return  self;
-    
-    
+
+    return self;
 }
--(void)startRequestStatistics
+- (void)startRequestStatistics
 {
     [self.httpService postRequestWithURL:kcURL postBody:kcHTTPBody userName:kcUserName password:kcPassword];
 }
 
-
--(void)cancelRequestStatistics
+- (void)cancelRequestStatistics
 {
     [self.httpService cancelService];
-    
 }
 #pragma HTTPServiceDelegate
--(void)requestSucceed:(NSData*)receivedData
+- (void)requestSucceed:(NSData*)receivedData
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kStatisticsRetrieveSuccessfullyNotificatioin object:receivedData userInfo:nil];//object is the parameter coupled with the sent message
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStatisticsRetrieveSuccessfullyNotificatioin object:receivedData userInfo:nil]; //object is the parameter coupled with the sent message
 }
--(void)requestFail:(NSError *)error
+- (void)requestFail:(NSError*)error
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kStatisticsRetrieveFailureNotification" object:error userInfo:nil];//object is the parameter coupled with the sent message
-
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kStatisticsRetrieveFailureNotification" object:error userInfo:nil]; //object is the parameter coupled with the sent message
 }
-
-
-
-
-
 
 @end

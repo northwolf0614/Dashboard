@@ -9,6 +9,6 @@
 #import "DashboardItemViewController.h"
 #import "CorePlot-CocoaTouch.h"
 
-@interface DashBoardPieChartViewController : DashboardItemViewController<CPTPieChartDelegate,CPTPieChartDataSource,CPTLegendDelegate>
+@interface DashBoardPieChartViewController : DashboardItemViewController <CPTPieChartDelegate, CPTPieChartDataSource, CPTLegendDelegate>
 
 @end

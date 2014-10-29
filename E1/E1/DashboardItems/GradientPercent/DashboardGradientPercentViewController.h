@@ -10,5 +10,5 @@
 #import "GradientPercentView.h"
 
 @interface DashboardGradientPercentViewController : DashboardItemViewController
-@property (nonatomic,strong) GradientPercentView* percentageView;
+@property (nonatomic, strong) GradientPercentView* percentageView;
 @end

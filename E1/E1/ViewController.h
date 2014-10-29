@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Services/StatisticsPostWorker.h"
-#import  "CorePlot-CocoaTouch.h"
+#import "CorePlot-CocoaTouch.h"
 
-
-@interface ViewController : UIViewController <CPTPlotDataSource,CPTPieChartDelegate>
+@interface ViewController : UIViewController <CPTPlotDataSource, CPTPieChartDelegate>
 
 @end
-

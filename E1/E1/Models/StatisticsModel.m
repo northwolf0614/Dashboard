@@ -1,5 +1,5 @@
 #import "StatisticsModel.h"
-@interface StatisticsModel()
+@interface StatisticsModel ()
 
 @end
 
@@ -56,76 +56,65 @@
 "jsonrpc": "2.0"
 
 */
-+(StatisticsModel*)convertJSONToStatisticModelInstance:(NSData*)receivedData error:(NSError*)error
++ (StatisticsModel*)convertJSONToStatisticModelInstance:(NSData*)receivedData error:(NSError*)error
 {
     id jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:&error];
- 
-    if (error != nil)
-    {
+
+    if (error != nil) {
         NSLog(@"converting data from internet into JSON format data fail %@", [error localizedDescription]);
         return nil;
     }
- 
-    StatisticsModel *statisticsModelInstance = [[StatisticsModel alloc] init];
+
+    StatisticsModel* statisticsModelInstance = [[StatisticsModel alloc] init];
     NSString* idName = [jsonObject objectForKey:@"id"];
     if (![idName isKindOfClass:[NSString class]])
         return nil;
     [statisticsModelInstance setStatisticID:idName];
-    
+
     NSString* jsonrpc = [jsonObject objectForKey:@"jsonrpc"];
     if (![jsonrpc isKindOfClass:[NSString class]])
         return nil;
     [statisticsModelInstance setJsonrpc:jsonrpc];
-    
-    id resultContents= [jsonObject objectForKey:@"result"];
-    if (![resultContents isKindOfClass:[NSDictionary class]])
-    {
+
+    id resultContents = [jsonObject objectForKey:@"result"];
+    if (![resultContents isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
     //NSMutableArray *mutableContents = [NSMutableArray array];
     //for (NSDictionary *resultContent in resultContents)
     {
-        
-        
+
         NSString* publicID = [resultContents objectForKey:@"publicID"];
-        if (![publicID isKindOfClass:[NSString class]])
-        {
+        if (![publicID isKindOfClass:[NSString class]]) {
             return nil;
         }
         [statisticsModelInstance setPublicID:publicID];
-        
+
         NSNumber* openActivityCount = [resultContents objectForKey:@"openActivityCount"];
-        if (![openActivityCount isKindOfClass:[NSNumber class]])
-        {
+        if (![openActivityCount isKindOfClass:[NSNumber class]]) {
             return nil;
         }
         [statisticsModelInstance setOpenActivityCount:openActivityCount];
-        
+
         NSNumber* openClaimCount = [resultContents objectForKey:@"openClaimCount"];
-        if (![openClaimCount isKindOfClass:[NSNumber class]])
-        {
+        if (![openClaimCount isKindOfClass:[NSNumber class]]) {
             return nil;
         }
         [statisticsModelInstance setOpenClaimCount:openClaimCount];
-        
+
         NSNumber* openExposureCount = [resultContents objectForKey:@"openExposureCount"];
-        if (![openExposureCount isKindOfClass:[NSNumber class]])
-        {
+        if (![openExposureCount isKindOfClass:[NSNumber class]]) {
             return nil;
         }
         [statisticsModelInstance setOpenExposureCount:openExposureCount];
-        
+
         NSNumber* openMatterCount = [resultContents objectForKey:@"openMatterCount"];
-        if (![openMatterCount isKindOfClass:[NSNumber class]])
-        {
+        if (![openMatterCount isKindOfClass:[NSNumber class]]) {
             return nil;
         }
         [statisticsModelInstance setOpenMatterCount:openMatterCount];
-
     }
     return statisticsModelInstance;
 }
-
-
 
 @end

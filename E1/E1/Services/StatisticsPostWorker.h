@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "HTTPService.h"
-@interface StatisticsPostWorker : NSObject<HTTPServiceDelegate>
+@interface StatisticsPostWorker : NSObject <HTTPServiceDelegate>
 
--(void)startRequestStatistics;
--(void)cancelRequestStatistics;
+- (void)startRequestStatistics;
+- (void)cancelRequestStatistics;
 @end

@@ -14,18 +14,20 @@
 
 @implementation DashboardGradientPercentViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    self.percentageView= [[GradientPercentView alloc] init];
+    self.percentageView = [[GradientPercentView alloc] init];
     [self.view addSubview:self.percentageView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-|" options:0 metrics:0 views:@{@"percentageView":self.percentageView}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView]-0-|" options:0 metrics:0 views:@{@"percentageView":self.percentageView}]];
-    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-|" options:0 metrics:0 views:@{ @"percentageView" : self.percentageView }]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView]-0-|" options:0 metrics:0 views:@{ @"percentageView" : self.percentageView }]];
+
     [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.percentageView setPercent:0.9 animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

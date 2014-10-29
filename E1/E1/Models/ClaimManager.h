@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface ClaimManager : NSObject
-@property(nonatomic,strong) NSMutableArray* claimsManagement;
+@property (nonatomic, strong) NSMutableArray* claimsManagement;
 
 @end

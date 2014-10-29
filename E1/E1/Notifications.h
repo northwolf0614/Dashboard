@@ -12,7 +12,4 @@
 #define kStatisticsRetrieveSuccessfullyNotificatioin @"statisticsRetrived"
 #define kStatisticsRetrieveFailureNotification @"statisticsRetrieveFail"
 
-
-
-
 #endif

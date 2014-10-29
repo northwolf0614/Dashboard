@@ -11,8 +11,8 @@
 #import "ParagraphView.h"
 
 @interface ParagraphViewController ()
-@property(nonatomic,strong) NSMutableArray * dataForPlot;
-@property(nonatomic,strong) ParagraphView* paragraphView;
+@property (nonatomic, strong) NSMutableArray* dataForPlot;
+@property (nonatomic, strong) ParagraphView* paragraphView;
 @end
 
 @implementation ParagraphViewController
@@ -27,28 +27,27 @@
     [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.paragraphView.boundLinePlot.dataSource = self;
     [self setupDataForParagraphView];
-    
 
     // Do any additional setup after loading the view.
 }
--(void)setupDataForParagraphView
+- (void)setupDataForParagraphView
 {
     self.dataForPlot = [NSMutableArray arrayWithCapacity:100];
     NSUInteger i;
-    for ( i = 0; i < 100; i++ ) {
+    for (i = 0; i < 100; i++) {
         id x = [NSNumber numberWithFloat:0 + i * 0.05];
         id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
         [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
     }
-
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.paragraphView updateCorePlotViews];
@@ -64,41 +63,33 @@
 }
 */
 
--(NSUInteger)numberOfRecordsForPlot:( CPTPlot *)plot
+- (NSUInteger)numberOfRecordsForPlot:(CPTPlot*)plot
 {
-    
-    if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-    {
+
+    if ([plot isKindOfClass:[CPTScatterPlot class]] && [plot.identifier isEqual:kcQBE_Products_History]) {
         return self.dataForPlot.count;
     }
     return 0;
-    
-    
 }
 
 // 返回每个扇形的比例
 
-- (NSNumber *)numberForPlot:( CPTPlot *)plot field:( NSUInteger )fieldEnum recordIndex:( NSUInteger )idx
+- (NSNumber*)numberForPlot:(CPTPlot*)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)idx
 {
-    
-    if ([plot isKindOfClass:[CPTScatterPlot class]]&& [plot.identifier isEqual:kcQBE_Products_History])
-    {
-        
-        
-        NSString * key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-        NSNumber * num = [[_dataForPlot objectAtIndex:idx] valueForKey:key];
-        if ([(NSString *)plot.identifier isEqualToString:kcQBE_Products_History])
-        {
-            if (fieldEnum == CPTScatterPlotFieldY)
-            {
+
+    if ([plot isKindOfClass:[CPTScatterPlot class]] && [plot.identifier isEqual:kcQBE_Products_History]) {
+
+        NSString* key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+        NSNumber* num = [[_dataForPlot objectAtIndex:idx] valueForKey:key];
+        if ([(NSString*)plot.identifier isEqualToString:kcQBE_Products_History]) {
+            if (fieldEnum == CPTScatterPlotFieldY) {
                 num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
             }
         }
-        
+
         return num;
     }
     return nil;
 }
-
 
 @end
