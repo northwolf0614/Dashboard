@@ -12,13 +12,14 @@
 
 @interface AppDelegate ()
 @property(nonatomic,strong) UINavigationController* navigationController;
-@property(nonatomic,strong) ViewController* rootViewController;
+//@property(nonatomic,strong) ViewController* rootViewController;
+@property(nonatomic,strong) DashboardTableViewController* rootViewController;
 @end
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window= [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    self.rootViewController= [[ViewController alloc] init ];
+    //self.rootViewController= [[ViewController alloc] init ];
     self.rootViewController = [[DashboardTableViewController alloc] init];
     self.navigationController= [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
     self.window.rootViewController= self.navigationController;

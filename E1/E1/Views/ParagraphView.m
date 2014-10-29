@@ -28,6 +28,7 @@
     if (self!=nil)
     {
         self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+        self.boundLinePlot  = [[CPTScatterPlot alloc] init];
         [self setupCoreplotViews];
     }
     return self;
@@ -98,7 +99,7 @@
     lineStyle.lineWidth         = 3.0f;
     lineStyle.lineColor         = [CPTColor blueColor];
     
-    self.boundLinePlot  = [[CPTScatterPlot alloc] init];
+    
     self.boundLinePlot.dataLineStyle = lineStyle;
     self.boundLinePlot.identifier    = kcQBE_Products_History;
     //self.boundLinePlot.dataSource    =[self viewController];
