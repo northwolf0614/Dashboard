@@ -19,12 +19,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DashboardTwinCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([DashboardTwinCell class])];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
     [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
+    //Examples for other items.
+    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -52,33 +57,28 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* cellClassName = NSStringFromClass([DashboardTwinCell class]);
-    DashboardTwinCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:cellClassName bundle:nil] forCellReuseIdentifier:cellClassName];
-        cell = [tableView dequeueReusableCellWithIdentifier:cellClassName];
-    }
+    DashboardTwinCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DashboardTwinCell class])];
     
-    [[cell.leftView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [[cell.rightView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
     long itemIndex = indexPath.row * 2;
-    for (long i=itemIndex; i<=itemIndex+1; i++) {
-        if (i < self.dashboardItemViewControllers.count) {
-            DashboardItemViewController *itemViewController = [self.dashboardItemViewControllers objectAtIndex:itemIndex];
-            BOOL addChildViewContollerFlag = [self.childViewControllers containsObject:itemViewController];
-            if (!addChildViewContollerFlag){
-                [self addChildViewController:itemViewController];
-            }
-            
-            UIView* cellView = i==itemIndex ? cell.leftView : cell.rightView;
-            cellView.autoresizesSubviews = YES;
-            itemViewController.view.frame = cellView.bounds;
-            [cellView addSubview:itemViewController.view];
-            
-            if (!addChildViewContollerFlag){
-                [itemViewController didMoveToParentViewController:self];
-            }            
+    for (long i=itemIndex; i<=itemIndex+1 && i<self.dashboardItemViewControllers.count; i++) {
+        //Find item view controller
+        DashboardItemViewController *itemViewController = [self.dashboardItemViewControllers objectAtIndex:i];
+        
+        //Add item vc as child vc.
+        BOOL addChildViewContollerFlag = [self.childViewControllers containsObject:itemViewController];
+        if (!addChildViewContollerFlag){
+            [self addChildViewController:itemViewController];
+        }
+        
+        //Add item view to cell
+        UIView* cellView = i==itemIndex ? cell.leftView : cell.rightView;
+        [[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        itemViewController.view.frame = cellView.bounds;
+        [cellView addSubview:itemViewController.view];
+        
+        //Add item vc as child vc.
+        if (!addChildViewContollerFlag){
+            [itemViewController didMoveToParentViewController:self];
         }
     }
     
