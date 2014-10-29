@@ -8,23 +8,11 @@
 
 #import "DashboardTableViewController.h"
 #import "DashboardTwinCell.h"
-#import <MapKit/MapKit.h>
-#import "GradientPercentView.h"
-#import "StatisticsAnalyzerView.h"
-#import "CorePlot-CocoaTouch.h"
-#import "ParagraphView.h"
-#import "PieChartView.h"
+#import "DashboardItemViewController.h"
+#import "DashboardMapViewController.h"
 
-@interface DashboardTableViewController ()<CLLocationManagerDelegate,MKMapViewDelegate>
-@property (nonatomic,strong) MKMapView *mapView;
-@property (nonatomic,strong) GradientPercentView* percentageView;
-@property (nonatomic,strong) StatisticsAnalyzerView* statisticsAnalyzerView;
-@property(nonatomic,strong)  ParagraphView* paragraphView;
-@property(nonatomic,strong)  PieChartView* pieCharView;
-
-@property(nonatomic,strong) CLLocationManager *locationManager;
-@property(nonatomic,strong) CLLocation *currentLocation;
-@property (nonatomic,strong) NSNumber* distance;
+@interface DashboardTableViewController ()
+@property(nonatomic, strong)NSMutableArray* dashboardItemViewControllers;
 @end
 
 @implementation DashboardTableViewController
@@ -32,25 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.allowsSelection = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    //mapview
-    self.mapView=[[MKMapView alloc] init];
-    self.mapView.delegate=self;
-    self.mapView.alpha=kcMapViewAlpha;    
-    self.mapView.showsUserLocation=YES;
-    [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self setupLocationManager];
-    
-    self.percentageView= [[GradientPercentView alloc] init];
-    self.statisticsAnalyzerView=[[StatisticsAnalyzerView alloc] init];
-    self.paragraphView= [[ParagraphView alloc] init];
-    self.pieCharView = [[PieChartView alloc] init];
-    
-    [self.percentageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.pieCharView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
+    [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,7 +47,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 3;
+    return (int)(self.dashboardItemViewControllers.count+1) / 2;
 }
 
 
@@ -87,33 +61,25 @@
     
     [[cell.leftView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [[cell.rightView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    switch (indexPath.row) {
-        case 0:
-            [cell.leftView addSubview:self.mapView];
-            [cell.rightView addSubview:self.percentageView];
-            [self.percentageView setPercent:0.9 animated:YES];
-            break;
-        case 1:
-            [cell.leftView addSubview:self.statisticsAnalyzerView];
-            [cell.rightView addSubview:self.paragraphView];
-            [self.paragraphView updateCorePlotViews];
-            break;
-        case 2:
-            [cell.leftView addSubview:self.pieCharView];
-            [self.pieCharView  updateCorePlotViews];
-            break;
-        default:
-            break;
-    }
-    
-    if (cell.leftView.subviews.count > 0) {
-        [cell.leftView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|" options:0 metrics:0 views:@{@"subview":cell.leftView.subviews[0]}]];
-        [cell.leftView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-0-|" options:0 metrics:0 views:@{@"subview":cell.leftView.subviews[0]}]];
-    }
-    if (cell.rightView.subviews.count > 0) {
-        [cell.rightView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[subview]-0-|" options:0 metrics:0 views:@{@"subview":cell.rightView.subviews[0]}]];
-        [cell.rightView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[subview]-0-|" options:0 metrics:0 views:@{@"subview":cell.rightView.subviews[0]}]];
+
+    long itemIndex = indexPath.row * 2;
+    for (long i=itemIndex; i<=itemIndex+1; i++) {
+        if (i < self.dashboardItemViewControllers.count) {
+            DashboardItemViewController *itemViewController = [self.dashboardItemViewControllers objectAtIndex:itemIndex];
+            BOOL addChildViewContollerFlag = [self.childViewControllers containsObject:itemViewController];
+            if (!addChildViewContollerFlag){
+                [self addChildViewController:itemViewController];
+            }
+            
+            UIView* cellView = i==itemIndex ? cell.leftView : cell.rightView;
+            cellView.autoresizesSubviews = YES;
+            itemViewController.view.frame = cellView.bounds;
+            [cellView addSubview:itemViewController.view];
+            
+            if (!addChildViewContollerFlag){
+                [itemViewController didMoveToParentViewController:self];
+            }            
+        }
     }
     
     return cell;
@@ -167,62 +133,5 @@
 }
 */
 
--(void)updateAnalysis
-{
-    [self.statisticsAnalyzerView startAnalyzeStatistics];
-}
-//-(void)setNeedsDisplay
-//{
-//    [super setNeedsDisplay];
-//    [self.statisticsAnalyzerView setNeedsDisplay];
-//}
-
--(CPTPlotRange *)CPTPlotRangeFromFloat:(float)location length:(float)length
-{
-    return [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(location) length:CPTDecimalFromFloat(length)];
-    
-}
--(void)updateCorePlotViews
-{
-    [self.paragraphView updateCorePlotViews];
-    [self.pieCharView  updateCorePlotViews];
-}
-
-#pragma mark - Map
--(void)setupLocationManager
-{
-    //initiate the location manager
-    self.locationManager = [[CLLocationManager alloc]init] ;
-    //set the ordinary accuracy to help to save power
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-    self.locationManager.delegate = self;
-    [self.locationManager startUpdatingLocation];
-    
-}
-- (void)setupMapForLocatoion:(CLLocation *)newLocation
-{
-    self.distance=[NSNumber numberWithFloat:kDefaultDistance];
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = newLocation.coordinate.latitude;
-    coordinate.longitude = newLocation.coordinate.longitude;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, [self.distance doubleValue]*2,[self.distance doubleValue]*2);
-    MKCoordinateRegion adjustedRegion = [self.mapView regionThatFits:viewRegion];
-    [self.mapView setRegion:adjustedRegion animated:YES];
-}
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation
-{
-    [self.locationManager stopUpdatingLocation];
-    self.currentLocation=newLocation;
-    [self setupMapForLocatoion:newLocation];
-    
-}
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error
-{
-    
-    
-}
 
 @end
