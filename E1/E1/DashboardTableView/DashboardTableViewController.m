@@ -11,6 +11,7 @@
 #import "DashboardItemViewController.h"
 #import "DashboardMapViewController.h"
 #import "DashboardGradientPercentViewController.h"
+#import "DashboardStatisticsAnalyzerViewController.h"
 
 @interface DashboardTableViewController ()
 @property(nonatomic, strong)NSMutableArray* dashboardItemViewControllers;
@@ -27,8 +28,8 @@
     self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
     [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
     //Examples for other items.
-    [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardItemViewController alloc] init]];
     

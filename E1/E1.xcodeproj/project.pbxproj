@@ -30,6 +30,7 @@
 		AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */; };
 		AB7F11601A00635200145E96 /* DashboardMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115F1A00635200145E96 /* DashboardMapViewController.m */; };
 		AB7F11641A009A7B00145E96 /* DashboardGradientPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */; };
+		AB7F11681A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */; };
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
 		ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */; };
 		ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */; };
@@ -106,6 +107,8 @@
 		AB7F115F1A00635200145E96 /* DashboardMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMapViewController.m; sourceTree = "<group>"; };
 		AB7F11621A009A7B00145E96 /* DashboardGradientPercentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardGradientPercentViewController.h; sourceTree = "<group>"; };
 		AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardGradientPercentViewController.m; sourceTree = "<group>"; };
+		AB7F11661A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardStatisticsAnalyzerViewController.h; sourceTree = "<group>"; };
+		AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardStatisticsAnalyzerViewController.m; sourceTree = "<group>"; };
 		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		ABE8A46819FF5E32004E35E1 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewController.h; sourceTree = "<group>"; };
 		ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewController.m; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 		AB7F11591A0062A100145E96 /* DashboardItems */ = {
 			isa = PBXGroup;
 			children = (
+				AB7F11651A00A35600145E96 /* StatisticsAnalyzer */,
 				AB7F11611A009A5F00145E96 /* GradientPercent */,
 				AB7F115D1A00631B00145E96 /* Map */,
 				AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */,
@@ -315,6 +319,15 @@
 				AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */,
 			);
 			path = GradientPercent;
+			sourceTree = "<group>";
+		};
+		AB7F11651A00A35600145E96 /* StatisticsAnalyzer */ = {
+			isa = PBXGroup;
+			children = (
+				AB7F11661A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.h */,
+				AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */,
+			);
+			path = StatisticsAnalyzer;
 			sourceTree = "<group>";
 		};
 		ABE8A46719FF5DF2004E35E1 /* DashboardTableView */ = {
@@ -467,6 +480,7 @@
 				E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				AB7F11641A009A7B00145E96 /* DashboardGradientPercentViewController.m in Sources */,
+				AB7F11681A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m in Sources */,
 				E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */,
 				09B0B26B19F5D99A008DCE56 /* main.m in Sources */,
 				090FB6F019F5DA6A008F437F /* DashBoardView.m in Sources */,
