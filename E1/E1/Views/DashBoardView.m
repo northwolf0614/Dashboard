@@ -110,20 +110,7 @@
                                        @"standardPadding":@10
                                        
                                        };
-    NSArray* constraintsForLargePaddingH1=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[mapView(==pieChartView)]-largerPadding-[pieChartView(size)]-largerPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForLargePaddingH2=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[statisticsView(==paragraphView)]-largerPadding-[paragraphView(size)]-largerPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForLargePaddingH3=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-largerPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForLargePaddingV1=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-largerPadding-[pieChartView(==paragraphView)]-largerPadding-[paragraphView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForLargePaddingV2=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-largerPadding-[mapView(size)]-largerPadding-[statisticsView(size)]-largerPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    
-    NSArray* constraintsForSmallPaddingH1=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-smallPadding-[mapView(==pieChartView)]-smallPadding-[pieChartView(size)]-smallPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForSmallPaddingH2=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-smallPadding-[statisticsView(==paragraphView)]-smallPadding-[paragraphView(size)]-smallPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForSmallPaddingH3=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-smallPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForSmallPaddingV1=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-smallPadding-[pieChartView(==paragraphView)]-smallPadding-[paragraphView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    NSArray* constraintsForSmallPaddingV2=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-smallPadding-[mapView(size)]-smallPadding-[statisticsView(size)]-smallPadding-[percentageView(size)]->=standardPadding-|" options:0 metrics:metrics views:viewDict];
-    
-    NSArray* currentConstraints= [self constraints];
-    
+        
 
     
     
