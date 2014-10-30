@@ -22,6 +22,10 @@
     series.dataSource = self;
     [self.chartView.chart addSeries:series];
 
+    NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
+    settings.shouldSmoothCylinders = YES;
+    [self.chartView.chart addSeriesSettings:settings];
+    
     [self.chartView.chart updateData];
 }
 
