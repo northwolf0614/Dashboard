@@ -17,6 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Column"];
+    
     NChartColumnSeries* series = [NChartColumnSeries new];
     series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
     series.dataSource = self;

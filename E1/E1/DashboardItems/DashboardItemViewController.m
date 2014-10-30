@@ -29,8 +29,7 @@
 - (void)loadView
 {
     [super loadView];
-    
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"DashboardItemViewController" owner:self options:nil];        
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([DashboardItemViewController class]) owner:self options:nil];
     self.view = [nibs objectAtIndex:0];
 }
 

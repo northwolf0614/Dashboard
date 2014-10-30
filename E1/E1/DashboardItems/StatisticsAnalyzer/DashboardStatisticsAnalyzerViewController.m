@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Statistic"];
 
     self.statisticsAnalyzerView = [[StatisticsAnalyzerView alloc] init];
     [self.contentView addSubview:self.statisticsAnalyzerView];

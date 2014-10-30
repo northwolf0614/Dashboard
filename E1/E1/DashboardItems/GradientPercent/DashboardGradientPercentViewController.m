@@ -17,6 +17,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Gradient Percent"];
+    
     self.percentageView = [[GradientPercentView alloc] init];
     [self.contentView addSubview:self.percentageView];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-|" options:0 metrics:0 views:@{ @"percentageView" : self.percentageView }]];

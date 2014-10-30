@@ -21,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Pie"];
+    
     self.pieChartView = [[PieChartView alloc] init];
     [self.contentView addSubview:self.pieChartView];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];

@@ -21,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Map"];
 
     self.mapView = [[MKMapView alloc] init];
     self.mapView.delegate = self;

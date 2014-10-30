@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.titleItem setTitle:@"Bubble"];
+    
     // Create a chart view that will display the chart.
     NChartView* m_view = self.chartView;
     
