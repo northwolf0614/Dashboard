@@ -96,7 +96,7 @@
     [m_view.chart updateData];
     
     // Set chart view to the controller.
-    self.view = m_view;
+    self.chartView = m_view;
 
 }
 
