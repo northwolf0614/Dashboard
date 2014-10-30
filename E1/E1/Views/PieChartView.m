@@ -89,7 +89,7 @@
     //self.legend.delegate = [self viewController];
     self.graph.legend = self.legend;
     self.graph.legendAnchor = CPTRectAnchorRight ;
-    self.graph.legendDisplacement = CGPointMake (-10,100);
+    self.graph.legendDisplacement = CGPointMake (-10,58);
 }
 
 
