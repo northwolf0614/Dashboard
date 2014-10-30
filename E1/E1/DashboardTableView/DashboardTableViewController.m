@@ -15,6 +15,7 @@
 #import "DashBoardPieChartViewController.h"
 #import "ParagraphViewController.h"
 #import "ColumnNChartViewController.h"
+#import "BubbleChartViewController.h"
 
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
@@ -33,10 +34,11 @@
     self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
     [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[DashBoardPieChartViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[ParagraphViewController alloc] init]];
     [self.dashboardItemViewControllers addObject:[[ColumnNChartViewController alloc] init]];
+    [self.dashboardItemViewControllers addObject:[[BubbleChartViewController alloc] init]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
