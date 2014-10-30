@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DashboardItemViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *titleView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
 
 @end

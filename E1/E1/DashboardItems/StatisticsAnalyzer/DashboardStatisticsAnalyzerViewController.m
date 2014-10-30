@@ -19,9 +19,9 @@
     [super viewDidLoad];
 
     self.statisticsAnalyzerView = [[StatisticsAnalyzerView alloc] init];
-    [self.view addSubview:self.statisticsAnalyzerView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[statisticsAnalyzerView]-0-|" options:0 metrics:0 views:@{ @"statisticsAnalyzerView" : self.statisticsAnalyzerView }]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[statisticsAnalyzerView]-0-|" options:0 metrics:0 views:@{ @"statisticsAnalyzerView" : self.statisticsAnalyzerView }]];
+    [self.contentView addSubview:self.statisticsAnalyzerView];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[statisticsAnalyzerView]-0-|" options:0 metrics:0 views:@{ @"statisticsAnalyzerView" : self.statisticsAnalyzerView }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[statisticsAnalyzerView]-0-|" options:0 metrics:0 views:@{ @"statisticsAnalyzerView" : self.statisticsAnalyzerView }]];
 
     [self.statisticsAnalyzerView setTranslatesAutoresizingMaskIntoConstraints:NO];
 

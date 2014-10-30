@@ -22,9 +22,9 @@
 {
     [super viewDidLoad];
     self.pieChartView = [[PieChartView alloc] init];
-    [self.view addSubview:self.pieChartView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
+    [self.contentView addSubview:self.pieChartView];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pieChartView]-0-|" options:0 metrics:0 views:@{ @"pieChartView" : self.pieChartView }]];
     [self.pieChartView setTranslatesAutoresizingMaskIntoConstraints:NO];
 
     self.pieChartView.piePlot.delegate = self;

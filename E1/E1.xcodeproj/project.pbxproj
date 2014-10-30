@@ -27,6 +27,7 @@
 		09B0B28319F5D99A008DCE56 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0B26219F5D99A008DCE56 /* UIKit.framework */; };
 		09B0B28B19F5D99A008DCE56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09B0B28919F5D99A008DCE56 /* InfoPlist.strings */; };
 		09B0B28D19F5D99A008DCE56 /* E1Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B28C19F5D99A008DCE56 /* E1Tests.m */; };
+		AB0D11941A01FC31004C049B /* DashboardItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB0D11931A01FC31004C049B /* DashboardItemViewController.xib */; };
 		AB18A96B1A01C3F7006546D4 /* NChart3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB18A96A1A01C3F7006546D4 /* NChart3D.framework */; };
 		AB18A96F1A01C44B006546D4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AB18A96E1A01C44B006546D4 /* libstdc++.dylib */; };
 		AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18A9711A01C49E006546D4 /* AbstractNChartViewController.m */; };
@@ -107,6 +108,7 @@
 		09B0B28819F5D99A008DCE56 /* E1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "E1Tests-Info.plist"; sourceTree = "<group>"; };
 		09B0B28A19F5D99A008DCE56 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		09B0B28C19F5D99A008DCE56 /* E1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = E1Tests.m; sourceTree = "<group>"; };
+		AB0D11931A01FC31004C049B /* DashboardItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardItemViewController.xib; sourceTree = "<group>"; };
 		AB18A96A1A01C3F7006546D4 /* NChart3D.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NChart3D.framework; sourceTree = "<group>"; };
 		AB18A96E1A01C44B006546D4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		AB18A9701A01C49E006546D4 /* AbstractNChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNChartViewController.h; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				AB7F115D1A00631B00145E96 /* Map */,
 				AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */,
 				AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */,
+				AB0D11931A01FC31004C049B /* DashboardItemViewController.xib */,
 			);
 			path = DashboardItems;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */,
+				AB0D11941A01FC31004C049B /* DashboardItemViewController.xib in Resources */,
 				09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */,
 				ABE8A46519FF5912004E35E1 /* .gitignore in Resources */,
 				09B0B26919F5D99A008DCE56 /* InfoPlist.strings in Resources */,

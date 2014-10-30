@@ -26,9 +26,9 @@
     self.mapView.delegate = self;
     self.mapView.alpha = kcMapViewAlpha;
     self.mapView.showsUserLocation = YES;
-    [self.view addSubview:self.mapView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:0 views:@{ @"mapView" : self.mapView }]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:0 views:@{ @"mapView" : self.mapView }]];
+    [self.contentView addSubview:self.mapView];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[mapView]-0-|" options:0 metrics:0 views:@{ @"mapView" : self.mapView }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[mapView]-0-|" options:0 metrics:0 views:@{ @"mapView" : self.mapView }]];
     [self setupLocationManager];
 
     [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];

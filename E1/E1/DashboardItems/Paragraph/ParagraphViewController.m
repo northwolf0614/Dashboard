@@ -21,9 +21,9 @@
 {
     [super viewDidLoad];
     self.paragraphView = [[ParagraphView alloc] init];
-    [self.view addSubview:self.paragraphView];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:0 views:@{ @"paragraphView" : self.paragraphView }]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[paragraphView]-0-|" options:0 metrics:0 views:@{ @"paragraphView" : self.paragraphView }]];
+    [self.contentView addSubview:self.paragraphView];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[paragraphView]-0-|" options:0 metrics:0 views:@{ @"paragraphView" : self.paragraphView }]];
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[paragraphView]-0-|" options:0 metrics:0 views:@{ @"paragraphView" : self.paragraphView }]];
     [self.paragraphView setTranslatesAutoresizingMaskIntoConstraints:NO];
     self.paragraphView.boundLinePlot.dataSource = self;
     [self setupDataForParagraphView];
