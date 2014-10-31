@@ -34,6 +34,11 @@
 
     [self.mapView setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
+-(void)handleRightButtonItem:(id) sender
+{
+    //[super handleRightButtonItem:sender];
+    //NSLog(@"this is map clicked!");
+}
 
 - (void)didReceiveMemoryWarning
 {

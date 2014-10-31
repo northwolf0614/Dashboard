@@ -59,6 +59,7 @@
                                             slider:[UIImage imageNamed:@"slider-light.png"]
                                            handler:[UIImage imageNamed:@"handler-light.png"]];
     
+    
     // Visible time axis.
     m_view.chart.timeAxis.visible = YES;
     

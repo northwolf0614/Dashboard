@@ -11,5 +11,6 @@
 @interface DashboardItemViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
+-(void)handleRightButtonItem:(id) sender;
 
 @end
