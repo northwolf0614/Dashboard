@@ -43,7 +43,7 @@
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     //
-    //self.tableView.backgroundColor=[UIColor grayColor];
+    self.view.backgroundColor=[UIColor lightGrayColor];
 }
 - (void)handleRightButtonItem:(id)sender
 {
