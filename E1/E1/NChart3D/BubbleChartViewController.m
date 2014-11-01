@@ -19,7 +19,7 @@
     [self.titleItem setTitle:@"Bubble"];
     
     // Create a chart view that will display the chart.
-    NChartView* m_view = self.chartView;
+    AbstractNChartView* m_view = self.chartView;
     
     // Paste your license key here.
     //m_view.chart.licenseKey = @"";
@@ -44,7 +44,7 @@
     m_view.chart.timeAxis.autohideTooltip = NO;
     
     // Create the time axis tooltip.
-    m_view.chart.timeAxis.tooltip = [NChartTimeAxisTooltip new];
+    m_view.chart.timeAxis.tooltip = [[NChartTimeAxisTooltip alloc] init];
     m_view.chart.timeAxis.tooltip.textColor = [UIColor colorWithRed:0.56f green:0.56f blue:0.56f alpha:1.0f];
     m_view.chart.timeAxis.tooltip.font = [UIFont systemFontOfSize:11.0f];
     
@@ -152,13 +152,13 @@
 - (float)sizeAxisDataSourceMinSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
 {
     // Minimal size of bubbles in pixels. The size provided in the chart point is mapped to pixels through this value.
-    return 30.0f;
+    return 10.0f;
 }
 
 - (float)sizeAxisDataSourceMaxSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
 {
     // Maximal size of bubbles in pixels. The size provided in the chart point is mapped to pixels through this value.
-    return 100.0f;
+    return 10.0f;
 }
 
 

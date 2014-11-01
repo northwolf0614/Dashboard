@@ -10,5 +10,5 @@
 #import "Definations.h"
 
 @interface DashboardTableViewController : UITableViewController
-
+@property(nonatomic,strong) NSMutableArray* chartNames;
 @end

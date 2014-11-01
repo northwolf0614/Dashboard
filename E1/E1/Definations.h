@@ -42,4 +42,9 @@
 #define kcCorePlotGraphPadding 10
 #define kcPieChartTitleFontSize 10
 
+
+
+#define kcDefaultChartName @"defaultNChartName5"
+#define kcDefaultDataFielName @"kcDefaultDataFielName.plist"
+
 #endif

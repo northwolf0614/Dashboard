@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
+#import "AbstractChartView.h"
 
-@interface PieChartView : CPTGraphHostingView
+@interface PieChartView : AbstractChartView
 @property (strong,nonatomic)CPTPieChart* piePlot;
 @property (strong,nonatomic)CPTLegend* legend;
 -(void)updateCorePlotViews;

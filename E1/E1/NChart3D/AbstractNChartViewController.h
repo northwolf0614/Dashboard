@@ -8,7 +8,10 @@
 
 #import "DashboardItemViewController.h"
 #import <NChart3D/NChart3D.h>
-
+#import "AbstractNChartView.h"
+#import "NChartDataModel.h"
 @interface AbstractNChartViewController : DashboardItemViewController
-@property (nonatomic, strong) NChartView* chartView;
+@property (nonatomic, strong) AbstractNChartView* chartView;
+@property(nonatomic,strong) NChartDataModel* dataForNChart;
+-(id)initWithDrawingData:(NChartDataModel*)drawingData;
 @end

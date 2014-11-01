@@ -1,18 +1,18 @@
 //
-//  ColumnNChartViewController.m
+//  GeneralNChartViewController.m
 //  E1
 //
-//  Created by Lei Zhao on 30/10/2014.
+//  Created by Jack Lin on 1/11/2014.
 //  Copyright (c) 2014 EY. All rights reserved.
 //
 
-#import "ColumnNChartViewController.h"
+#import "GeneralNChartViewController.h"
 
-@interface ColumnNChartViewController () <NChartSeriesDataSource>
-//@property(nonatomic,strong) NChartColumn* columnChartData;
+@interface GeneralNChartViewController ()
+
 @end
 
-@implementation ColumnNChartViewController
+@implementation GeneralNChartViewController
 
 - (void)viewDidLoad
 {
@@ -21,9 +21,9 @@
     
     NChartColumnSeries* series = [NChartColumnSeries new];
     series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
-    series.dataSource = self;
+    series.dataSource = (id)self;
     [self.chartView.chart addSeries:series];
-
+    
     NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
     settings.shouldSmoothCylinders = YES;
     [self.chartView.chart addSeriesSettings:settings];

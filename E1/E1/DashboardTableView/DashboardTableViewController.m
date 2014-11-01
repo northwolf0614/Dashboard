@@ -16,6 +16,9 @@
 #import "ParagraphViewController.h"
 #import "ColumnNChartViewController.h"
 #import "BubbleChartViewController.h"
+#import "Definations.h"
+#import "GeneralNChartViewController.h"
+#import "NChartDataModel.h"
 
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
@@ -32,18 +35,85 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
-    [self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
     //[self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[DashBoardPieChartViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[ParagraphViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[ColumnNChartViewController alloc] init]];
-    [self.dashboardItemViewControllers addObject:[[BubbleChartViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[DashBoardPieChartViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[ParagraphViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[ColumnNChartViewController alloc] init]];
+    //[self.dashboardItemViewControllers addObject:[[BubbleChartViewController alloc] init]];
     //config the add button
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     //
     self.view.backgroundColor=[UIColor lightGrayColor];
+    
+    [self setupDefaultDataForDrawing];
+}
+/*
+ @interface NPrototypeDataModel : NSObject
+ @property(nonatomic,copy) NSString* seriesName;
+ @property(nonatomic,strong) NSArray* chartAxisXTicksValues;
+ @property(nonatomic,strong) NSArray* cNChartAxisYTicksValues;
+ @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
+ @property(nonatomic,assign) NChartType chartType;
+ @end
+ 
+ 
+ @interface NChartDataModel : NSObject
+ @property(nonatomic,copy) NSString* chartCaption;
+ @property(nonatomic,copy) NSString* chartAxisYCaption;
+ @property(nonatomic,copy) NSString* chartAxisXCaption;
+ @property(nonatomic,copy) NSString* chartAxisZCaption;
+ @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+ */
+-(NChartDataModel*)configDefaultData
+{
+    NChartDataModel* chartData=[[NChartDataModel alloc] init];
+    chartData.chartCaption=kcDefaultChartName;
+    chartData.chartAxisXCaption=@"Years";
+    chartData.chartAxisYCaption=@"Products percentage";
+    chartData.chartType=Dimention2;
+    PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
+    rawData.seriesName=@"percentage";
+    rawData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    rawData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    rawData.seriesType=COLUMN;
+    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    [chartData.chartDataForDrawing setObject:rawData forKey:kcDefaultChartName];
+    return chartData ;
+    
+}
+-(void)setupDefaultDataForDrawing
+{
+    NSDictionary *userd = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    if (![userd.allKeys containsObject:kcDefaultChartName])
+    {
+        self.chartNames=[NSMutableArray array];
+        [self.chartNames addObject:kcDefaultChartName];
+        NChartDataModel* data=[self configDefaultData];
+        [data saveDataForKey:kcDefaultChartName];
+        [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:data]];
+        
+    }
+    
+    
+    
+    
+    else//there are default data in defualts for display
+    {
+        for (NSString* chartName in self.chartNames)
+        {
+            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey :chartName];
+            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart]];
+            
+            
+            
+        }
+        
+        
+    }
+    
 }
 - (void)handleRightButtonItem:(id)sender
 {

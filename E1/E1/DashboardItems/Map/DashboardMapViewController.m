@@ -36,8 +36,8 @@
 }
 -(void)handleRightButtonItem:(id) sender
 {
-    //[super handleRightButtonItem:sender];
-    //NSLog(@"this is map clicked!");
+    [super handleRightButtonItem:sender];
+    NSLog(@"this is map clicked!");
 }
 
 - (void)didReceiveMemoryWarning

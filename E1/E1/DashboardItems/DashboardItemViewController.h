@@ -14,3 +14,10 @@
 -(void)handleRightButtonItem:(id) sender;
 
 @end
+
+//@protocol ImageDownloadOperationDelegate <NSObject>
+
+//- (void)operation:(ImageDownloadOperation *)operation didFinishWithData:(NSData *)aData;
+
+//@end
+

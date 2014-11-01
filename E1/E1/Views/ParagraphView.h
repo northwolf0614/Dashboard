@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
+#import "AbstractChartView.h"
 
 
 
-@interface ParagraphView : CPTGraphHostingView
+@interface ParagraphView : AbstractChartView
 @property(nonatomic,strong)CPTScatterPlot* boundLinePlot;
 -(void)updateCorePlotViews;
 @end

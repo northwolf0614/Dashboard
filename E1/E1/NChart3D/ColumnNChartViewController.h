@@ -7,7 +7,7 @@
 //
 
 #import "AbstractNChartViewController.h"
-
+//#import "NChartColumn.h"
 @interface ColumnNChartViewController : AbstractNChartViewController
 
 @end
