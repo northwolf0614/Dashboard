@@ -47,7 +47,8 @@
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     //
     self.view.backgroundColor=[UIColor lightGrayColor];
-    
+    self.chartNames=[NSMutableArray array];
+    [self.chartNames addObject:kcDefaultChartName];
     [self setupDefaultDataForDrawing];
 }
 
@@ -72,11 +73,11 @@
 }
 -(void)setupDefaultDataForDrawing
 {
+    
     NSDictionary *userd = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
     if (![userd.allKeys containsObject:kcDefaultChartName])
     {
-        self.chartNames=[NSMutableArray array];
-        [self.chartNames addObject:kcDefaultChartName];
+        
         NChartDataModel* data=[self configDefaultData];
         [data saveDataForKey:kcDefaultChartName];
         [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:data]];
@@ -90,8 +91,12 @@
     {
         for (NSString* chartName in self.chartNames)
         {
-            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey :chartName];
-            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart]];
+            if ([userd.allKeys containsObject:chartName])
+            {
+                NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey :chartName];
+                [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart]];
+
+            }
             
             
             
