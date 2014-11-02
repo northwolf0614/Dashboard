@@ -44,7 +44,7 @@
 
 
 
-#define kcDefaultChartName @"defaultNChartName5"
+#define kcDefaultChartName @"defaultNChartName6"
 #define kcDefaultDataFielName @"kcDefaultDataFielName.plist"
 
 #endif

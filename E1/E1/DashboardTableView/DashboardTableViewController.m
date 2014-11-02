@@ -50,23 +50,7 @@
     
     [self setupDefaultDataForDrawing];
 }
-/*
- @interface NPrototypeDataModel : NSObject
- @property(nonatomic,copy) NSString* seriesName;
- @property(nonatomic,strong) NSArray* chartAxisXTicksValues;
- @property(nonatomic,strong) NSArray* cNChartAxisYTicksValues;
- @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
- @property(nonatomic,assign) NChartType chartType;
- @end
- 
- 
- @interface NChartDataModel : NSObject
- @property(nonatomic,copy) NSString* chartCaption;
- @property(nonatomic,copy) NSString* chartAxisYCaption;
- @property(nonatomic,copy) NSString* chartAxisXCaption;
- @property(nonatomic,copy) NSString* chartAxisZCaption;
- @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
- */
+
 -(NChartDataModel*)configDefaultData
 {
     NChartDataModel* chartData=[[NChartDataModel alloc] init];
@@ -74,10 +58,12 @@
     chartData.chartAxisXCaption=@"Years";
     chartData.chartAxisYCaption=@"Products percentage";
     chartData.chartType=Dimention2;
+    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
     PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
     rawData.seriesName=@"percentage";
-    rawData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
-    rawData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    rawData.chartAxisXValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
     rawData.seriesType=COLUMN;
     chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
     [chartData.chartDataForDrawing setObject:rawData forKey:kcDefaultChartName];

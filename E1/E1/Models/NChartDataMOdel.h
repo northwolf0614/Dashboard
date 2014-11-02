@@ -20,9 +20,9 @@ typedef enum : NSUInteger {
 } NSeriesType;
 @interface PrototypeDataModel : NSObject<NSCopying>
 @property(nonatomic,copy)   NSString* seriesName;
-@property(nonatomic,strong) NSArray* chartAxisXTicksValues;
-@property(nonatomic,strong) NSArray* chartAxisYTicksValues;
-@property(nonatomic,strong) NSArray* chartAxisZTicksValues;
+@property(nonatomic,strong) NSArray* chartAxisXValues;
+@property(nonatomic,strong) NSArray* chartAxisYValues;
+@property(nonatomic,strong) NSArray* chartAxisZValues;
 @property(nonatomic,assign) NChartType seriesType;
 @end
 
@@ -32,6 +32,9 @@ typedef enum : NSUInteger {
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;
 @property(nonatomic,copy) NSString* chartAxisZCaption;
+@property(nonatomic,strong) NSArray* chartAxisXTicksValues;
+@property(nonatomic,strong) NSArray* chartAxisYTicksValues;
+@property(nonatomic,strong) NSArray* chartAxisZTicksValues;
 @property(nonatomic,assign) NChartType chartType;
 @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
 

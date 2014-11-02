@@ -20,6 +20,9 @@
     [aCoder encodeObject:self.chartAxisZCaption forKey:@"chartAxisZCaption"];
     [aCoder encodeInt:self.chartType forKey:@"chartType"];
     [aCoder encodeObject:self.chartDataForDrawing  forKey:@"chartDataForDrawing"];
+    [aCoder encodeObject:self.chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
+    [aCoder encodeObject:self.chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
+    [aCoder encodeObject:self.chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -32,6 +35,10 @@
         self.chartAxisZCaption=[aDecoder decodeObjectForKey:@"chartAxisZCaption"];
         self.chartType=[aDecoder decodeIntForKey:@"chartType"];
         self.chartDataForDrawing=[aDecoder decodeObjectForKey:@"chartDataForDrawing"];
+        self.chartAxisXTicksValues=[aDecoder decodeObjectForKey:@"chartAxisXTicksValues"];
+        self.chartAxisYTicksValues=[aDecoder decodeObjectForKey:@"chartAxisYTicksValues"];
+        self.chartAxisZTicksValues=[aDecoder decodeObjectForKey:@"chartAxisZTicksValues"];
+
         
         
     }
@@ -101,9 +108,9 @@
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.seriesName forKey:@"seriesName"];
-    [aCoder encodeObject:self.chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
-    [aCoder encodeObject:self.chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
-    [aCoder encodeObject:self.chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
+    [aCoder encodeObject:self.chartAxisXValues forKey:@"chartAxisXValues"];
+    [aCoder encodeObject:self.chartAxisZValues forKey:@"chartAxisZValues"];
+    [aCoder encodeObject:self.chartAxisYValues forKey:@"chartAxisYValues"];
     [aCoder encodeInt:self.seriesType forKey:@"seriesType"];
     
 }
@@ -113,9 +120,9 @@
     if (self=[super init])
     {
         self.seriesName=[aDecoder decodeObjectForKey:@"seriesName"];
-        self.chartAxisXTicksValues=[aDecoder decodeObjectForKey:@"chartAxisXTicksValues"];
-        self.chartAxisYTicksValues=[aDecoder decodeObjectForKey:@"chartAxisYTicksValues"];
-        self.chartAxisZTicksValues=[aDecoder decodeObjectForKey:@"chartAxisZTicksValues"];
+        self.chartAxisXValues=[aDecoder decodeObjectForKey:@"chartAxisXValues"];
+        self.chartAxisYValues=[aDecoder decodeObjectForKey:@"chartAxisYValues"];
+        self.chartAxisZValues=[aDecoder decodeObjectForKey:@"chartAxisZValues"];
         self.seriesType=[aDecoder decodeIntForKey:@"seriesType"];
         
         
