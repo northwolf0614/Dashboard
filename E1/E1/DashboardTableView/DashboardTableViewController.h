@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Definations.h"
+#import "AbstractNChartViewController.h"
 
-@interface DashboardTableViewController : UITableViewController
+@interface DashboardTableViewController : UITableViewController<ChartSubviewControllerResponse>
 @property(nonatomic,strong) NSMutableArray* chartNames;
 @end

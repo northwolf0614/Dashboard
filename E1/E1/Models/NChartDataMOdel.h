@@ -18,6 +18,11 @@ typedef enum : NSUInteger {
     BUBBLE,
     SCATTER,
 } NSeriesType;
+typedef enum : NSUInteger {
+    ABSOLUTE,
+    ADDITIVE,
+    PERCENT,
+} AxisType;
 @interface PrototypeDataModel : NSObject<NSCopying>
 @property(nonatomic,copy)   NSString* seriesName;
 @property(nonatomic,strong) NSArray* chartAxisXValues;
@@ -36,9 +41,16 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisYTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
 @property(nonatomic,assign) NChartType chartType;
+
+@property(nonatomic,assign) AxisType axisType;//new added
+@property(nonatomic,assign) BOOL isToolTips;//new added
+@property(nonatomic,strong) NSNumber* sliceNumber;//new added
+@property(nonatomic,assign) BOOL isBorder;//new added
+
 @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
 
 -(void)saveDataForKey:(NSString*)key;
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;
 +(NSString*)getStoredDefaultFilePath;
++(NChartDataModel*)chartDataDefault;
 @end

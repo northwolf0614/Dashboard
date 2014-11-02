@@ -10,8 +10,12 @@
 #import "Definations.h"
 
 @implementation NChartDataModel
+/*
+@property(nonatomic,assign) AxisType axisType;//new added
 
 
+
+*/
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.chartCaption forKey:@"chartCaption"];
@@ -23,6 +27,12 @@
     [aCoder encodeObject:self.chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
     [aCoder encodeObject:self.chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
     [aCoder encodeObject:self.chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
+    [aCoder encodeObject:self.sliceNumber forKey:@"sliceNumber"];
+    [aCoder encodeBool:self.isToolTips forKey:@"isToolTips"];
+    [aCoder encodeBool:self.isBorder forKey:@"isBorder"];
+    [aCoder encodeInt:self.axisType forKey:@"axisType"];
+    
+    
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -38,6 +48,10 @@
         self.chartAxisXTicksValues=[aDecoder decodeObjectForKey:@"chartAxisXTicksValues"];
         self.chartAxisYTicksValues=[aDecoder decodeObjectForKey:@"chartAxisYTicksValues"];
         self.chartAxisZTicksValues=[aDecoder decodeObjectForKey:@"chartAxisZTicksValues"];
+        self.sliceNumber= [aDecoder decodeObjectForKey:@"sliceNumber"];
+        self.isToolTips=[aDecoder decodeBoolForKey:@"isToolTips"];
+        self.isBorder=[aDecoder decodeBoolForKey:@"isBorder"];
+        self.axisType=[aDecoder decodeIntForKey:@"axisType"];
 
         
         
@@ -93,6 +107,25 @@
     NSString *docPath = [paths objectAtIndex:0];
     return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
 }
++(NChartDataModel*)chartDataDefault
+{
+    NChartDataModel* chartData=[[NChartDataModel alloc] init];
+    chartData.chartCaption=kcDefaultChartName;
+    chartData.chartAxisXCaption=@"Years";
+    chartData.chartAxisYCaption=@"Products percentage";
+    chartData.chartType=Dimention2;
+    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
+    rawData.seriesName=@"percentage";
+    rawData.chartAxisXValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    rawData.seriesType=COLUMN;
+    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    [chartData.chartDataForDrawing setObject:rawData forKey:kcDefaultChartName];
+    return chartData ;
+}
+
 
 @end
 

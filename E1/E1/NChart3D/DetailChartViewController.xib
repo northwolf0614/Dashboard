@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6250"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailChartViewController">
+            <connections>
+                <outlet property="chartViewContainer" destination="eoe-s9-uC9" id="nTB-b3-dLz"/>
+                <outlet property="configurationViewContainer" destination="oXb-O3-R3J" id="oRf-OC-0k0"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoe-s9-uC9" userLabel="ChartView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="600" id="OFx-i3-m6z"/>
+                        <constraint firstAttribute="width" constant="600" id="nW2-sz-5EU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXb-O3-R3J" userLabel="ConfigurationView">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="oXb-O3-R3J" secondAttribute="trailing" id="Hgx-FV-u7Z"/>
+                <constraint firstAttribute="centerY" secondItem="eoe-s9-uC9" secondAttribute="centerY" id="bek-C4-IQ7"/>
+                <constraint firstItem="oXb-O3-R3J" firstAttribute="leading" secondItem="eoe-s9-uC9" secondAttribute="trailing" id="fja-k6-CBQ"/>
+                <constraint firstAttribute="bottom" secondItem="oXb-O3-R3J" secondAttribute="bottom" id="jB6-EJ-lEL"/>
+                <constraint firstAttribute="centerY" secondItem="oXb-O3-R3J" secondAttribute="centerY" id="mFK-tw-flB"/>
+                <constraint firstItem="oXb-O3-R3J" firstAttribute="leading" secondItem="eoe-s9-uC9" secondAttribute="trailing" id="tsi-7d-Lj8"/>
+                <constraint firstItem="oXb-O3-R3J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ugX-PH-EKq"/>
+                <constraint firstItem="eoe-s9-uC9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xj9-kW-gzg"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

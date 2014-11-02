@@ -10,8 +10,16 @@
 #import <NChart3D/NChart3D.h>
 #import "AbstractNChartView.h"
 #import "NChartDataModel.h"
+@protocol  ChartSubviewControllerResponse <NSObject>
+
+-(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding;
+
+@end
+
 @interface AbstractNChartViewController : DashboardItemViewController
 @property (nonatomic, strong) AbstractNChartView* chartView;
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
--(id)initWithDrawingData:(NChartDataModel*)drawingData;
+@property(nonatomic,weak)id<ChartSubviewControllerResponse> delegate;
+-(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
+
 @end

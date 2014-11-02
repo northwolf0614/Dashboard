@@ -14,11 +14,12 @@
 #import "DashboardStatisticsAnalyzerViewController.h"
 #import "DashBoardPieChartViewController.h"
 #import "ParagraphViewController.h"
-#import "ColumnNChartViewController.h"
-#import "BubbleChartViewController.h"
+//#import "ColumnNChartViewController.h"
+//#import "BubbleChartViewController.h"
 #import "Definations.h"
 #import "GeneralNChartViewController.h"
 #import "NChartDataModel.h"
+#import "SubDetailChartViewController.h"
 
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
@@ -51,7 +52,7 @@
     [self.chartNames addObject:kcDefaultChartName];
     [self setupDefaultDataForDrawing];
 }
-
+/*
 -(NChartDataModel*)configDefaultData
 {
     NChartDataModel* chartData=[[NChartDataModel alloc] init];
@@ -71,6 +72,7 @@
     return chartData ;
     
 }
+ */
 -(void)setupDefaultDataForDrawing
 {
     
@@ -78,9 +80,9 @@
     if (![userd.allKeys containsObject:kcDefaultChartName])
     {
         
-        NChartDataModel* data=[self configDefaultData];
+        NChartDataModel* data=[NChartDataModel chartDataDefault];
         [data saveDataForKey:kcDefaultChartName];
-        [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:data]];
+        [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:data delegateHolder:self]];
         
     }
     
@@ -94,7 +96,7 @@
             if ([userd.allKeys containsObject:chartName])
             {
                 NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey :chartName];
-                [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart]];
+                [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
 
             }
             
@@ -108,7 +110,7 @@
 }
 - (void)handleRightButtonItem:(id)sender
 {
-    //[self loadJsonData];
+    //want to add new chart
 }
 
 - (void)didReceiveMemoryWarning
@@ -164,5 +166,12 @@
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return 400;
+}
+
+#pragma ChartSubviewControllerResponse
+-(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding
+{
+    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 @end
