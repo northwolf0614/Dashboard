@@ -12,6 +12,7 @@
 @interface GeneralNChartViewController ()
 -(void) setupSeriesForChartView;
 -(void) setupAxesType;
+@property(nonatomic,assign) double m_length;
 @end
 
 @implementation GeneralNChartViewController
@@ -23,6 +24,7 @@
     [self setupSeriesForChartView];
     [self setupAxesType];
     [self.chartView.chart updateData];
+    
 }
 -(void) setupSeriesForChartView
 {
@@ -43,6 +45,16 @@
                 [self.chartView.chart addSeries:series];
             }
                 break;
+            case LINE:
+            {
+                NChartLineSeries* series = [NChartLineSeries new];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+            }
+                break;
+
                 
             default:
                 break;
@@ -101,26 +113,47 @@
 {
     NSMutableArray* result = [NSMutableArray array];
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    //for (NSString* key in keysArray)//for every series
-    NSLog(@"this is the name for series: %d",series.tag);
+    self.m_length = 0.0;
+    //NSLog(@"this is the name for series: %d",series.tag);
     //else
-    {
+    
         NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
         NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
+        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
         //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
-        
-        for (int count=0;count<[xValues count];count++)
+        if (seriesType==LINE)
         {
-            NSNumber* yValueObject=[yValues objectAtIndex:count];
-            double yValueDouble=[yValueObject doubleValue];
-            NSNumber* xValueObject=[xValues objectAtIndex:count];
-            int xValueInt=[xValueObject intValue];
-            NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
-            [result addObject:aPoint];
+            for (int count=0;count<[xValues count];count++)
+            {
+                NSNumber* yValueObject=[yValues objectAtIndex:count];
+                double yValueDouble=[yValueObject doubleValue];
+                NSNumber* xValueObject=[xValues objectAtIndex:count];
+                int xValueInt=[xValueObject intValue];
+                NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
+                state.marker = [NChartMarker new] ;
+                state.marker.shape = NChartMarkerShapeCircle;
+                [result addObject:[NChartPoint pointWithState:state forSeries:series]];
+            }
+            return result;
+
         }
-        return result;
-    }
-    //return result;
+        else if (seriesType==COLUMN)
+        {
+            for (int count=0;count<[xValues count];count++)
+            {
+                NSNumber* yValueObject=[yValues objectAtIndex:count];
+                double yValueDouble=[yValueObject doubleValue];
+                NSNumber* xValueObject=[xValues objectAtIndex:count];
+                int xValueInt=[xValueObject intValue];
+                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
+                [result addObject:aPoint];
+                
+                
+            }
+            return result;
+            
+        }
+    return nil;
 }
 
 - (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series

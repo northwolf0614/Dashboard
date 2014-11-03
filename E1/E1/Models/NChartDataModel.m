@@ -135,12 +135,23 @@
     rawData1.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
     rawData1.seriesType=COLUMN;
     rawData1.brushColor=[UIColor greenColor];
+    //setup rawData2
+    
+    PrototypeDataModel* rawData2=[[PrototypeDataModel alloc] init];
+    rawData2.seriesName=@"percentage2";
+    rawData2.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
+    rawData2.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
+    rawData2.seriesType=LINE;
+    rawData2.brushColor=[UIColor grayColor];
+
 
     
     
     
     [chartData.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
     [chartData.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
+    [chartData.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
+    
     
     
     
