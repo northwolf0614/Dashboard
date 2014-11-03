@@ -19,24 +19,7 @@
 {
     [super viewDidLoad];
     [self.titleItem setTitle:@"Column"];
-    //config column series
-    /*
-    NChartColumnSeries* series = [NChartColumnSeries new];
-    series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
-    series.dataSource = (id)self;
-    [self.chartView.chart addSeries:series];
-     */
     [self setupSeriesForChartView];
-    //config column series setting
-    //NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
-    //settings.shouldSmoothCylinders = YES;
-    //[self.chartView.chart addSeriesSettings:settings];
-    
-    //self.chartView.chart.cartesianSystem.xAxis.dataSource = self;
-    //self.chartView.chart.cartesianSystem.yAxis.dataSource = self;
-    //self.chartView.chart.cartesianSystem.zAxis.dataSource = self;
-    
-    
     [self.chartView.chart updateData];
 }
 -(void) setupSeriesForChartView
