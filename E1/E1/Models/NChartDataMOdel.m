@@ -114,15 +114,15 @@
     chartData.chartAxisXCaption=@"Years";
     chartData.chartAxisYCaption=@"Products percentage";
     chartData.chartType=Dimention2;
-    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
-    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    //chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
     PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
     rawData.seriesName=@"percentage";
-    rawData.chartAxisXValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
+    rawData.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
     rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
     rawData.seriesType=COLUMN;
     chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
-    [chartData.chartDataForDrawing setObject:rawData forKey:kcDefaultChartName];
+    [chartData.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
     return chartData ;
 }
 

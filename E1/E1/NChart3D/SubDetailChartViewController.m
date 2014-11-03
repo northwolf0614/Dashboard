@@ -24,6 +24,9 @@
     NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
     settings.shouldSmoothCylinders = YES;
     [self.chartView.chart addSeriesSettings:settings];
+    self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
     [self.chartView.chart updateData];
 
     // Do any additional setup after loading the view.
@@ -36,20 +39,67 @@
 #pragma mark - NChart Data Source
 - (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
 {
-    
     NSMutableArray* result = [NSMutableArray array];
-    for (int i = 0; i <= 10; ++i) {
-        [result addObject:[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:i Y:(rand() % 30) + 1]
-                                            forSeries:series]];
+    NSArray* keysArray=self.dataForChartView.chartDataForDrawing.allKeys;
+    for (NSString* key in keysArray)//for every series
+    {
+        NSArray* xValues=[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisXValues];
+        NSArray* yValues=[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisYValues];
+        //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
+        
+        for (int count=0;count<[xValues count];count++)
+        {
+            NSNumber* yValueObject=[yValues objectAtIndex:count];
+            double yValueDouble=[yValueObject doubleValue];
+            NSNumber* xValueObject=[xValues objectAtIndex:count];
+            int xValueInt=[xValueObject intValue];
+            NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
+            [result addObject:aPoint];
+        }
     }
     return result;
-    
-    //return self.dataForChartView.
 }
 
 - (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
 {
-    return @"this is series";
+    NSArray* keysArray=self.dataForChartView.chartDataForDrawing.allKeys;
+    return [keysArray objectAtIndex:series.tag];
+    
+    
+}
+
+- (NSArray *)valueAxisDataSourceTicksForValueAxis:(NChartValueAxis *)axis
+{
+    // Choose ticks by the kind of axis.
+    switch (axis.kind)
+    {
+        case NChartValueAxisX:
+        {
+            return self.dataForChartView.chartAxisXTicksValues;
+        }
+            
+        default:
+            // Other axes have no ticks.
+            return nil;
+    }
+}
+
+
+
+- (NSString *)valueAxisDataSourceNameForAxis:(NChartValueAxis *)axis
+{
+    switch (axis.kind)
+    {
+        case NChartValueAxisX:
+            return self.dataForChartView.chartAxisXCaption;
+        case NChartValueAxisY:
+            return self.dataForChartView.chartAxisYCaption;
+        case NChartValueAxisZ:
+            return self.dataForChartView.chartAxisZCaption;
+            
+        default:
+            return nil;
+    }
 }
 
 

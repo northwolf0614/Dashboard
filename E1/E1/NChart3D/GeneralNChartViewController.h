@@ -8,6 +8,6 @@
 
 #import "AbstractNChartViewController.h"
 
-@interface GeneralNChartViewController : AbstractNChartViewController
+@interface GeneralNChartViewController : AbstractNChartViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
 
 @end

@@ -33,7 +33,7 @@ typedef enum : NSUInteger {
 
 
 @interface NChartDataModel : NSObject<NSCoding>
-@property(nonatomic,copy) NSString* chartCaption;
+@property(nonatomic,copy)   NSString* chartCaption;
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;
 @property(nonatomic,copy) NSString* chartAxisZCaption;
@@ -42,12 +42,11 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
 @property(nonatomic,assign) NChartType chartType;
 
-@property(nonatomic,assign) AxisType axisType;//new added
-@property(nonatomic,assign) BOOL isToolTips;//new added
-@property(nonatomic,strong) NSNumber* sliceNumber;//new added
-@property(nonatomic,assign) BOOL isBorder;//new added
-
-@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+@property(nonatomic,assign) AxisType axisType;
+@property(nonatomic,assign) BOOL isToolTips;
+@property(nonatomic,strong) NSNumber* sliceNumber;
+@property(nonatomic,assign) BOOL isBorder;
+@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
 
 -(void)saveDataForKey:(NSString*)key;
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;
