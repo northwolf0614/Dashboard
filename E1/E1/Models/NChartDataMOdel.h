@@ -13,10 +13,24 @@ Dimention3,
 } NChartType;
 typedef enum : NSUInteger {
     COLUMN,
+    BAR,
     AREA,
     LINE,
+    STEPLINE,
+    BIBBON,
+    PIE,
+    DOUGHNUT,
     BUBBLE,
     SCATTER,
+    SURFACE,
+    CANDLESTICK,
+    OHLC,
+    BAND,
+    SEQUENCE,
+    RADAR,
+    FUNNEL,
+    HEATMAP,
+    
 } NSeriesType;
 typedef enum : NSUInteger {
     ABSOLUTE,
@@ -28,7 +42,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisXValues;
 @property(nonatomic,strong) NSArray* chartAxisYValues;
 @property(nonatomic,strong) NSArray* chartAxisZValues;
-@property(nonatomic,assign) NChartType seriesType;
+@property(nonatomic,assign) NSeriesType seriesType;
 @end
 
 
@@ -41,7 +55,6 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisYTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
 @property(nonatomic,assign) NChartType chartType;
-
 @property(nonatomic,assign) AxisType axisType;
 @property(nonatomic,assign) BOOL isToolTips;
 @property(nonatomic,strong) NSNumber* sliceNumber;

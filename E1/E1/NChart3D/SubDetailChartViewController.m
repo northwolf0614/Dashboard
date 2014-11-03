@@ -9,7 +9,7 @@
 #import "SubDetailChartViewController.h"
 
 @interface SubDetailChartViewController ()
-
+-(void) setupSeriesForChartView;
 @end
 
 @implementation SubDetailChartViewController
@@ -17,20 +17,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NChartColumnSeries* series = [NChartColumnSeries new];
-    series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
-    series.dataSource = (id)self;
-    [self.chartView.chart addSeries:series];
-    NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
-    settings.shouldSmoothCylinders = YES;
-    [self.chartView.chart addSeriesSettings:settings];
-    self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
-    self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
-    self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
+    //NChartColumnSeries* series = [NChartColumnSeries new];
+    //series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
+    //series.dataSource = (id)self;
+    //[self.chartView.chart addSeries:series];
+    //NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
+    //settings.shouldSmoothCylinders = YES;
+    //[self.chartView.chart addSeriesSettings:settings];
+    [self setupSeriesForChartView];
+    
     [self.chartView.chart updateData];
 
-    // Do any additional setup after loading the view.
 }
+
+-(void) setupSeriesForChartView
+{
+    NSArray* keysArray=self.dataForChartView.chartDataForDrawing.allKeys;
+    for (NSString* key in keysArray)//for every series
+    {
+        NSeriesType seriesType=[[self.dataForChartView.chartDataForDrawing objectForKey:key] seriesType];
+        switch (seriesType) {
+            case COLUMN:
+            {
+                NChartColumnSeries* series = [NChartColumnSeries new];
+                series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

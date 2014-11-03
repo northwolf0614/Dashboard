@@ -31,6 +31,10 @@
     [self.contentView addSubview:self.chartView];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
+    
+    self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
 }
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
 {

@@ -10,7 +10,7 @@
 #import  <NChart3D/NChart3D.h>
 
 @interface GeneralNChartViewController ()
-
+-(void) setupSeriesForChartView;
 @end
 
 @implementation GeneralNChartViewController
@@ -20,25 +20,48 @@
     [super viewDidLoad];
     [self.titleItem setTitle:@"Column"];
     //config column series
+    /*
     NChartColumnSeries* series = [NChartColumnSeries new];
     series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
     series.dataSource = (id)self;
     [self.chartView.chart addSeries:series];
+     */
+    [self setupSeriesForChartView];
     //config column series setting
-    NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
-    settings.shouldSmoothCylinders = YES;
-    [self.chartView.chart addSeriesSettings:settings];
+    //NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
+    //settings.shouldSmoothCylinders = YES;
+    //[self.chartView.chart addSeriesSettings:settings];
     
-    self.chartView.chart.cartesianSystem.xAxis.dataSource = self;
-    self.chartView.chart.cartesianSystem.yAxis.dataSource = self;
-    self.chartView.chart.cartesianSystem.zAxis.dataSource = self;
+    //self.chartView.chart.cartesianSystem.xAxis.dataSource = self;
+    //self.chartView.chart.cartesianSystem.yAxis.dataSource = self;
+    //self.chartView.chart.cartesianSystem.zAxis.dataSource = self;
     
     
     [self.chartView.chart updateData];
 }
--(void) setupData
+-(void) setupSeriesForChartView
 {
-    //self.columnChartData= [[NChartColumn alloc] init];
+    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+    for (NSString* key in keysArray)//for every series
+    {
+        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
+        switch (seriesType) {
+            case COLUMN:
+            {
+                NChartColumnSeries* series = [NChartColumnSeries new];
+                series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+
+    
 }
 
 -(void)handleRightButtonItem:(id) sender

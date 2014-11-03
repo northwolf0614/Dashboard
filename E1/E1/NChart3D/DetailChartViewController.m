@@ -37,6 +37,10 @@
     
     self.configurationViewContainer.backgroundColor=[UIColor redColor];
     
+    self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
+    
     /*
     NChartColumnSeries* series = [NChartColumnSeries new];
     series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
