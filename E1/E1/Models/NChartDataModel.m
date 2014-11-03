@@ -110,15 +110,18 @@
 
 +(NChartDataModel*)chartDataDefault
 {
+    /*
     NChartDataModel* chartData=[[NChartDataModel alloc] init];
     chartData.chartCaption=kcDefaultChartName;
     chartData.chartAxisXCaption=@"Years";
     chartData.chartAxisYCaption=@"Products percentage";
     chartData.chartType=Dimention2;
     chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-    chartData.axisType=ADDITIVE;
+    
     chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
-
+ 
+    
+    
     
     //setup rawData
     PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
@@ -136,21 +139,85 @@
     rawData1.seriesType=COLUMN;
     rawData1.brushColor=[UIColor greenColor];
     //setup rawData2
-    
     PrototypeDataModel* rawData2=[[PrototypeDataModel alloc] init];
     rawData2.seriesName=@"percentage2";
     rawData2.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
     rawData2.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
     rawData2.seriesType=LINE;
     rawData2.brushColor=[UIColor grayColor];
+    
+   
 
 
     
     
-    
+    //additive data
     [chartData.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
     [chartData.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
     [chartData.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
+    chartData.axisType=ADDITIVE;
+    */
+   /*
+    NChartDataModel* chartData=[[NChartDataModel alloc] init];
+    chartData.chartCaption=kcDefaultChartName;
+    chartData.chartAxisXCaption=@"product percentage";
+    chartData.chartAxisYCaption=@"Years";
+    chartData.chartType=Dimention2;
+    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    
+    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    
+    //setup rawData3
+    PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
+    rawData3.seriesName=@"percentage3";
+    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
+    rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.4],nil];
+    rawData3.seriesType=BAR;
+    rawData3.brushColor=[UIColor orangeColor];
+    //setup data4
+    PrototypeDataModel* rawData4=[[PrototypeDataModel alloc] init];
+    rawData4.seriesName=@"percentage4";
+    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
+    rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.1],nil];
+    rawData4.seriesType=BAR;
+    rawData4.brushColor=[UIColor lightGrayColor];
+
+    //additive
+    [chartData.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
+    [chartData.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
+    chartData.axisType=ADDITIVE;
+    */
+    
+    NChartDataModel* chartData=[[NChartDataModel alloc] init];
+    chartData.chartCaption=kcDefaultChartName;
+    chartData.chartAxisXCaption=@"product percentage";
+    chartData.chartAxisYCaption=@"Years";
+    chartData.chartType=Dimention2;
+    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    
+    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    
+    //setup rawData3
+    PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
+    rawData3.seriesName=@"percentage3";
+    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
+    rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.4],nil];
+    rawData3.seriesType=BAR;
+    rawData3.brushColor=[UIColor orangeColor];
+    //setup data4
+    PrototypeDataModel* rawData4=[[PrototypeDataModel alloc] init];
+    rawData4.seriesName=@"percentage4";
+    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
+    rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.1],nil];
+    rawData4.seriesType=BAR;
+    rawData4.brushColor=[UIColor lightGrayColor];
+    
+    //additive
+    [chartData.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
+    [chartData.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
+    chartData.axisType=ADDITIVE;
+
+    
     
     
     

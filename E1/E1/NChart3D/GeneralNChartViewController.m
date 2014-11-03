@@ -54,6 +54,15 @@
                 [self.chartView.chart addSeries:series];
             }
                 break;
+            case BAR:
+            {
+                NChartBarSeries* series = [NChartBarSeries new];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+            }
+                break;
 
                 
             default:
@@ -152,7 +161,26 @@
             }
             return result;
             
+            
         }
+        else if (seriesType==BAR)
+        {
+            for (int count=0;count<[xValues count];count++)
+            {
+                NSNumber* xValueObject=[xValues objectAtIndex:count];
+                double xValueDouble=[xValueObject doubleValue];
+                NSNumber* yValueObject=[yValues objectAtIndex:count];
+                int yValueInt=[yValueObject intValue];
+                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToYWithX:xValueDouble Y:yValueInt] forSeries:series];
+                [result addObject:aPoint];
+                
+                
+            }
+            return result;
+            
+            
+        }
+
     return nil;
 }
 
