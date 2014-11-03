@@ -51,7 +51,6 @@
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */; };
 		E7CD64771A064E4800AB948B /* SubDetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD64761A064E4800AB948B /* SubDetailChartViewController.m */; };
-		E7CDE2391A0452DD0096A6E5 /* NChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CDE2381A0452DD0096A6E5 /* NChartDataModel.m */; };
 		E7ED284F1A035B080040DFAC /* AbstractChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7ED284E1A035B080040DFAC /* AbstractChartView.m */; };
 		E7F498251A00B83100A81ABF /* ParagraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F498241A00B83100A81ABF /* ParagraphViewController.m */; };
 /* End PBXBuildFile section */
@@ -155,8 +154,6 @@
 		E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParagraphView.m; sourceTree = "<group>"; };
 		E7CD64751A064E4800AB948B /* SubDetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubDetailChartViewController.h; sourceTree = "<group>"; };
 		E7CD64761A064E4800AB948B /* SubDetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubDetailChartViewController.m; sourceTree = "<group>"; };
-		E7CDE2371A0452DD0096A6E5 /* NChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartDataModel.h; sourceTree = "<group>"; };
-		E7CDE2381A0452DD0096A6E5 /* NChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NChartDataModel.m; sourceTree = "<group>"; };
 		E7ED284D1A035B080040DFAC /* AbstractChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractChartView.h; sourceTree = "<group>"; };
 		E7ED284E1A035B080040DFAC /* AbstractChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractChartView.m; sourceTree = "<group>"; };
 		E7F498231A00B83100A81ABF /* ParagraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphViewController.h; sourceTree = "<group>"; };
@@ -198,8 +195,6 @@
 				090FB6E219F5DA6A008F437F /* StatisticsModel.m */,
 				E78256D319F88461005E42C1 /* ClaimModel.h */,
 				E78256D419F88461005E42C1 /* ClaimModel.m */,
-				E7CDE2371A0452DD0096A6E5 /* NChartDataModel.h */,
-				E7CDE2381A0452DD0096A6E5 /* NChartDataModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -557,7 +552,6 @@
 				090FB6F119F5DA6A008F437F /* GradientPercentView.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
-				E7CDE2391A0452DD0096A6E5 /* NChartDataModel.m in Sources */,
 				ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */,
 				09B0B27819F5D99A008DCE56 /* ViewController.m in Sources */,
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,

@@ -11,6 +11,7 @@
 
 @interface GeneralNChartViewController ()
 -(void) setupSeriesForChartView;
+-(void) setupAxesType;
 @end
 
 @implementation GeneralNChartViewController
@@ -20,19 +21,24 @@
     [super viewDidLoad];
     [self.titleItem setTitle:@"Column"];
     [self setupSeriesForChartView];
+    [self setupAxesType];
     [self.chartView.chart updateData];
 }
 -(void) setupSeriesForChartView
 {
+    
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    for (NSString* key in keysArray)//for every series
+    for (int count=0; count<[keysArray count]; count++)
     {
+        NSString* key=[keysArray objectAtIndex:count];
         NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
+        UIColor* brushColor=[[self.dataForNChart.chartDataForDrawing objectForKey:key] brushColor];
         switch (seriesType) {
             case COLUMN:
             {
                 NChartColumnSeries* series = [NChartColumnSeries new];
-                series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
             }
@@ -43,9 +49,34 @@
         }
         
     }
+    
 
     
+    
 }
+
+-(void)setupAxesType
+
+{
+    switch (self.dataForNChart.axisType)
+    {
+        case ABSOLUTE:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
+            break;
+        case ADDITIVE:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
+            break;
+        case PERCENT:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
+            break;
+        
+        
+        default:
+            break;
+    }
+}
+
+//
 
 -(void)handleRightButtonItem:(id) sender
 {
@@ -70,10 +101,12 @@
 {
     NSMutableArray* result = [NSMutableArray array];
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    for (NSString* key in keysArray)//for every series
+    //for (NSString* key in keysArray)//for every series
+    NSLog(@"this is the name for series: %d",series.tag);
+    //else
     {
-        NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisXValues];
-        NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisYValues];
+        NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
+        NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
         //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
         
         for (int count=0;count<[xValues count];count++)
@@ -85,8 +118,9 @@
             NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
             [result addObject:aPoint];
         }
+        return result;
     }
-    return result;
+    //return result;
 }
 
 - (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
