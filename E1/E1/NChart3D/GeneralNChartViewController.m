@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.titleItem setTitle:@"Column"];
+    [self.titleItem setTitle:self.dataForNChart.chartCaption];
     [self setupSeriesForChartView];
     [self setupAxesType];
     [self.chartView.chart updateData];
