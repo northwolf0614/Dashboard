@@ -75,15 +75,20 @@
  */
 -(void)setupDefaultDataForDrawing
 {
-    
-    NSDictionary *userd = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userd = [userDefault dictionaryRepresentation];
     if (![userd.allKeys containsObject:kcDefaultChartName])
     {
-        
-        NChartDataModel* data=[NChartDataModel chartDataDefault];
-        [data saveDataForKey:kcDefaultChartName];
-        [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:data delegateHolder:self]];
-        
+        NSMutableArray* chartNameArray=[NSMutableArray array];
+        NSArray* chartsData=[NChartDataModel chartDataDefault];
+        for (NChartDataModel* oneChartData in chartsData)
+        {
+            [chartNameArray addObject:oneChartData.chartCaption];
+            [oneChartData saveDataForKey:oneChartData.chartCaption];//chartCaption
+            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
+        }
+        [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
+        [userDefault synchronize];
     }
     
     
@@ -91,19 +96,14 @@
     
     else//there are default data in defualts for display
     {
-        for (NSString* chartName in self.chartNames)
-        {
-            if ([userd.allKeys containsObject:chartName])
-            {
-                NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey :chartName];
-                [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
-
-            }
-            
-            
-            
-        }
         
+        for (NSString* chartName in [userd objectForKey:kcDefaultChartName]) {
+            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+            
+            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+        }
+
+                
         
     }
     

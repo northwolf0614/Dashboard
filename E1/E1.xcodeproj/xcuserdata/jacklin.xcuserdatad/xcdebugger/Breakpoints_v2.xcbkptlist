@@ -757,22 +757,6 @@
             timestampString = "436607444.0755"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-setupDefaultDataForDrawing"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
             landmarkName = "@implementation DashboardTableViewController"
@@ -786,28 +770,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
             landmarkName = "-handleRightButtonItem:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "-setupDefaultDataForDrawing"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -880,11 +848,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436763480.764362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-setupDefaultDataForDrawing"
             landmarkType = "5">
          </BreakpointContent>
@@ -896,11 +864,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-setupDefaultDataForDrawing"
             landmarkType = "5">
          </BreakpointContent>
@@ -912,23 +880,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-setupDefaultDataForDrawing"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -944,7 +896,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
@@ -976,7 +928,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436607444.0755"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -1232,11 +1184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436677878.82523"
+            timestampString = "436763480.764362"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-setupDefaultDataForDrawing"
             landmarkType = "5">
          </BreakpointContent>
@@ -1248,27 +1200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436677880.606202"
+            timestampString = "436764021.603829"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "-setupDefaultDataForDrawing"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
-            timestampString = "436678062.952434"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "-setupDefaultDataForDrawing"
             landmarkType = "5">
          </BreakpointContent>
@@ -1462,6 +1398,38 @@
             startingLineNumber = "266"
             endingLineNumber = "266"
             landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
+            timestampString = "436763881.658063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-setupDefaultDataForDrawing"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/Models/NChartDataModel.m"
+            timestampString = "436764280.570899"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "-saveDataForKey:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

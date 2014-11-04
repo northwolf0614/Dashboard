@@ -108,17 +108,18 @@
     return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
 }
 
-+(NChartDataModel*)chartDataDefault
++(NSArray*)chartDataDefault
 {
-    /*column and line with mark
-    NChartDataModel* chartData=[[NChartDataModel alloc] init];
-    chartData.chartCaption=kcDefaultChartName;
-    chartData.chartAxisXCaption=@"Years";
-    chartData.chartAxisYCaption=@"Products percentage";
-    chartData.chartType=Dimention2;
-    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    NSMutableArray* chartsArray= [NSMutableArray array];
+
+    NChartDataModel* chartData1=[[NChartDataModel alloc] init];
+    chartData1.chartCaption=@"column&line";
+    chartData1.chartAxisXCaption=@"Years";
+    chartData1.chartAxisYCaption=@"Products percentage";
+    chartData1.chartType=Dimention2;
+    chartData1.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
-    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    chartData1.chartDataForDrawing= [NSMutableDictionary dictionary];
  
     
     
@@ -152,21 +153,24 @@
     
     
     //additive data
-    [chartData.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
-    [chartData.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
-    [chartData.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
-    chartData.axisType=ADDITIVE;
-    */
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-   /* bar
-    NChartDataModel* chartData=[[NChartDataModel alloc] init];
-    chartData.chartCaption=kcDefaultChartName;
-    chartData.chartAxisXCaption=@"product percentage";
-    chartData.chartAxisYCaption=@"Years";
-    chartData.chartType=Dimention2;
-    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    [chartData1.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
+    [chartData1.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
+    [chartData1.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
+    chartData1.axisType=ADDITIVE;
     
-    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    
+    
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+  
+    NChartDataModel* chartData2=[[NChartDataModel alloc] init];
+    chartData2.chartCaption=@"BAR";
+    chartData2.chartAxisXCaption=@"product percentage";
+    chartData2.chartAxisYCaption=@"Years";
+    chartData2.chartType=Dimention2;
+    chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    
+    chartData2.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     //setup rawData3
     PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
@@ -184,21 +188,21 @@
     rawData4.brushColor=[UIColor lightGrayColor];
 
     //additive
-    [chartData.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
-    [chartData.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
-    chartData.axisType=ADDITIVE;
-    */
+    [chartData2.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
+    [chartData2.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
+    chartData2.axisType=ADDITIVE;
+   
    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    /*
+
     //doughnut
-    NChartDataModel* chartData=[[NChartDataModel alloc] init];
-    chartData.chartCaption=kcDefaultChartName;
-    chartData.chartAxisXCaption=@"product percentage";
-    chartData.chartAxisYCaption=@"Years";
-    chartData.chartType=Dimention2;
-    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
+    chartData3.chartCaption=@"doughnut";
+    chartData3.chartAxisXCaption=@"product percentage";
+    chartData3.chartAxisYCaption=@"Years";
+    chartData3.chartType=Dimention2;
+    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
-    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     //setup rawData3
     PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
@@ -216,20 +220,20 @@
     rawData6.brushColor=[UIColor grayColor];
     
     //additive
-    [chartData.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
-    [chartData.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
-    chartData.axisType=ABSOLUTE;
-    */
+    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
+    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
+    chartData3.axisType=ABSOLUTE;
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     
-    NChartDataModel* chartData=[[NChartDataModel alloc] init];
-    chartData.chartCaption=kcDefaultChartName;
-    chartData.chartAxisXCaption=@"product percentage";
-    chartData.chartAxisYCaption=@"Years";
-    chartData.chartType=Dimention2;
-    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    NChartDataModel* chartData4=[[NChartDataModel alloc] init];
+    chartData4.chartCaption=kcDefaultChartName;
+    chartData4.chartAxisXCaption=@"product percentage";
+    chartData4.chartAxisYCaption=@"Years";
+    chartData4.chartType=Dimention2;
+    chartData4.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
-    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
+    chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     //setup rawData3
     PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
@@ -247,17 +251,22 @@
     rawData8.brushColor=[UIColor grayColor];
     
     //additive
-    [chartData.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
-    [chartData.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
-    chartData.axisType=ABSOLUTE;
+    [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
+    [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
+    chartData4.axisType=ABSOLUTE;
+    
+    [chartsArray addObject:chartData1];
+    [chartsArray addObject:chartData2];
+    [chartsArray addObject:chartData3];
+    [chartsArray addObject:chartData4];
+    
 
-
     
     
     
     
     
-    return chartData ;
+    return chartsArray ;
 }
 
 

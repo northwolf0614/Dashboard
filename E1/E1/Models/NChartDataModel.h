@@ -65,5 +65,5 @@ typedef enum : NSUInteger {
 -(void)saveDataForKey:(NSString*)key;
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;
 +(NSString*)getStoredDefaultFilePath;
-+(NChartDataModel*)chartDataDefault;
++(NSArray*)chartDataDefault;
 @end
