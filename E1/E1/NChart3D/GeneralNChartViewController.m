@@ -12,7 +12,7 @@
 @interface GeneralNChartViewController ()
 -(void) setupSeriesForChartView;
 -(void) setupAxesType;
-@property(nonatomic,assign) double m_length;
+
 @end
 
 @implementation GeneralNChartViewController
@@ -30,7 +30,7 @@
 {
     
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    for (int count=0; count<[keysArray count]; count++)
+    for (int count=0; count<[keysArray count]; count++)//for every series
     {
         NSString* key=[keysArray objectAtIndex:count];
         NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
@@ -61,6 +61,34 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
+            }
+            case DOUGHNUT:
+            {
+                NChartPieSeries* series = [NChartPieSeries new];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+                NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
+                settings.holeRatio = 0.5f;
+                [self.chartView.chart addSeriesSettings:settings];
+                self.chartView.chart.streamingMode = NO;
+                self.chartView.chart.timeAxis.visible = NO;
+            }
+                break;
+            
+            case RADAR:
+            {
+                NChartRadarSeries* series = [NChartRadarSeries new];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.dataSource = (id)self;
+                [self.chartView.chart addSeries:series];
+                //NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
+                //settings.holeRatio = 0.5f;
+                //[self.chartView.chart addSeriesSettings:settings];
+                self.chartView.chart.streamingMode = YES;
+                self.chartView.chart.timeAxis.visible = NO;
             }
                 break;
 
@@ -122,7 +150,6 @@
 {
     NSMutableArray* result = [NSMutableArray array];
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    self.m_length = 0.0;
     //NSLog(@"this is the name for series: %d",series.tag);
     //else
     
@@ -180,6 +207,47 @@
             
             
         }
+        else if (seriesType==DOUGHNUT)
+        {
+            for (int count=0;count<[xValues count];count++)
+            {
+                NSNumber* yValueObject=[yValues objectAtIndex:count];
+                double yValueDouble=[yValueObject doubleValue];
+                //NSNumber* xValueObject=[xValues objectAtIndex:count];
+                //int xValueInt=[xValueObject intValue];
+                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateWithCircle:count value:yValueDouble] forSeries:series ];
+                [result addObject:aPoint];
+                
+            }
+            return result;
+            
+            
+        }
+    
+        else if (seriesType==RADAR)
+        {
+            for (int count=0;count<[xValues count];count++)
+            {
+                NSNumber* yValueObject=[yValues objectAtIndex:count];
+                double yValueDouble=[yValueObject doubleValue];
+                //NSNumber* xValueObject=[xValues objectAtIndex:count];
+                //int xValueInt=[xValueObject intValue];
+                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
+                                                                 pointStateAlignedToXZWithX:count
+                                                                 Y:yValueDouble
+                                                                 Z:self.chartView.chart.drawIn3D &&
+                                                                 (self.chartView.chart.cartesianSystem.valueAxesType ==
+                                                                  NChartValueAxesTypeAbsolute) ? series.tag : 0]
+                                                      forSeries:series];
+                
+                [result addObject:aPoint];
+                
+            }
+            return result;
+            
+            
+        }
+
 
     return nil;
 }
