@@ -96,6 +96,7 @@
 #else
     NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
     NChartDataModel* bData = (NChartDataModel *)[NSKeyedUnarchiver unarchiveObjectWithData:[userd objectForKey:key]];
+    
     return bData;
     
     
@@ -227,7 +228,7 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     
     NChartDataModel* chartData4=[[NChartDataModel alloc] init];
-    chartData4.chartCaption=kcDefaultChartName;
+    chartData4.chartCaption=@"RADAR";
     chartData4.chartAxisXCaption=@"product percentage";
     chartData4.chartAxisYCaption=@"Years";
     chartData4.chartType=Dimention2;
