@@ -832,11 +832,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/AbstractNChartViewController.m"
-            timestampString = "436847946.732909"
+            timestampString = "436859124.014542"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89">
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "@implementation AbstractNChartViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -910,11 +912,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -1038,11 +1040,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1070,11 +1072,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1086,11 +1088,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1102,11 +1104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1118,11 +1120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1134,11 +1136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1150,11 +1152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1214,11 +1216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-setupAxesType"
             landmarkType = "5">
          </BreakpointContent>
@@ -1310,11 +1312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1342,11 +1344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1358,11 +1360,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1374,11 +1376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-setupSeriesForChartView"
             landmarkType = "5">
          </BreakpointContent>
@@ -1390,13 +1392,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "279"
-            endingLineNumber = "279"
-            landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
-            landmarkType = "5">
+            startingLineNumber = "282"
+            endingLineNumber = "282"
+            landmarkName = "@implementation GeneralNChartViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1534,11 +1536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1550,11 +1552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1566,23 +1568,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-seriesDataSourcePointsForSeries:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/NChart3D/GeneralNChartViewController.m"
-            timestampString = "436853550.467832"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "209"
@@ -1597,12 +1583,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776220.326255"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1614,11 +1600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776226.393959"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1630,11 +1616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776228.56981"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1646,11 +1632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776231.398046"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1662,11 +1648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776236.744669"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1678,11 +1664,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/NChart3D/SubDetailChartViewController.m"
-            timestampString = "436776239.411515"
+            timestampString = "436916362.19838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-seriesDataSourcePointsForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-seriesDataSourcePointsForSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1726,13 +1728,317 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/AbstractNChartView.m"
-            timestampString = "436855549.007398"
+            timestampString = "436859628.135968"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "-updateConstraints"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-seriesDataSourceNameForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "-seriesDataSourceNameForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "-seriesDataSourceNameForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
+            landmarkName = "-seriesDataSourcePointsForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436879773.492196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-setupSeriesForChartView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/GeneralNChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-handleRightButtonItem:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/DashboardTableView/DashboardTableViewController.m"
+            timestampString = "436880568.108551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-searchButtonClickedWithData:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436880622.873574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436880661.679612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "-setupSeriesForChartView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-setupAxesType"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-setupAxesType"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-seriesDataSourcePointsForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-seriesDataSourceNameForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "-seriesDataSourceNameForSeries:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "-valueAxisDataSourceTicksForValueAxis:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "@implementation SubDetailChartViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "-valueAxisDataSourceNameForAxis:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/NChart3D/SubDetailChartViewController.m"
+            timestampString = "436916362.19838"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "@implementation SubDetailChartViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
