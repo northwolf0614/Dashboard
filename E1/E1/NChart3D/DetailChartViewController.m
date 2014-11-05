@@ -40,17 +40,14 @@
     self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
-    
-    /*
-    NChartColumnSeries* series = [NChartColumnSeries new];
-    series.brush = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor colorWithRed:0.0 green:0.7 blue:0.4 alpha:1.0]];
-    series.dataSource = (id)self;
-    [self.chartView.chart addSeries:series];
-    NChartColumnSeriesSettings* settings = [[NChartColumnSeriesSettings alloc] init];
-    settings.shouldSmoothCylinders = YES;
-    [self.chartView.chart addSeriesSettings:settings];
-    [self.chartView.chart updateData];
-     */
+    self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+    self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+    self.chartView.chart.cartesianSystem.borderVisible=NO;
+    self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+    self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+    self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
 
 }
 
