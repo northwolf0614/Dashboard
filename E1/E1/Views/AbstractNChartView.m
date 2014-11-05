@@ -50,14 +50,14 @@
     {
         
         NSArray *tmpConstraints;
-        //NSDictionary* metrics    = @{@"smallPadding":@5,@"sizeWidth":@50,@"sizeHeight":@50};
+        NSDictionary* metrics    = @{@"smallPadding":@5,@"sizeWidth":@50,@"sizeHeight":@50};
         
         {
             
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=5-[textLabel(50)]-5-|" options:0 metrics:nil views:@{ @"textLabel":self.label}];
-            //[self addConstraints:tmpConstraints];
-            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-5-[textLabel(50)]->=5-|" options:0 metrics:nil views:@{ @"textLabel":self.label}];
-            //[self addConstraints:tmpConstraints];
+            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=smallPadding-[textLabel(sizeWidth)]-smallPadding-|" options:0 metrics:metrics views:@{ @"textLabel":self.label}];
+            [self addConstraints:tmpConstraints];
+            tmpConstraints=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-smallPadding-[textLabel(sizeHeight)]->=smallPadding-|" options:0 metrics:metrics views:@{ @"textLabel":self.label}];
+            [self addConstraints:tmpConstraints];
             self.didUpdateStraints=YES;
             
             
