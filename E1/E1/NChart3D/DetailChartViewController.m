@@ -25,7 +25,7 @@
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
     
-    self.chartView = [[AbstractNChartView alloc] init];
+    self.chartView = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
     self.chartView.chart.licenseKey = kcNchartViewlicense;
     self.chartView.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
     self.chartView.chart.shouldAntialias = YES;

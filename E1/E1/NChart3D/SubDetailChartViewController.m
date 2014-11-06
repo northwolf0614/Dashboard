@@ -59,7 +59,6 @@
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
             }
-                break;
             case DOUGHNUT:
             {
                 NChartPieSeries* series = [NChartPieSeries new];
