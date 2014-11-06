@@ -10,7 +10,7 @@
 #import "Definations.h"
 
 @interface DetailChartViewController ()
-
+@property(nonatomic,assign) BOOL isShowMiddleLabel;
 @end
 
 @implementation DetailChartViewController
@@ -49,7 +49,7 @@
     self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
     self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
-    //[self.chartView.chart updateData];
+    [self setupLabels];
     
 
 }
@@ -73,6 +73,92 @@
     [super loadView];
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([DetailChartViewController class]) owner:self options:nil];
     self.view = [nibs objectAtIndex:0];
+}
+
+-(void)setupLabels
+{
+    self.isShowMiddleLabel=NO;
+    NSArray* keysArray=self.dataForChartView.chartDataForDrawing.allKeys;
+    int seriesNumber=[keysArray count];
+    BOOL seriesTypeIndicator=YES;
+    BOOL dataNumberIndicator=YES;
+    
+    for (int count=0; count<[keysArray count]; count++)//for every series
+    {
+        NSString* key=[keysArray objectAtIndex:count];
+        NSeriesType seriesType=[[self.dataForChartView.chartDataForDrawing objectForKey:key] seriesType];
+        int dataNumber=[[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisXValues] count];
+        
+        if (dataNumber>1)
+        {
+            dataNumberIndicator=NO;
+            break;
+        }
+        if (seriesType!=BAR&&seriesType!=DOUGHNUT)
+        {
+            seriesTypeIndicator=NO;
+            break;
+        }
+    }
+    if (seriesNumber==2&&seriesTypeIndicator&&dataNumberIndicator)//is bar or doughnut and there is only one piece of data and in this chart only 2 series.
+    {
+        self.isShowMiddleLabel=YES;
+    }
+    
+    
+    
+    
+}
+
+
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    double total=0.0f;
+    if (self.isShowMiddleLabel)
+    {
+        
+        [self.chartView enableMiddleLabel];
+        NSArray* keysArray=self.dataForChartView.chartDataForDrawing.allKeys;
+        for (int count=0; count<[keysArray count]; count++)//for every series
+        {
+            NSString* key=[keysArray objectAtIndex:count];
+            if ([[self.dataForChartView.chartDataForDrawing objectForKey:key] seriesType]==BAR)
+            {
+                
+                if ([[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisXValues] count]>1) {
+                    return;
+                }
+                total+=[[[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisXValues] objectAtIndex:0] doubleValue];
+            }
+            if ([[self.dataForChartView.chartDataForDrawing objectForKey:key] seriesType]==DOUGHNUT)
+            {
+                
+                if ([[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisYValues] count]>1)
+                {
+                    return;
+                }
+                total+=[[[[self.dataForChartView.chartDataForDrawing objectForKey:key] chartAxisYValues] objectAtIndex:0] doubleValue];
+            }
+            
+            
+            
+        }
+        if (total>1)
+        {
+            [self.chartView setTextForMiddleLabel:[NSString stringWithFormat:@"%d",(int)total]];
+        }
+        if (total>0&&total<1)
+            [self.chartView setTextForMiddleLabel:[NSString stringWithFormat:@"0.%d",(int)(total*10)]];
+        
+        
+    }
+    
+    
+    
+    
 }
 
 /*
