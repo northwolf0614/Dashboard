@@ -51,9 +51,6 @@
                 series.tag=count;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
-                
-                //series.marker.shape=NChartMarkerShapeCircle;
-                //series.marker.size=1.0f;
                 [self.chartView.chart addSeries:series];
             }
                 break;
@@ -65,6 +62,7 @@
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
             }
+                break;
             case DOUGHNUT:
             {
                 NChartPieSeries* series = [NChartPieSeries new];

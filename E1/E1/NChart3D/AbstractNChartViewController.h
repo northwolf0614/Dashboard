@@ -18,7 +18,7 @@
 
 @interface AbstractNChartViewController : DashboardItemViewController
 @property (nonatomic, strong) AbstractNChartView* chartView;
-@property(nonatomic,strong)UILabel* label;
+//@property(nonatomic,strong)UILabel* label;
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
 @property(nonatomic,weak)id<ChartSubviewControllerResponse> delegate;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
