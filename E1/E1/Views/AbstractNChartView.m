@@ -55,7 +55,7 @@
 
 -(void)layoutSubviews
 {
-    CGFloat xAdjustment= kcMiddleLabelSize/2-self.frame.size.width/50;
+    CGFloat xAdjustment= kcMiddleLabelSize/2;
     CGFloat yAdjustment= kcMiddleLabelSize/2;
     self.middleLabel.frame=CGRectMake(self.center.x-xAdjustment, self.center.y-yAdjustment, kcMiddleLabelSize, kcMiddleLabelSize);
     [super layoutSubviews];
