@@ -9,5 +9,15 @@
 #import <NChart3D/NChart3D.h>
 
 @interface AbstractNChartView : NChartView
-@property(nonatomic,strong) UILabel* label;
+
+-(void)enableRightTopLabel;
+-(void)enableMiddleLabel;
+
+-(void)disableRightTopLabel;
+-(void)disableMiddleLabel;
+
+-(void)setTextForMiddleLabel:(NSString*) text;
+-(void)setTextForTopRightLabel:(NSString*) text;
+
+
 @end

@@ -176,15 +176,15 @@
     //setup rawData3
     PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
     rawData3.seriesName=@"percentage3";
-    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
-    rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.4],nil];
+    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
+    rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],nil];
     rawData3.seriesType=BAR;
     rawData3.brushColor=[UIColor orangeColor];
     //setup data4
     PrototypeDataModel* rawData4=[[PrototypeDataModel alloc] init];
     rawData4.seriesName=@"percentage4";
-    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2002],nil];
-    rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.1],nil];
+    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
+    rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],nil];
     rawData4.seriesType=BAR;
     rawData4.brushColor=[UIColor lightGrayColor];
 
@@ -209,14 +209,14 @@
     PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
     rawData5.seriesName=@"percentage5";
     rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.90],nil];
+    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:9],nil];
     rawData5.seriesType=DOUGHNUT;
     rawData5.brushColor=[UIColor orangeColor];
     //setup data4
     PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
     rawData6.seriesName=@"percentage6";
     rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.9],nil];
+    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:21],nil];
     rawData6.seriesType=DOUGHNUT;
     rawData6.brushColor=[UIColor grayColor];
     
