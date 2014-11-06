@@ -71,7 +71,7 @@
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
                 NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
-                settings.holeRatio = 0.5f;
+                settings.holeRatio = 0.8f;
                 [self.chartView.chart addSeriesSettings:settings];
                 self.chartView.chart.streamingMode = NO;
                 self.chartView.chart.timeAxis.visible = NO;
@@ -169,6 +169,8 @@
                 NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
                 state.marker = [NChartMarker new] ;
                 state.marker.shape = NChartMarkerShapeCircle;
+                state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
+                state.marker.size=1.0f;//maybe not working
                 [result addObject:[NChartPoint pointWithState:state forSeries:series]];
             }
             return result;

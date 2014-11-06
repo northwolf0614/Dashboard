@@ -21,7 +21,7 @@
 {
     [super viewDidLoad];
     
-    self.chartView = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
+    self.chartView = [[AbstractNChartView alloc] init];
     self.chartView.chart.licenseKey = kcNchartViewlicense;
     self.chartView.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
     self.chartView.chart.shouldAntialias = YES;
@@ -35,6 +35,21 @@
     self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
+
+    self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+    self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+    self.chartView.chart.cartesianSystem.borderVisible=NO;
+    self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+    self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
+    
+    
+    
+    
+    
+    
 }
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
 {
