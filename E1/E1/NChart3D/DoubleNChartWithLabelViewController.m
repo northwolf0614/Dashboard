@@ -14,6 +14,14 @@
 @end
 
 @implementation DoubleNChartWithLabelViewController
+-(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
+{
+    if (self=[super initWithDrawingData:drawingData delegateHolder:delegateImplementer])
+    {
+        self.dataForNChartPlus=drawingData.dataForNextView;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,27 +58,30 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(==chartView)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
     
-    [self.titleItem setTitle:self.dataForNChart.chartCaption];
+    [self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
     [self setupSeriesForChartView];
     [self setupAxesType];
     [self.chartViewPlus.chart updateData];
 
 
 }
+
 -(void) setupSeriesForChartView
 {
     [super setupSeriesForChartView];
-    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+    
+    NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+    NSUInteger base= [self.dataForNChart.chartDataForDrawing count];
     for (int count=0; count<[keysArray count]; count++)//for every series
     {
         NSString* key=[keysArray objectAtIndex:count];
-        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
-        UIColor* brushColor=[[self.dataForNChart.chartDataForDrawing objectForKey:key] brushColor];
+        NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] seriesType];
+        UIColor* brushColor=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] brushColor];
         switch (seriesType) {
             case COLUMN:
             {
                 NChartColumnSeries* series = [NChartColumnSeries new];
-                series.tag=count;
+                series.tag=count+base;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartViewPlus.chart addSeries:series];
@@ -79,7 +90,7 @@
             case LINE:
             {
                 NChartLineSeries* series = [NChartLineSeries new];
-                series.tag=count;
+                series.tag=count+base;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartViewPlus.chart addSeries:series];
@@ -88,7 +99,7 @@
             case BAR:
             {
                 NChartBarSeries* series = [NChartBarSeries new];
-                series.tag=count;
+                series.tag=count+base;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartViewPlus.chart addSeries:series];
@@ -97,7 +108,7 @@
             case DOUGHNUT:
             {
                 NChartPieSeries* series = [NChartPieSeries new];
-                series.tag=count;
+                series.tag=count+base;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartViewPlus.chart addSeries:series];
@@ -112,7 +123,7 @@
             case RADAR:
             {
                 NChartRadarSeries* series = [NChartRadarSeries new];
-                series.tag=count;
+                series.tag=count+base;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartViewPlus.chart addSeries:series];
@@ -136,7 +147,22 @@
 -(void)setupAxesType
 
 {
-    [super setupAxesType];
+    switch (self.dataForNChartPlus.axisType)
+    {
+        case ABSOLUTE:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
+            break;
+        case ADDITIVE:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
+            break;
+        case PERCENT:
+            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
+            break;
+            
+            
+        default:
+            break;
+    }
 }
 
 
@@ -150,13 +176,31 @@
 - (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
 {
     NSMutableArray* result = [NSMutableArray array];
-    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    //NSLog(@"this is the name for series: %d",series.tag);
-    //else
-    
-    NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
-    NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
-    NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
+    NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
+    NSLog(@"series tag is %d",series.tag);
+    NSArray* keysArray=nil;
+    NSArray* xValues=nil;
+    NSArray* yValues=nil;
+    NSeriesType seriesType;
+    if (series.tag< [self.dataForNChart.chartDataForDrawing count])
+    {
+        keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+        xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
+        yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
+        seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
+    }
+    else
+    {
+        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+        xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
+        yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
+        seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
+    }
+        
+//    NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+//    NSArray* xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
+//    NSArray* yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
+//    NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
     //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
     if (seriesType==LINE)
     {
@@ -257,8 +301,23 @@
 
 - (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
 {
-    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    return [keysArray objectAtIndex:series.tag];
+    NSArray* keysArray=nil;
+    NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
+    if (series.tag< [self.dataForNChart.chartDataForDrawing count])
+    {
+       keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+        return [keysArray objectAtIndex:series.tag];
+        
+       
+    }
+    else
+    {
+        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+        return [keysArray objectAtIndex:series.tag-base];
+        
+    }
+    
+   
     
     
 }
@@ -270,7 +329,7 @@
     {
         case NChartValueAxisX:
         {
-            return self.dataForNChart.chartAxisXTicksValues;
+            return self.dataForNChartPlus.chartAxisXTicksValues;
         }
             
         default:
@@ -286,11 +345,11 @@
     switch (axis.kind)
     {
         case NChartValueAxisX:
-            return self.dataForNChart.chartAxisXCaption;
+            return self.dataForNChartPlus.chartAxisXCaption;
         case NChartValueAxisY:
-            return self.dataForNChart.chartAxisYCaption;
+            return self.dataForNChartPlus.chartAxisYCaption;
         case NChartValueAxisZ:
-            return self.dataForNChart.chartAxisZCaption;
+            return self.dataForNChartPlus.chartAxisZCaption;
             
         default:
             return nil;

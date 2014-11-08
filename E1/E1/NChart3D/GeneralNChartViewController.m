@@ -150,6 +150,7 @@
 - (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
 {
     NSMutableArray* result = [NSMutableArray array];
+    NSLog(@"series tag is %d",series.tag);
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
     //NSLog(@"this is the name for series: %d",series.tag);
     //else

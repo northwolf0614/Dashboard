@@ -88,6 +88,7 @@
             [chartNameArray addObject:oneChartData.chartCaption];
             [oneChartData saveDataForKey:oneChartData.chartCaption];//chartCaption
             [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
+            
         }
         [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
         [userDefault synchronize];

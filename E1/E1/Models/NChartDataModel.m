@@ -31,6 +31,7 @@
     [aCoder encodeBool:self.isToolTips forKey:@"isToolTips"];
     [aCoder encodeBool:self.isBorder forKey:@"isBorder"];
     [aCoder encodeInt:self.axisType forKey:@"axisType"];
+    [aCoder encodeObject:self.dataForNextView forKey:@"dataForNextView"];//dataForNextView
     
     
 }
@@ -52,6 +53,7 @@
         self.isToolTips=[aDecoder decodeBoolForKey:@"isToolTips"];
         self.isBorder=[aDecoder decodeBoolForKey:@"isBorder"];
         self.axisType=[aDecoder decodeIntForKey:@"axisType"];
+        self.dataForNextView=[aDecoder decodeObjectForKey:@"dataForNextView"];
 
         
         
@@ -112,6 +114,38 @@
 +(NSArray*)chartDataDefault
 {
     NSMutableArray* chartsArray= [NSMutableArray array];
+    
+    //doughnut
+    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
+    chartData3.chartCaption=@"doughnut";
+    chartData3.chartAxisXCaption=@"product percentage";
+    chartData3.chartAxisYCaption=@"Years";
+    chartData3.chartType=Dimention2;
+    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    
+    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
+    
+    //setup rawData3
+    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
+    rawData5.seriesName=@"percentage5";
+    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:21],nil];
+    rawData5.seriesType=DOUGHNUT;
+    rawData5.brushColor=[UIColor orangeColor];
+    //setup data4
+    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
+    rawData6.seriesName=@"percentage6";
+    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:121],nil];
+    rawData6.seriesType=DOUGHNUT;
+    rawData6.brushColor=[UIColor grayColor];
+    
+    //additive
+    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
+    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
+    chartData3.axisType=ABSOLUTE;
+    
+
 
     NChartDataModel* chartData1=[[NChartDataModel alloc] init];
     chartData1.chartCaption=@"column&line";
@@ -158,6 +192,7 @@
     [chartData1.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
     [chartData1.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
     chartData1.axisType=ADDITIVE;
+    chartData1.dataForNextView=chartData3;
     
     
     
@@ -195,37 +230,7 @@
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //doughnut
-    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
-    chartData3.chartCaption=@"doughnut";
-    chartData3.chartAxisXCaption=@"product percentage";
-    chartData3.chartAxisYCaption=@"Years";
-    chartData3.chartType=Dimention2;
-    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-    
-    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
-    
-    //setup rawData3
-    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
-    rawData5.seriesName=@"percentage5";
-    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:21],nil];
-    rawData5.seriesType=DOUGHNUT;
-    rawData5.brushColor=[UIColor orangeColor];
-    //setup data4
-    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
-    rawData6.seriesName=@"percentage6";
-    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:121],nil];
-    rawData6.seriesType=DOUGHNUT;
-    rawData6.brushColor=[UIColor grayColor];
-    
-    //additive
-    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
-    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
-    chartData3.axisType=ABSOLUTE;
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
     
     NChartDataModel* chartData4=[[NChartDataModel alloc] init];
     chartData4.chartCaption=@"RADAR";
@@ -258,7 +263,7 @@
     
     [chartsArray addObject:chartData1];
     [chartsArray addObject:chartData2];
-    [chartsArray addObject:chartData3];
+    //[chartsArray addObject:chartData3];
     [chartsArray addObject:chartData4];
     
 
