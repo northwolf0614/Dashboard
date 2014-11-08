@@ -16,9 +16,9 @@
 
 @implementation AbstractNChartView
 
--(id)init
+-(id)initWithFrame:(CGRect)frame
 {
-    if (self=[super init])
+    if (self=[super initWithFrame:frame])
     {
         self.label=[[UILabel alloc] init];
         self.label.translatesAutoresizingMaskIntoConstraints=NO;

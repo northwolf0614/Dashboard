@@ -10,8 +10,6 @@
 #import  <NChart3D/NChart3D.h>
 
 @interface GeneralNChartViewController ()
--(void) setupSeriesForChartView;
--(void) setupAxesType;
 
 @end
 
@@ -20,6 +18,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
+    
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
+    
     [self.titleItem setTitle:self.dataForNChart.chartCaption];
     [self setupSeriesForChartView];
     [self setupAxesType];
@@ -85,9 +88,6 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
-                //NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
-                //settings.holeRatio = 0.5f;
-                //[self.chartView.chart addSeriesSettings:settings];
                 self.chartView.chart.streamingMode = YES;
                 self.chartView.chart.timeAxis.visible = NO;
             }

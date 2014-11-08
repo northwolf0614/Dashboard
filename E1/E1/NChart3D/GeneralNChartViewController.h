@@ -9,5 +9,7 @@
 #import "AbstractNChartViewController.h"
 
 @interface GeneralNChartViewController : AbstractNChartViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
+-(void) setupSeriesForChartView;
+-(void) setupAxesType;
 
 @end

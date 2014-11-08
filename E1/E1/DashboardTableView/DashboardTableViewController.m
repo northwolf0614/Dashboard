@@ -20,6 +20,8 @@
 #import "GeneralNChartViewController.h"
 #import "NChartDataModel.h"
 #import "SubDetailChartViewController.h"
+#import "GeneralNChartWithLabelViewController.h"
+#include "DoubleNChartWithLabelViewController.h"
 
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
@@ -85,7 +87,7 @@
         {
             [chartNameArray addObject:oneChartData.chartCaption];
             [oneChartData saveDataForKey:oneChartData.chartCaption];//chartCaption
-            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
+            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
         }
         [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
         [userDefault synchronize];
@@ -100,7 +102,7 @@
         for (NSString* chartName in [userd objectForKey:kcDefaultChartName]) {
             NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
             
-            [self.dashboardItemViewControllers addObject:[[GeneralNChartViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
         }
 
                 
