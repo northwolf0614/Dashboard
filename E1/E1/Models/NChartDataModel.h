@@ -62,6 +62,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,assign) BOOL isBorder;
 @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
 @property(nonatomic,strong) NChartDataModel* dataForNextView;
+@property(nonatomic,strong) NSString* labelText;
 
 -(void)saveDataForKey:(NSString*)key;
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;

@@ -9,30 +9,33 @@
 #import "GeneralNChartWithLabelViewController.h"
 
 @interface GeneralNChartWithLabelViewController ()
-@property(nonatomic,strong) UILabel* label;
+
 @end
 
 @implementation GeneralNChartWithLabelViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.label=[[UILabel alloc] init];
-    self.label.backgroundColor=[UIColor redColor];
-    self.label.text=@"hello label";
-    self.label.translatesAutoresizingMaskIntoConstraints=NO;
-    
-    [self.contentView addSubview:self.label];
-    
-    NSArray* constraints=[self.contentView constraints];
-    if ([constraints count]>0) {
-        [self.contentView removeConstraints:constraints];
+    if (self.dataForNChart.labelText!=nil&&[self.dataForNChart.labelText isKindOfClass:[NSString class]])
+    {
+        self.label=[[UILabel alloc] init];
+        self.label.backgroundColor=[UIColor clearColor];
+        self.label.text=self.dataForNChart.labelText;
+        self.label.translatesAutoresizingMaskIntoConstraints=NO;
+        
+        [self.contentView addSubview:self.label];
+        
+        NSArray* constraints=[self.contentView constraints];
+        if ([constraints count]>0) {
+            [self.contentView removeConstraints:constraints];
+        }
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
+
     }
     
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label }]];
-
     // Do any additional setup after loading the view.
 }
 

@@ -18,50 +18,60 @@
 {
     if (self=[super initWithDrawingData:drawingData delegateHolder:delegateImplementer])
     {
-        self.dataForNChartPlus=drawingData.dataForNextView;
+        if (drawingData.dataForNextView!=nil&&[drawingData.dataForNextView isKindOfClass:[NChartDataModel class]]) {
+            self.dataForNChartPlus=drawingData.dataForNextView;
+        }
+        //self.dataForNChartPlus=drawingData.dataForNextView;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //////////
-    self.chartViewPlus = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
-    self.chartViewPlus.chart.licenseKey = kcNchartViewlicense;
-    self.chartViewPlus.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
-    self.chartViewPlus.chart.shouldAntialias = YES;
-    //self.chartView.chart.drawIn3D = YES;
-    self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:self.chartViewPlus];
-    self.chartViewPlus.chart.cartesianSystem.xAxis.dataSource = (id)self;
-    self.chartViewPlus.chart.cartesianSystem.yAxis.dataSource = (id)self;
-    self.chartViewPlus.chart.cartesianSystem.zAxis.dataSource = (id)self;
-    
-    self.chartViewPlus.chart.cartesianSystem.yAlongX.visible=NO;
-    self.chartViewPlus.chart.cartesianSystem.xAlongY.visible=NO;
-    self.chartViewPlus.chart.cartesianSystem.borderVisible=NO;
-    self.chartViewPlus.chart.cartesianSystem.yAxis.caption.visible=NO;
-    self.chartViewPlus.chart.cartesianSystem.yAxis.visible=NO;
-    self.chartViewPlus.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
-    self.chartViewPlus.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
-    self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
+    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]]&&self.label!=nil&&[self.label isKindOfClass:[UILabel class]])
+    {
+        self.chartViewPlus = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
+        self.chartViewPlus.chart.licenseKey = kcNchartViewlicense;
+        self.chartViewPlus.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
+        self.chartViewPlus.chart.shouldAntialias = YES;
+        //self.chartView.chart.drawIn3D = YES;
+        self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.chartViewPlus];
+        self.chartViewPlus.chart.cartesianSystem.xAxis.dataSource = (id)self;
+        self.chartViewPlus.chart.cartesianSystem.yAxis.dataSource = (id)self;
+        self.chartViewPlus.chart.cartesianSystem.zAxis.dataSource = (id)self;
+        
+        self.chartViewPlus.chart.cartesianSystem.yAlongX.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.xAlongY.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.borderVisible=NO;
+        self.chartViewPlus.chart.cartesianSystem.yAxis.caption.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.yAxis.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.yAxis.labelsVisible=NO;
+        
+        self.chartViewPlus.chart.cartesianSystem.xAxis.caption.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.xAxis.visible=NO;
+        self.chartViewPlus.chart.cartesianSystem.xAxis.labelsVisible=NO;
+        self.chartViewPlus.chart.legend.visible=NO;
+        
+        self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
 
-    NSArray* constraints=[self.contentView constraints];
-    if ([constraints count]>0) {
-        [self.contentView removeConstraints:constraints];
+        NSArray* constraints=[self.contentView constraints];
+        if ([constraints count]>0) {
+            [self.contentView removeConstraints:constraints];
+        }
+
+
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartViewPlus]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(==chartView)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        
+        [self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
+        [self setupSeriesForChartView];
+        [self setupAxesType];
+        [self.chartViewPlus.chart updateData];
     }
-
-
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartViewPlus]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-    
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(==chartView)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-    
-    [self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
-    [self setupSeriesForChartView];
-    [self setupAxesType];
-    [self.chartViewPlus.chart updateData];
 
 
 }
@@ -69,74 +79,76 @@
 -(void) setupSeriesForChartView
 {
     [super setupSeriesForChartView];
-    
+    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
+    {
     NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
     NSUInteger base= [self.dataForNChart.chartDataForDrawing count];
     for (int count=0; count<[keysArray count]; count++)//for every series
     {
-        NSString* key=[keysArray objectAtIndex:count];
-        NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] seriesType];
-        UIColor* brushColor=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] brushColor];
-        switch (seriesType) {
-            case COLUMN:
-            {
-                NChartColumnSeries* series = [NChartColumnSeries new];
-                series.tag=count+base;
-                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                series.dataSource = (id)self;
-                [self.chartViewPlus.chart addSeries:series];
+            NSString* key=[keysArray objectAtIndex:count];
+            NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] seriesType];
+            UIColor* brushColor=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] brushColor];
+            switch (seriesType) {
+                case COLUMN:
+                {
+                    NChartColumnSeries* series = [NChartColumnSeries new];
+                    series.tag=count+base;
+                    series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                    series.dataSource = (id)self;
+                    [self.chartViewPlus.chart addSeries:series];
+                }
+                    break;
+                case LINE:
+                {
+                    NChartLineSeries* series = [NChartLineSeries new];
+                    series.tag=count+base;
+                    series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                    series.dataSource = (id)self;
+                    [self.chartViewPlus.chart addSeries:series];
+                }
+                    break;
+                case BAR:
+                {
+                    NChartBarSeries* series = [NChartBarSeries new];
+                    series.tag=count+base;
+                    series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                    series.dataSource = (id)self;
+                    [self.chartViewPlus.chart addSeries:series];
+                }
+                    break;
+                case DOUGHNUT:
+                {
+                    NChartPieSeries* series = [NChartPieSeries new];
+                    series.tag=count+base;
+                    series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                    series.dataSource = (id)self;
+                    [self.chartViewPlus.chart addSeries:series];
+                    NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
+                    settings.holeRatio = 0.8f;
+                    [self.chartViewPlus.chart addSeriesSettings:settings];
+                    self.chartViewPlus.chart.streamingMode = NO;
+                    self.chartViewPlus.chart.timeAxis.visible = NO;
+                }
+                    break;
+                    
+                case RADAR:
+                {
+                    NChartRadarSeries* series = [NChartRadarSeries new];
+                    series.tag=count+base;
+                    series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                    series.dataSource = (id)self;
+                    [self.chartViewPlus.chart addSeries:series];
+                    self.chartViewPlus.chart.streamingMode = YES;
+                    self.chartViewPlus.chart.timeAxis.visible = NO;
+                }
+                    break;
+                    
+                    
+                default:
+                    break;
             }
-                break;
-            case LINE:
-            {
-                NChartLineSeries* series = [NChartLineSeries new];
-                series.tag=count+base;
-                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                series.dataSource = (id)self;
-                [self.chartViewPlus.chart addSeries:series];
-            }
-                break;
-            case BAR:
-            {
-                NChartBarSeries* series = [NChartBarSeries new];
-                series.tag=count+base;
-                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                series.dataSource = (id)self;
-                [self.chartViewPlus.chart addSeries:series];
-            }
-                break;
-            case DOUGHNUT:
-            {
-                NChartPieSeries* series = [NChartPieSeries new];
-                series.tag=count+base;
-                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                series.dataSource = (id)self;
-                [self.chartViewPlus.chart addSeries:series];
-                NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
-                settings.holeRatio = 0.8f;
-                [self.chartViewPlus.chart addSeriesSettings:settings];
-                self.chartViewPlus.chart.streamingMode = NO;
-                self.chartViewPlus.chart.timeAxis.visible = NO;
-            }
-                break;
-                
-            case RADAR:
-            {
-                NChartRadarSeries* series = [NChartRadarSeries new];
-                series.tag=count+base;
-                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                series.dataSource = (id)self;
-                [self.chartViewPlus.chart addSeries:series];
-                self.chartViewPlus.chart.streamingMode = YES;
-                self.chartViewPlus.chart.timeAxis.visible = NO;
-            }
-                break;
-                
-                
-            default:
-                break;
+            
         }
-        
     }
     
     
@@ -147,22 +159,24 @@
 -(void)setupAxesType
 
 {
-    switch (self.dataForNChartPlus.axisType)
-    {
-        case ABSOLUTE:
-            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
-            break;
-        case ADDITIVE:
-            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
-            break;
-        case PERCENT:
-            self.chartView.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
-            break;
-            
-            
-        default:
-            break;
-    }
+    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
+        
+        switch (self.dataForNChartPlus.axisType)
+        {
+            case ABSOLUTE:
+                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
+                break;
+            case ADDITIVE:
+                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
+                break;
+            case PERCENT:
+                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
+                break;
+                
+                
+            default:
+                break;
+        }
 }
 
 
@@ -175,14 +189,16 @@
 #pragma mark - NChart Data Source
 - (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
 {
+
     NSMutableArray* result = [NSMutableArray array];
     NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
-    NSLog(@"series tag is %d",series.tag);
+    //NSLog(@"series data source  is %@",[series.dataSource class]);
     NSArray* keysArray=nil;
     NSArray* xValues=nil;
     NSArray* yValues=nil;
     NSeriesType seriesType;
     if (series.tag< [self.dataForNChart.chartDataForDrawing count])
+    //if (![series.dataSource isKindOfClass:[DoubleNChartWithLabelViewController class]])
     {
         keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
         xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
@@ -190,6 +206,7 @@
         seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
     }
     else
+
     {
         keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
         xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
@@ -214,7 +231,7 @@
             state.marker = [NChartMarker new] ;
             state.marker.shape = NChartMarkerShapeCircle;
             state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
-            state.marker.size=1.0f;//maybe not working
+            //state.marker.size=1.0f;//maybe not working
             [result addObject:[NChartPoint pointWithState:state forSeries:series]];
         }
         return result;
@@ -282,8 +299,8 @@
             NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
                                                              pointStateAlignedToXZWithX:count
                                                              Y:yValueDouble
-                                                             Z:self.chartView.chart.drawIn3D &&
-                                                             (self.chartView.chart.cartesianSystem.valueAxesType ==
+                                                             Z:self.chartViewPlus.chart.drawIn3D &&
+                                                             (self.chartViewPlus.chart.cartesianSystem.valueAxesType ==
                                                               NChartValueAxesTypeAbsolute) ? series.tag : 0]
                                                   forSeries:series];
             
@@ -325,12 +342,14 @@
 - (NSArray *)valueAxisDataSourceTicksForValueAxis:(NChartValueAxis *)axis
 {
     // Choose ticks by the kind of axis.
+    
     switch (axis.kind)
     {
         case NChartValueAxisX:
         {
             return self.dataForNChartPlus.chartAxisXTicksValues;
         }
+            break;
             
         default:
             // Other axes have no ticks.
@@ -355,5 +374,18 @@
             return nil;
     }
 }
+
+- (float)sizeAxisDataSourceMinSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
+{
+    // Min size for markers in pixels.
+    return 10.0f;
+}
+
+- (float)sizeAxisDataSourceMaxSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
+{
+    // Max size for markers in pixels.
+    return 10.0f;
+}
+
 
 @end

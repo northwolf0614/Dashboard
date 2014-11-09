@@ -10,5 +10,5 @@
 
 @interface GeneralNChartWithLabelViewController : GeneralNChartViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
 
-
+@property(nonatomic,strong) UILabel* label;
 @end

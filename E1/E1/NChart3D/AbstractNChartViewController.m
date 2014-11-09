@@ -32,6 +32,8 @@
     self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
+    
+    self.chartView.chart.sizeAxis.dataSource=(id)self;
 
     self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
     self.chartView.chart.cartesianSystem.xAlongY.visible=NO;

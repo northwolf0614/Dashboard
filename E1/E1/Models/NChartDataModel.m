@@ -32,6 +32,8 @@
     [aCoder encodeBool:self.isBorder forKey:@"isBorder"];
     [aCoder encodeInt:self.axisType forKey:@"axisType"];
     [aCoder encodeObject:self.dataForNextView forKey:@"dataForNextView"];//dataForNextView
+    [aCoder encodeObject:self.labelText forKey:@"labelText"];//dataForNextView
+
     
     
 }
@@ -54,6 +56,7 @@
         self.isBorder=[aDecoder decodeBoolForKey:@"isBorder"];
         self.axisType=[aDecoder decodeIntForKey:@"axisType"];
         self.dataForNextView=[aDecoder decodeObjectForKey:@"dataForNextView"];
+        self.labelText=[aDecoder decodeObjectForKey:@"labelText"];
 
         
         
@@ -193,6 +196,7 @@
     [chartData1.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
     chartData1.axisType=ADDITIVE;
     chartData1.dataForNextView=chartData3;
+    chartData1.labelText=@"2014";
     
     
     
@@ -227,6 +231,7 @@
     [chartData2.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
     [chartData2.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
     chartData2.axisType=ADDITIVE;
+    chartData2.labelText=@"2014";
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
