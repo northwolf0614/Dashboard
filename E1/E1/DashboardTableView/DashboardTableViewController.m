@@ -19,9 +19,10 @@
 #import "Definations.h"
 #import "GeneralNChartViewController.h"
 #import "NChartDataModel.h"
-#import "SubDetailChartViewController.h"
+//#import "SubDetailChartViewController.h"
 #import "GeneralNChartWithLabelViewController.h"
 #include "DoubleNChartWithLabelViewController.h"
+#include "DetailChartViewController.h"
 
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
@@ -174,7 +175,10 @@
 #pragma ChartSubviewControllerResponse
 -(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding
 {
-    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
+//    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
+    DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
     [self.navigationController pushViewController:detailViewController animated:YES];
+
 }
 @end

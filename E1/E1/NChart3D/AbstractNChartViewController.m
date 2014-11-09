@@ -64,6 +64,7 @@
 }
 
 
+
 //-(void)setupLabels
 //{
 //    self.isShowMiddleLabel=NO;

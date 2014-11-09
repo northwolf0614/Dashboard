@@ -27,6 +27,8 @@
     [self setupSeriesForChartView];
     [self setupAxesType];
     [self.chartView.chart updateData];
+    self.backGroundColor=[UIColor darkGrayColor];
+    self.contentView.backgroundColor=self.backGroundColor;
     
 }
 -(void) setupSeriesForChartView

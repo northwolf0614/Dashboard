@@ -56,7 +56,8 @@
         self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
 
         NSArray* constraints=[self.contentView constraints];
-        if ([constraints count]>0) {
+        if ([constraints count]>0)
+        {
             [self.contentView removeConstraints:constraints];
         }
 
@@ -159,6 +160,7 @@
 -(void)setupAxesType
 
 {
+    [super setupAxesType];
     if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
         
         switch (self.dataForNChartPlus.axisType)
@@ -378,7 +380,7 @@
 - (float)sizeAxisDataSourceMinSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
 {
     // Min size for markers in pixels.
-    return 10.0f;
+    return 20.0f;
 }
 
 - (float)sizeAxisDataSourceMaxSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
