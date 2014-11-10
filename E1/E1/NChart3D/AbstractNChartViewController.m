@@ -33,24 +33,33 @@
     self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
     
-    self.chartView.chart.sizeAxis.dataSource=(id)self;
-
+    self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
+    //self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
+    self.chartView.chart.sizeAxis.dataSource = (id)self;
+    //self.chartView.chart.timeAxis.dataSource = (id)self;
+    
     self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
     self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
     self.chartView.chart.cartesianSystem.borderVisible=NO;
     self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
     self.chartView.chart.cartesianSystem.yAxis.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+    self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
+    
+    self.chartView.chart.polarSystem.radiusAxis.labelsVisible=NO;
+    self.chartView.chart.polarSystem.radiusAxis.visible=NO;
+    self.chartView.chart.polarSystem.radiusAxis.caption.visible=NO;
+
+    self.chartView.chart.polarSystem.azimuthAxis.caption.visible=NO;
+    //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
+    //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+    
+    
+    
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
-    
-    //[self.dataForNChart adaptedForViews];
-    
-    
-    
-    
-    
-    
+
 }
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
 {
@@ -62,46 +71,6 @@
     }
     return self;
 }
-
-
-
-//-(void)setupLabels
-//{
-//    self.isShowMiddleLabel=NO;
-//    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-//    int seriesNumber=[keysArray count];
-//    BOOL seriesTypeIndicator=YES;
-//    BOOL dataNumberIndicator=YES;
-//    
-//    for (int count=0; count<[keysArray count]; count++)//for every series
-//    {
-//        NSString* key=[keysArray objectAtIndex:count];
-//        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
-//        int dataNumber=[[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisXValues] count];
-//        
-//        if (dataNumber>1)
-//        {
-//            dataNumberIndicator=NO;
-//            break;
-//        }
-//        if (seriesType!=BAR&&seriesType!=DOUGHNUT)
-//        {
-//            seriesTypeIndicator=NO;
-//            break;
-//        }
-//    }
-//    if (seriesNumber==2&&seriesTypeIndicator&&dataNumberIndicator)//is bar or doughnut and there is only one piece of data and in this chart only 2 series.
-//    {
-//        self.isShowMiddleLabel=YES;
-//    }
-//    
-//        
-//
-//    
-//}
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

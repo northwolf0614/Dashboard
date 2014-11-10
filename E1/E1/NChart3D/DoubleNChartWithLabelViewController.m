@@ -147,8 +147,8 @@
                     series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                     series.dataSource = (id)self;
                     [self.chartViewPlus.chart addSeries:series];
-                    self.chartViewPlus.chart.streamingMode = YES;
-                    self.chartViewPlus.chart.timeAxis.visible = NO;
+                    self.chartViewPlus.chart.streamingMode = NO;
+                    self.chartViewPlus.chart.timeAxis.visible = YES;
                 }
                     break;
                     
@@ -223,12 +223,6 @@
         yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
         seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
     }
-        
-//    NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
-//    NSArray* xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
-//    NSArray* yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
-//    NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
-    //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
     if (seriesType==LINE)
     {
         for (int count=0;count<[xValues count];count++)
@@ -302,12 +296,15 @@
     {
         for (int count=0;count<[xValues count];count++)
         {
+            NSNumber* xValueObject=[xValues objectAtIndex:count];
+            double xValueInt=[xValueObject intValue];
+            
             NSNumber* yValueObject=[yValues objectAtIndex:count];
             double yValueDouble=[yValueObject doubleValue];
             //NSNumber* xValueObject=[xValues objectAtIndex:count];
             //int xValueInt=[xValueObject intValue];
             NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
-                                                             pointStateAlignedToXZWithX:count
+                                                             pointStateAlignedToXZWithX:xValueInt
                                                              Y:yValueDouble
                                                              Z:self.chartViewPlus.chart.drawIn3D &&
                                                              (self.chartViewPlus.chart.cartesianSystem.valueAxesType ==
@@ -355,12 +352,19 @@
     
     switch (axis.kind)
     {
+        
         case NChartValueAxisX:
         {
-            return self.dataForNChartPlus.chartAxisXTicksValues;
+            return self.dataForNChart.chartAxisXTicksValues;
         }
             break;
-            
+        case NChartValueAxisAzimuth:
+            if (self.dataForNChart.chartType == RADAR)
+                return self.dataForNChart.chartAxisXTicksValues;
+            else
+                return nil;
+        case NChartValueAxisRadius:
+            return nil;
         default:
             // Other axes have no ticks.
             return nil;
@@ -374,12 +378,12 @@
     switch (axis.kind)
     {
         case NChartValueAxisX:
-            return self.dataForNChartPlus.chartAxisXCaption;
+            return self.dataForNChart.chartAxisXCaption;
         case NChartValueAxisY:
-            return self.dataForNChartPlus.chartAxisYCaption;
+            return self.dataForNChart.chartAxisYCaption;
         case NChartValueAxisZ:
-            return self.dataForNChartPlus.chartAxisZCaption;
-            
+            return self.dataForNChart.chartAxisZCaption;
+        
         default:
             return nil;
     }
@@ -388,13 +392,13 @@
 - (float)sizeAxisDataSourceMinSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
 {
     // Min size for markers in pixels.
-    return 20.0f;
+    return kcMinmumMarkSize;
 }
 
 - (float)sizeAxisDataSourceMaxSizeForSizeAxis:(NChartSizeAxis *)sizeAxis
 {
     // Max size for markers in pixels.
-    return 10.0f;
+    return kcMaximumMarkSize;
 }
 
 

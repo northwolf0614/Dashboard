@@ -55,7 +55,8 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisXTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisYTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
-@property(nonatomic,assign) NChartType chartType;
+//@property(nonatomic,assign) NChartType chartType;
+@property(nonatomic,assign) NSeriesType chartType;
 @property(nonatomic,assign) AxisType axisType;
 @property(nonatomic,assign) BOOL isToolTips;
 @property(nonatomic,strong) NSNumber* sliceNumber;

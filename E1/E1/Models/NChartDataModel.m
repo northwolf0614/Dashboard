@@ -184,7 +184,7 @@
     chartData3.chartCaption=@"doughnut";
     chartData3.chartAxisXCaption=@"product percentage";
     chartData3.chartAxisYCaption=@"Years";
-    chartData3.chartType=Dimention2;
+    //chartData3.chartType=Dimention2;
     chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
     chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
@@ -216,7 +216,7 @@
     chartData1.chartCaption=@"column&line";
     chartData1.chartAxisXCaption=@"Years";
     chartData1.chartAxisYCaption=@"Products percentage";
-    chartData1.chartType=Dimention2;
+    //chartData1.chartType=Dimention2;
     chartData1.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
     chartData1.chartDataForDrawing= [NSMutableDictionary dictionary];
@@ -270,7 +270,7 @@
     chartData2.chartCaption=@"BAR";
     chartData2.chartAxisXCaption=@"product percentage";
     chartData2.chartAxisYCaption=@"Years";
-    chartData2.chartType=Dimention2;
+    chartData2.chartType=BAR;
     chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
     chartData2.chartDataForDrawing= [NSMutableDictionary dictionary];
@@ -305,8 +305,8 @@
     chartData4.chartCaption=@"RADAR";
     chartData4.chartAxisXCaption=@"product percentage";
     chartData4.chartAxisYCaption=@"Years";
-    chartData4.chartType=Dimention2;
-    chartData4.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    chartData4.chartType=RADAR;
+    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
     
     chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
     

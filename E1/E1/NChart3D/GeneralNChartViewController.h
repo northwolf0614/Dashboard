@@ -8,7 +8,8 @@
 
 #import "AbstractNChartViewController.h"
 
-@interface GeneralNChartViewController : AbstractNChartViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
+@interface GeneralNChartViewController : AbstractNChartViewController//
+//<NChartSeriesDataSource,NChartValueAxisDataSource>
 @property(nonatomic,strong) UIColor* backGroundColor;
 -(void) setupSeriesForChartView;
 -(void) setupAxesType;

@@ -8,7 +8,7 @@
 
 #import "GeneralNChartViewController.h"
 
-@interface GeneralNChartWithLabelViewController : GeneralNChartViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
+@interface GeneralNChartWithLabelViewController : GeneralNChartViewController//<NChartSeriesDataSource,NChartValueAxisDataSource>
 
 @property(nonatomic,strong) UILabel* label;
 @end

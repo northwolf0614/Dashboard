@@ -31,6 +31,15 @@
     self.contentView.backgroundColor=self.backGroundColor;
     
 }
+-(void)setupColumnOrLineStyle
+{
+
+    self.chartView.chart.cartesianSystem.xAxis.visible=YES;
+    self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+    self.chartView.chart.cartesianSystem.xAxis.labelsVisible=YES;
+
+}
 -(void) setupSeriesForChartView
 {
     
@@ -48,6 +57,7 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
+                [self setupColumnOrLineStyle];
             }
                 break;
             case LINE:
@@ -57,6 +67,7 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
+                [self setupColumnOrLineStyle];
             }
                 break;
             case BAR:
@@ -149,160 +160,158 @@
 }
 
 #pragma mark - NChart Data Source
-- (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
-{
-    NSMutableArray* result = [NSMutableArray array];
-    NSLog(@"series tag is %d",series.tag);
-    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    //NSLog(@"this is the name for series: %d",series.tag);
-    //else
-    
-        NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
-        NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
-        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
-        //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
-        if (seriesType==LINE)
-        {
-            for (int count=0;count<[xValues count];count++)
-            {
-                NSNumber* yValueObject=[yValues objectAtIndex:count];
-                double yValueDouble=[yValueObject doubleValue];
-                NSNumber* xValueObject=[xValues objectAtIndex:count];
-                int xValueInt=[xValueObject intValue];
-                NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
-                state.marker = [NChartMarker new] ;
-                state.marker.shape = NChartMarkerShapeCircle;
-                state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
-                state.marker.size=1.0f;//maybe not working
-                [result addObject:[NChartPoint pointWithState:state forSeries:series]];
-            }
-            return result;
-
-        }
-        else if (seriesType==COLUMN)
-        {
-            for (int count=0;count<[xValues count];count++)
-            {
-                NSNumber* yValueObject=[yValues objectAtIndex:count];
-                double yValueDouble=[yValueObject doubleValue];
-                NSNumber* xValueObject=[xValues objectAtIndex:count];
-                int xValueInt=[xValueObject intValue];
-                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
-                [result addObject:aPoint];
-                
-                
-            }
-            return result;
-            
-            
-        }
-        else if (seriesType==BAR)
-        {
-            for (int count=0;count<[xValues count];count++)
-            {
-                NSNumber* xValueObject=[xValues objectAtIndex:count];
-                double xValueDouble=[xValueObject doubleValue];
-                NSNumber* yValueObject=[yValues objectAtIndex:count];
-                int yValueInt=[yValueObject intValue];
-                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToYWithX:xValueDouble Y:yValueInt] forSeries:series];
-                [result addObject:aPoint];
-                
-                
-            }
-            return result;
-            
-            
-        }
-        else if (seriesType==DOUGHNUT)
-        {
-            for (int count=0;count<[xValues count];count++)
-            {
-                NSNumber* yValueObject=[yValues objectAtIndex:count];
-                double yValueDouble=[yValueObject doubleValue];
-                //NSNumber* xValueObject=[xValues objectAtIndex:count];
-                //int xValueInt=[xValueObject intValue];
-                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateWithCircle:count value:yValueDouble] forSeries:series ];
-                [result addObject:aPoint];
-                
-            }
-            return result;
-            
-            
-        }
-    
-        else if (seriesType==RADAR)
-        {
-            for (int count=0;count<[xValues count];count++)
-            {
-                NSNumber* yValueObject=[yValues objectAtIndex:count];
-                double yValueDouble=[yValueObject doubleValue];
-                //NSNumber* xValueObject=[xValues objectAtIndex:count];
-                //int xValueInt=[xValueObject intValue];
-                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
-                                                                 pointStateAlignedToXZWithX:count
-                                                                 Y:yValueDouble
-                                                                 Z:self.chartView.chart.drawIn3D &&
-                                                                 (self.chartView.chart.cartesianSystem.valueAxesType ==
-                                                                  NChartValueAxesTypeAbsolute) ? series.tag : 0]
-                                                      forSeries:series];
-                
-                [result addObject:aPoint];
-                
-            }
-            return result;
-            
-            
-        }
-
-
-    return nil;
-}
-
-- (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
-{
-    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-    return [keysArray objectAtIndex:series.tag];
-    
-    
-}
-
-- (NSArray *)valueAxisDataSourceTicksForValueAxis:(NChartValueAxis *)axis
-{
-    // Choose ticks by the kind of axis.
-    switch (axis.kind)
-    {
-        case NChartValueAxisX:
-        {
-            return self.dataForNChart.chartAxisXTicksValues;
-        }
- 
-        default:
-            // Other axes have no ticks.
-            return nil;
-    }
-}
-
-
-
-- (NSString *)valueAxisDataSourceNameForAxis:(NChartValueAxis *)axis
-{
-    switch (axis.kind)
-    {
-        case NChartValueAxisX:
-            return self.dataForNChart.chartAxisXCaption;
-        case NChartValueAxisY:
-            return self.dataForNChart.chartAxisYCaption;
-        case NChartValueAxisZ:
-            return self.dataForNChart.chartAxisZCaption;
-
-        default:
-            return nil;
-    }
-}
-
-
-
-
-
-
+//- (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
+//{
+//    NSMutableArray* result = [NSMutableArray array];
+//    NSLog(@"series tag is %d",series.tag);
+//    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+//    //NSLog(@"this is the name for series: %d",series.tag);
+//    //else
+//    
+//        NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
+//        NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
+//        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
+//        //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
+//        if (seriesType==LINE)
+//        {
+//            for (int count=0;count<[xValues count];count++)
+//            {
+//                NSNumber* yValueObject=[yValues objectAtIndex:count];
+//                double yValueDouble=[yValueObject doubleValue];
+//                NSNumber* xValueObject=[xValues objectAtIndex:count];
+//                int xValueInt=[xValueObject intValue];
+//                NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
+//                state.marker = [NChartMarker new] ;
+//                state.marker.shape = NChartMarkerShapeCircle;
+//                state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
+//                state.marker.size=1.0f;//maybe not working
+//                [result addObject:[NChartPoint pointWithState:state forSeries:series]];
+//            }
+//            return result;
+//
+//        }
+//        else if (seriesType==COLUMN)
+//        {
+//            for (int count=0;count<[xValues count];count++)
+//            {
+//                NSNumber* yValueObject=[yValues objectAtIndex:count];
+//                double yValueDouble=[yValueObject doubleValue];
+//                NSNumber* xValueObject=[xValues objectAtIndex:count];
+//                int xValueInt=[xValueObject intValue];
+//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
+//                [result addObject:aPoint];
+//                
+//                
+//            }
+//            return result;
+//            
+//            
+//        }
+//        else if (seriesType==BAR)
+//        {
+//            for (int count=0;count<[xValues count];count++)
+//            {
+//                NSNumber* xValueObject=[xValues objectAtIndex:count];
+//                double xValueDouble=[xValueObject doubleValue];
+//                NSNumber* yValueObject=[yValues objectAtIndex:count];
+//                int yValueInt=[yValueObject intValue];
+//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToYWithX:xValueDouble Y:yValueInt] forSeries:series];
+//                [result addObject:aPoint];
+//                
+//                
+//            }
+//            return result;
+//            
+//            
+//        }
+//        else if (seriesType==DOUGHNUT)
+//        {
+//            for (int count=0;count<[xValues count];count++)
+//            {
+//                NSNumber* yValueObject=[yValues objectAtIndex:count];
+//                double yValueDouble=[yValueObject doubleValue];
+//                //NSNumber* xValueObject=[xValues objectAtIndex:count];
+//                //int xValueInt=[xValueObject intValue];
+//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateWithCircle:count value:yValueDouble] forSeries:series ];
+//                [result addObject:aPoint];
+//                
+//            }
+//            return result;
+//            
+//            
+//        }
+//    
+//        else if (seriesType==RADAR)
+//        {
+//            for (int count=0;count<[xValues count];count++)
+//            {
+//                NSNumber* yValueObject=[yValues objectAtIndex:count];
+//                double yValueDouble=[yValueObject doubleValue];
+//                //NSNumber* xValueObject=[xValues objectAtIndex:count];
+//                //int xValueInt=[xValueObject intValue];
+//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
+//                                                                 pointStateAlignedToXZWithX:count
+//                                                                 Y:yValueDouble
+//                                                                 Z:self.chartView.chart.drawIn3D &&
+//                                                                 (self.chartView.chart.cartesianSystem.valueAxesType ==
+//                                                                  NChartValueAxesTypeAbsolute) ? series.tag : 0]
+//                                                      forSeries:series];
+//                
+//                [result addObject:aPoint];
+//                
+//            }
+//            return result;
+//            
+//            
+//        }
+//
+//
+//    return nil;
+//}
+//
+//- (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
+//{
+//    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
+//    return [keysArray objectAtIndex:series.tag];
+//    
+//    
+//}
+//
+//- (NSArray *)valueAxisDataSourceTicksForValueAxis:(NChartValueAxis *)axis
+//{
+//    // Choose ticks by the kind of axis.
+//    switch (axis.kind)
+//    {
+//        case NChartValueAxisX:
+//        {
+//            return self.dataForNChart.chartAxisXTicksValues;
+//        }
+//        case NChartValueAxisAzimuth:
+//            if (self.dataForNChart.chartType == RADAR)
+//                return self.dataForNChart.chartAxisXTicksValues;
+//            else
+//                return nil;
+//        default:
+//            // Other axes have no ticks.
+//            return nil;
+//    }
+//}
+//
+//
+//
+//- (NSString *)valueAxisDataSourceNameForAxis:(NChartValueAxis *)axis
+//{
+//    switch (axis.kind)
+//    {
+//        case NChartValueAxisX:
+//            return self.dataForNChart.chartAxisXCaption;
+//        case NChartValueAxisY:
+//            return self.dataForNChart.chartAxisYCaption;
+//        case NChartValueAxisZ:
+//            return self.dataForNChart.chartAxisZCaption;
+//
+//        default:
+//            return nil;
+//    }
+//}
 @end

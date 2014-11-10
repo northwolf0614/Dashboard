@@ -42,14 +42,15 @@
 #define kcCorePlotGraphPadding 10
 #define kcPieChartTitleFontSize 10
 //#define UsingFileStoreData
-#define kcDefaultChartName @"defaultNChartName313"
-#define kcDefaultDataFielName @"kcDefaultDataFielName313.plist"
+#define kcDefaultChartName @"defaultNChartName315"
+#define kcDefaultDataFielName @"kcDefaultDataFielName315.plist"
 #define kcNchartViewlicense @"iQRg8UB5hqZL29rD54FU0+WsjCwkhO7bPEhpWYhLYXmkuiiS1KB59qPd8U2H+bJU6mdBscwqZzIcXRYyo7w4wdd7yUhZUYEoXfuK/XdiA3aBb8QM3MsFyocP7VDtcYF4B1rEVVmsor4JYaVXSonyDoLyvRn670fPQZd0ItllYoRtjF5oJv/NML7cqP5W/Cpro6eLn1u4onfo6xzGG/4Fs/B/rZtbOoQ9MFO1Q74Uj/aeTcnri5llWx071zURtL1L0e3COZ+oQ96xlPVZk2Cun0Lol0nyglf6C4RKifMbnCEtGRIL30aLMvKeC1JT8kc36xyLgpRYF4Ggrx8EY+PwbYxBOmkt1i8JJNrFThUs1DMDGBw0sA51CTNu4SIGgUDVjMBZZFrECvjzrwhkdTjBEXXLxFAEhm5ApsTxiKvdFIiqISHMtQGtcMnh5oIBszO1ucGzPH3kweyTY8jAfqunDw2+vLXgsR+BxpCoBcHwd6Tb8HcVd0TB2J6jeMEmjLOwIYE64mPPcI9rcWdbQ0fBcmAiTAzsc2TcQDSVgH2pRhKf1QzBxnyls1GXsVoFqRoRsqalwFLzOqnU6ZByftHJdI6W8CRjb0Yl54TS3I0BlvURShYyCfzkQEC+QZ4+xmCpOFtBIcbITN8NK5h5NtA3C9EkiMH4p9gurIsIofAssOM="
 
-#define kcMiddleLabelSize 80
-#define kcMiddleLabelXAlignmentAdjustment 70
-#define kcMiddleLabelYAlignmentAdjustment 100
-
+//#define kcMiddleLabelSize 80
+//#define kcMiddleLabelXAlignmentAdjustment 70
+//#define kcMiddleLabelYAlignmentAdjustment 100
+#define kcMinmumMarkSize 8
+#define kcMaximumMarkSize 15
 
 #endif
 
