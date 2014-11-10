@@ -34,7 +34,7 @@
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
     
     self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
-    //self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
+    self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
     self.chartView.chart.sizeAxis.dataSource = (id)self;
     //self.chartView.chart.timeAxis.dataSource = (id)self;
     
