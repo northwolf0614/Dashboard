@@ -14,6 +14,14 @@
 @end
 
 @implementation DoubleNChartWithLabelViewController
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSString class]])
+        [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
+    
+
+}
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
 {
     if (self=[super initWithDrawingData:drawingData delegateHolder:delegateImplementer])

@@ -49,7 +49,6 @@
 		E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */; };
 		E78256D219F74356005E42C1 /* AnalyzerLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D119F74356005E42C1 /* AnalyzerLayerDelegate.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
-		E78942EF1A102A9500677135 /* ChartDataAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E78942EE1A102A9500677135 /* ChartDataAdapter.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
@@ -153,8 +152,6 @@
 		E78256D119F74356005E42C1 /* AnalyzerLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzerLayerDelegate.m; sourceTree = "<group>"; };
 		E78256D319F88461005E42C1 /* ClaimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimModel.h; sourceTree = "<group>"; };
 		E78256D419F88461005E42C1 /* ClaimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimModel.m; sourceTree = "<group>"; };
-		E78942ED1A102A9500677135 /* ChartDataAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartDataAdapter.h; sourceTree = "<group>"; };
-		E78942EE1A102A9500677135 /* ChartDataAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartDataAdapter.m; sourceTree = "<group>"; };
 		E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNChartView.h; sourceTree = "<group>"; };
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
 		E7AC36C319F8C2E4006CBF64 /* ParagraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphView.h; sourceTree = "<group>"; };
@@ -206,8 +203,6 @@
 				090FB6E219F5DA6A008F437F /* StatisticsModel.m */,
 				E78256D319F88461005E42C1 /* ClaimModel.h */,
 				E78256D419F88461005E42C1 /* ClaimModel.m */,
-				E78942ED1A102A9500677135 /* ChartDataAdapter.h */,
-				E78942EE1A102A9500677135 /* ChartDataAdapter.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -576,7 +571,6 @@
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,
-				E78942EF1A102A9500677135 /* ChartDataAdapter.m in Sources */,
 				AB7F11641A009A7B00145E96 /* DashboardGradientPercentViewController.m in Sources */,
 				AB7F11681A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m in Sources */,
 				E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */,

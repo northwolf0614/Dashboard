@@ -63,9 +63,16 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
 @property(nonatomic,strong) NChartDataModel* dataForNextView;
 @property(nonatomic,strong) NSString* labelText;
+@property(nonatomic,strong) NSString* floatingNumber;
 
 -(void)saveDataForKey:(NSString*)key;
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;
 +(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
+-(void)adaptedForFloatingNumber;
+
+
+
+
+
 @end

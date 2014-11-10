@@ -10,12 +10,70 @@
 #import "Definations.h"
 
 @implementation NChartDataModel
-/*
-@property(nonatomic,assign) AxisType axisType;//new added
+-(void)adaptedForFloatingNumber
+{
+    
+    NSArray* keysArray=self.chartDataForDrawing.allKeys;
+    int seriesNumber=[keysArray count];
+    BOOL seriesTypeIndicator=YES;
+    BOOL dataNumberIndicator=YES;
+
+    for (int count=0; count<[keysArray count]; count++)//for every series
+    {
+        NSString* key=[keysArray objectAtIndex:count];
+        NSeriesType seriesType=[[self.chartDataForDrawing objectForKey:key] seriesType];
+        int dataNumber=[[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] count];
+
+        if (dataNumber>1)
+        {
+            dataNumberIndicator=NO;
+            break;
+        }
+        if (seriesType!=BAR&&seriesType!=DOUGHNUT)
+        {
+            seriesTypeIndicator=NO;
+            break;
+        }
+    }
+    if (seriesNumber==2&&seriesTypeIndicator&&dataNumberIndicator)//is bar or doughnut and there is only one piece of data and in this chart only 2 series.
+    {
+        
+        double total=0.0f;
+        NSArray* keysArray=self.chartDataForDrawing.allKeys;
+        for (int count=0; count<[keysArray count]; count++)//for every series
+        {
+            NSString* key=[keysArray objectAtIndex:count];
+            if ([[self.chartDataForDrawing objectForKey:key] seriesType]==BAR)
+            {
+
+                if ([[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] count]>1) {
+                    return;
+                }
+                total+=[[[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] objectAtIndex:0] doubleValue];
+            }
+             if ([[self.chartDataForDrawing objectForKey:key] seriesType]==DOUGHNUT)
+            {
+
+                if ([[[self.chartDataForDrawing objectForKey:key] chartAxisYValues] count]>1)
+                {
+                    return;
+                }
+                total+=[[[[self.chartDataForDrawing objectForKey:key] chartAxisYValues] objectAtIndex:0] doubleValue];
+            }
 
 
 
-*/
+        }
+        if (total>=1)
+            self.floatingNumber=[NSString stringWithFormat:@"%d",(int)total];
+        if (total>0&&total<1)
+            self.floatingNumber=[NSString stringWithFormat:@"0.%d",(int)(total*10)];
+    }
+
+    
+
+    
+}
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.chartCaption forKey:@"chartCaption"];
@@ -33,6 +91,7 @@
     [aCoder encodeInt:self.axisType forKey:@"axisType"];
     [aCoder encodeObject:self.dataForNextView forKey:@"dataForNextView"];//dataForNextView
     [aCoder encodeObject:self.labelText forKey:@"labelText"];//dataForNextView
+    [aCoder encodeObject:self.floatingNumber forKey:@"floatingNumber"];//dataForNextView
 
     
     
@@ -57,10 +116,12 @@
         self.axisType=[aDecoder decodeIntForKey:@"axisType"];
         self.dataForNextView=[aDecoder decodeObjectForKey:@"dataForNextView"];
         self.labelText=[aDecoder decodeObjectForKey:@"labelText"];
+        self.floatingNumber=[aDecoder decodeObjectForKey:@"floatingNumber"];
 
         
         
     }
+    [self adaptedForFloatingNumber];
     return self;
 }
 
@@ -147,6 +208,7 @@
     [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
     [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
     chartData3.axisType=ABSOLUTE;
+    [chartData3 adaptedForFloatingNumber];
     
 
 
@@ -197,6 +259,7 @@
     chartData1.axisType=ADDITIVE;
     chartData1.dataForNextView=chartData3;
     chartData1.labelText=@"2014";
+    [chartData1 adaptedForFloatingNumber];
     
     
     
@@ -232,6 +295,7 @@
     [chartData2.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
     chartData2.axisType=ADDITIVE;
     chartData2.labelText=@"2014";
+    [chartData2 adaptedForFloatingNumber];
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -265,6 +329,7 @@
     [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
     [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
     chartData4.axisType=ABSOLUTE;
+    [chartData4 adaptedForFloatingNumber];
     
     [chartsArray addObject:chartData1];
     [chartsArray addObject:chartData2];

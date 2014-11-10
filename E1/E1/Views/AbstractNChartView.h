@@ -10,14 +10,14 @@
 
 @interface AbstractNChartView : NChartView
 
--(void)enableRightTopLabel;
+//-(void)enableRightTopLabel;
 -(void)enableMiddleLabel;
 
--(void)disableRightTopLabel;
+//-(void)disableRightTopLabel;
 -(void)disableMiddleLabel;
 
 -(void)setTextForMiddleLabel:(NSString*) text;
--(void)setTextForTopRightLabel:(NSString*) text;
+//-(void)setTextForTopRightLabel:(NSString*) text;
 
 
 @end
