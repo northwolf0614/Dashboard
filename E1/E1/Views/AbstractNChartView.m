@@ -24,7 +24,9 @@
         self.middleLabel.backgroundColor=[UIColor clearColor];
         self.middleLabel.hidden=YES;
         self.middleLabel.textColor=[UIColor redColor];
-        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:120];
+        
+        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
+        
         self.middleLabel.adjustsFontSizeToFitWidth = YES;
         self.middleLabel.userInteractionEnabled = NO;
         self.middleLabel.numberOfLines = 1;
@@ -39,9 +41,13 @@
 
 -(void)layoutSubviews
 {
-    CGFloat xAdjustment= kcMiddleLabelSize/2;
-    CGFloat yAdjustment= kcMiddleLabelSize/2;
-    self.middleLabel.frame=CGRectMake(self.center.x-xAdjustment, self.center.y-yAdjustment, kcMiddleLabelSize, kcMiddleLabelSize);
+    CGFloat width=self.frame.size.width;
+    CGFloat height=self.frame.size.height;
+    CGFloat labelWidth= self.middleLabel.frame.size.width;
+    CGFloat labelHeight=self.middleLabel.frame.size.height;
+    CGFloat value= width>height? height:width;
+    self.middleLabel.frame=CGRectMake(0.5*(width-labelWidth), 0.5*(height-labelHeight), 0.5*value, 0.5*value);
+    //self.middleLabel.center=self.center;
     [super layoutSubviews];
 
 }
