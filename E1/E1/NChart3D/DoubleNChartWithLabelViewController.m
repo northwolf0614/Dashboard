@@ -20,7 +20,39 @@
     if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSString class]])
         [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
     
+    
+    
 
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+   
+    [self createSeries];
+    
+}
+-(void)createSeries
+
+{
+    
+    [super createSeries];
+    if (self.isNeedsUpdateForPlus)
+    {
+        [self.chartViewPlus.chart removeAllSeries];
+        
+    }
+    [self setupSeriesForChartView];
+    if (self.chartViewPlus!=nil&&[self.chartViewPlus isKindOfClass:[AbstractNChartView class]])
+    {
+        [self.chartViewPlus.chart updateData];
+        [self.chartViewPlus.chart stopTransition];
+        [self.chartViewPlus.chart playTransition:kcTRANSITION_TIME reverse:NO];
+        [self.chartViewPlus.chart resetTransformations:kcTRANSITION_TIME];
+        [self.chartViewPlus.chart flushChanges];
+
+    }
+    
+    
 }
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
 {
@@ -45,21 +77,30 @@
         //self.chartView.chart.drawIn3D = YES;
         self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.chartViewPlus];
-        self.chartViewPlus.chart.cartesianSystem.xAxis.dataSource = (id)self;
-        self.chartViewPlus.chart.cartesianSystem.yAxis.dataSource = (id)self;
-        self.chartViewPlus.chart.cartesianSystem.zAxis.dataSource = (id)self;
-        
+        self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
+        self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
+        self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
+        self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
+        self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
+        self.chartView.chart.sizeAxis.dataSource = (id)self;
         self.chartViewPlus.chart.cartesianSystem.yAlongX.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.xAlongY.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.borderVisible=NO;
         self.chartViewPlus.chart.cartesianSystem.yAxis.caption.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.yAxis.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.yAxis.labelsVisible=NO;
-        
         self.chartViewPlus.chart.cartesianSystem.xAxis.caption.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.xAxis.visible=NO;
         self.chartViewPlus.chart.cartesianSystem.xAxis.labelsVisible=NO;
         self.chartViewPlus.chart.legend.visible=NO;
+        self.chartViewPlus.chart.polarSystem.radiusAxis.labelsVisible=NO;
+        self.chartViewPlus.chart.polarSystem.radiusAxis.visible=NO;
+        self.chartViewPlus.chart.polarSystem.radiusAxis.caption.visible=NO;
+        self.chartViewPlus.chart.polarSystem.azimuthAxis.caption.visible=NO;
+        self.chartViewPlus.chart.polarSystem.azimuthAxis.visible=NO;
+        self.chartViewPlus.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+
+        
         
         self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
@@ -73,13 +114,13 @@
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartViewPlus]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(==chartView)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-        
+        self.isNeedsUpdateForPlus=YES;
         //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
-        [self setupSeriesForChartView];
+        //[self setupSeriesForChartView];
         [self setupAxesType];
-        [self.chartViewPlus.chart updateData];
+        //[self.chartViewPlus.chart updateData];
     }
 
 
@@ -135,8 +176,8 @@
                     NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
                     settings.holeRatio = 0.8f;
                     [self.chartViewPlus.chart addSeriesSettings:settings];
-                    self.chartViewPlus.chart.streamingMode = NO;
-                    self.chartViewPlus.chart.timeAxis.visible = NO;
+//                    self.chartViewPlus.chart.streamingMode = NO;
+//                    self.chartViewPlus.chart.timeAxis.visible = NO;
                 }
                     break;
                     
@@ -147,8 +188,8 @@
                     series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                     series.dataSource = (id)self;
                     [self.chartViewPlus.chart addSeries:series];
-                    self.chartViewPlus.chart.streamingMode = NO;
-                    self.chartViewPlus.chart.timeAxis.visible = YES;
+//                    self.chartViewPlus.chart.streamingMode = NO;
+//                    self.chartViewPlus.chart.timeAxis.visible = YES;
                 }
                     break;
                     

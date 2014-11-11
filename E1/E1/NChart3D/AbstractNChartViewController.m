@@ -59,18 +59,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    
-//    
-//    
-//    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSString class]])
-//       [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
-//    
-//    
-//    
-//    
-//}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSString class]])
+       [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+}
 
 @end

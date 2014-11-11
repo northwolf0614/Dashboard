@@ -25,11 +25,14 @@
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
     
     //[self.titleItem setTitle:self.dataForNChart.chartCaption];
-    [self setupSeriesForChartView];
+    
+    //[self setupSeriesForChartView];
     [self setupAxesType];
-    [self.chartView.chart updateData];
+    //[self.chartView.chart updateData];
     self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
+    self.isNeedsUpdate=YES;
+    //[self createSeries];
     
     
 }
@@ -187,16 +190,21 @@
 {
     
     //[super createSeries];
-    
-    [self.chartView.chart removeAllSeries];
-    
+    if (self.isNeedsUpdate)
+    {
+        [self.chartView.chart removeAllSeries];
+        
+    }
     [self setupSeriesForChartView];
     
-    [self.chartView.chart updateData];
-    [self.chartView.chart stopTransition];
-    [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
-    [self.chartView.chart resetTransformations:kcTRANSITION_TIME];
-    [self.chartView.chart flushChanges];
+    if (self.chartView!=nil&&[self.chartView isKindOfClass:[AbstractNChartView class]])
+    {
+        [self.chartView.chart updateData];
+        [self.chartView.chart stopTransition];
+        [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
+        [self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+        [self.chartView.chart flushChanges];
+    }
     
 }
 
@@ -221,14 +229,10 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.chartView.chart updateData];
-//    [self.chartView.chart stopTransition];
-//    [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
-//    [self.chartView.chart resetTransformations:kcTRANSITION_TIME];
-//    [self.chartView.chart flushChanges];
-    
     [self createSeries];
 
+    
+    
 }
 
 

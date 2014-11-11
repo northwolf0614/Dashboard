@@ -195,14 +195,14 @@
     rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
     rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:21],nil];
     rawData5.seriesType=DOUGHNUT;
-    rawData5.brushColor=[UIColor orangeColor];
+    rawData5.brushColor=kcLikeBlue;
     //setup data4
     PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
     rawData6.seriesName=@"percentage6";
     rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
     rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:121],nil];
     rawData6.seriesType=DOUGHNUT;
-    rawData6.brushColor=[UIColor grayColor];
+    rawData6.brushColor=kcLikeRed;
     
     //additive
     [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];

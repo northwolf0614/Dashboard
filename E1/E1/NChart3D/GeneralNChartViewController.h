@@ -11,7 +11,8 @@
 @interface GeneralNChartViewController : AbstractNChartViewController//
 //<NChartSeriesDataSource,NChartValueAxisDataSource>
 @property(nonatomic,strong) UIColor* backGroundColor;
+@property(nonatomic,assign) BOOL isNeedsUpdate;
 -(void) setupSeriesForChartView;
 -(void) setupAxesType;
-
+-(void)createSeries;
 @end
