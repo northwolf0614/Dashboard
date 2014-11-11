@@ -358,6 +358,16 @@
             return self.dataForNChart.chartAxisXTicksValues;
         }
             break;
+        case NChartValueAxisY:
+        {
+            
+            if (self.dataForNChart.chartType == BAR)
+                //NSArray* value=self.dataForNChart.chartAxisYTicksValues;
+                return self.dataForNChart.chartAxisYTicksValues;
+            
+            else
+                return nil;
+        }
         case NChartValueAxisAzimuth:
             if (self.dataForNChart.chartType == RADAR)
                 return self.dataForNChart.chartAxisXTicksValues;

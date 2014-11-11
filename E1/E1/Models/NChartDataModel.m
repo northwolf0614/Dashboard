@@ -273,14 +273,15 @@
     chartData2.chartAxisXCaption=@"percentage";
     chartData2.chartAxisYCaption=@"Years";
     chartData2.chartType=BAR;
-    chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    //chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"one",@"Two",nil];
+    chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"one",@"",@"",@"",nil];
     
     chartData2.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     //setup rawData3
     PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
     rawData3.seriesName=@"In call";
-    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
+    rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],nil];
     rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],nil];
     rawData3.seriesType=BAR;
     rawData3.brushColor=kcLikeOrange;
@@ -288,7 +289,7 @@
     //setup data4
     PrototypeDataModel* rawData4=[[PrototypeDataModel alloc] init];
     rawData4.seriesName=@"Inactive";
-    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
+    rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],nil];
     rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],nil];
     rawData4.seriesType=BAR;
     rawData4.brushColor=kcLikeGray;
@@ -309,7 +310,7 @@
     chartData4.chartAxisXCaption=@"product percentage";
     chartData4.chartAxisYCaption=@"Years";
     chartData4.chartType=RADAR;
-    //chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",@"Auto",@"Worker",nil];
+    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",@"Auto",@"Worker",nil];
     chartData4.labelText=@"2014";
     chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
     

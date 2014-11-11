@@ -38,26 +38,6 @@
     self.chartView.chart.sizeAxis.dataSource = (id)self;
     //self.chartView.chart.timeAxis.dataSource = (id)self;
     
-    self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
-    self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
-    self.chartView.chart.cartesianSystem.borderVisible=NO;
-    self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
-    self.chartView.chart.cartesianSystem.yAxis.visible=NO;
-    self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
-    
-    self.chartView.chart.polarSystem.radiusAxis.labelsVisible=NO;
-    self.chartView.chart.polarSystem.radiusAxis.visible=NO;
-    self.chartView.chart.polarSystem.radiusAxis.caption.visible=NO;
-
-    self.chartView.chart.polarSystem.azimuthAxis.caption.visible=NO;
-    self.chartView.chart.polarSystem.azimuthAxis.thickness=12;
-    //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
-    //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
-    self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
-    
     
     
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
@@ -79,18 +59,18 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    
-    
-    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSString class]])
-       [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
-    
-    
-    
-    
-}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:animated];
+//    
+//    
+//    
+//    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSString class]])
+//       [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+//    
+//    
+//    
+//    
+//}
 
 @end

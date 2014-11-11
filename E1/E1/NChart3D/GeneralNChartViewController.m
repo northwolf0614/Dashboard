@@ -31,6 +31,7 @@
     self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
     
+    
 }
 -(void)setupColumnOrLineStyle
 {
@@ -58,7 +59,16 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
-                [self setupColumnOrLineStyle];
+                
+                self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+                self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+                self.chartView.chart.cartesianSystem.borderVisible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
             }
                 break;
             case LINE:
@@ -68,7 +78,16 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
-                [self setupColumnOrLineStyle];
+                
+                self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+                self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+                self.chartView.chart.cartesianSystem.borderVisible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
             }
                 break;
             case BAR:
@@ -78,6 +97,17 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
+                
+                self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+                self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+                self.chartView.chart.cartesianSystem.borderVisible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
+                
             }
                 break;
             case DOUGHNUT:
@@ -90,8 +120,8 @@
                 NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
                 settings.holeRatio = 0.8f;
                 [self.chartView.chart addSeriesSettings:settings];
-                self.chartView.chart.streamingMode = NO;
-                self.chartView.chart.timeAxis.visible = NO;
+                //self.chartView.chart.streamingMode = NO;
+                //self.chartView.chart.timeAxis.visible = NO;
             }
                 break;
             
@@ -104,6 +134,18 @@
                 [self.chartView.chart addSeries:series];
                 self.chartView.chart.streamingMode = YES;
                 self.chartView.chart.timeAxis.visible = NO;
+                self.chartView.chart.polarSystem.radiusAxis.labelsVisible=NO;
+                self.chartView.chart.polarSystem.radiusAxis.visible=NO;
+                self.chartView.chart.polarSystem.radiusAxis.caption.visible=NO;
+                
+                self.chartView.chart.polarSystem.azimuthAxis.caption.visible=NO;
+                //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
+                //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+                self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
+                
+                
+                
+
             }
                 break;
 
@@ -140,7 +182,23 @@
     }
 }
 
-//
+-(void)createSeries
+
+{
+    
+    //[super createSeries];
+    
+    [self.chartView.chart removeAllSeries];
+    
+    [self setupSeriesForChartView];
+    
+    [self.chartView.chart updateData];
+    [self.chartView.chart stopTransition];
+    [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
+    [self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+    [self.chartView.chart flushChanges];
+    
+}
 
 -(void)handleRightButtonItem:(id) sender
 {
@@ -160,159 +218,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - NChart Data Source
-//- (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
-//{
-//    NSMutableArray* result = [NSMutableArray array];
-//    NSLog(@"series tag is %d",series.tag);
-//    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-//    //NSLog(@"this is the name for series: %d",series.tag);
-//    //else
-//    
-//        NSArray* xValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisXValues];
-//        NSArray* yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
-//        NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
-//        //NSArray* zValues=[[self.dataForNChart.chartDataForDrawing objectForKey:key] chartAxisZValues];
-//        if (seriesType==LINE)
-//        {
-//            for (int count=0;count<[xValues count];count++)
-//            {
-//                NSNumber* yValueObject=[yValues objectAtIndex:count];
-//                double yValueDouble=[yValueObject doubleValue];
-//                NSNumber* xValueObject=[xValues objectAtIndex:count];
-//                int xValueInt=[xValueObject intValue];
-//                NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
-//                state.marker = [NChartMarker new] ;
-//                state.marker.shape = NChartMarkerShapeCircle;
-//                state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
-//                state.marker.size=1.0f;//maybe not working
-//                [result addObject:[NChartPoint pointWithState:state forSeries:series]];
-//            }
-//            return result;
-//
-//        }
-//        else if (seriesType==COLUMN)
-//        {
-//            for (int count=0;count<[xValues count];count++)
-//            {
-//                NSNumber* yValueObject=[yValues objectAtIndex:count];
-//                double yValueDouble=[yValueObject doubleValue];
-//                NSNumber* xValueObject=[xValues objectAtIndex:count];
-//                int xValueInt=[xValueObject intValue];
-//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble] forSeries:series];
-//                [result addObject:aPoint];
-//                
-//                
-//            }
-//            return result;
-//            
-//            
-//        }
-//        else if (seriesType==BAR)
-//        {
-//            for (int count=0;count<[xValues count];count++)
-//            {
-//                NSNumber* xValueObject=[xValues objectAtIndex:count];
-//                double xValueDouble=[xValueObject doubleValue];
-//                NSNumber* yValueObject=[yValues objectAtIndex:count];
-//                int yValueInt=[yValueObject intValue];
-//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateAlignedToYWithX:xValueDouble Y:yValueInt] forSeries:series];
-//                [result addObject:aPoint];
-//                
-//                
-//            }
-//            return result;
-//            
-//            
-//        }
-//        else if (seriesType==DOUGHNUT)
-//        {
-//            for (int count=0;count<[xValues count];count++)
-//            {
-//                NSNumber* yValueObject=[yValues objectAtIndex:count];
-//                double yValueDouble=[yValueObject doubleValue];
-//                //NSNumber* xValueObject=[xValues objectAtIndex:count];
-//                //int xValueInt=[xValueObject intValue];
-//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState pointStateWithCircle:count value:yValueDouble] forSeries:series ];
-//                [result addObject:aPoint];
-//                
-//            }
-//            return result;
-//            
-//            
-//        }
-//    
-//        else if (seriesType==RADAR)
-//        {
-//            for (int count=0;count<[xValues count];count++)
-//            {
-//                NSNumber* yValueObject=[yValues objectAtIndex:count];
-//                double yValueDouble=[yValueObject doubleValue];
-//                //NSNumber* xValueObject=[xValues objectAtIndex:count];
-//                //int xValueInt=[xValueObject intValue];
-//                NChartPoint* aPoint=[NChartPoint pointWithState:[NChartPointState
-//                                                                 pointStateAlignedToXZWithX:count
-//                                                                 Y:yValueDouble
-//                                                                 Z:self.chartView.chart.drawIn3D &&
-//                                                                 (self.chartView.chart.cartesianSystem.valueAxesType ==
-//                                                                  NChartValueAxesTypeAbsolute) ? series.tag : 0]
-//                                                      forSeries:series];
-//                
-//                [result addObject:aPoint];
-//                
-//            }
-//            return result;
-//            
-//            
-//        }
-//
-//
-//    return nil;
-//}
-//
-//- (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
-//{
-//    NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
-//    return [keysArray objectAtIndex:series.tag];
-//    
-//    
-//}
-//
-//- (NSArray *)valueAxisDataSourceTicksForValueAxis:(NChartValueAxis *)axis
-//{
-//    // Choose ticks by the kind of axis.
-//    switch (axis.kind)
-//    {
-//        case NChartValueAxisX:
-//        {
-//            return self.dataForNChart.chartAxisXTicksValues;
-//        }
-//        case NChartValueAxisAzimuth:
-//            if (self.dataForNChart.chartType == RADAR)
-//                return self.dataForNChart.chartAxisXTicksValues;
-//            else
-//                return nil;
-//        default:
-//            // Other axes have no ticks.
-//            return nil;
-//    }
-//}
-//
-//
-//
-//- (NSString *)valueAxisDataSourceNameForAxis:(NChartValueAxis *)axis
-//{
-//    switch (axis.kind)
-//    {
-//        case NChartValueAxisX:
-//            return self.dataForNChart.chartAxisXCaption;
-//        case NChartValueAxisY:
-//            return self.dataForNChart.chartAxisYCaption;
-//        case NChartValueAxisZ:
-//            return self.dataForNChart.chartAxisZCaption;
-//
-//        default:
-//            return nil;
-//    }
-//}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+//    [self.chartView.chart updateData];
+//    [self.chartView.chart stopTransition];
+//    [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
+//    [self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+//    [self.chartView.chart flushChanges];
+    
+    [self createSeries];
+
+}
+
+
+
+
+
 @end
