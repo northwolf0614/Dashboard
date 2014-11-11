@@ -36,6 +36,7 @@
     [super viewDidLoad];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([DashboardTwinCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([DashboardTwinCell class])];
     self.tableView.allowsSelection = NO;
+    //self.tableView.backgroundColor=kcWholeBackColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
@@ -49,8 +50,6 @@
     //config the add button
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    //
-    //self.view.backgroundColor=[UIColor lightGrayColor];
     self.view.backgroundColor=kcWholeBackColor;
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
@@ -164,7 +163,7 @@
             [itemViewController didMoveToParentViewController:self];
         }
     }
-
+    //cell.backgroundColor=kcWidgetBackColor;
     return cell;
 }
 

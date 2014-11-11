@@ -16,11 +16,11 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTy-k4-2zJ" userLabel="SpaceView">
                         <rect key="frame" x="8" y="8" width="15" height="383"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrY-pd-yjb" userLabel="LeftView">
                         <rect key="frame" x="23" y="25" width="350" height="350"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.090196078431372548" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="350" id="DoQ-yl-JC9"/>
                             <constraint firstAttribute="width" constant="350" id="Lls-xN-ysa"/>
@@ -28,11 +28,11 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-1F-MRd" userLabel="SpaceView">
                         <rect key="frame" x="373" y="8" width="14" height="383"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-Kf-9cp" userLabel="RightView">
                         <rect key="frame" x="387" y="25" width="350" height="350"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.090196078431372548" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="350" id="KDc-qJ-ZWk"/>
                             <constraint firstAttribute="width" constant="350" id="hd1-2e-nvH"/>
@@ -40,10 +40,10 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-0w-JJR" userLabel="SpaceView">
                         <rect key="frame" x="737" y="8" width="15" height="383"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="9gr-Kf-9cp" firstAttribute="leading" secondItem="PSF-1F-MRd" secondAttribute="trailing" id="0fo-LA-fFQ"/>
                     <constraint firstItem="VTy-k4-2zJ" firstAttribute="top" secondItem="Pvh-Tr-0eC" secondAttribute="topMargin" id="1gE-uC-tz4"/>
