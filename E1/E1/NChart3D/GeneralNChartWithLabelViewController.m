@@ -7,6 +7,7 @@
 //
 
 #import "GeneralNChartWithLabelViewController.h"
+#import "Definations.h"
 
 @interface GeneralNChartWithLabelViewController ()
 
@@ -21,8 +22,13 @@
         self.label=[[UILabel alloc] init];
         self.label.backgroundColor=[UIColor clearColor];
         self.label.text=self.dataForNChart.labelText;
+        self.label.textColor=kcCharColor;
         self.label.translatesAutoresizingMaskIntoConstraints=NO;
-        
+        self.label.font=[UIFont fontWithName:@"Arial" size:120];
+        self.label.adjustsFontSizeToFitWidth = YES;
+        self.label.userInteractionEnabled = NO;
+        self.label.numberOfLines = 1;
+        self.label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         [self.contentView addSubview:self.label];
         
         NSArray* constraints=[self.contentView constraints];

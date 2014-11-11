@@ -61,7 +61,7 @@
         self.chartViewPlus.chart.cartesianSystem.xAxis.labelsVisible=NO;
         self.chartViewPlus.chart.legend.visible=NO;
         
-        self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
+        self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
         NSArray* constraints=[self.contentView constraints];
         if ([constraints count]>0)
@@ -76,7 +76,7 @@
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(==chartView)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         
-        [self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
+        //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
         [self setupSeriesForChartView];
         [self setupAxesType];
         [self.chartViewPlus.chart updateData];
@@ -234,7 +234,7 @@
             NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
             state.marker = [NChartMarker new] ;
             state.marker.shape = NChartMarkerShapeCircle;
-            state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:[UIColor blackColor]];
+            state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:kcLikeRed];
             //state.marker.size=1.0f;//maybe not working
             [result addObject:[NChartPoint pointWithState:state forSeries:series]];
         }

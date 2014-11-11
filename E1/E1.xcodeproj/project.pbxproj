@@ -10,8 +10,6 @@
 		090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 090FB6E219F5DA6A008F437F /* StatisticsModel.m */; };
 		090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = 090FB6E519F5DA6A008F437F /* HTTPService.m */; };
 		090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 090FB6E719F5DA6A008F437F /* StatisticsPostWorker.m */; };
-		090FB6F019F5DA6A008F437F /* DashBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 090FB6EA19F5DA6A008F437F /* DashBoardView.m */; };
-		090FB6F119F5DA6A008F437F /* GradientPercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 090FB6EC19F5DA6A008F437F /* GradientPercentView.m */; };
 		09331BC219F90120004EDFEA /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09331BBE19F9005C004EDFEA /* libCorePlot-CocoaTouch.a */; };
 		09331BC419F901F2004EDFEA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09331BC319F901F2004EDFEA /* QuartzCore.framework */; };
 		09B0B25F19F5D99A008DCE56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0B25E19F5D99A008DCE56 /* Foundation.framework */; };
@@ -20,7 +18,6 @@
 		09B0B26919F5D99A008DCE56 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 09B0B26719F5D99A008DCE56 /* InfoPlist.strings */; };
 		09B0B26B19F5D99A008DCE56 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B26A19F5D99A008DCE56 /* main.m */; };
 		09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B26E19F5D99A008DCE56 /* AppDelegate.m */; };
-		09B0B27819F5D99A008DCE56 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B0B27719F5D99A008DCE56 /* ViewController.m */; };
 		09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B0B27919F5D99A008DCE56 /* Images.xcassets */; };
 		09B0B28119F5D99A008DCE56 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0B28019F5D99A008DCE56 /* XCTest.framework */; };
 		09B0B28219F5D99A008DCE56 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B0B25E19F5D99A008DCE56 /* Foundation.framework */; };
@@ -32,29 +29,19 @@
 		AB18A96F1A01C44B006546D4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AB18A96E1A01C44B006546D4 /* libstdc++.dylib */; };
 		AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18A9711A01C49E006546D4 /* AbstractNChartViewController.m */; };
 		AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */; };
-		AB7F11601A00635200145E96 /* DashboardMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115F1A00635200145E96 /* DashboardMapViewController.m */; };
-		AB7F11641A009A7B00145E96 /* DashboardGradientPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */; };
-		AB7F11681A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */; };
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
 		ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */; };
 		ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */; };
 		ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */; };
 		E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70C44EB1A061E4600D5524E /* DetailChartViewController.m */; };
 		E70C44EE1A061E4600D5524E /* DetailChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */; };
-		E74ED8131A00AC700000754F /* DashBoardPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74ED8121A00AC700000754F /* DashBoardPieChartViewController.m */; };
 		E7711AF81A0790280096650B /* NChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7711AF71A0790280096650B /* NChartDataModel.m */; };
 		E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */; };
-		E7747AB719FB944C00508730 /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7747AB619FB944C00508730 /* PieChartView.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
-		E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */; };
-		E78256D219F74356005E42C1 /* AnalyzerLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D119F74356005E42C1 /* AnalyzerLayerDelegate.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
-		E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
 		E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */; };
-		E7ED284F1A035B080040DFAC /* AbstractChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7ED284E1A035B080040DFAC /* AbstractChartView.m */; };
-		E7F498251A00B83100A81ABF /* ParagraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7F498241A00B83100A81ABF /* ParagraphViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,10 +75,6 @@
 		090FB6E519F5DA6A008F437F /* HTTPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPService.m; sourceTree = "<group>"; };
 		090FB6E619F5DA6A008F437F /* StatisticsPostWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsPostWorker.h; sourceTree = "<group>"; };
 		090FB6E719F5DA6A008F437F /* StatisticsPostWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsPostWorker.m; sourceTree = "<group>"; };
-		090FB6E919F5DA6A008F437F /* DashBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardView.h; sourceTree = "<group>"; };
-		090FB6EA19F5DA6A008F437F /* DashBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardView.m; sourceTree = "<group>"; };
-		090FB6EB19F5DA6A008F437F /* GradientPercentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPercentView.h; sourceTree = "<group>"; };
-		090FB6EC19F5DA6A008F437F /* GradientPercentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPercentView.m; sourceTree = "<group>"; };
 		090FB6F219F5DAD4008F437F /* Definations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definations.h; sourceTree = "<group>"; };
 		090FB6F319F5DAD4008F437F /* Notifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
 		09331BB719F9005C004EDFEA /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "E1/core-plot-master/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
@@ -106,8 +89,6 @@
 		09B0B26C19F5D99A008DCE56 /* E1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "E1-Prefix.pch"; sourceTree = "<group>"; };
 		09B0B26D19F5D99A008DCE56 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		09B0B26E19F5D99A008DCE56 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		09B0B27619F5D99A008DCE56 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		09B0B27719F5D99A008DCE56 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		09B0B27919F5D99A008DCE56 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		09B0B27F19F5D99A008DCE56 /* E1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = E1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09B0B28019F5D99A008DCE56 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -121,12 +102,6 @@
 		AB18A9711A01C49E006546D4 /* AbstractNChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartViewController.m; sourceTree = "<group>"; };
 		AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardItemViewController.h; sourceTree = "<group>"; };
 		AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardItemViewController.m; sourceTree = "<group>"; };
-		AB7F115E1A00635200145E96 /* DashboardMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardMapViewController.h; sourceTree = "<group>"; };
-		AB7F115F1A00635200145E96 /* DashboardMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardMapViewController.m; sourceTree = "<group>"; };
-		AB7F11621A009A7B00145E96 /* DashboardGradientPercentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardGradientPercentViewController.h; sourceTree = "<group>"; };
-		AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardGradientPercentViewController.m; sourceTree = "<group>"; };
-		AB7F11661A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardStatisticsAnalyzerViewController.h; sourceTree = "<group>"; };
-		AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardStatisticsAnalyzerViewController.m; sourceTree = "<group>"; };
 		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		ABE8A46819FF5E32004E35E1 /* DashboardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTableViewController.h; sourceTree = "<group>"; };
 		ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTableViewController.m; sourceTree = "<group>"; };
@@ -136,34 +111,20 @@
 		E70C44EA1A061E4600D5524E /* DetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailChartViewController.h; sourceTree = "<group>"; };
 		E70C44EB1A061E4600D5524E /* DetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailChartViewController.m; sourceTree = "<group>"; };
 		E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailChartViewController.xib; sourceTree = "<group>"; };
-		E74ED8111A00AC700000754F /* DashBoardPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardPieChartViewController.h; sourceTree = "<group>"; };
-		E74ED8121A00AC700000754F /* DashBoardPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardPieChartViewController.m; sourceTree = "<group>"; };
 		E7711AF61A0790280096650B /* NChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartDataModel.h; sourceTree = "<group>"; };
 		E7711AF71A0790280096650B /* NChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NChartDataModel.m; sourceTree = "<group>"; };
 		E7732FC51A04B8D3002164CB /* GeneralNChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartViewController.h; sourceTree = "<group>"; };
 		E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartViewController.m; sourceTree = "<group>"; };
-		E7747AB519FB944C00508730 /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
-		E7747AB619FB944C00508730 /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		E7760E8F19F711E500AFFC4B /* CATransform3DPerspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DPerspect.h; sourceTree = "<group>"; };
 		E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DPerspect.m; sourceTree = "<group>"; };
-		E78256CD19F7362E005E42C1 /* StatisticsAnalyzerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsAnalyzerView.h; sourceTree = "<group>"; };
-		E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsAnalyzerView.m; sourceTree = "<group>"; };
-		E78256D019F74356005E42C1 /* AnalyzerLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzerLayerDelegate.h; sourceTree = "<group>"; };
-		E78256D119F74356005E42C1 /* AnalyzerLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzerLayerDelegate.m; sourceTree = "<group>"; };
 		E78256D319F88461005E42C1 /* ClaimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimModel.h; sourceTree = "<group>"; };
 		E78256D419F88461005E42C1 /* ClaimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimModel.m; sourceTree = "<group>"; };
 		E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNChartView.h; sourceTree = "<group>"; };
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
-		E7AC36C319F8C2E4006CBF64 /* ParagraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphView.h; sourceTree = "<group>"; };
-		E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParagraphView.m; sourceTree = "<group>"; };
 		E7EC7ACB1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartWithLabelViewController.h; sourceTree = "<group>"; };
 		E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartWithLabelViewController.m; sourceTree = "<group>"; };
 		E7EC7AD01A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleNChartWithLabelViewController.h; sourceTree = "<group>"; };
 		E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleNChartWithLabelViewController.m; sourceTree = "<group>"; };
-		E7ED284D1A035B080040DFAC /* AbstractChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractChartView.h; sourceTree = "<group>"; };
-		E7ED284E1A035B080040DFAC /* AbstractChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractChartView.m; sourceTree = "<group>"; };
-		E7F498231A00B83100A81ABF /* ParagraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphViewController.h; sourceTree = "<group>"; };
-		E7F498241A00B83100A81ABF /* ParagraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParagraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,20 +183,6 @@
 			isa = PBXGroup;
 			children = (
 				E7760E8E19F711E500AFFC4B /* 3DPerspect */,
-				090FB6E919F5DA6A008F437F /* DashBoardView.h */,
-				090FB6EA19F5DA6A008F437F /* DashBoardView.m */,
-				090FB6EB19F5DA6A008F437F /* GradientPercentView.h */,
-				090FB6EC19F5DA6A008F437F /* GradientPercentView.m */,
-				E78256CD19F7362E005E42C1 /* StatisticsAnalyzerView.h */,
-				E78256CE19F7362E005E42C1 /* StatisticsAnalyzerView.m */,
-				E78256D019F74356005E42C1 /* AnalyzerLayerDelegate.h */,
-				E78256D119F74356005E42C1 /* AnalyzerLayerDelegate.m */,
-				E7747AB519FB944C00508730 /* PieChartView.h */,
-				E7747AB619FB944C00508730 /* PieChartView.m */,
-				E7AC36C319F8C2E4006CBF64 /* ParagraphView.h */,
-				E7AC36C419F8C2E4006CBF64 /* ParagraphView.m */,
-				E7ED284D1A035B080040DFAC /* AbstractChartView.h */,
-				E7ED284E1A035B080040DFAC /* AbstractChartView.m */,
 				E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */,
 				E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */,
 			);
@@ -295,8 +242,6 @@
 				090FB6E819F5DA6A008F437F /* Views */,
 				09B0B26D19F5D99A008DCE56 /* AppDelegate.h */,
 				09B0B26E19F5D99A008DCE56 /* AppDelegate.m */,
-				09B0B27619F5D99A008DCE56 /* ViewController.h */,
-				09B0B27719F5D99A008DCE56 /* ViewController.m */,
 				090FB6F219F5DAD4008F437F /* Definations.h */,
 				090FB6F319F5DAD4008F437F /* Notifications.h */,
 				09B0B27919F5D99A008DCE56 /* Images.xcassets */,
@@ -356,43 +301,11 @@
 		AB7F11591A0062A100145E96 /* DashboardItems */ = {
 			isa = PBXGroup;
 			children = (
-				E7F498201A00B80D00A81ABF /* Paragraph */,
-				E74ED80E1A00AC200000754F /* PieChart */,
-				AB7F11651A00A35600145E96 /* StatisticsAnalyzer */,
-				AB7F11611A009A5F00145E96 /* GradientPercent */,
-				AB7F115D1A00631B00145E96 /* Map */,
 				AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */,
 				AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */,
 				AB0D11931A01FC31004C049B /* DashboardItemViewController.xib */,
 			);
 			path = DashboardItems;
-			sourceTree = "<group>";
-		};
-		AB7F115D1A00631B00145E96 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				AB7F115E1A00635200145E96 /* DashboardMapViewController.h */,
-				AB7F115F1A00635200145E96 /* DashboardMapViewController.m */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
-		AB7F11611A009A5F00145E96 /* GradientPercent */ = {
-			isa = PBXGroup;
-			children = (
-				AB7F11621A009A7B00145E96 /* DashboardGradientPercentViewController.h */,
-				AB7F11631A009A7B00145E96 /* DashboardGradientPercentViewController.m */,
-			);
-			path = GradientPercent;
-			sourceTree = "<group>";
-		};
-		AB7F11651A00A35600145E96 /* StatisticsAnalyzer */ = {
-			isa = PBXGroup;
-			children = (
-				AB7F11661A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.h */,
-				AB7F11671A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m */,
-			);
-			path = StatisticsAnalyzer;
 			sourceTree = "<group>";
 		};
 		ABE8A46719FF5DF2004E35E1 /* DashboardTableView */ = {
@@ -407,15 +320,6 @@
 			path = DashboardTableView;
 			sourceTree = "<group>";
 		};
-		E74ED80E1A00AC200000754F /* PieChart */ = {
-			isa = PBXGroup;
-			children = (
-				E74ED8111A00AC700000754F /* DashBoardPieChartViewController.h */,
-				E74ED8121A00AC700000754F /* DashBoardPieChartViewController.m */,
-			);
-			path = PieChart;
-			sourceTree = "<group>";
-		};
 		E7760E8E19F711E500AFFC4B /* 3DPerspect */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,15 +327,6 @@
 				E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */,
 			);
 			path = 3DPerspect;
-			sourceTree = "<group>";
-		};
-		E7F498201A00B80D00A81ABF /* Paragraph */ = {
-			isa = PBXGroup;
-			children = (
-				E7F498231A00B83100A81ABF /* ParagraphViewController.h */,
-				E7F498241A00B83100A81ABF /* ParagraphViewController.m */,
-			);
-			path = Paragraph;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -552,35 +447,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7711AF81A0790280096650B /* NChartDataModel.m in Sources */,
-				E78256D219F74356005E42C1 /* AnalyzerLayerDelegate.m in Sources */,
 				ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */,
-				E7F498251A00B83100A81ABF /* ParagraphViewController.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
 				090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */,
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
-				090FB6F119F5DA6A008F437F /* GradientPercentView.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
 				ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */,
-				09B0B27819F5D99A008DCE56 /* ViewController.m in Sources */,
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,
 				E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */,
-				E74ED8131A00AC700000754F /* DashBoardPieChartViewController.m in Sources */,
-				E7AC36C519F8C2E4006CBF64 /* ParagraphView.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,
-				AB7F11641A009A7B00145E96 /* DashboardGradientPercentViewController.m in Sources */,
-				AB7F11681A00A36700145E96 /* DashboardStatisticsAnalyzerViewController.m in Sources */,
-				E78256CF19F7362E005E42C1 /* StatisticsAnalyzerView.m in Sources */,
 				09B0B26B19F5D99A008DCE56 /* main.m in Sources */,
 				E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */,
-				090FB6F019F5DA6A008F437F /* DashBoardView.m in Sources */,
 				AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */,
-				E7ED284F1A035B080040DFAC /* AbstractChartView.m in Sources */,
-				E7747AB719FB944C00508730 /* PieChartView.m in Sources */,
-				AB7F11601A00635200145E96 /* DashboardMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

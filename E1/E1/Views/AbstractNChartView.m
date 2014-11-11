@@ -23,7 +23,7 @@
         self.middleLabel=[[UILabel alloc] init];
         self.middleLabel.backgroundColor=[UIColor clearColor];
         self.middleLabel.hidden=YES;
-        self.middleLabel.textColor=[UIColor redColor];
+        self.middleLabel.textColor=kcLikeRed;
         
         self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
         
@@ -34,6 +34,9 @@
         self.middleLabel.hidden=YES;
         [self addSubview:self.middleLabel];
         //self.didUpdateStraints=NO;
+        
+        self.chart.legend.textColor=kcCharColor;
+        self.chart.cartesianSystem.xAxis.textColor=kcCharColor;
     }
     return self;
 }

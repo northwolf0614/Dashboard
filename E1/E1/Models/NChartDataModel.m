@@ -213,7 +213,7 @@
 
 
     NChartDataModel* chartData1=[[NChartDataModel alloc] init];
-    chartData1.chartCaption=@"column&line";
+    chartData1.chartCaption=@"Claim Closed/Opened";
     chartData1.chartAxisXCaption=@"Years";
     chartData1.chartAxisYCaption=@"Products percentage";
     //chartData1.chartType=Dimention2;
@@ -226,26 +226,28 @@
     
     //setup rawData
     PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
-    rawData.seriesName=@"percentage";
+    rawData.seriesName=@"Opened";
     rawData.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
     rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
     rawData.seriesType=COLUMN;
-    rawData.brushColor=[UIColor orangeColor];
+    //rawData.brushColor=[UIColor orangeColor];
+    rawData.brushColor=kcLikeBlue;
     //chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
         //setup rawData1
     PrototypeDataModel* rawData1=[[PrototypeDataModel alloc] init];
-    rawData1.seriesName=@"percentage1";
+    rawData1.seriesName=@"Active";
     rawData1.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
     rawData1.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
     rawData1.seriesType=COLUMN;
-    rawData1.brushColor=[UIColor colorWithRed:0.8 green:0.1 blue:0.1 alpha:0.9];
+    rawData1.brushColor=kcLikeOrange;
     //setup rawData2
     PrototypeDataModel* rawData2=[[PrototypeDataModel alloc] init];
-    rawData2.seriesName=@"percentage2";
+    rawData2.seriesName=@"Closed";
     rawData2.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
     rawData2.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
     rawData2.seriesType=LINE;
-    rawData2.brushColor=[UIColor blueColor];
+    //rawData2.brushColor=[UIColor blueColor];
+    rawData2.brushColor=kcLikeRed;
     
    
 
@@ -267,8 +269,8 @@
     ///////////////////////////////////////////////////////////////////////////////////////////////////
   
     NChartDataModel* chartData2=[[NChartDataModel alloc] init];
-    chartData2.chartCaption=@"BAR";
-    chartData2.chartAxisXCaption=@"product percentage";
+    chartData2.chartCaption=@"Calls Waiting in Line";
+    chartData2.chartAxisXCaption=@"percentage";
     chartData2.chartAxisYCaption=@"Years";
     chartData2.chartType=BAR;
     chartData2.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
@@ -277,24 +279,25 @@
     
     //setup rawData3
     PrototypeDataModel* rawData3=[[PrototypeDataModel alloc] init];
-    rawData3.seriesName=@"percentage3";
+    rawData3.seriesName=@"In call";
     rawData3.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
     rawData3.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],nil];
     rawData3.seriesType=BAR;
-    rawData3.brushColor=[UIColor orangeColor];
+    rawData3.brushColor=kcLikeOrange;
+    //rawData3.brushColor=[UIColor colorWithRed:236 green:250 blue:48 alpha:1];
     //setup data4
     PrototypeDataModel* rawData4=[[PrototypeDataModel alloc] init];
-    rawData4.seriesName=@"percentage4";
+    rawData4.seriesName=@"Inactive";
     rawData4.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];
     rawData4.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.4],nil];
     rawData4.seriesType=BAR;
-    rawData4.brushColor=[UIColor lightGrayColor];
+    rawData4.brushColor=kcLikeGray;
+    //rawData4.brushColor=[UIColor colorWithRed:47 green:45 blue:55 alpha:1];
 
     //additive
     [chartData2.chartDataForDrawing setObject:rawData3 forKey:rawData3.seriesName];
     [chartData2.chartDataForDrawing setObject:rawData4 forKey:rawData4.seriesName];
     chartData2.axisType=ADDITIVE;
-    chartData2.labelText=@"2014";
     [chartData2 adaptedForFloatingNumber];
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -302,32 +305,35 @@
         ///////////////////////////////////////////////////////////////////////////////////////////////////
     
     NChartDataModel* chartData4=[[NChartDataModel alloc] init];
-    chartData4.chartCaption=@"RADAR";
+    chartData4.chartCaption=@"Personal Quote Conversion";
     chartData4.chartAxisXCaption=@"product percentage";
     chartData4.chartAxisYCaption=@"Years";
     chartData4.chartType=RADAR;
-    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-    
+    //chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",@"Auto",@"Worker",nil];
+    chartData4.labelText=@"2014";
     chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     //setup rawData3
     PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
-    rawData7.seriesName=@"percentage7";
-    rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],nil];
+    rawData7.seriesName=@"Converted";
+    rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
+    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],nil];
     rawData7.seriesType=RADAR;
-    rawData7.brushColor=[UIColor orangeColor];
+    //rawData7.brushColor=[UIColor orangeColor];
+    rawData7.brushColor=kcLikeRed;
     //setup data4
     PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
-    rawData8.seriesName=@"percentage8";
-    rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],nil];
+    rawData8.seriesName=@"Quoted";
+    rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
+    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],nil];
     rawData8.seriesType=RADAR;
-    rawData8.brushColor=[UIColor grayColor];
-    
+    //rawData8.brushColor=[UIColor grayColor];
+    rawData8.brushColor=kcLikeBlue;
     //additive
     [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
     [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
+    
+    
     chartData4.axisType=ABSOLUTE;
     [chartData4 adaptedForFloatingNumber];
     
@@ -337,7 +343,6 @@
     [chartsArray addObject:chartData4];
     
 
-    
     
     
     

@@ -21,7 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.titleItem setTitle:self.dataForNChart.chartCaption];
     self.chartView = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
     self.chartView.chart.licenseKey = kcNchartViewlicense;
     self.chartView.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
@@ -53,12 +53,14 @@
     self.chartView.chart.polarSystem.radiusAxis.caption.visible=NO;
 
     self.chartView.chart.polarSystem.azimuthAxis.caption.visible=NO;
+    self.chartView.chart.polarSystem.azimuthAxis.thickness=12;
     //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
     //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+    self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
     
     
     
-    self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:[UIColor darkGrayColor]];
+    self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
 }
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;

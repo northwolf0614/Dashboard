@@ -7,6 +7,7 @@
 //
 
 #import "GeneralNChartViewController.h"
+#import "Definations.h"
 #import  <NChart3D/NChart3D.h>
 
 @interface GeneralNChartViewController ()
@@ -23,11 +24,11 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
     
-    [self.titleItem setTitle:self.dataForNChart.chartCaption];
+    //[self.titleItem setTitle:self.dataForNChart.chartCaption];
     [self setupSeriesForChartView];
     [self setupAxesType];
     [self.chartView.chart updateData];
-    self.backGroundColor=[UIColor darkGrayColor];
+    self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
     
 }

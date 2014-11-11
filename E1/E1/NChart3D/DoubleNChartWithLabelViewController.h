@@ -7,7 +7,7 @@
 //
 
 #import "GeneralNChartWithLabelViewController.h"
-#import "AbstractChartView.h"
+//#import "AbstractNChartView.h"
 
 @interface DoubleNChartWithLabelViewController : GeneralNChartWithLabelViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
 @property(nonatomic,strong) AbstractNChartView* chartViewPlus;

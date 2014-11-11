@@ -9,11 +9,11 @@
 #import "DashboardTableViewController.h"
 #import "DashboardTwinCell.h"
 #import "DashboardItemViewController.h"
-#import "DashboardMapViewController.h"
-#import "DashboardGradientPercentViewController.h"
-#import "DashboardStatisticsAnalyzerViewController.h"
-#import "DashBoardPieChartViewController.h"
-#import "ParagraphViewController.h"
+//#import "DashboardMapViewController.h"
+//#import "DashboardGradientPercentViewController.h"
+//#import "DashboardStatisticsAnalyzerViewController.h"
+//#import "DashBoardPieChartViewController.h"
+//#import "ParagraphViewController.h"
 //#import "ColumnNChartViewController.h"
 //#import "BubbleChartViewController.h"
 #import "Definations.h"
@@ -50,7 +50,8 @@
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     //
-    self.view.backgroundColor=[UIColor lightGrayColor];
+    //self.view.backgroundColor=[UIColor lightGrayColor];
+    self.view.backgroundColor=kcWholeBackColor;
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     [self setupDefaultDataForDrawing];
