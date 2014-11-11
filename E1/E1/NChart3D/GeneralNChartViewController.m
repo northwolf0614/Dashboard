@@ -70,8 +70,8 @@
                 self.chartView.chart.cartesianSystem.yAxis.visible=NO;
                 self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
-                self.chartView.chart.cartesianSystem.xAxis.visible=NO;
-                self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
             }
                 break;
             case LINE:
@@ -89,8 +89,8 @@
                 self.chartView.chart.cartesianSystem.yAxis.visible=NO;
                 self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
-                self.chartView.chart.cartesianSystem.xAxis.visible=NO;
-                self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
             }
                 break;
             case BAR:

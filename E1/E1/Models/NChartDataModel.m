@@ -217,7 +217,7 @@
     chartData1.chartAxisXCaption=@"Years";
     chartData1.chartAxisYCaption=@"Products percentage";
     //chartData1.chartType=Dimention2;
-    chartData1.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+    chartData1.chartAxisXTicksValues=[NSArray arrayWithObjects:@"June",@"July",@"August",@"September",nil];
     
     chartData1.chartDataForDrawing= [NSMutableDictionary dictionary];
  
