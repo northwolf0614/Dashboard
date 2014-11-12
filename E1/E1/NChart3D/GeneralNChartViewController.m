@@ -194,11 +194,13 @@
 -(void)createSeries
 
 {
+    if (self.isNeedsUpdate) {
+        [self.chartView.chart removeAllSeries];//3
+    }
     
-    [self.chartView.chart removeAllSeries];//3
     [self setupSeriesForChartView];
     [self.chartView.chart updateData];
-    if (![self.chartView.chart isTransitionPlaying])
+    if (![self.chartView.chart isTransitionPlaying]&&self.isNeedsUpdate)
     {
         [self.chartView.chart stopTransition];
         [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];

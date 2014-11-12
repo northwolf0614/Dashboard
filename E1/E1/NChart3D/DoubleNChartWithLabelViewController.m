@@ -26,11 +26,14 @@
 {
     
     [super createSeries];//?
-    [self.chartViewPlus.chart removeAllSeries];
+    if (self.isNeedsUpdateForPlus) {
+        [self.chartViewPlus.chart removeAllSeries];
+    }
+    
     [self setupSeriesForChartView];
     [self.chartViewPlus.chart updateData];
     
-    if (![self.chartViewPlus.chart isTransitionPlaying])
+    if (![self.chartViewPlus.chart isTransitionPlaying]&&self.isNeedsUpdateForPlus)
     {
         
         [self.chartViewPlus.chart stopTransition];
@@ -107,7 +110,7 @@
         self.isNeedsUpdateForPlus=YES;
         //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
         //[self setupSeriesForChartView];
-        [self setupAxesType];
+        //[self setupAxesType];
         //[self createSeries];
     }
 
