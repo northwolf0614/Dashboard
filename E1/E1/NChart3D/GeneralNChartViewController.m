@@ -33,7 +33,7 @@
     self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
     self.isNeedsUpdate=YES;
-    //[self createSeries];
+    [self setupSeriesForChartView];
     
     
 }
@@ -196,9 +196,10 @@
 {
     if (self.isNeedsUpdate) {
         [self.chartView.chart removeAllSeries];//3
+        [self setupSeriesForChartView];
     }
     
-    [self setupSeriesForChartView];
+    
     [self.chartView.chart updateData];
     if (![self.chartView.chart isTransitionPlaying]&&self.isNeedsUpdate)
     {

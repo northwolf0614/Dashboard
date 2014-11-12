@@ -28,9 +28,10 @@
     [super createSeries];//?
     if (self.isNeedsUpdateForPlus) {
         [self.chartViewPlus.chart removeAllSeries];
+        [self setupSeriesForChartView];
     }
     
-    [self setupSeriesForChartView];
+    
     [self.chartViewPlus.chart updateData];
     
     if (![self.chartViewPlus.chart isTransitionPlaying]&&self.isNeedsUpdateForPlus)
