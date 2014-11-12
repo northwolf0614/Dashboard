@@ -19,41 +19,28 @@
     [super viewDidAppear:animated];
     if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSString class]])
         [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
-    
-    
-    
+}
 
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-   
-    [self createSeries];
-    
-}
 -(void)createSeries
 
 {
     
-    [super createSeries];
-    if (self.isNeedsUpdateForPlus)
-    {
-        [self.chartViewPlus.chart removeAllSeries];
-        
-    }
+    [super createSeries];//?
+    [self.chartViewPlus.chart removeAllSeries];
     [self setupSeriesForChartView];
-    if (self.chartViewPlus!=nil&&[self.chartViewPlus isKindOfClass:[AbstractNChartView class]])
+    [self.chartViewPlus.chart updateData];
+    
+    if (![self.chartViewPlus.chart isTransitionPlaying])
     {
-        [self.chartViewPlus.chart updateData];
+        
         [self.chartViewPlus.chart stopTransition];
         [self.chartViewPlus.chart playTransition:kcTRANSITION_TIME reverse:NO];
-        [self.chartViewPlus.chart resetTransformations:kcTRANSITION_TIME];
+        //[self.chartViewPlus.chart resetTransformations:kcTRANSITION_TIME];
         [self.chartViewPlus.chart flushChanges];
 
     }
-    
-    
 }
+
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
 {
     if (self=[super initWithDrawingData:drawingData delegateHolder:delegateImplementer])
@@ -66,7 +53,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]]&&self.label!=nil&&[self.label isKindOfClass:[UILabel class]])
     {
@@ -120,7 +108,7 @@
         //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
         //[self setupSeriesForChartView];
         [self setupAxesType];
-        //[self.chartViewPlus.chart updateData];
+        //[self createSeries];
     }
 
 
@@ -232,7 +220,8 @@
 
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
