@@ -29,6 +29,21 @@
    
 }
 
+-(void)createSeries
+
+{
+    if (self.isNeedsUpdate)
+    {
+        //[self.chartView.chart removeAllSeries];//3
+        [self removeAllSeries];
+        [self setupSeriesForChartView];
+        self.isNeedsUpdate=NO;
+        [self updateChartData:self.chartView animated:YES];
+        [self updateChartData:self.chartViewPlus animated:YES];
+    }
+    
+}
+
 
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
 {
@@ -123,7 +138,7 @@
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
-                        [self updateChartData:self.chartViewPlus animated:YES];
+                        //[self updateChartData:self.chartViewPlus animated:YES];
                     }
                         break;
                     case LINE:
@@ -133,7 +148,7 @@
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
-                        [self updateChartData:self.chartViewPlus animated:YES];
+                        //[self updateChartData:self.chartViewPlus animated:YES];
                     }
                         break;
                     case BAR:
@@ -142,8 +157,8 @@
                         series.tag=count+base;
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
-                        [self updateChartData:self.chartViewPlus animated:YES];
-                        //[self updateChartData:YES];
+                        //[self updateChartData:self.chartViewPlus animated:YES];
+                        
                     }
                         break;
                     case DOUGHNUT:
@@ -157,7 +172,7 @@
                         settings.holeRatio = 0.8f;
                         [self.chartViewPlus.chart addSeriesSettings:settings];
                         
-                        [self updateChartData:self.chartViewPlus animated:YES];
+                        //[self updateChartData:self.chartViewPlus animated:YES];
                     }
                         break;
                         
@@ -168,7 +183,7 @@
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
-                        [self updateChartData:self.chartViewPlus animated:YES];
+                        //[self updateChartData:self.chartViewPlus animated:YES];
                     }
                         break;
                         

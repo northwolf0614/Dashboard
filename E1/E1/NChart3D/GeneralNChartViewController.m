@@ -63,7 +63,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
-                [self updateChartData:self.chartView animated:YES];
+                //[self updateChartData:self.chartView animated:YES];
             }
                 break;
             case LINE:
@@ -83,7 +83,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
-                [self updateChartData:self.chartView animated:YES];
+                //[self updateChartData:self.chartView animated:YES];
 
             }
                 break;
@@ -104,7 +104,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
-                [self updateChartData:self.chartView animated:YES];
+                //[self updateChartData:self.chartView animated:YES];
                 
             }
                 break;
@@ -120,7 +120,7 @@
                 [self.chartView.chart addSeriesSettings:settings];
                 //self.chartView.chart.streamingMode = NO;
                 //self.chartView.chart.timeAxis.visible = NO;
-                [self updateChartData:self.chartView animated:YES];
+                //[self updateChartData:self.chartView animated:YES];
             }
                 break;
             
@@ -141,7 +141,7 @@
                 //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
                 //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
                 self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
-                [self updateChartData:self.chartView animated:YES];
+                //[self updateChartData:self.chartView animated:YES];
                 
                 
                 
@@ -194,6 +194,7 @@
         [self removeAllSeries];
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
+        [self updateChartData:self.chartView animated:YES];
     }
     
 }
@@ -202,8 +203,10 @@
     [view.chart updateData];
     if (isAnimated)
     {
+        //if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
         if ([[view.chart series] count]>0)
         {
+            //[view.chart resetTransition];
             [view.chart stopTransition];
             [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
             //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];

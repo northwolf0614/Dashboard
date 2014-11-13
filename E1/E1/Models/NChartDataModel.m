@@ -258,7 +258,7 @@
     [chartData1.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
     [chartData1.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
     [chartData1.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
-    chartData1.axisType=ADDITIVE;
+    chartData1.axisType=ABSOLUTE;
     chartData1.dataForNextView=chartData3;
     chartData1.labelText=@"2014";
     [chartData1 adaptedForFloatingNumber];
