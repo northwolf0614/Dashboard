@@ -181,13 +181,17 @@
             break;
     }
 }
-
+-(void)removeAllSeries
+{
+    [self.chartView.chart removeAllSeries];
+}
 -(void)createSeries
 
 {
     if (self.isNeedsUpdate)
     {
-        [self.chartView.chart removeAllSeries];//3
+        //[self.chartView.chart removeAllSeries];//3
+        [self removeAllSeries];
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
     }

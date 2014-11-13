@@ -16,5 +16,5 @@
 -(void) setupAxesType;
 -(void)createSeries;
 -(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated;
-
+-(void)removeAllSeries;
 @end

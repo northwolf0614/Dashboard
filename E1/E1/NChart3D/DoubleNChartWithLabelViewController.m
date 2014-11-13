@@ -20,17 +20,14 @@
     if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSString class]])
         [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
 }
-//-(void)createSeries
-//
-//{
-//    if (self.isNeedsUpdate)
-//    {
-//        [self.chartView.chart removeAllSeries];//3
-//        [self setupSeriesForChartView];
-//        self.isNeedsUpdate=NO;
-//    }
-//    
-//}
+-(void)removeAllSeries
+{
+    [super removeAllSeries];
+    if (self.chartViewPlus!=nil) {
+         [self.chartView.chart removeAllSeries];
+    }
+   
+}
 
 
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer
@@ -96,7 +93,7 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-        self.isNeedsUpdateForPlus=YES;
+        //self.isNeedsUpdateForPlus=YES;
         //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
         //[self setupSeriesForChartView];
         //[self setupAxesType];
