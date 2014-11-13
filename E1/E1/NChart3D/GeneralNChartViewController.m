@@ -24,33 +24,17 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
     [self.chartView.chart fitToScreen:0.1];
-    //[self.titleItem setTitle:self.dataForNChart.chartCaption];
-    
-    //[self setupSeriesForChartView];
     [self setupAxesType];
-    //[self.chartView.chart updateData];
-    
     self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
     self.isNeedsUpdate=YES;
-    [self setupSeriesForChartView];
-    
-    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];//2
     [self createSeries];
 }
--(void)setupColumnOrLineStyle
-{
 
-    self.chartView.chart.cartesianSystem.xAxis.visible=YES;
-    self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
-    self.chartView.chart.cartesianSystem.xAxis.labelsVisible=YES;
-
-}
 -(void) setupSeriesForChartView
 {
     
@@ -60,7 +44,8 @@
         NSString* key=[keysArray objectAtIndex:count];
         NSeriesType seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:key] seriesType];
         UIColor* brushColor=[[self.dataForNChart.chartDataForDrawing objectForKey:key] brushColor];
-        switch (seriesType) {
+        switch (seriesType)
+        {
             case COLUMN:
             {
                 NChartColumnSeries* series = [NChartColumnSeries new];
@@ -78,6 +63,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+                [self updateChartData:self.chartView animated:YES];
             }
                 break;
             case LINE:
@@ -97,6 +83,8 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+                [self updateChartData:self.chartView animated:YES];
+
             }
                 break;
             case BAR:
@@ -116,6 +104,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.labelsVisible=NO;
+                [self updateChartData:self.chartView animated:YES];
                 
             }
                 break;
@@ -131,6 +120,7 @@
                 [self.chartView.chart addSeriesSettings:settings];
                 //self.chartView.chart.streamingMode = NO;
                 //self.chartView.chart.timeAxis.visible = NO;
+                [self updateChartData:self.chartView animated:YES];
             }
                 break;
             
@@ -151,6 +141,7 @@
                 //self.chartView.chart.polarSystem.azimuthAxis.visible=NO;
                 //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
                 self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
+                [self updateChartData:self.chartView animated:YES];
                 
                 
                 
@@ -194,24 +185,28 @@
 -(void)createSeries
 
 {
-    if (self.isNeedsUpdate) {
+    if (self.isNeedsUpdate)
+    {
         [self.chartView.chart removeAllSeries];//3
         [self setupSeriesForChartView];
+        self.isNeedsUpdate=NO;
     }
     
-    
-    [self.chartView.chart updateData];
-    if (![self.chartView.chart isTransitionPlaying]&&self.isNeedsUpdate)
+}
+-(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated
+{
+    [view.chart updateData];
+    if (isAnimated)
     {
-        [self.chartView.chart stopTransition];
-        [self.chartView.chart playTransition:kcTRANSITION_TIME reverse:NO];
-        //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
-        [self.chartView.chart flushChanges];
-
+        if ([[view.chart series] count]>0)
+        {
+            [view.chart stopTransition];
+            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+            [view.chart flushChanges];
+            
+        }
     }
-    
-
-    
 }
 
 -(void)handleRightButtonItem:(id) sender
