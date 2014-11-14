@@ -31,25 +31,25 @@
         
         CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
         
-        //MVC
+        //Destination view controller
         dvc.view.transform = CGAffineTransformMakeScale(
                                                         CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
                                                         CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
         dvc.view.frame = transitioningFrame;
         dvc.view.alpha = 0.0f;
         
-        //CVC
+        //source view controller
         dashvc.transitioningView.alpha = 1.0f;
         
         [containerView insertSubview:dvc.view aboveSubview:dashvc.view];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-            //MVC
+            //Destination view controller
             dvc.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
             dvc.view.frame = containerView.bounds;
             dvc.view.alpha = 1.0f;
             
-            //CVC
+            //source view controller
             dashvc.transitioningView.alpha = 0.0f;
         } completion:^(BOOL finished) {
             [transitionContext completeTransition:YES];
