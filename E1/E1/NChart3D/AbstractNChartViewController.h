@@ -12,7 +12,7 @@
 #import "NChartDataModel.h"
 @protocol  ChartSubviewControllerResponse <NSObject>
 
--(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding;
+-(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding inView:(UIView*)contentView;
 
 @end
 

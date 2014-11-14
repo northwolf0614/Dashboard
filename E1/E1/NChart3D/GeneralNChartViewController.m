@@ -218,10 +218,10 @@
 
 -(void)handleRightButtonItem:(id) sender
 {
-    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData:)])
+    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData: inView:)])
         
     {
-        [self.delegate searchButtonClickedWithData:self.dataForNChart];
+        [self.delegate searchButtonClickedWithData:self.dataForNChart inView:self.view];
        
     }
     

@@ -39,6 +39,8 @@
 		E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
+		E7A254981A1570C000568E65 /* PushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A254971A1570C000568E65 /* PushAnimation.m */; };
+		E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A2549C1A15720100568E65 /* PopAnimation.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
 		E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */; };
@@ -119,6 +121,10 @@
 		E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DPerspect.m; sourceTree = "<group>"; };
 		E78256D319F88461005E42C1 /* ClaimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimModel.h; sourceTree = "<group>"; };
 		E78256D419F88461005E42C1 /* ClaimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimModel.m; sourceTree = "<group>"; };
+		E7A254961A1570C000568E65 /* PushAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAnimation.h; sourceTree = "<group>"; };
+		E7A254971A1570C000568E65 /* PushAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAnimation.m; sourceTree = "<group>"; };
+		E7A2549B1A15720100568E65 /* PopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopAnimation.h; sourceTree = "<group>"; };
+		E7A2549C1A15720100568E65 /* PopAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopAnimation.m; sourceTree = "<group>"; };
 		E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNChartView.h; sourceTree = "<group>"; };
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
 		E7EC7ACB1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartWithLabelViewController.h; sourceTree = "<group>"; };
@@ -304,6 +310,10 @@
 				AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */,
 				AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */,
 				AB0D11931A01FC31004C049B /* DashboardItemViewController.xib */,
+				E7A254961A1570C000568E65 /* PushAnimation.h */,
+				E7A254971A1570C000568E65 /* PushAnimation.m */,
+				E7A2549B1A15720100568E65 /* PopAnimation.h */,
+				E7A2549C1A15720100568E65 /* PopAnimation.m */,
 			);
 			path = DashboardItems;
 			sourceTree = "<group>";
@@ -453,7 +463,9 @@
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
+				E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */,
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
+				E7A254981A1570C000568E65 /* PushAnimation.m in Sources */,
 				ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */,
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,
 				E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */,

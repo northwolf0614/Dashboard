@@ -62,6 +62,7 @@
 #define kcCharColor RGBA(86.0,83.0,102.0,1)
 
 #define kcTRANSITION_TIME 0.85
+#define kcControllerTransitionTime 0.45
 
 
 #endif

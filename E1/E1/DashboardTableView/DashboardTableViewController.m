@@ -54,6 +54,10 @@
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     [self setupDefaultDataForDrawing];
+    self.navigationController.delegate=self;
+    self.pushAnimation= [[PushAnimation alloc] init];
+    self.popAnimation= [[PopAnimation alloc] init];
+    
 }
 /*
 -(NChartDataModel*)configDefaultData
@@ -173,12 +177,40 @@
 }
 
 #pragma ChartSubviewControllerResponse
--(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding
+-(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding inView:(UIView *)contentView
 {
 //    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
     DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
+    
+    //detailViewController.transitioningDelegate=self;
+    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
+    self.transitioningView=contentView;
+    
     [self.navigationController pushViewController:detailViewController animated:YES];
+    //[self.navigationController presentViewController:detailViewController animated:YES completion:nil];
 
+    
+}
+#pragma <UINavigationControllerDelegate>
+
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC
+{
+    if (operation == UINavigationControllerOperationPush) {
+        return self.pushAnimation;
+    }
+    else if (operation == UINavigationControllerOperationPop) {
+        return self.popAnimation;
+    }
+    
+    return nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    //return self.interactionController;
+    return nil;
 }
 @end

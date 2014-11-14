@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Definations.h"
 #import "AbstractNChartViewController.h"
+#import "PopAnimation.h"
+#import "PushAnimation.h"
 
-@interface DashboardTableViewController : UITableViewController<ChartSubviewControllerResponse>
+ @class PushAnimation;
+ @class PopAnimation;
+
+@interface DashboardTableViewController : UITableViewController<ChartSubviewControllerResponse,UINavigationControllerDelegate>
 @property(nonatomic,strong) NSMutableArray* chartNames;
+@property(nonatomic,strong) UIView* transitioningView;
+
+@property (strong, nonatomic) PushAnimation *pushAnimation;
+@property (strong, nonatomic) PopAnimation *popAnimation;
+//@property (strong, nonatomic) UIPercentDrivenInteractiveTransition *interactionController;
+
 @end
