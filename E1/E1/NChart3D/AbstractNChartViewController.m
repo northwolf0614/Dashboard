@@ -62,8 +62,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSString class]])
-       [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+//    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSNumber class]])
+//       //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+//        [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber animation:YES animationTime:kcTRANSITION_TIME];
 }
 
 @end

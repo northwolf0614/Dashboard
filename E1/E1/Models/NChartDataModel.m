@@ -64,10 +64,15 @@
 
 
         }
-        if (total>=1)
-            self.floatingNumber=[NSString stringWithFormat:@"%d",(int)total];
-        if (total>0&&total<1)
-            self.floatingNumber=[NSString stringWithFormat:@"0.%d",(int)(total*10)];
+//        if (total>=1)
+//            self.floatingNumber=[NSString stringWithFormat:@"%d",(int)total];
+//        if (total>0&&total<1)
+//            self.floatingNumber=[NSString stringWithFormat:@"0.%d",(int)(total*10)];
+        self.floatingNumber=[NSNumber numberWithFloat:total];
+        
+        
+        
+        
     }
 
     

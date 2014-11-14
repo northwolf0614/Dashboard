@@ -17,8 +17,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSString class]])
-        [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
+//    if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSNumber class]])
+//        //[self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
+//        [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber animation:YES animationTime:kcTRANSITION_TIME];
 }
 -(void)removeAllSeries
 {
@@ -38,11 +39,13 @@
         [self removeAllSeries];
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
-        [self updateChartData:self.chartView animated:YES];
-        [self updateChartData:self.chartViewPlus animated:YES];
+        [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
+        [self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
     }
     
 }
+
+
 
 
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer

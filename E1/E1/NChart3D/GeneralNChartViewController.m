@@ -194,11 +194,11 @@
         [self removeAllSeries];
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
-        [self updateChartData:self.chartView animated:YES];
+        [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart];
     }
     
 }
--(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated
+-(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData
 {
     [view.chart updateData];
     if (isAnimated)
@@ -214,6 +214,9 @@
             
         }
     }
+    if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
+        //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+        [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
 }
 
 -(void)handleRightButtonItem:(id) sender

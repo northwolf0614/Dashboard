@@ -12,6 +12,12 @@
 //@property(nonatomic,assign) BOOL didUpdateStraints;
 //@property(nonatomic,strong) UILabel* label;
 @property(nonatomic,strong) UILabel* middleLabel;
+@property(nonatomic,strong) NSNumber* FloatingNumber;
+@property(nonatomic,strong) NSNumber* valuePerStep;
+@property(nonatomic,strong) NSTimer* timer;
+@property(nonatomic,strong) NSNumber* changingValue;
+
+
 @end
 
 @implementation AbstractNChartView
@@ -63,14 +69,49 @@
 {
     self.middleLabel.hidden=YES;
 }
--(void)setTextForMiddleLabel:(NSString*) text
+-(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration
 {
     self.middleLabel.hidden=NO;
-    self.middleLabel.text=text;
+    
+    self.FloatingNumber=number;
+    float timeInterval=0.05f;
+    float stepNum=duration/timeInterval;
+    self.valuePerStep=[NSNumber numberWithFloat:([number floatValue]/stepNum)];
+    
+    if (!isAnimated)
+    {
+        if ([number floatValue]>=1)
+            self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[number floatValue]] ;
+        if ([number floatValue]>0&&[number floatValue]<1)
+            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([number floatValue]*10)];
+
+    }
+    else
+    {
+        self.timer =  [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+        self.changingValue=[NSNumber numberWithFloat:0.0f];
+        
+        
+        
+        
+    }
 }
-
-
-
-
+-(void)onTimer:(NSTimer *)timer
+{
+    float val=[self.changingValue floatValue];
+    val+=[self.valuePerStep floatValue];
+    self.changingValue= [NSNumber numberWithFloat:val];
+    if ([self.changingValue floatValue]<[self.FloatingNumber floatValue])
+    {
+        if ([self.changingValue floatValue]>=1)
+            self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[self.changingValue floatValue]] ;
+        if ([self.changingValue floatValue]>0&&[self.changingValue floatValue]<1)
+            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*10)];
+    }
+    else
+         [self.timer setFireDate:[NSDate distantFuture]];
+    
+    
+}
 
 @end
