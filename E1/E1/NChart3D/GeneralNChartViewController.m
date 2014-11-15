@@ -32,7 +32,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];//2
-    [self createSeries];
+    //[self createSeries];
 }
 
 -(void) setupSeriesForChartView
@@ -185,7 +185,7 @@
 {
     [self.chartView.chart removeAllSeries];
 }
--(void)createSeries
+-(void)showSeries
 
 {
     if (self.isNeedsUpdate)
@@ -198,27 +198,6 @@
     }
     
 }
--(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData
-{
-    [view.chart updateData];
-    if (isAnimated)
-    {
-        //if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
-        if ([[view.chart series] count]>0)
-        {
-            //[view.chart resetTransition];
-            [view.chart stopTransition];
-            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
-            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
-            [view.chart flushChanges];
-            
-        }
-    }
-    if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
-        //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
-        [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
-}
-
 -(void)handleRightButtonItem:(id) sender
 {
     if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData: inView:)])

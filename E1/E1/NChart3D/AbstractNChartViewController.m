@@ -62,9 +62,30 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    if(self.dataForNChart.floatingNumber!=nil&&[self.dataForNChart.floatingNumber isKindOfClass:[NSNumber class]])
-//       //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
-//        [self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber animation:YES animationTime:kcTRANSITION_TIME];
+    [self showSeries];
 }
+
+-(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData
+{
+    [view.chart updateData];
+    if (isAnimated)
+    {
+        //if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+        if ([[view.chart series] count]>0)
+        {
+            //[view.chart resetTransition];
+            [view.chart stopTransition];
+            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+            [view.chart flushChanges];
+            
+        }
+    }
+    if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
+        //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+        [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+}
+
+
 
 @end

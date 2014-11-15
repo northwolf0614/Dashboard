@@ -14,13 +14,6 @@
 @end
 
 @implementation DoubleNChartWithLabelViewController
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-//    if(self.dataForNChartPlus.floatingNumber!=nil&&[self.dataForNChartPlus.floatingNumber isKindOfClass:[NSNumber class]])
-//        //[self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber];
-//        [self.chartViewPlus setTextForMiddleLabel:self.dataForNChartPlus.floatingNumber animation:YES animationTime:kcTRANSITION_TIME];
-}
 -(void)removeAllSeries
 {
     [super removeAllSeries];
@@ -30,7 +23,7 @@
    
 }
 
--(void)createSeries
+-(void)showSeries
 
 {
     if (self.isNeedsUpdate)

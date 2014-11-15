@@ -24,5 +24,7 @@
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
 @property(nonatomic,weak)id<ChartSubviewControllerResponse> delegate;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
+-(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData;
+-(void)showSeries;
 
 @end

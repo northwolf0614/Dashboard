@@ -14,7 +14,7 @@
 @property(nonatomic,assign) BOOL isNeedsUpdate;
 -(void) setupSeriesForChartView;
 -(void) setupAxesType;
--(void)createSeries;
--(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData;
+//-(void)createSeries;
+//-(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData;
 -(void)removeAllSeries;
 @end
