@@ -24,11 +24,19 @@
     
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView }]];
     [self.chartView.chart fitToScreen:0.1];
-    [self setupAxesType];
+    //[self setupAxesType];
     self.backGroundColor=kcWidgetBackColor;
     self.contentView.backgroundColor=self.backGroundColor;
     self.isNeedsUpdate=YES;
+    
+   
+    
 }
+
+ 
+
+
+
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];//2

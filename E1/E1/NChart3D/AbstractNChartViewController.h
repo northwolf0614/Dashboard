@@ -17,14 +17,18 @@
 @end
 
 @interface AbstractNChartViewController : DashboardItemViewController
+{
+@private
+    NChartDataModel* _dataForNChart;
+}
 @property (nonatomic, strong) AbstractNChartView* chartView;
-//@property (nonatomic, strong) AbstractNChartView* chartViewPlus;
-//@property(nonatomic,strong)UILabel* label;
-//@property(nonatomic,strong)UILabel* label;
+@property(nonatomic,assign) BOOL isNeedsUpdate;
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
 @property(nonatomic,weak)id<ChartSubviewControllerResponse> delegate;
+
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
 -(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData;
 -(void)showSeries;
+-(void)setupAxesType;
 
 @end

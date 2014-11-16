@@ -14,6 +14,8 @@
 @end
 
 @implementation DoubleNChartWithLabelViewController
+@synthesize dataForNChartPlus;
+
 -(void)removeAllSeries
 {
     [super removeAllSeries];
@@ -104,15 +106,12 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-        //self.isNeedsUpdateForPlus=YES;
-        //[self.titleItem setTitle:self.dataForNChartPlus.chartCaption];
-        //[self setupSeriesForChartView];
-        //[self setupAxesType];
-        //[self createSeries];
+        
+        
     }
-
-
 }
+
+    
 
 -(void) setupSeriesForChartView
 {

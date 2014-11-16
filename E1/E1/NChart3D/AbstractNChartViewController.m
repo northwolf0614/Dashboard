@@ -17,7 +17,7 @@
 @end
 
 @implementation AbstractNChartViewController
-
+//@synthesize dataForNChart;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -36,13 +36,45 @@
     self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
     self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
     self.chartView.chart.sizeAxis.dataSource = (id)self;
-    //self.chartView.chart.timeAxis.dataSource = (id)self;
-    
-    
-    
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+    
+    [self setupAxesType];
+    
+    //[_dataForNChart addObserver:self forKeyPath:@"chartAxisYCaption" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial) context:nil];
+    
 
 }
+-(void)setDataForNChart:(NChartDataModel *)aDataChart
+{
+    if (aDataChart!=_dataForNChart)
+    {
+        _dataForNChart=aDataChart;
+        [_dataForNChart addObserver:self forKeyPath:@"chartAxisXTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
+        [_dataForNChart addObserver:self forKeyPath:@"chartAxisYTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
+        [_dataForNChart addObserver:self forKeyPath:@"chartAxisZTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
+        //[_dataForNChart addObserver:self forKeyPath:@"chartAxisYTicksValues" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial) context:nil];
+    }
+    
+}
+-(NChartDataModel*)getDataForNChart
+{
+    return _dataForNChart;
+}
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (([keyPath isEqualToString:@"chartAxisYTicksValues"]||[keyPath isEqualToString:@"chartAxisXTicksValues"]||[keyPath isEqualToString:@"chartAxisZTicksValues"])&&[object isKindOfClass: [NChartDataModel class]])
+    {
+        
+        //NChartDataModel* = [change objectForKey:NSKeyValueChangeNewKey];
+        
+        self.isNeedsUpdate=YES;
+        [self showSeries];
+    }
+}
+
+-(void) setupAxesType
+{}
+
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;
 {
     if (self=[super init])
@@ -64,6 +96,8 @@
     [super viewDidAppear:animated];
     [self showSeries];
 }
+-(void)showSeries
+{}
 
 -(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData
 {

@@ -37,7 +37,7 @@ typedef enum : NSUInteger {
     ADDITIVE,
     PERCENT,
 } AxisType;
-@interface PrototypeDataModel : NSObject<NSCopying>
+@interface PrototypeDataModel : NSObject<NSCoding>
 @property(nonatomic,copy)   NSString* seriesName;
 @property(nonatomic,strong) NSArray* chartAxisXValues;
 @property(nonatomic,strong) NSArray* chartAxisYValues;
