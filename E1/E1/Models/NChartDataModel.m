@@ -387,16 +387,16 @@
      //setup rawData3
      PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
      rawData7.seriesName=@"Converted";
-     rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-     rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],nil];
+     rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
+     rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],nil];
      rawData7.seriesType=RADAR;
      //rawData7.brushColor=[UIColor orangeColor];
      rawData7.brushColor=kcLikeRed;
      //setup data4
      PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
      rawData8.seriesName=@"Quoted";
-     rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-     rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.1],nil];
+     rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
+     rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.4],nil];
      rawData8.seriesType=RADAR;
      //rawData8.brushColor=[UIColor grayColor];
      rawData8.brushColor=kcLikeBlue;
