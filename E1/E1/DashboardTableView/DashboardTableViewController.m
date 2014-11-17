@@ -57,7 +57,7 @@
     [self setupDefaultDataForDrawing];
     
     
-    [self loadChartData];
+    //[self loadChartData];
     
     
     self.navigationController.delegate=self;

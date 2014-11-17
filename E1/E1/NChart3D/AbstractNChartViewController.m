@@ -66,8 +66,8 @@
     if (([keyPath isEqualToString:@"chartDataForDrawing"])&&[object isKindOfClass: [NChartDataModel class]])
     {
         
-        self.isNeedsUpdate=YES;
-        [self showSeries];
+        //self.isNeedsUpdate=YES;
+        //[self showSeries];
     }
 }
 
