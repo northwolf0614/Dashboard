@@ -21,11 +21,12 @@
 #import "NChartDataModel.h"
 //#import "SubDetailChartViewController.h"
 #import "GeneralNChartWithLabelViewController.h"
-#include "DoubleNChartWithLabelViewController.h"
-#include "DetailChartViewController.h"
-
+#import "DoubleNChartWithLabelViewController.h"
+#import "DetailChartViewController.h"
+#import "ChartDataManager.h"
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
+- (void)loadChartData;
 @end
 
 @implementation DashboardTableViewController
@@ -56,7 +57,7 @@
     [self setupDefaultDataForDrawing];
     
     
-    [self loadData];
+    [self loadChartData];
     
     
     self.navigationController.delegate=self;
@@ -65,7 +66,7 @@
     
 }
 
-- (void)loadData
+- (void)loadChartData
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     [NSThread sleepForTimeInterval:3.0f];//simulate the process of loading data from node
@@ -80,36 +81,65 @@
 }
 -(void)setupDefaultDataForDrawing
 {
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *userd = [userDefault dictionaryRepresentation];
+//    if (![userd.allKeys containsObject:kcDefaultChartName])
+//    {
+//        NSMutableArray* chartNameArray=[NSMutableArray array];
+//        NSArray* chartsData=[NChartDataModel chartDataDefault];
+//        for (NChartDataModel* oneChartData in chartsData)
+//        {
+//            [chartNameArray addObject:oneChartData.chartCaption];
+//            [oneChartData saveDataForKey:oneChartData.chartCaption];//chartCaption
+//            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
+//            
+//        }
+//        [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
+//        [userDefault synchronize];
+//    }
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSDictionary *userd = [userDefault dictionaryRepresentation];
+    ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
     if (![userd.allKeys containsObject:kcDefaultChartName])
     {
-        NSMutableArray* chartNameArray=[NSMutableArray array];
+       
+        
         NSArray* chartsData=[NChartDataModel chartDataDefault];
+        [manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
         for (NChartDataModel* oneChartData in chartsData)
         {
-            [chartNameArray addObject:oneChartData.chartCaption];
-            [oneChartData saveDataForKey:oneChartData.chartCaption];//chartCaption
+            
             [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
             
         }
-        [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
-        [userDefault synchronize];
-    }
-    
-    
-    
+
+    }    
+//    else//there are default data in defualts for display
+//    {
+//        
+//        for (NSString* chartName in [userd objectForKey:kcDefaultChartName])
+//        {
+//            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+//            
+//            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+//        }
+//
+//                
+//        
+//    }
     
     else//there are default data in defualts for display
     {
+        NSArray* chartDataArray=[manager parseFromDefaultFile:[NChartDataModel getStoredDefaultFilePath]];
         
-        for (NSString* chartName in [userd objectForKey:kcDefaultChartName]) {
-            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+        for (NChartDataModel* dataForChart in chartDataArray)
+        {
+            //NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
             
             [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
         }
-
-                
+        
+        
         
     }
     

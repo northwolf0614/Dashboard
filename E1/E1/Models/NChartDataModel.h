@@ -67,8 +67,8 @@ typedef enum : NSUInteger {
 //@property(nonatomic,strong) NSString* floatingNumber;
 @property(nonatomic,strong) NSNumber* floatingNumber;
 
--(void)saveDataForKey:(NSString*)key;
-+(NChartDataModel*)loadDataWithKey:(NSString*)key;
+//-(void)saveDataForKey:(NSString*)key;
+//+(NChartDataModel*)loadDataWithKey:(NSString*)key;
 +(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
 +(NSMutableDictionary*)radarSeriesData;

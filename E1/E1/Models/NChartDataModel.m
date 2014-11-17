@@ -133,48 +133,66 @@
 }
 
 
--(void)saveDataForKey:(NSString*)key
-
-{
-#ifdef UsingFileStoreData
-    NSMutableData   * data = [[NSMutableData alloc] init];
-    // 这个NSKeyedArchiver则是进行编码用的
-    NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    [archiver encodeObject:self forKey:key];
-    [archiver finishEncoding];
-    // 编码完成后的NSData，使用其写文件接口写入文件存起来
-    [data writeToFile:[NChartDataModel getStoredDefaultFilePath] atomically:YES];
-#else
-    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-    [userd setObject:data forKey:key];
-    [userd synchronize];
-    
-    
-#endif
-}
-+(NChartDataModel*)loadDataWithKey:(NSString*)key
-{
-#ifdef UsingFileStoreData
-    NSData * codedData = [[NSData alloc] initWithContentsOfFile:[NChartDataModel getStoredDefaultFilePath]];
-    if (codedData == nil)
-        return nil;
-    
-    // NSKeyedUnarchiver用来解码
-    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-    // 解码后的数据被存在一个WSNSCodingData数据对象里面
-    NChartDataModel* aData = (NChartDataModel*)[unarchiver decodeObjectForKey:key];
-    [unarchiver finishDecoding];
-    return aData;
-#else
-    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
-    NChartDataModel* bData = (NChartDataModel *)[NSKeyedUnarchiver unarchiveObjectWithData:[userd objectForKey:key]];
-    
-    return bData;
-    
-    
-#endif
-}
+//-(void)saveDataForKey:(NSString*)key
+//
+//{
+//#ifdef UsingFileStoreData
+//    NSMutableData   * data = [[NSMutableData alloc] init];
+//    NSString* fileString=[NChartDataModel getStoredDefaultFilePath];
+//    // 这个NSKeyedArchiver则是进行编码用的
+//    NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//    [archiver encodeObject:self forKey:key];
+//    [archiver finishEncoding];
+//    // 编码完成后的NSData，使用其写文件接口写入文件存起来
+//    //[data writeToFile:[NChartDataModel getStoredDefaultFilePath] atomically:YES];
+//    NSFileManager* manager=[NSFileManager defaultManager];
+//    if (![manager fileExistsAtPath:fileString])
+//    {
+//        [manager createFileAtPath:fileString contents:nil attributes:nil];
+//    
+//    }
+//    NSFileHandle* handle=[NSFileHandle fileHandleForUpdatingAtPath:fileString];
+//    [handle seekToEndOfFile];
+//    [handle writeData:data];
+//    [handle closeFile];
+//    
+//    
+//    
+//    
+//    
+//    
+//    
+//#else
+//    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+//    [userd setObject:data forKey:key];
+//    [userd synchronize];
+//    
+//    
+//#endif
+//}
+//+(NChartDataModel*)loadDataWithKey:(NSString*)key
+//{
+//#ifdef UsingFileStoreData
+//    NSData * codedData = [NSData dataWithContentsOfFile:[NChartDataModel getStoredDefaultFilePath]];
+//    if (codedData == nil)
+//        return nil;
+//    
+//    // NSKeyedUnarchiver用来解码
+//    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
+//    // 解码后的数据被存在一个WSNSCodingData数据对象里面
+//    NChartDataModel* aData = (NChartDataModel*)[unarchiver decodeObjectForKey:key];
+//    [unarchiver finishDecoding];
+//    return aData;
+//#else
+//    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
+//    NChartDataModel* bData = (NChartDataModel *)[NSKeyedUnarchiver unarchiveObjectWithData:[userd objectForKey:key]];
+//    
+//    return bData;
+//    
+//    
+//#endif
+//}
 +(NSString*)getStoredDefaultFilePath
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -207,7 +225,7 @@
     PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
     rawData6.seriesName=@"percentage6";
     rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:121],nil];
+    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:100],nil];
     rawData6.seriesType=DOUGHNUT;
     rawData6.brushColor=kcLikeRed;
     
