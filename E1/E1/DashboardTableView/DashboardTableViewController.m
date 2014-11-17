@@ -54,32 +54,30 @@
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     [self setupDefaultDataForDrawing];
+    
+    
+    [self loadData];
+    
+    
     self.navigationController.delegate=self;
     self.pushAnimation= [[PushAnimation alloc] init];
     self.popAnimation= [[PopAnimation alloc] init];
     
 }
-/*
--(NChartDataModel*)configDefaultData
+
+- (void)loadData
 {
-    NChartDataModel* chartData=[[NChartDataModel alloc] init];
-    chartData.chartCaption=kcDefaultChartName;
-    chartData.chartAxisXCaption=@"Years";
-    chartData.chartAxisYCaption=@"Products percentage";
-    chartData.chartType=Dimention2;
-    chartData.chartAxisXTicksValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
-    chartData.chartAxisYTicksValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
-    PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
-    rawData.seriesName=@"percentage";
-    rawData.chartAxisXValues=[NSArray arrayWithObjects:@"2001",@"2002",@"2003",@"2004",nil];
-    rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
-    rawData.seriesType=COLUMN;
-    chartData.chartDataForDrawing= [NSMutableDictionary dictionary];
-    [chartData.chartDataForDrawing setObject:rawData forKey:kcDefaultChartName];
-    return chartData ;
-    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    [NSThread sleepForTimeInterval:3.0f];//simulate the process of loading data from node
+    dispatch_async(dispatch_get_main_queue(), ^{
+            DoubleNChartWithLabelViewController* vc2=(DoubleNChartWithLabelViewController*)[self.dashboardItemViewControllers objectAtIndex:2];
+            vc2.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData] ;//update chart's series data
+            //vc2.dataForNChart=[NChartDataModel radarChart];
+            
+            
+        });
+    });
 }
- */
 -(void)setupDefaultDataForDrawing
 {
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];

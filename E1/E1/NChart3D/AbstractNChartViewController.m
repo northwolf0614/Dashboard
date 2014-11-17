@@ -17,7 +17,10 @@
 @end
 
 @implementation AbstractNChartViewController
-//@synthesize dataForNChart;
+-(void)dealloc
+{
+    [_dataForNChart removeObserver:self forKeyPath:@"chartDataForDrawing"];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,10 +52,8 @@
     if (aDataChart!=_dataForNChart)
     {
         _dataForNChart=aDataChart;
-        [_dataForNChart addObserver:self forKeyPath:@"chartAxisXTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
-        [_dataForNChart addObserver:self forKeyPath:@"chartAxisYTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
-        [_dataForNChart addObserver:self forKeyPath:@"chartAxisZTicksValues" options:(NSKeyValueObservingOptionNew) context:nil];
-        //[_dataForNChart addObserver:self forKeyPath:@"chartAxisYTicksValues" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial) context:nil];
+        [_dataForNChart addObserver:self forKeyPath:@"chartDataForDrawing" options:(NSKeyValueObservingOptionNew) context:nil];
+        
     }
     
 }
@@ -62,10 +63,8 @@
 }
 -(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (([keyPath isEqualToString:@"chartAxisYTicksValues"]||[keyPath isEqualToString:@"chartAxisXTicksValues"]||[keyPath isEqualToString:@"chartAxisZTicksValues"])&&[object isKindOfClass: [NChartDataModel class]])
+    if (([keyPath isEqualToString:@"chartDataForDrawing"])&&[object isKindOfClass: [NChartDataModel class]])
     {
-        
-        //NChartDataModel* = [change objectForKey:NSKeyValueChangeNewKey];
         
         self.isNeedsUpdate=YES;
         [self showSeries];
@@ -104,8 +103,8 @@
     [view.chart updateData];
     if (isAnimated)
     {
-        //if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
-        if ([[view.chart series] count]>0)
+        if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+        //if ([[view.chart series] count]>0)
         {
             //[view.chart resetTransition];
             [view.chart stopTransition];

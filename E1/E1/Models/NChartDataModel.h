@@ -71,7 +71,10 @@ typedef enum : NSUInteger {
 +(NChartDataModel*)loadDataWithKey:(NSString*)key;
 +(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
++(NSMutableDictionary*)radarSeriesData;
++(NChartDataModel*) radarChart;
 -(void)adaptedForFloatingNumber;
+-(void)updateSeries:(NSDictionary*) seriesData;
 
 
 

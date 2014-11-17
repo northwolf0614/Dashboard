@@ -137,6 +137,7 @@
                 NChartRadarSeries* series = [NChartRadarSeries new];
                 series.tag=count;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.brush.opacity=0.8f;
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
                 self.chartView.chart.streamingMode = YES;
@@ -150,6 +151,8 @@
                 //self.chartView.chart.polarSystem.azimuthAxis.labelsVisible=NO;
                 self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
                 //[self updateChartData:self.chartView animated:YES];
+                self.chartView.chart.streamingMode = NO;
+                
                 
                 
                 
@@ -215,6 +218,15 @@
        
     }
     
+//    if (![self.chartView.chart isTransitionPlaying])
+//    {
+//        //[m_delegate chartDelegatePointOfChart:nil selected:nil];
+//        
+//        [self.chartView.chart  stopTransition];
+//        //[m_view.chart playTransition:TRANSITION_TIME reverse:YES];
+//        [self.chartView.chart  playTransition:0.45 reverse:NO];
+//    }
+
     
 }
 
@@ -224,14 +236,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    //[self createSeries];
-
-    
-    
-}
 
 
 
