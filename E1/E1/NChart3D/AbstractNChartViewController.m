@@ -36,9 +36,14 @@
     self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
     
+    
+    self.chartView.chart.cartesianSystem.syAxis.dataSource=(id)self;
+    self.chartView.chart.cartesianSystem.sxAxis.dataSource=(id)self;
+    
     self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
     self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
     self.chartView.chart.sizeAxis.dataSource = (id)self;
+    self.chartView.chart.cartesianSystem.syAxis.dataSource=(id)self;
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
     
     [self setupAxesType];

@@ -253,7 +253,7 @@
     PrototypeDataModel* rawData=[[PrototypeDataModel alloc] init];
     rawData.seriesName=@"Opened";
     rawData.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
-    rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.5],nil];
+    rawData.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.2],nil];
     rawData.seriesType=COLUMN;
     //rawData.brushColor=[UIColor orangeColor];
     rawData.brushColor=kcLikeBlue;
@@ -269,7 +269,7 @@
     PrototypeDataModel* rawData2=[[PrototypeDataModel alloc] init];
     rawData2.seriesName=@"Closed";
     rawData2.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:2],[NSNumber numberWithInt:3],nil];
-    rawData2.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.1],nil];
+    rawData2.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.05],[NSNumber numberWithFloat:0.05],nil];
     rawData2.seriesType=LINE;
     //rawData2.brushColor=[UIColor blueColor];
     rawData2.brushColor=kcLikeRed;
@@ -283,7 +283,7 @@
     [chartData1.chartDataForDrawing setObject:rawData forKey:rawData.seriesName];
     [chartData1.chartDataForDrawing setObject:rawData1 forKey:rawData1.seriesName];
     [chartData1.chartDataForDrawing setObject:rawData2 forKey:rawData2.seriesName];
-    chartData1.axisType=ABSOLUTE;
+    chartData1.axisType=ADDITIVE;
     chartData1.dataForNextView=chartData3;
     chartData1.labelText=@"2014";
     [chartData1 adaptedForFloatingNumber];
@@ -343,7 +343,8 @@
     PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
     rawData7.seriesName=@"Converted";
     rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
-    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],nil];
+//    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.90],[NSNumber numberWithFloat:0.5],nil];
+    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.05],[NSNumber numberWithFloat:0.02],[NSNumber numberWithFloat:0.01],[NSNumber numberWithFloat:0.03],[NSNumber numberWithFloat:0.04],[NSNumber numberWithFloat:0.01],nil];
     rawData7.seriesType=RADAR;
     //rawData7.brushColor=[UIColor orangeColor];
     rawData7.brushColor=kcLikeRed;
@@ -351,7 +352,8 @@
     PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
     rawData8.seriesName=@"Quoted";
     rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
-    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],nil];
+//    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.7],nil];
+    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.05],[NSNumber numberWithFloat:0.03],[NSNumber numberWithFloat:0.02],[NSNumber numberWithFloat:0.01],[NSNumber numberWithFloat:0.03],[NSNumber numberWithFloat:0.01],nil];
     rawData8.seriesType=RADAR;
     //rawData8.brushColor=[UIColor grayColor];
     rawData8.brushColor=kcLikeBlue;
@@ -406,7 +408,7 @@
      PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
      rawData7.seriesName=@"Converted";
      rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
-     rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.4],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.1],nil];
+     rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],nil];
      rawData7.seriesType=RADAR;
      //rawData7.brushColor=[UIColor orangeColor];
      rawData7.brushColor=kcLikeRed;
@@ -414,7 +416,7 @@
      PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
      rawData8.seriesName=@"Quoted";
      rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],[NSNumber numberWithInt:2004],[NSNumber numberWithInt:2005],nil];//in this case, this data seems useless
-     rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.4],nil];
+     rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.7],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.1],[NSNumber numberWithFloat:0.9],nil];
      rawData8.seriesType=RADAR;
      //rawData8.brushColor=[UIColor grayColor];
      rawData8.brushColor=kcLikeBlue;
@@ -423,50 +425,50 @@
      [chartSeries setObject:rawData8 forKey:rawData8.seriesName];
     return chartSeries ;
  }
-+(NChartDataModel*) radarChart
-{
-    NChartDataModel* chartData4=[[NChartDataModel alloc] init];
-    chartData4.chartCaption=@"Personal Quote Conversion";
-    chartData4.chartAxisXCaption=@"product percentage";
-    chartData4.chartAxisYCaption=@"Years";
-    chartData4.chartType=RADAR;
-    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",nil];
-    chartData4.labelText=@"2014";
-    chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
-    
-    //setup rawData3
-    PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
-    rawData7.seriesName=@"Converted";
-    rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.10],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.7],nil];
-    rawData7.seriesType=RADAR;
-    //rawData7.brushColor=[UIColor orangeColor];
-    rawData7.brushColor=kcLikeRed;
-    //setup data4
-    PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
-    rawData8.seriesName=@"Quoted";
-    rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],nil];
-    rawData8.seriesType=RADAR;
-    //rawData8.brushColor=[UIColor grayColor];
-    rawData8.brushColor=kcLikeBlue;
-    //additive
-    [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
-    [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
-    
-    
-    chartData4.axisType=ABSOLUTE;
-    [chartData4 adaptedForFloatingNumber];
-    
-    return chartData4;
-    
-    
-    
-    
-    
-    
-    
-}
+//+(NChartDataModel*) radarChart
+//{
+//    NChartDataModel* chartData4=[[NChartDataModel alloc] init];
+//    chartData4.chartCaption=@"Personal Quote Conversion";
+//    chartData4.chartAxisXCaption=@"product percentage";
+//    chartData4.chartAxisYCaption=@"Years";
+//    chartData4.chartType=RADAR;
+//    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",nil];
+//    chartData4.labelText=@"2014";
+//    chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
+//    
+//    //setup rawData3
+//    PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
+//    rawData7.seriesName=@"Converted";
+//    rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
+//    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.10],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.7],nil];
+//    rawData7.seriesType=RADAR;
+//    //rawData7.brushColor=[UIColor orangeColor];
+//    rawData7.brushColor=kcLikeRed;
+//    //setup data4
+//    PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
+//    rawData8.seriesName=@"Quoted";
+//    rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
+//    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],nil];
+//    rawData8.seriesType=RADAR;
+//    //rawData8.brushColor=[UIColor grayColor];
+//    rawData8.brushColor=kcLikeBlue;
+//    //additive
+//    [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
+//    [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
+//    
+//    
+//    chartData4.axisType=ABSOLUTE;
+//    [chartData4 adaptedForFloatingNumber];
+//    
+//    return chartData4;
+//    
+//    
+//    
+//    
+//    
+//    
+//    
+//}
 
  
 

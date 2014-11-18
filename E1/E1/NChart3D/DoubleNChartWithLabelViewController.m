@@ -44,7 +44,8 @@
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
         [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
-        [self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
+        [self.percentageView setPercent:1.0f animated:YES];
+        //[self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
         //specially fix the data for radar chart
 
         if (radarSeriesData!=nil) {
@@ -82,7 +83,7 @@
         self.chartViewPlus.chart.shouldAntialias = YES;
         //self.chartView.chart.drawIn3D = YES;
         self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.contentView addSubview:self.chartViewPlus];
+        //[self.contentView addSubview:self.chartViewPlus];
         self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
         self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
         self.chartView.chart.cartesianSystem.zAxis.dataSource = (id)self;
@@ -109,6 +110,11 @@
         
         
         self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+        
+        self.percentageView=[[GradientPercentView alloc] init];
+        self.percentageView.translatesAutoresizingMaskIntoConstraints=NO;
+        self.percentageView.backgroundColor=[UIColor clearColor];
+        [self.contentView addSubview:self.percentageView];
 
         NSArray* constraints=[self.contentView constraints];
         if ([constraints count]>0)
@@ -117,11 +123,11 @@
         }
 
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartViewPlus]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartViewPlus(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
         
         
     }
@@ -457,6 +463,46 @@
     // Max size for markers in pixels.
     return kcMaximumMarkSize;
 }
+
+- (NSNumber *)valueAxisDataSourceMinForValueAxis:(NChartValueAxis *)axis
+{
+    switch (axis.kind) {
+        case NChartValueAxisRadius:
+            return [NSNumber numberWithFloat:0.0f];
+            break;
+        case NChartValueAxisSY:
+            return [NSNumber numberWithFloat:0.0f];
+            break;
+        case NChartValueAxisY:
+            return [NSNumber numberWithFloat:0.0f];
+            break;
+
+        default:
+            return nil;
+            break;
+    }
+}
+- (NSNumber *)valueAxisDataSourceMaxForValueAxis:(NChartValueAxis *)axis
+{
+    switch (axis.kind)
+    {
+        case NChartValueAxisRadius:
+            return [NSNumber numberWithFloat:1.0f];
+            break;
+            
+        case NChartValueAxisSY:
+            return [NSNumber numberWithFloat:0.5f];
+            break;
+        case NChartValueAxisY:
+            return [NSNumber numberWithFloat:1.0f];
+            break;
+            
+        default:
+            return nil;
+            break;
+    }
+}
+
 
 
 @end

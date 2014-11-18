@@ -86,6 +86,7 @@
                 series.tag=count;
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.dataSource = (id)self;
+                series.hostsOnSY = YES;
                 [self.chartView.chart addSeries:series];
                 
                 self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
@@ -97,6 +98,7 @@
                 self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+                self.chartView.chart.cartesianSystem.syAxis.visible = NO;
                 //[self updateChartData:self.chartView animated:YES];
 
             }
@@ -130,10 +132,12 @@
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
                 NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
+                //settings.centerCaption=@"center";
+                
                 settings.holeRatio = 0.8f;
                 [self.chartView.chart addSeriesSettings:settings];
-                //self.chartView.chart.streamingMode = NO;
-                //self.chartView.chart.timeAxis.visible = NO;
+                self.chartView.chart.streamingMode = NO;
+                self.chartView.chart.timeAxis.visible = NO;
                 //[self updateChartData:self.chartView animated:YES];
             }
                 break;
