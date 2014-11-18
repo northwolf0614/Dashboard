@@ -83,7 +83,7 @@
         if ([number floatValue]>=1)
             self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[number floatValue]] ;
         if ([number floatValue]>0&&[number floatValue]<1)
-            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([number floatValue]*10)];
+            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([number floatValue]*100)];
 
     }
     else
@@ -101,12 +101,12 @@
     float val=[self.changingValue floatValue];
     val+=[self.valuePerStep floatValue];
     self.changingValue= [NSNumber numberWithFloat:val];
-    if ([self.changingValue floatValue]<[self.FloatingNumber floatValue])
+    if ([self.changingValue floatValue]<=[self.FloatingNumber floatValue])
     {
         if ([self.changingValue floatValue]>=1)
             self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[self.changingValue floatValue]] ;
         if ([self.changingValue floatValue]>0&&[self.changingValue floatValue]<1)
-            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*10)];
+            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*100)];
     }
     else
          [self.timer setFireDate:[NSDate distantFuture]];
