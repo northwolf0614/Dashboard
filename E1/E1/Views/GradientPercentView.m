@@ -113,6 +113,7 @@
     [self.gradientLayer1 setLocations:@[@0.5,@0.9,@1 ]];
     [self.gradientLayer1 setStartPoint:CGPointMake(0.5, 1)];
     [self.gradientLayer1 setEndPoint:CGPointMake(0.5, 0)];
+    
     self.gradientLayer2.frame = CGRectMake((frame.origin.x+frame.size.width/2), frame.origin.y, frame.size.width/2, frame.size.height);
     [self.gradientLayer2 setLocations:@[@0.1,@0.5,@1]];
     [self.gradientLayer2 setColors:[NSArray arrayWithObjects:(id)[[UIColor yellowColor] CGColor],(id)[[UIColor blueColor] CGColor], nil]];
