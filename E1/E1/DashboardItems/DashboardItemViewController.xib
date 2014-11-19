@@ -19,7 +19,10 @@
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4f-RG-CEo">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                    <color key="barTintColor" red="0.37162928427419356" green="0.35795740927419356" blue="0.3352129536290322" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="barTintColor" red="0.090196078431372548" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" red="0.33725490196078434" green="0.32549019607843138" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </textAttributes>
                     <items>
                         <navigationItem title="Title" id="EZz-Jc-WV9">
                             <barButtonItem key="rightBarButtonItem" systemItem="search" id="BZm-hR-6lV"/>

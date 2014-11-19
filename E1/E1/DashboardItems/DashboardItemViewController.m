@@ -7,6 +7,7 @@
 //
 
 #import "DashboardItemViewController.h"
+#import "Definations.h"
 
 @interface DashboardItemViewController ()
 

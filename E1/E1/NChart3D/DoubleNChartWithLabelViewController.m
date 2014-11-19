@@ -44,7 +44,7 @@
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
         [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
-        [self.percentageView setPercent:1.0f animated:YES];
+        [self updateChartData:self.percentageView animated:YES dataModel:self.dataForNChartPlus];
         //[self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
         //specially fix the data for radar chart
 
@@ -110,8 +110,9 @@
         
         
         self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+        float percent=[self.dataForNChartPlus.percentage floatValue];
         
-        self.percentageView=[[GradientPercentView alloc] init];
+        self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:percent color1:kcLikeOrange color2:kcLikeRed];
         self.percentageView.translatesAutoresizingMaskIntoConstraints=NO;
         self.percentageView.backgroundColor=[UIColor clearColor];
         [self.contentView addSubview:self.percentageView];
@@ -128,6 +129,9 @@
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
+        
+        
+        
 //        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartViewPlus]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
 //        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
 //        

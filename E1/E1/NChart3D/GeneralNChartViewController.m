@@ -162,6 +162,11 @@
                 self.chartView.chart.polarSystem.azimuthAxis.textColor=kcCharColor;
                 //[self updateChartData:self.chartView animated:YES];
                 self.chartView.chart.streamingMode = NO;
+                NChartRadarSeriesSettings *settings = [NChartRadarSeriesSettings seriesSettings];
+                settings.shouldSmoothAxesGrid = NO;
+                [self.chartView.chart addSeriesSettings:settings];
+                //self.chartView.chart.polarSystem.radiusAxis.color=[UIColor whiteColor];
+
                 
                 
                 

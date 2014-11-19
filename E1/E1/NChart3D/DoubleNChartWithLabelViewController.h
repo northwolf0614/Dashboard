@@ -7,11 +7,11 @@
 //
 
 #import "GeneralNChartWithLabelViewController.h"
-#import "GradientPercentView.h"
+#import "ProgressBar.h"
 
 @interface DoubleNChartWithLabelViewController : GeneralNChartWithLabelViewController<NChartSeriesDataSource,NChartValueAxisDataSource>
 @property(nonatomic,strong) AbstractNChartView* chartViewPlus;
-@property(nonatomic,strong) GradientPercentView* percentageView;
+@property(nonatomic,strong) ProgressBar* percentageView;
 @property(nonatomic,strong) NChartDataModel* dataForNChartPlus;
 //@property(nonatomic,assign) BOOL isNeedsUpdateForPlus;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData delegateHolder:(id<ChartSubviewControllerResponse>) delegateImplementer;

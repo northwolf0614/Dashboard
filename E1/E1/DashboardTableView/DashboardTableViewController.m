@@ -201,7 +201,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    return 400;
+    return 360;
 }
 
 #pragma ChartSubviewControllerResponse
