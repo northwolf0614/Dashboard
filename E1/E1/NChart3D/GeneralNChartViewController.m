@@ -165,7 +165,8 @@
                 NChartRadarSeriesSettings *settings = [NChartRadarSeriesSettings seriesSettings];
                 settings.shouldSmoothAxesGrid = NO;
                 [self.chartView.chart addSeriesSettings:settings];
-                //self.chartView.chart.polarSystem.radiusAxis.color=[UIColor whiteColor];
+                self.chartView.chart.polarSystem.grid.visible=NO;
+                //self.chartView.chart.polarSystem.b=NO;
 
                 
                 
