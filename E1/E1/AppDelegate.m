@@ -9,23 +9,55 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "DashboardTableViewController.h"
+#import "PageTableViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
 //@property(nonatomic,strong) ViewController* rootViewController;
 @property (nonatomic, strong) DashboardTableViewController* rootViewController;
+@property(nonatomic,strong) UISplitViewController* splitViewController;
 @end
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    //self.rootViewController= [[ViewController alloc] init ];
-    self.rootViewController = [[DashboardTableViewController alloc] init];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
-    self.window.rootViewController = self.navigationController;
-    [self.window makeKeyAndVisible];
-    return YES;
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    //self.rootViewController= [[ViewController alloc] init ];
+//    self.rootViewController = [[DashboardTableViewController alloc] init];
+//    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
+//    self.window.rootViewController = self.navigationController;
+//    [self.window makeKeyAndVisible];
+//    return YES;
+    
+    
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
+     // Override point for customization after application launch.
+     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+     {
+         DashboardTableViewController* masterViewController = [[DashboardTableViewController alloc] init] ;
+         self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
+         self.window.rootViewController = self.navigationController;
+     }
+     else
+     {
+         PageTableViewController* masterViewController = [[PageTableViewController alloc] init] ;
+         UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
+         
+         DashboardTableViewController *detailViewController = [[DashboardTableViewController alloc] init] ;
+         UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+            
+            masterViewController.detailViewController = detailViewController;
+         
+         self.splitViewController = [[UISplitViewController alloc] init] ;
+         self.splitViewController.delegate = detailViewController;
+         self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
+         
+         self.window.rootViewController = self.splitViewController;
+     }
+     [self.window makeKeyAndVisible];
+     return YES;
+
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication*)application
