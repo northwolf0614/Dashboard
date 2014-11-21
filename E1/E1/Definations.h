@@ -60,9 +60,11 @@
 #define kcWidgetBackColor RGBA(23.0,21.0,26.0,1)
 #define kcLikeGray RGBA(47.0,45.0,55.0,1)
 #define kcCharColor RGBA(86.0,83.0,102.0,1)
-
+#define kcMasterTitle @"Page Navigation"
 #define kcTRANSITION_TIME 1
 #define kcControllerTransitionTime 0.45
+#define kcPagesArrayName @"QBEPagesArray"
+#define kcMasterWidth 256
 
 #define FontWithSize(s) /*[UIFont fontWithName:@"Helvetica" size:s]*/ [UIFont systemFontOfSize:s]
 

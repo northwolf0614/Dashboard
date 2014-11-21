@@ -499,7 +499,7 @@
             break;
             
         case NChartValueAxisSY:
-            return [NSNumber numberWithFloat:0.5f];
+            return [NSNumber numberWithFloat:1.0f];
             break;
         case NChartValueAxisY:
             return [NSNumber numberWithFloat:1.0f];

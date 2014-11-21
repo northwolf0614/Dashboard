@@ -26,8 +26,8 @@
                             <constraint firstAttribute="width" constant="350" id="Lls-xN-ysa"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-1F-MRd" userLabel="SpaceView">
-                        <rect key="frame" x="373" y="8" width="14" height="383"/>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-1F-MRd" userLabel="SpaceView">
+                        <rect key="frame" x="372.5" y="8" width="15" height="383"/>
                         <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-Kf-9cp" userLabel="RightView">

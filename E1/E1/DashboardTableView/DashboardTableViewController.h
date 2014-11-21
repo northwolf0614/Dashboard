@@ -18,9 +18,13 @@
 @interface DashboardTableViewController : UITableViewController<ChartSubviewControllerResponse,UINavigationControllerDelegate,UISplitViewControllerDelegate>
 @property(nonatomic,strong) NSMutableArray* chartNames;
 @property(nonatomic,strong) UIView* transitioningView;
+@property (copy, nonatomic) NSString* detailItem;
 
 @property (strong, nonatomic) PushAnimation *pushAnimation;
 @property (strong, nonatomic) PopAnimation *popAnimation;
 //@property (strong, nonatomic) UIPercentDrivenInteractiveTransition *interactionController;
+-(void)setupDefaultDataForDrawing;
+
+
 
 @end

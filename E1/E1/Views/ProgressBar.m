@@ -9,7 +9,7 @@
 @property(nonatomic,strong) CAShapeLayer* progressLayer;
 @property(nonatomic,strong) CAShapeLayer* progressLayerPlus;
 @property(nonatomic,strong) CALayer* animationLayer;
-@property(nonatomic,strong) CAShapeLayer* backgroundLayer;
+//@property(nonatomic,strong) CAShapeLayer* backgroundLayer;
 @property(nonatomic,strong) CABasicAnimation* animation;
 @property(nonatomic,strong) CABasicAnimation* animation1;
 @property(nonatomic,strong) UIColor* color1;
@@ -54,11 +54,11 @@
     [circlePath2 addArcWithCenter:CGPointMake(CGRectGetMidX(self.animationLayer.bounds), CGRectGetMidY(self.animationLayer.bounds)) radius: radius startAngle:endPoint  endAngle:1.5*M_PI clockwise:YES];
 
     //setup the background layer
-    self.backgroundLayer.frame=self.animationLayer.bounds;
-    self.backgroundLayer.path = circlePath.CGPath;
-    self.backgroundLayer.strokeColor = [[UIColor lightGrayColor] CGColor];
-    self.backgroundLayer.fillColor = [[UIColor clearColor] CGColor];
-    self.backgroundLayer.lineWidth = kcTrack_LineE_Width;
+//    self.backgroundLayer.frame=self.animationLayer.bounds;
+//    self.backgroundLayer.path = circlePath.CGPath;
+//    self.backgroundLayer.strokeColor = [[UIColor lightGrayColor] CGColor];
+//    self.backgroundLayer.fillColor = [[UIColor clearColor] CGColor];
+//    self.backgroundLayer.lineWidth = kcTrack_LineE_Width;
     //setup the progress layer
     self.progressLayer.frame=self.animationLayer.bounds;
     self.progressLayer.strokeColor = [self.color1 CGColor];
@@ -100,10 +100,10 @@
         self.animationLayer= [CALayer layer];
         [self.layer addSublayer:self.animationLayer];
         
-        self.backgroundLayer = [CAShapeLayer layer];
+        //self.backgroundLayer = [CAShapeLayer layer];
         self.progressLayer = [CAShapeLayer layer];
         self.progressLayerPlus = [CAShapeLayer layer];
-        [self.animationLayer addSublayer:self.backgroundLayer];
+        //[self.animationLayer addSublayer:self.backgroundLayer];
         [self.animationLayer addSublayer:self.progressLayer];
         [self.animationLayer addSublayer:self.progressLayerPlus];
         self.animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd

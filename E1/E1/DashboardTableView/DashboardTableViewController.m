@@ -26,6 +26,8 @@
 #import "ChartDataManager.h"
 @interface DashboardTableViewController ()
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
+@property (retain, nonatomic) UIPopoverController *masterPopoverController;
+
 - (void)loadChartData;
 @end
 
@@ -54,7 +56,7 @@
     self.view.backgroundColor=kcWholeBackColor;
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
-    [self setupDefaultDataForDrawing];
+    //[self setupDefaultDataForDrawing];
     
     
     //[self loadChartData];
@@ -64,6 +66,23 @@
     self.pushAnimation= [[PushAnimation alloc] init];
     self.popAnimation= [[PopAnimation alloc] init];
     
+}
+- (void)setDetailItem:(id)newDetailItem
+{
+    if (_detailItem != newDetailItem)
+    {
+        _detailItem=nil;
+        _detailItem = [newDetailItem copy];
+        self.navigationItem.title=_detailItem;
+        [self setupDefaultDataForDrawing];
+        [self.tableView reloadData];
+    }
+    
+    
+    if (self.masterPopoverController != nil)
+    {
+        [self.masterPopoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)loadChartData
@@ -97,51 +116,55 @@
 //        [userDefault setObject:chartNameArray forKey:kcDefaultChartName];
 //        [userDefault synchronize];
 //    }
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userd = [userDefault dictionaryRepresentation];
-    ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-    if (![userd.allKeys containsObject:kcDefaultChartName])
+    if (self.detailItem!=nil&&[self.detailItem isKindOfClass:[NSString class]])
     {
-       
-        
-        NSArray* chartsData=[NChartDataModel chartDataDefault];
-        [manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
-        for (NChartDataModel* oneChartData in chartsData)
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSDictionary *userd = [userDefault dictionaryRepresentation];
+        ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
+        if (![userd.allKeys containsObject:self.detailItem])
         {
+           
             
-            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
-            
-        }
+            NSArray* chartsData=[NChartDataModel chartDataDefault];
+            [manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
+            for (NChartDataModel* oneChartData in chartsData)
+            {
+                
+                [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
+                
+            }
 
-    }    
-//    else//there are default data in defualts for display
-//    {
-//        
-//        for (NSString* chartName in [userd objectForKey:kcDefaultChartName])
-//        {
-//            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
-//            
-//            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
-//        }
-//
-//                
-//        
-//    }
-    
-    else//there are default data in defualts for display
-    {
-        NSArray* chartDataArray=[manager parseFromDefaultFile:[NChartDataModel getStoredDefaultFilePath]];
+        }    
+    //    else//there are default data in defualts for display
+    //    {
+    //        
+    //        for (NSString* chartName in [userd objectForKey:kcDefaultChartName])
+    //        {
+    //            NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+    //            
+    //            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+    //        }
+    //
+    //                
+    //        
+    //    }
         
-        for (NChartDataModel* dataForChart in chartDataArray)
+        else//there are default data in defualts for display
         {
-            //NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+            NSArray* chartDataArray=[manager parseFromDefaultFile:[NChartDataModel getStoredDefaultFilePath]];
             
-            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+            for (NChartDataModel* dataForChart in chartDataArray)
+            {
+                //NChartDataModel* dataForChart=[NChartDataModel loadDataWithKey:chartName];
+                
+                [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:self]];
+            }
+            
+            
+            
         }
-        
-        
-        
     }
+    //[self.view layoutSubviews];
     
 }
 - (void)handleRightButtonItem:(id)sender
@@ -241,4 +264,26 @@
     //return self.interactionController;
     return nil;
 }
+
+#pragma mark - <UISplitViewControllerDelegate>
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+    barButtonItem.title = NSLocalizedString(@"Pages", @"Pages");
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    //popoverController.contentViewController is qual to master navigation controller
+    if ([popoverController.contentViewController       isKindOfClass:[UINavigationController
+                            class]])
+    {
+        self.masterPopoverController = popoverController;
+    }
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    // Called when the view is shown again in the split view, invalidating the button and popover controller.
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+    self.masterPopoverController = nil;
+}
+
 @end

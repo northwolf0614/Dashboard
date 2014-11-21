@@ -38,6 +38,7 @@
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
 		E7711AF81A0790280096650B /* NChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7711AF71A0790280096650B /* NChartDataModel.m */; };
 		E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E772CDD41A1D71560034E553 /* PageTableViewController.m */; };
+		E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E772CDD71A1D7D000034E553 /* SplitViewController.m */; };
 		E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
@@ -109,6 +110,8 @@
 		E7711AF71A0790280096650B /* NChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NChartDataModel.m; sourceTree = "<group>"; };
 		E772CDD31A1D71560034E553 /* PageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableViewController.h; sourceTree = "<group>"; };
 		E772CDD41A1D71560034E553 /* PageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableViewController.m; sourceTree = "<group>"; };
+		E772CDD61A1D7D000034E553 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		E772CDD71A1D7D000034E553 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		E7732FC51A04B8D3002164CB /* GeneralNChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartViewController.h; sourceTree = "<group>"; };
 		E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartViewController.m; sourceTree = "<group>"; };
 		E7760E8F19F711E500AFFC4B /* CATransform3DPerspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CATransform3DPerspect.h; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 			children = (
 				E772CDD31A1D71560034E553 /* PageTableViewController.h */,
 				E772CDD41A1D71560034E553 /* PageTableViewController.m */,
+				E772CDD61A1D7D000034E553 /* SplitViewController.h */,
+				E772CDD71A1D7D000034E553 /* SplitViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
+				E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,
 				09B0B26B19F5D99A008DCE56 /* main.m in Sources */,
 				E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */,

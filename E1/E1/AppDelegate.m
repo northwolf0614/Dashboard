@@ -10,12 +10,13 @@
 #import "ViewController.h"
 #import "DashboardTableViewController.h"
 #import "PageTableViewController.h"
+#import "SplitViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
 //@property(nonatomic,strong) ViewController* rootViewController;
 @property (nonatomic, strong) DashboardTableViewController* rootViewController;
-@property(nonatomic,strong) UISplitViewController* splitViewController;
+@property(nonatomic,strong) SplitViewController* splitViewController;
 @end
 
 @implementation AppDelegate
@@ -44,11 +45,13 @@
          UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
          
          DashboardTableViewController *detailViewController = [[DashboardTableViewController alloc] init] ;
-         UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-            
-            masterViewController.detailViewController = detailViewController;
+         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+          UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
          
-         self.splitViewController = [[UISplitViewController alloc] init] ;
+         
+        masterViewController.detailViewController = detailViewController;
+         
+         self.splitViewController = [[SplitViewController alloc] init] ;
          self.splitViewController.delegate = detailViewController;
          self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
          
