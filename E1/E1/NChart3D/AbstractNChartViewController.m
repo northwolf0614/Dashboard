@@ -45,7 +45,8 @@
     self.chartView.chart.sizeAxis.dataSource = (id)self;
     self.chartView.chart.cartesianSystem.syAxis.dataSource=(id)self;
     self.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
-    
+    self.chartView.chart.cartesianSystem.xAxis.minTickSpacing = 2.0f;
+    self.chartView.chart.cartesianSystem.xAxis.font=[UIFont systemFontOfSize:12];
     [self setupAxesType];
     
     //[_dataForNChart addObserver:self forKeyPath:@"chartAxisYCaption" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial) context:nil];
@@ -105,11 +106,88 @@
 
 -(void)updateChartData:(AbstractNChartView*)view animated:(BOOL) isAnimated dataModel:(NChartDataModel*)chartData
 {
+////    //selection 1
+//    NChartLineSeries* lineSeries=nil;
+//    NSArray* otherSeries=nil;
+//    for (NChartSeries* s in view.chart.series)
+//    {
+//        if ([s isKindOfClass:[NChartLineSeries class]])
+//        {
+//            lineSeries=(NChartLineSeries*)s;
+//            break;
+//        }
+//        
+//        
+//    }
+//    [view.chart removeSeries:lineSeries];
+////
+////    /////////////////chart show
+////    
+////    //option 1
+////    [view.chart updateData];
+////    if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+////        //if ([[view.chart series] count]>0)
+////    {
+////        //[view.chart resetTransition];
+////        [view.chart stopTransition];
+////        [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+////        //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+////        [view.chart flushChanges];
+////        
+////    }
+//    //option 1
+//    //option 2
+//    NSArray* array= [view.chart.series copy];
+//    [view.chart removeAllSeries];
+//    for (NChartSeries* s in array)
+//    {
+//        while ([view.chart isTransitionPlaying]) ;
+//        [view.chart addSeries:s];
+//        [view.chart updateData];
+//        if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+//
+//        {
+//            //[view.chart resetTransition];
+//            [view.chart stopTransition];
+//            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+//            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+//            [view.chart flushChanges];
+//            
+//        }
+//
+//    }
+//    //option 2
+//    /////////////////chart show
+//    if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
+//        //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
+//        [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+//    
+//    if (lineSeries!=nil)
+//    {
+//        while ([view.chart isTransitionPlaying]) ;
+//        [view.chart addSeries:lineSeries];
+//        [view.chart updateData];
+//        if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+//            //if ([[view.chart series] count]>0)
+//        {
+//            //[view.chart resetTransition];
+//            [view.chart stopTransition];
+//            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+//            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+//            [view.chart flushChanges];
+//            
+//        }
+//        
+//    }
+//    //selection 1
+    
+    //selection 2
+    
     [view.chart updateData];
     if (isAnimated)
     {
         if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
-        //if ([[view.chart series] count]>0)
+            //if ([[view.chart series] count]>0)
         {
             //[view.chart resetTransition];
             [view.chart stopTransition];
@@ -120,9 +198,15 @@
         }
     }
     if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
-        //[self.chartView setTextForMiddleLabel:self.dataForNChart.floatingNumber];
         [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+    
+        //selcetion 2
+
+
+    
+    
 }
+
 
 
 
