@@ -27,12 +27,9 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"QBEPagesNames"];
     [self setupPages];
     
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [self tableView:self.tableView didSelectRowAtIndexPath:ip];
 }
 -(void)handleRightButtonItem:(id)sender
 {}
@@ -120,7 +117,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString* detailItem= [self.pagesNameArray objectAtIndex:indexPath.row];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
@@ -134,8 +131,7 @@
         if (self.detailViewController.detailItem!=detailItem)
         {
             self.detailViewController.detailItem = detailItem;
-            //[self.detailViewController.tableView updateData];
-            //[self.detailViewController setupDefaultDataForDrawing];
+
         }
         
     }

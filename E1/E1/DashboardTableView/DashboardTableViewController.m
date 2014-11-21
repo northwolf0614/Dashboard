@@ -56,7 +56,7 @@
     self.view.backgroundColor=kcWholeBackColor;
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
-    //[self setupDefaultDataForDrawing];
+    [self setupDefaultDataForDrawing];
     
     
     //[self loadChartData];
@@ -272,7 +272,7 @@
     barButtonItem.title = NSLocalizedString(@"Pages", @"Pages");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     //popoverController.contentViewController is qual to master navigation controller
-    if ([popoverController.contentViewController       isKindOfClass:[UINavigationController
+    if ([popoverController.contentViewController isKindOfClass:[UINavigationController
                             class]])
     {
         self.masterPopoverController = popoverController;
