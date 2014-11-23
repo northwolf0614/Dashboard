@@ -128,7 +128,7 @@
     }
     else
     {
-        if (self.detailViewController.detailItem!=detailItem)
+        //if (self.detailViewController.detailItem!=detailItem)
         {
             self.detailViewController.detailItem = detailItem;
 
