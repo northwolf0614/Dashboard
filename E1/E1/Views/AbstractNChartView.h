@@ -9,7 +9,7 @@
 #import <NChart3D/NChart3D.h>
 
 @interface AbstractNChartView : NChartView
-
+@property(nonatomic,strong) UILabel* middleLabel;
 //-(void)enableRightTopLabel;
 -(void)enableMiddleLabel;
 

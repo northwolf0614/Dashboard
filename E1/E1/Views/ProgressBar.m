@@ -17,7 +17,7 @@
 @property(nonatomic,assign) CGFloat finalPercentage;
 
 
-@property(nonatomic,strong) UILabel* middleLabel;
+//@property(nonatomic,strong) UILabel* middleLabel;
 @property(nonatomic,strong) NSNumber* FloatingNumber;
 @property(nonatomic,strong) NSNumber* valuePerStep;
 @property(nonatomic,strong) NSTimer* timer;
@@ -112,17 +112,17 @@
         self.color2=color2;
         self.finalPercentage=percentage;
         
-        self.middleLabel=[[UILabel alloc] init];
-        self.middleLabel.backgroundColor=[UIColor clearColor];
-        self.middleLabel.hidden=YES;
-        self.middleLabel.textColor=kcLikeRed;
-        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
-        self.middleLabel.adjustsFontSizeToFitWidth = YES;
-        self.middleLabel.userInteractionEnabled = NO;
-        self.middleLabel.numberOfLines = 1;
-        self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-        self.middleLabel.hidden=YES;
-        [self addSubview:self.middleLabel];
+//        self.middleLabel=[[UILabel alloc] init];
+//        self.middleLabel.backgroundColor=[UIColor clearColor];
+//        self.middleLabel.hidden=YES;
+//        self.middleLabel.textColor=kcLikeRed;
+//        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
+//        self.middleLabel.adjustsFontSizeToFitWidth = YES;
+//        self.middleLabel.userInteractionEnabled = NO;
+//        self.middleLabel.numberOfLines = 1;
+//        self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+//        self.middleLabel.hidden=YES;
+//        [self addSubview:self.middleLabel];
         self.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
 
@@ -166,14 +166,14 @@
 
 
 
--(void)enableMiddleLabel
-{
-    self.middleLabel.hidden=NO;
-}
--(void)disableMiddleLabel
-{
-    self.middleLabel.hidden=YES;
-}
+//-(void)enableMiddleLabel
+//{
+//    self.middleLabel.hidden=NO;
+//}
+//-(void)disableMiddleLabel
+//{
+//    self.middleLabel.hidden=YES;
+//}
 
 -(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration
 {
@@ -228,4 +228,5 @@
     NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animation"] UTF8String]);
     
 }
+
 @end
