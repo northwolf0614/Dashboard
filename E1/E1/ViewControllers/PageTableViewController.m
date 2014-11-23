@@ -27,6 +27,9 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"QBEPagesNames"];
     [self setupPages];
     
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor=[UIColor darkGrayColor];
+    
     NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
     [self tableView:self.tableView didSelectRowAtIndexPath:ip];
