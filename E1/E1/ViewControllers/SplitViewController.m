@@ -31,10 +31,11 @@
     
     UIViewController *masterViewController = [self.viewControllers objectAtIndex:0];
     UIViewController *detailViewController = [self.viewControllers objectAtIndex:1];
-    CGRect detailRect= detailViewController.view.frame;
-    CGRect masterRect=masterViewController.view.frame;
+    //CGRect detailRect= detailViewController.view.frame;
+    //CGRect masterRect=masterViewController.view.frame;
     
-    if (detailViewController.view.frame.origin.x > 0.0) {
+    if (detailViewController.view.frame.origin.x > 0.0)
+    {
         // Adjust the width of the master view
         CGRect masterViewFrame = masterViewController.view.frame;
         CGFloat deltaX = masterViewFrame.size.width - kMasterViewWidth;
