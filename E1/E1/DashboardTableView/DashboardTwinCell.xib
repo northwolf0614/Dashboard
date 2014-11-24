@@ -15,42 +15,42 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTy-k4-2zJ" userLabel="SpaceView">
-                        <rect key="frame" x="8" y="8" width="15" height="383"/>
+                        <rect key="frame" x="8" y="8" width="22.5" height="383"/>
                         <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrY-pd-yjb" userLabel="LeftView">
-                        <rect key="frame" x="23" y="25" width="350" height="350"/>
+                        <rect key="frame" x="30.5" y="25" width="340" height="350"/>
                         <color key="backgroundColor" red="0.090196078431372548" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="350" id="DoQ-yl-JC9"/>
-                            <constraint firstAttribute="width" constant="350" id="Lls-xN-ysa"/>
+                            <constraint firstAttribute="width" constant="340" id="Lls-xN-ysa"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-1F-MRd" userLabel="SpaceView">
-                        <rect key="frame" x="372.5" y="8" width="15" height="383"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSF-1F-MRd" userLabel="SpaceView">
+                        <rect key="frame" x="369.5" y="8" width="21" height="383"/>
                         <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gr-Kf-9cp" userLabel="RightView">
-                        <rect key="frame" x="387" y="25" width="350" height="350"/>
+                        <rect key="frame" x="389.5" y="25" width="340" height="350"/>
                         <color key="backgroundColor" red="0.090196078431372548" green="0.082352941176470587" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="350" id="KDc-qJ-ZWk"/>
-                            <constraint firstAttribute="width" constant="350" id="hd1-2e-nvH"/>
+                            <constraint firstAttribute="width" constant="340" id="hd1-2e-nvH"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNg-0w-JJR" userLabel="SpaceView">
-                        <rect key="frame" x="737" y="8" width="15" height="383"/>
+                        <rect key="frame" x="729.5" y="8" width="22.5" height="383"/>
                         <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.12549019607843137" green="0.12549019607843137" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="9gr-Kf-9cp" firstAttribute="leading" secondItem="PSF-1F-MRd" secondAttribute="trailing" id="0fo-LA-fFQ"/>
+                    <constraint firstItem="9gr-Kf-9cp" firstAttribute="leading" secondItem="PSF-1F-MRd" secondAttribute="trailing" constant="-1" id="0fo-LA-fFQ"/>
                     <constraint firstItem="VTy-k4-2zJ" firstAttribute="top" secondItem="Pvh-Tr-0eC" secondAttribute="topMargin" id="1gE-uC-tz4"/>
                     <constraint firstItem="PSF-1F-MRd" firstAttribute="top" secondItem="Pvh-Tr-0eC" secondAttribute="topMargin" id="2A1-qG-0TF"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hNg-0w-JJR" secondAttribute="trailing" id="2LM-5p-SYR"/>
                     <constraint firstItem="hNg-0w-JJR" firstAttribute="leading" secondItem="9gr-Kf-9cp" secondAttribute="trailing" id="4N2-iH-616"/>
-                    <constraint firstItem="PSF-1F-MRd" firstAttribute="leading" secondItem="HrY-pd-yjb" secondAttribute="trailing" id="5pa-zp-WVO"/>
+                    <constraint firstItem="PSF-1F-MRd" firstAttribute="leading" secondItem="HrY-pd-yjb" secondAttribute="trailing" constant="-1" id="5pa-zp-WVO"/>
                     <constraint firstItem="VTy-k4-2zJ" firstAttribute="width" secondItem="PSF-1F-MRd" secondAttribute="width" constant="1" id="NJe-tt-Cm3"/>
                     <constraint firstItem="hNg-0w-JJR" firstAttribute="top" secondItem="Pvh-Tr-0eC" secondAttribute="topMargin" id="NnY-3c-pes"/>
                     <constraint firstItem="VTy-k4-2zJ" firstAttribute="leading" secondItem="Pvh-Tr-0eC" secondAttribute="leadingMargin" id="Npk-2b-N5A"/>

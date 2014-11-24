@@ -24,12 +24,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)viewDidLayoutSubviews
+-(void)viewDidLayoutSubviews
+//-(void)viewWillLayoutSubviews
 {
     const CGFloat kMasterViewWidth = kcMasterWidth;
     
     UIViewController *masterViewController = [self.viewControllers objectAtIndex:0];
     UIViewController *detailViewController = [self.viewControllers objectAtIndex:1];
+    CGRect detailRect= detailViewController.view.frame;
+    CGRect masterRect=masterViewController.view.frame;
     
     if (detailViewController.view.frame.origin.x > 0.0) {
         // Adjust the width of the master view
