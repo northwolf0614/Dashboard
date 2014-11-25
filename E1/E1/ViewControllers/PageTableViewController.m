@@ -12,15 +12,48 @@
 
 @interface PageTableViewController ()
 @property(nonatomic,strong) NSMutableArray* pagesNameArray;
-@property(nonatomic,strong) UIAlertView* addDialog;
-//@property(nonatomic,copy) NSString* pageName;
 @property(nonatomic,strong) UIAlertController* alertViewController;
+@property(nonatomic,strong) UIVisualEffectView* visualEfView;
+@property(nonatomic,strong) UITableView* tableView;
+//@property(nonatomic,strong) UIAlertController* alertViewController;
 @end
 
 @implementation PageTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+     self.visualEfView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+     self.tableView=[[UITableView alloc] init];
+     self.tableView.translatesAutoresizingMaskIntoConstraints=NO;
+     self.visualEfView.translatesAutoresizingMaskIntoConstraints=NO;
+     
+     self.visualEfView.alpha = 1.0;
+     [self.visualEfView addSubview:self.tableView];
+     [self.view addSubview: self.visualEfView];
+     self.tableView.backgroundColor=[UIColor clearColor];
+    self.tableView.delegate=(id)self;
+    self.tableView.dataSource=(id)self;
+    if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
+    {
+        
+        [self setEdgesForExtendedLayout:UIRectEdgeNone];
+    }
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+        
+    }
+
+    
+     [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+     
+     [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+     
+     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+     
+     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+     
     //self.tableView.backgroundColor=[UIColor clearColor];
     self.navigationItem.title=kcMasterTitle;
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
@@ -31,11 +64,19 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"QBEPagesNames"];
     [self setupPages];
     
-    [self configViews:self.tableView];
+    //[self configViews:self.tableView];
+    self.tableView .separatorStyle=UITableViewCellSeparatorStyleNone;
+    //view.backgroundColor=[UIColor darkGrayColor];
+
+    //NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
+    //[self.tableView  selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    //[self tableView:self.tableView  didSelectRowAtIndexPath:ip];
     [self initAddDialog];
     
     //self.contentController=[[AddViewController alloc] init];
     //self.contentController.modalPresentationStyle=UIModalPresentationPopover;
+    
+    [self.tableView reloadData];
 
     
     
@@ -47,16 +88,16 @@
 
 -(void)configViews:(UITableView*)view
 {
-    if ([view isKindOfClass:[UITableView class]])
-    {
-        view.separatorStyle=UITableViewCellSeparatorStyleNone;
-        view.backgroundColor=[UIColor darkGrayColor];
-        
-        NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
-        [view selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
-        [self tableView:view didSelectRowAtIndexPath:ip];
-
-    }
+//    if ([view isKindOfClass:[UITableView class]])
+//    {
+//        view.separatorStyle=UITableViewCellSeparatorStyleNone;
+//        view.backgroundColor=[UIColor darkGrayColor];
+//        
+//        NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
+//        [view selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
+//        [self tableView:view didSelectRowAtIndexPath:ip];
+//
+//    }
 }
 
 -(void)initAddDialog
@@ -171,6 +212,8 @@
                              
     
     cell.textLabel.text=[self.pagesNameArray objectAtIndex:indexPath.row];
+    cell.contentView.backgroundColor=[UIColor clearColor];
+    cell.textLabel.backgroundColor=[UIColor clearColor];
     return cell;
     
     
