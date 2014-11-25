@@ -20,20 +20,21 @@
 
 @implementation PageTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
+
      self.visualEfView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
      self.tableView=[[UITableView alloc] init];
      self.tableView.translatesAutoresizingMaskIntoConstraints=NO;
      self.visualEfView.translatesAutoresizingMaskIntoConstraints=NO;
-     
      self.visualEfView.alpha = 1.0;
      [self.visualEfView addSubview:self.tableView];
      [self.view addSubview: self.visualEfView];
      self.tableView.backgroundColor=[UIColor clearColor];
-    self.tableView.delegate=(id)self;
-    self.tableView.dataSource=(id)self;
+     self.tableView.delegate=(id)self;
+     self.tableView.dataSource=(id)self;
+    [self setupConstraints];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
         
@@ -44,45 +45,32 @@
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
         
     }
-
     
-     [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
-     
-     [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
-     
-     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
-     
-     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+
+
      
     //self.tableView.backgroundColor=[UIColor clearColor];
     self.navigationItem.title=kcMasterTitle;
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
+
     UIBarButtonItem* leftBarButtonItem =[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(handleLeftButtonItem:)];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"QBEPagesNames"];
     [self setupPages];
-    
-    //[self configViews:self.tableView];
-    self.tableView .separatorStyle=UITableViewCellSeparatorStyleNone;
-    //view.backgroundColor=[UIColor darkGrayColor];
-
-    //NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
-    //[self.tableView  selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
-    //[self tableView:self.tableView  didSelectRowAtIndexPath:ip];
     [self initAddDialog];
+}
+-(void)setupConstraints
+{
+    [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
     
-    //self.contentController=[[AddViewController alloc] init];
-    //self.contentController.modalPresentationStyle=UIModalPresentationPopover;
+    [self.visualEfView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
     
-    [self.tableView reloadData];
-
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
     
-    
-    
-    
-    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[effectView]-0-|" options:0 metrics:0 views:@{ @"tableView" : self.tableView,@"effectView" : self.visualEfView }]];
+    [self.view setNeedsLayout];
+    [self.visualEfView setNeedsLayout];
     
 }
 
