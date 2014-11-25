@@ -23,33 +23,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-     self.visualEfView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
-     self.tableView=[[UITableView alloc] init];
-     self.tableView.translatesAutoresizingMaskIntoConstraints=NO;
-     self.visualEfView.translatesAutoresizingMaskIntoConstraints=NO;
-     self.visualEfView.alpha = 1.0;
-     [self.visualEfView addSubview:self.tableView];
-     [self.view addSubview: self.visualEfView];
-     self.tableView.backgroundColor=[UIColor clearColor];
-     self.tableView.delegate=(id)self;
-     self.tableView.dataSource=(id)self;
+    self.visualEfView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
+    self.tableView=[[UITableView alloc] init];
+    self.tableView.translatesAutoresizingMaskIntoConstraints=NO;
+    self.visualEfView.translatesAutoresizingMaskIntoConstraints=NO;
+    self.visualEfView.alpha = 1.0;
+    [self.visualEfView addSubview:self.tableView];
+    [self.view addSubview: self.visualEfView];
+    self.view.backgroundColor=[UIColor clearColor];
+    self.tableView.backgroundColor=[UIColor clearColor];
+    self.tableView.delegate=(id)self;
+    self.tableView.dataSource=(id)self;
     [self setupConstraints];
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
         
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)])
-    {
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-        
-    }
-    
-
-
-     
-    //self.tableView.backgroundColor=[UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationItem.title=kcMasterTitle;
     UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(handleRightButtonItem:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
@@ -59,6 +50,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"QBEPagesNames"];
     [self setupPages];
     [self initAddDialog];
+    [self selectAtRow:0 inView:self.tableView];
 }
 -(void)setupConstraints
 {
@@ -74,18 +66,15 @@
     
 }
 
--(void)configViews:(UITableView*)view
+-(void)selectAtRow:(NSInteger)row inView:(UITableView*)view
 {
-//    if ([view isKindOfClass:[UITableView class]])
-//    {
-//        view.separatorStyle=UITableViewCellSeparatorStyleNone;
-//        view.backgroundColor=[UIColor darkGrayColor];
-//        
-//        NSIndexPath *ip=[NSIndexPath indexPathForRow:0 inSection:0];
-//        [view selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
-//        [self tableView:view didSelectRowAtIndexPath:ip];
-//
-//    }
+    if ([view isKindOfClass:[UITableView class]])
+    {
+        NSIndexPath *ip=[NSIndexPath indexPathForRow:row inSection:0];
+        [view selectRowAtIndexPath:ip animated:YES scrollPosition:UITableViewScrollPositionBottom];
+        [self tableView:view didSelectRowAtIndexPath:ip];
+
+    }
 }
 
 -(void)initAddDialog
@@ -200,7 +189,7 @@
                              
     
     cell.textLabel.text=[self.pagesNameArray objectAtIndex:indexPath.row];
-    cell.contentView.backgroundColor=[UIColor clearColor];
+    cell.backgroundColor=[UIColor clearColor];
     cell.textLabel.backgroundColor=[UIColor clearColor];
     return cell;
     
