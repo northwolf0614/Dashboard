@@ -15,7 +15,7 @@
 @property(nonatomic,strong) UIAlertController* alertViewController;
 @property(nonatomic,strong) UIVisualEffectView* visualEfView;
 @property(nonatomic,strong) UITableView* tableView;
-//@property(nonatomic,strong) UIAlertController* alertViewController;
+@property(nonatomic,assign) BOOL isApplyPressed;
 @end
 
 @implementation PageTableViewController
@@ -89,9 +89,10 @@
     //self.alertViewController.transitionCoordinator
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
     {
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        self.isApplyPressed=NO;
+//        [self.alertViewController dismissViewControllerAnimated:YES completion:^{
+//            
+//        }];
 
         
         
@@ -102,8 +103,14 @@
         //self.pageName=name.text;
         if (![self.pagesNameArray containsObject:name.text])
         {
+            self.isApplyPressed=YES;
             [self.pagesNameArray addObject:name.text];
             [self.tableView reloadData];
+            
+//            [self.alertViewController dismissViewControllerAnimated:YES completion:^{
+//            
+//            }];
+            
             
         }
         
@@ -111,7 +118,7 @@
     }];
     [self.alertViewController addAction:cancelAction];
     [self.alertViewController addAction:okAction];
-    //self.alertViewController.transitionCoordinator=self;
+    self.alertViewController.transitioningDelegate=self;
     
     
     
@@ -248,26 +255,30 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    NSLog(@"this");
+    NSLog(@"this is animateTransition");
     //Get references to the view hierarchy
     UIView *containerView = [transitionContext containerView];
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
 //    if ([fromViewController isKindOfClass:[ChatViewController class]] && [toViewController isKindOfClass:[MapViewController class]])
-    if ([toViewController isKindOfClass:[UIAlertController class]]&&[fromViewController isKindOfClass:[UINavigationController class]])
+    if ([toViewController isKindOfClass:[UIAlertController class]])
     {
         UIAlertController* alvc = (UIAlertController*)toViewController;
         [[transitionContext containerView] addSubview:alvc.view];
         alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
-        
-        alvc.view.frame = CGRectMake(250, 0, 20,20);
+        alvc.view.center=containerView.center;
         alvc.view.alpha = 0.0f;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             //MVC
-            alvc.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
-            alvc.view.alpha = 1.0f;
-            alvc.view.center=containerView.center;
+            //if (self.isApplyPressed) {
+                alvc.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                alvc.view.alpha = 1.0f;
+                alvc.view.center=containerView.center;
+            //}
+            //else
+                
+            
             
 
         } completion:^(BOOL finished) {
@@ -275,34 +286,45 @@
             //CGRect rect=alvc.view.frame;
         }];
     }
-//    else if ([fromViewController isKindOfClass:[MapViewController class]] && [toViewController isKindOfClass:[ChatViewController class]]){
-//        //Dismissing MapViewControll from ChatViewController
-//        MapViewController* mvc = (MapViewController*)fromViewController;
-//        ChatViewController* cvc = (ChatViewController*)toViewController;
-//        CGRect transitioningFrame = [cvc.transitioningView convertRect:cvc.transitioningView.bounds toView:cvc.view];
-//        
-//        //CVC
-//        cvc.transitioningView.alpha = 0.0f;
-//        [containerView addSubview:cvc.view];
-//        
-//        //MVC
-//        mvc.view.alpha = 1.0f;
-//        [containerView insertSubview:mvc.view aboveSubview:cvc.view];
-//        
-//        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-//            //MVC
-//            mvc.view.transform = CGAffineTransformMakeScale(CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
-//                                                            CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
-//            mvc.view.frame = transitioningFrame;
-//            mvc.view.alpha = 0.0f;
-//            
-//            //CVC
-//            cvc.transitioningView.alpha = 1.0f;
-//        } completion:^(BOOL finished) {
-//            [transitionContext completeTransition:YES];
-//        }];
-//        
-//    }
+    
+    else if ([fromViewController isKindOfClass:[UIAlertController class]] )
+    {
+        //Dismissing MapViewControll from ChatViewController
+        UIAlertController* alvc = (UIAlertController*)fromViewController;
+        alvc.view.alpha = 1.0f;
+        if (self.isApplyPressed)
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+           
+            
+                alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
+                alvc.view.frame = CGRectMake(120,88, 20,20);
+                alvc.view.alpha = 0.0f;
+                        //CVC
+            //cvc.transitioningView.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            
+            [alvc.view removeFromSuperview];
+            [transitionContext completeTransition:YES];
+            
+        }];
+        else
+            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+                
+                
+                alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
+                alvc.view.center = containerView.center;
+                alvc.view.alpha = 0.0f;
+                //CVC
+                //cvc.transitioningView.alpha = 1.0f;
+            } completion:^(BOOL finished) {
+                
+                [alvc.view removeFromSuperview];
+                [transitionContext completeTransition:YES];
+                
+            }];
+
+        
+    }
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted
