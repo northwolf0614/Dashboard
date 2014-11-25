@@ -121,7 +121,7 @@
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         NSDictionary *userd = [userDefault dictionaryRepresentation];
         ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-        if (![userd.allKeys containsObject:self.detailItem])
+        if (![userd.allKeys containsObject:self.detailItem]&&[self.detailItem isEqualToString:kcDefaultChartName])
         {
            
             
@@ -149,7 +149,7 @@
     //        
     //    }
         
-        else//there are default data in defualts for display
+        else if([userd.allKeys containsObject:self.detailItem]&&[self.detailItem isEqualToString:kcDefaultChartName])
         {
             NSArray* chartDataArray=[manager parseFromDefaultFile:[NChartDataModel getStoredDefaultFilePath]];
             
@@ -161,6 +161,10 @@
             }
             
             
+            
+        }
+        else
+        {
             
         }
     }

@@ -63,7 +63,7 @@
 #define kcMasterTitle @"Page Navigation"
 #define kcTRANSITION_TIME 1
 #define kcControllerTransitionTime 0.45
-#define kcPagesArrayName @"QBEPagesArray"
+#define kcPagesArrayName @"QBEPagesArray549"
 #define kcMasterWidth 256
 
 #define FontWithSize(s) /*[UIFont fontWithName:@"Helvetica" size:s]*/ [UIFont systemFontOfSize:s]

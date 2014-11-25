@@ -6,22 +6,17 @@
 #import "Definations.h"
 @interface ProgressBar()
 //@property(nonatomic,assign) CGFloat percent;
-@property(nonatomic,strong) CAShapeLayer* progressLayer;
-@property(nonatomic,strong) CAShapeLayer* progressLayerPlus;
-@property(nonatomic,strong) CALayer* animationLayer;
+
 //@property(nonatomic,strong) CAShapeLayer* backgroundLayer;
 @property(nonatomic,strong) CABasicAnimation* animation;
 @property(nonatomic,strong) CABasicAnimation* animation1;
 @property(nonatomic,strong) UIColor* color1;
 @property(nonatomic,strong) UIColor* color2;
-@property(nonatomic,assign) CGFloat finalPercentage;
-
-
-//@property(nonatomic,strong) UILabel* middleLabel;
 @property(nonatomic,strong) NSNumber* FloatingNumber;
 @property(nonatomic,strong) NSNumber* valuePerStep;
 @property(nonatomic,strong) NSTimer* timer;
 @property(nonatomic,strong) NSNumber* changingValue;
+-(void)setPercent:(CGFloat)percent animated:(BOOL)animated;
 @end
 
 @implementation ProgressBar
@@ -73,24 +68,6 @@
     self.progressLayerPlus.lineWidth=kcProgress_Line_Width;
     self.progressLayerPlus.strokeEnd=0.f;//use this property to set up the default value
     self.progressLayerPlus.path=circlePath2.CGPath;
-    
-    CGFloat width=self.frame.size.width;
-    CGFloat height=self.frame.size.height;
-    CGFloat labelWidth= self.middleLabel.frame.size.width;
-    CGFloat labelHeight=self.middleLabel.frame.size.height;
-    CGFloat value= width>height? height:width;
-    self.middleLabel.frame=CGRectMake(0.5*(width-labelWidth), 0.5*(height-labelHeight), 0.5*value, 0.5*value);
-    //self.middleLabel.center=self.center;
-    
-    
-    
-    
-        //self.didUpdateStraints=NO;
-    
-//    self.chart.legend.textColor=kcCharColor;
-//    self.chart.cartesianSystem.xAxis.textColor=kcCharColor;
-
-
 }
 - (id)initWithFinalPercentage:(CGFloat)percentage color1:(UIColor*)color1 color2:(UIColor*)color2
 {
@@ -111,18 +88,6 @@
         self.color1=color1;
         self.color2=color2;
         self.finalPercentage=percentage;
-        
-//        self.middleLabel=[[UILabel alloc] init];
-//        self.middleLabel.backgroundColor=[UIColor clearColor];
-//        self.middleLabel.hidden=YES;
-//        self.middleLabel.textColor=kcLikeRed;
-//        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
-//        self.middleLabel.adjustsFontSizeToFitWidth = YES;
-//        self.middleLabel.userInteractionEnabled = NO;
-//        self.middleLabel.numberOfLines = 1;
-//        self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-//        self.middleLabel.hidden=YES;
-//        [self addSubview:self.middleLabel];
         self.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
 
@@ -148,7 +113,7 @@
         [animation setFillMode:kCAFillModeForwards];//must set up this property, otherwise this class does not work properly
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
         [animation setDelegate:self];
-        [animation setValue:@"0" forKey:@"animation"];
+        [animation setValue:@"ProgressBarAnimation" forKey:@"animationBar"];
         // Add the animation to our layer
         [[self progressLayer] addAnimation:animation forKey:nil];
     }
@@ -163,18 +128,6 @@
     [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
     [CATransaction commit];
 }
-
-
-
-//-(void)enableMiddleLabel
-//{
-//    self.middleLabel.hidden=NO;
-//}
-//-(void)disableMiddleLabel
-//{
-//    self.middleLabel.hidden=YES;
-//}
-
 -(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration
 {
     [self setPercent:self.finalPercentage  animated:YES];
@@ -183,28 +136,10 @@
     
     
 }
--(void)onTimer:(NSTimer *)timer
-{
-    float val=[self.changingValue floatValue];
-    val+=[self.valuePerStep floatValue];
-    self.changingValue= [NSNumber numberWithFloat:val];
-    if ([self.changingValue floatValue]<=[self.FloatingNumber floatValue])
-    {
-        if ([self.changingValue floatValue]>=1)
-            self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[self.changingValue floatValue]] ;
-        if ([self.changingValue floatValue]>0&&[self.changingValue floatValue]<1)
-            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*100)];
-    }
-    else
-        [self.timer setFireDate:[NSDate distantFuture]];
-    
-    
-}
-
 #pragma CAAnimationDelegate
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
-    if ([[animation valueForKey:@"animation"] isEqualToString:@"0"]) {
+    if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"]) {
         CABasicAnimation *animation1;
         animation1 = self.animation1;
         //[animation1 setFromValue:[NSNumber numberWithFloat:self.percent] ];
@@ -225,7 +160,7 @@
 }
 -(void)animationDidStart:(CAAnimation *)animation
 {
-    NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animation"] UTF8String]);
+    //NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animationBar"] UTF8String]);
     
 }
 

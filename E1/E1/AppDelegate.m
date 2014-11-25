@@ -10,13 +10,12 @@
 #import "ViewController.h"
 #import "DashboardTableViewController.h"
 #import "PageTableViewController.h"
-#import "SplitViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
 //@property(nonatomic,strong) ViewController* rootViewController;
 @property (nonatomic, strong) DashboardTableViewController* rootViewController;
-@property(nonatomic,strong) SplitViewController* splitViewController;
+
 @end
 
 @implementation AppDelegate
@@ -58,7 +57,10 @@
          self.window.rootViewController = self.splitViewController;
      }
      [self.window makeKeyAndVisible];
+    
+    
      return YES;
+    //self.splitViewController present
 
     
 }

@@ -32,7 +32,6 @@
 		ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A46919FF5E32004E35E1 /* DashboardTableViewController.m */; };
 		ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */; };
 		ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */; };
-		E704BAC51A1BF935005A8C33 /* GradientPercentView.m in Sources */ = {isa = PBXBuildFile; fileRef = E704BAC41A1BF935005A8C33 /* GradientPercentView.m */; };
 		E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70C44EB1A061E4600D5524E /* DetailChartViewController.m */; };
 		E70C44EE1A061E4600D5524E /* DetailChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */; };
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
@@ -46,6 +45,8 @@
 		E7A254981A1570C000568E65 /* PushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A254971A1570C000568E65 /* PushAnimation.m */; };
 		E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A2549C1A15720100568E65 /* PopAnimation.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
+		E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */; };
+		E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
 		E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */; };
 /* End PBXBuildFile section */
@@ -99,8 +100,6 @@
 		ABE8A46B19FF5F13004E35E1 /* DashboardTwinCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashboardTwinCell.xib; sourceTree = "<group>"; };
 		ABE8A47019FF6785004E35E1 /* DashboardTwinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardTwinCell.h; sourceTree = "<group>"; };
 		ABE8A47119FF6785004E35E1 /* DashboardTwinCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardTwinCell.m; sourceTree = "<group>"; };
-		E704BAC31A1BF935005A8C33 /* GradientPercentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPercentView.h; sourceTree = "<group>"; };
-		E704BAC41A1BF935005A8C33 /* GradientPercentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPercentView.m; sourceTree = "<group>"; };
 		E70C44EA1A061E4600D5524E /* DetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailChartViewController.h; sourceTree = "<group>"; };
 		E70C44EB1A061E4600D5524E /* DetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailChartViewController.m; sourceTree = "<group>"; };
 		E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailChartViewController.xib; sourceTree = "<group>"; };
@@ -126,6 +125,10 @@
 		E7A2549C1A15720100568E65 /* PopAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopAnimation.m; sourceTree = "<group>"; };
 		E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNChartView.h; sourceTree = "<group>"; };
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
+		E7C2226B1A22DBC100C9CAEE /* ProgressColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressColumn.h; sourceTree = "<group>"; };
+		E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressColumn.m; sourceTree = "<group>"; };
+		E7C2226E1A22E47500C9CAEE /* GeneralChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralChartView.h; path = 3DPerspect/GeneralChartView.h; sourceTree = "<group>"; };
+		E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralChartView.m; path = 3DPerspect/GeneralChartView.m; sourceTree = "<group>"; };
 		E7EC7ACB1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartWithLabelViewController.h; sourceTree = "<group>"; };
 		E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartWithLabelViewController.m; sourceTree = "<group>"; };
 		E7EC7AD01A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleNChartWithLabelViewController.h; sourceTree = "<group>"; };
@@ -188,13 +191,15 @@
 		090FB6E819F5DA6A008F437F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E7C2226E1A22E47500C9CAEE /* GeneralChartView.h */,
+				E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */,
 				E7938CFD1A1D65D300038CE4 /* ProgressBar.h */,
 				E7938CFE1A1D65D300038CE4 /* ProgressBar.m */,
-				E704BAC31A1BF935005A8C33 /* GradientPercentView.h */,
-				E704BAC41A1BF935005A8C33 /* GradientPercentView.m */,
 				E7760E8E19F711E500AFFC4B /* 3DPerspect */,
 				E7A5DB671A0428F800CA2D30 /* AbstractNChartView.h */,
 				E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */,
+				E7C2226B1A22DBC100C9CAEE /* ProgressColumn.h */,
+				E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -446,7 +451,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E704BAC51A1BF935005A8C33 /* GradientPercentView.m in Sources */,
 				E7711AF81A0790280096650B /* NChartDataModel.m in Sources */,
 				ABE8A47219FF6785004E35E1 /* DashboardTwinCell.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
@@ -461,7 +465,9 @@
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
 				E7A254981A1570C000568E65 /* PushAnimation.m in Sources */,
 				ABE8A46A19FF5E32004E35E1 /* DashboardTableViewController.m in Sources */,
+				E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */,
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,
+				E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */,
 				E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,

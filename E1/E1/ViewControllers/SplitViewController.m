@@ -9,6 +9,7 @@
 #import "SplitViewController.h"
 #import "Definations.h"
 
+
 @interface SplitViewController ()
 
 @end
@@ -52,4 +53,7 @@
         [detailViewController.view setNeedsLayout];
     }
 }
+
+
+
 @end

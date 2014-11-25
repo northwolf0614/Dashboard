@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DashboardTableViewController.h"
 
-@interface PageTableViewController : UITableViewController
+@interface PageTableViewController : UITableViewController<UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 @property (nonatomic, retain) DashboardTableViewController*detailViewController;
 @end
