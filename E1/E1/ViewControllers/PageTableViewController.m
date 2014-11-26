@@ -9,13 +9,14 @@
 #import "PageTableViewController.h"
 #import "Definations.h"
 #import "SplitViewController.h"
+#import "AlertController.h"
 
 @interface PageTableViewController ()
 @property(nonatomic,strong) NSMutableArray* pagesNameArray;
 @property(nonatomic,strong) UIAlertController* alertViewController;
 @property(nonatomic,strong) UIVisualEffectView* visualEfView;
 @property(nonatomic,strong) UITableView* tableView;
-@property(nonatomic,assign) BOOL isApplyPressed;
+//@property(nonatomic,assign) BOOL isApplyPressed;
 @end
 
 @implementation PageTableViewController
@@ -31,6 +32,7 @@
     [self.visualEfView addSubview:self.tableView];
     [self.view addSubview: self.visualEfView];
     self.view.backgroundColor=[UIColor clearColor];
+    
     self.tableView.backgroundColor=[UIColor clearColor];
     self.tableView.delegate=(id)self;
     self.tableView.dataSource=(id)self;
@@ -76,34 +78,47 @@
 
     }
 }
-
+-(CGRect)forcastRect:(UITableView*)aTableView
+{
+    if ([aTableView numberOfSections]>1)
+    {
+        return CGRectZero;
+        
+    }
+    NSInteger cellNumber=[aTableView numberOfRowsInSection:0];
+    UITableViewCell* aCell=[aTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:cellNumber-1 inSection:0]];
+    CGRect rect= [aCell convertRect:aCell.bounds toView:aTableView];
+    return rect;
+    
+    
+}
 -(void)initAddDialog
 {
 
     //NSString* inputPageName=nil;
-    self.alertViewController=[UIAlertController alertControllerWithTitle:@"Page Name" message:@"Please input the name for pages you want to create" preferredStyle:UIAlertControllerStyleAlert];
+    self.alertViewController=[UIAlertController alertControllerWithTitle:@"Page Name" message:@"Duplicated name result radom number appended" preferredStyle:UIAlertControllerStyleAlert];
     //_weak id weakself=self;
     [self.alertViewController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.placeholder=@"Name";
     }];
-    //self.alertViewController.transitionCoordinator
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
-    {
-        self.isApplyPressed=NO;
-//        [self.alertViewController dismissViewControllerAnimated:YES completion:^{
-//            
-//        }];
-
-        
-        
-    }];
+//    //self.alertViewController.transitionCoordinator
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action)
+//    {
+//        self.isApplyPressed=NO;
+////        [self.alertViewController dismissViewControllerAnimated:YES completion:^{
+////            
+////        }];
+//
+//        
+//        
+//    }];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Apply" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
         UITextField* name = self.alertViewController.textFields.firstObject;
         //self.pageName=name.text;
         if (![self.pagesNameArray containsObject:name.text])
         {
-            self.isApplyPressed=YES;
+            //self.isApplyPressed=YES;
             [self.pagesNameArray addObject:name.text];
             [self.tableView reloadData];
             
@@ -116,9 +131,12 @@
         
         
     }];
-    [self.alertViewController addAction:cancelAction];
+    //[self.alertViewController addAction:cancelAction];
     [self.alertViewController addAction:okAction];
     self.alertViewController.transitioningDelegate=self;
+
+        
+
     
     
     
@@ -126,7 +144,7 @@
 -(void)handleRightButtonItem:(id)sender
 {
 
-    [self presentViewController:self.alertViewController animated:YES completion:^{
+    [self presentViewController:self.alertViewController animated:YES completion:^{NSLog(@"presenting view controller completed");
         
     }];
 
@@ -188,6 +206,14 @@
     // Return the number of rows in the section.
     return [self.pagesNameArray count];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return kcPageTableCellHeight;
+
+}
+
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -292,12 +318,16 @@
         //Dismissing MapViewControll from ChatViewController
         UIAlertController* alvc = (UIAlertController*)fromViewController;
         alvc.view.alpha = 1.0f;
-        if (self.isApplyPressed)
+        //if (self.isApplyPressed)
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
            
             
                 alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
-                alvc.view.frame = CGRectMake(120,88, 20,20);
+                CGRect rect=[self forcastRect:self.tableView];
+                float x=CGRectGetMidX(rect);
+                float y=CGRectGetMidY(rect);
+                y+=kcPageTableCellHeight*3/2;
+                alvc.view.frame = CGRectMake(x, y, 20, 20);
                 alvc.view.alpha = 0.0f;
                         //CVC
             //cvc.transitioningView.alpha = 1.0f;
@@ -307,21 +337,21 @@
             [transitionContext completeTransition:YES];
             
         }];
-        else
-            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-                
-                
-                alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
-                alvc.view.center = containerView.center;
-                alvc.view.alpha = 0.0f;
-                //CVC
-                //cvc.transitioningView.alpha = 1.0f;
-            } completion:^(BOOL finished) {
-                
-                [alvc.view removeFromSuperview];
-                [transitionContext completeTransition:YES];
-                
-            }];
+//        else
+//            [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+//                
+//                
+//                alvc.view.transform = CGAffineTransformMakeScale(0.1,0.1);
+//                alvc.view.center = containerView.center;
+//                alvc.view.alpha = 0.0f;
+//                //CVC
+//                //cvc.transitioningView.alpha = 1.0f;
+//            } completion:^(BOOL finished) {
+//                
+//                [alvc.view removeFromSuperview];
+//                [transitionContext completeTransition:YES];
+//                
+//            }];
 
         
     }

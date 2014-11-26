@@ -68,6 +68,8 @@
 
 #define FontWithSize(s) /*[UIFont fontWithName:@"Helvetica" size:s]*/ [UIFont systemFontOfSize:s]
 
+#define kcPageTableCellHeight 44.0f
+
 #endif
 
 
