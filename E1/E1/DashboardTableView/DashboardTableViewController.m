@@ -42,7 +42,7 @@
     //self.tableView.backgroundColor=kcWholeBackColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
-    self.dashboardItemViewControllers = [NSMutableArray arrayWithCapacity:5];
+    self.dashboardItemViewControllers = [NSMutableArray array];
     //[self.dashboardItemViewControllers addObject:[[DashboardMapViewController alloc] init]];
     //[self.dashboardItemViewControllers addObject:[[DashboardGradientPercentViewController alloc] init]];
     //[self.dashboardItemViewControllers addObject:[[DashboardStatisticsAnalyzerViewController alloc] init]];
@@ -165,6 +165,19 @@
         }
         else
         {
+            //NSLog(@"this is the entry I want");
+            [manager storeChartDataToFile:nil fileName:[ChartDataManager getStoredFilePath:self.detailItem ]];
+            [self.dashboardItemViewControllers removeAllObjects];
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         }
     }

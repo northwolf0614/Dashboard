@@ -214,6 +214,7 @@
     return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
 }
 
+
 +(NSArray*)chartDataDefault
 {
     NSMutableArray* chartsArray= [NSMutableArray array];

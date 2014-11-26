@@ -19,10 +19,23 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSMutableArray* chartNames=[NSMutableArray array];
     NSMutableData   * data = [[NSMutableData alloc] init];
+    NSFileManager* manager=[NSFileManager defaultManager];
+    if (chartData==nil)
+    {
+        if (![manager fileExistsAtPath:file])
+        {
+            [manager createFileAtPath:file contents:nil attributes:nil];
+            
+        }
+        
+        return;
+    }
+
     //NSString* fileString=[NChartDataModel getStoredDefaultFilePath];
     // 这个NSKeyedArchiver则是进行编码用的
     NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    for (NChartDataModel* dataChart in chartData) {
+    for (NChartDataModel* dataChart in chartData)
+    {
         if ([dataChart isKindOfClass:[NChartDataModel class]])
         {
             [archiver encodeObject:dataChart forKey:dataChart.chartCaption];
@@ -32,7 +45,7 @@
     [userDefault setObject:chartNames forKey:kcDefaultChartName];
     [userDefault synchronize];
     [archiver finishEncoding];
-    NSFileManager* manager=[NSFileManager defaultManager];
+    
     if (![manager fileExistsAtPath:file])
     {
         [manager createFileAtPath:file contents:nil attributes:nil];
@@ -77,6 +90,13 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docPath = [paths objectAtIndex:0];
     return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
+}
+
++(NSString*)getStoredFilePath:(NSString*)pageName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docPath = [paths objectAtIndex:0];
+    return [docPath stringByAppendingPathComponent:[pageName stringByAppendingString:@".plist"]];
 }
 +(id)defaultChartDataManager
 {

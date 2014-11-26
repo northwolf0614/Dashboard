@@ -17,5 +17,6 @@
 -(void)storeChartDataToFile:(NSArray*) chartData fileName:(NSString*)file;
 -(NSArray*)parseFromDefaultFile:(NSString*)file;
 +(NSString*)getStoredDefaultFilePath;
++(NSString*)getStoredFilePath:(NSString*)pageName;
 +(id)defaultChartDataManager;
 @end

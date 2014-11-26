@@ -120,6 +120,7 @@
         {
             //self.isApplyPressed=YES;
             [self.pagesNameArray addObject:name.text];
+            [self syncWithUserDefault:self.pagesNameArray];
             [self.tableView reloadData];
             
 //            [self.alertViewController dismissViewControllerAnimated:YES completion:^{
@@ -127,6 +128,18 @@
 //            }];
             
             
+        }
+        else
+        {
+            while ([self.pagesNameArray containsObject:name.text])
+            {
+                NSString* randString=[NSString stringWithFormat:@"%d",(rand() % 100) ];
+                name.text=[name.text stringByAppendingString:randString];
+                
+                
+            }
+            [self.pagesNameArray addObject:name.text];
+            [self.tableView reloadData];
         }
         
         
@@ -185,6 +198,17 @@
          
         
         
+    }
+    
+}
+-(void)syncWithUserDefault:(NSMutableArray*)data
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userd = [userDefault dictionaryRepresentation];
+    if ([userd.allKeys containsObject:kcPagesArrayName])
+    {
+        [userDefault setObject:data forKey:kcPagesArrayName];
+        [userDefault synchronize];
     }
     
 }
