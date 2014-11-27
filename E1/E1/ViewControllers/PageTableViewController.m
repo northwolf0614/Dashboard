@@ -16,6 +16,7 @@
 @property(nonatomic,strong) UIAlertController* alertViewController;
 @property(nonatomic,strong) UIVisualEffectView* visualEfView;
 @property(nonatomic,strong) UITableView* tableView;
+@property(nonatomic,strong) NSIndexPath* currentPath;
 //@property(nonatomic,assign) BOOL isApplyPressed;
 @end
 
@@ -122,6 +123,7 @@
             [self.pagesNameArray addObject:name.text];
             [self syncWithUserDefault:self.pagesNameArray];
             [self.tableView reloadData];
+            [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[self.pagesNameArray count]-1 inSection:0]];
             
 //            [self.alertViewController dismissViewControllerAnimated:YES completion:^{
 //            
@@ -218,7 +220,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark -<UITableViewDataSource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -236,10 +238,16 @@
     return kcPageTableCellHeight;
 
 }
+#pragma mark -<UITableViewDelegate>
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([tableView isEqual:self.tableView]) {
-        return UITableViewCellEditingStyleDelete;
+        if (indexPath.row==0)
+        {
+            return UITableViewCellEditingStyleNone;
+        }
+        else
+            return UITableViewCellEditingStyleDelete;
     }
     return UITableViewCellEditingStyleNone;
     
@@ -248,11 +256,16 @@
 {
     if (editingStyle ==UITableViewCellEditingStyleDelete)
     {
-        if (indexPath.row<[self.pagesNameArray count])
+        if (indexPath.row<[self.pagesNameArray count]&&![self.currentPath isEqual:indexPath])
         {
             [self.pagesNameArray removeObjectAtIndex:indexPath.row];
             [self syncWithUserDefault:self.pagesNameArray];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+
+        }
+        else
+        {
+            
         }
     }
 }
@@ -288,6 +301,7 @@
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.currentPath=indexPath;
     NSString* detailItem= [self.pagesNameArray objectAtIndex:indexPath.row];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
