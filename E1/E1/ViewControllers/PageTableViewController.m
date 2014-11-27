@@ -236,7 +236,26 @@
     return kcPageTableCellHeight;
 
 }
-
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView isEqual:self.tableView]) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
+    
+}
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle ==UITableViewCellEditingStyleDelete)
+    {
+        if (indexPath.row<[self.pagesNameArray count])
+        {
+            [self.pagesNameArray removeObjectAtIndex:indexPath.row];
+            [self syncWithUserDefault:self.pagesNameArray];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
+}
 
 
 
