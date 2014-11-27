@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "DashboardTableViewController.h"
 #import "PageTableViewController.h"
+#import "DashBoardViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
@@ -38,17 +39,35 @@
          self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
          self.window.rootViewController = self.navigationController;
      }
+//     else
+//     {
+//         PageTableViewController* masterViewController = [[PageTableViewController alloc] init] ;
+//         UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
+//         
+//         DashboardTableViewController *detailViewController = [[DashboardTableViewController alloc] init] ;
+//         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+//          UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+//         
+//         
+//        masterViewController.detailViewController = detailViewController;
+//         
+//         self.splitViewController = [[SplitViewController alloc] init] ;
+//         self.splitViewController.delegate = detailViewController;
+//         self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
+//         
+//         self.window.rootViewController = self.splitViewController;
+//     }
      else
      {
          PageTableViewController* masterViewController = [[PageTableViewController alloc] init] ;
          UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
          
-         DashboardTableViewController *detailViewController = [[DashboardTableViewController alloc] init] ;
+         DashBoardViewController *detailViewController = [[DashBoardViewController alloc] init] ;
          //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-          UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+         UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
          
          
-        masterViewController.detailViewController = detailViewController;
+         masterViewController.detailViewController = detailViewController;
          
          self.splitViewController = [[SplitViewController alloc] init] ;
          self.splitViewController.delegate = detailViewController;
@@ -56,6 +75,7 @@
          
          self.window.rootViewController = self.splitViewController;
      }
+
      [self.window makeKeyAndVisible];
     
     

@@ -47,6 +47,11 @@
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */; };
 		E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */; };
+		E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */; };
+		E7C2229C1A2684C100C9CAEE /* AbstractCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2229B1A2684C100C9CAEE /* AbstractCollectionViewCell.m */; };
+		E7C2229F1A26852B00C9CAEE /* EmptyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2229E1A26852B00C9CAEE /* EmptyCollectionViewCell.m */; };
+		E7C222A21A26856A00C9CAEE /* GeneralCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */; };
+		E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
 		E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */; };
 /* End PBXBuildFile section */
@@ -129,6 +134,15 @@
 		E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressColumn.m; sourceTree = "<group>"; };
 		E7C2226E1A22E47500C9CAEE /* GeneralChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralChartView.h; path = 3DPerspect/GeneralChartView.h; sourceTree = "<group>"; };
 		E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralChartView.m; path = 3DPerspect/GeneralChartView.m; sourceTree = "<group>"; };
+		E7C2227F1A25A1C600C9CAEE /* DashBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashBoardViewController.h; sourceTree = "<group>"; };
+		E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashBoardViewController.m; sourceTree = "<group>"; };
+		E7C2229A1A2684C100C9CAEE /* AbstractCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCollectionViewCell.h; sourceTree = "<group>"; };
+		E7C2229B1A2684C100C9CAEE /* AbstractCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCollectionViewCell.m; sourceTree = "<group>"; };
+		E7C2229D1A26852B00C9CAEE /* EmptyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyCollectionViewCell.h; sourceTree = "<group>"; };
+		E7C2229E1A26852B00C9CAEE /* EmptyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyCollectionViewCell.m; sourceTree = "<group>"; };
+		E7C222A01A26856A00C9CAEE /* GeneralCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralCollectionViewCell.h; sourceTree = "<group>"; };
+		E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralCollectionViewCell.m; sourceTree = "<group>"; };
+		E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		E7EC7ACB1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartWithLabelViewController.h; sourceTree = "<group>"; };
 		E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartWithLabelViewController.m; sourceTree = "<group>"; };
 		E7EC7AD01A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleNChartWithLabelViewController.h; sourceTree = "<group>"; };
@@ -200,6 +214,13 @@
 				E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */,
 				E7C2226B1A22DBC100C9CAEE /* ProgressColumn.h */,
 				E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */,
+				E7C2229A1A2684C100C9CAEE /* AbstractCollectionViewCell.h */,
+				E7C2229B1A2684C100C9CAEE /* AbstractCollectionViewCell.m */,
+				E7C2229D1A26852B00C9CAEE /* EmptyCollectionViewCell.h */,
+				E7C2229E1A26852B00C9CAEE /* EmptyCollectionViewCell.m */,
+				E7C222A01A26856A00C9CAEE /* GeneralCollectionViewCell.h */,
+				E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */,
+				E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +359,8 @@
 				E772CDD41A1D71560034E553 /* PageTableViewController.m */,
 				E772CDD61A1D7D000034E553 /* SplitViewController.h */,
 				E772CDD71A1D7D000034E553 /* SplitViewController.m */,
+				E7C2227F1A25A1C600C9CAEE /* DashBoardViewController.h */,
+				E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -430,6 +453,7 @@
 				ABE8A46C19FF5F13004E35E1 /* DashboardTwinCell.xib in Resources */,
 				E70C44EE1A061E4600D5524E /* DetailChartViewController.xib in Resources */,
 				AB0D11941A01FC31004C049B /* DashboardItemViewController.xib in Resources */,
+				E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */,
 				09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */,
 				ABE8A46519FF5912004E35E1 /* .gitignore in Resources */,
 				09B0B26919F5D99A008DCE56 /* InfoPlist.strings in Resources */,
@@ -458,7 +482,9 @@
 				E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */,
 				090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */,
 				E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */,
+				E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */,
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
+				E7C2229C1A2684C100C9CAEE /* AbstractCollectionViewCell.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
 				E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */,
@@ -469,8 +495,10 @@
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,
 				E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */,
 				E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */,
+				E7C222A21A26856A00C9CAEE /* GeneralCollectionViewCell.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
+				E7C2229F1A26852B00C9CAEE /* EmptyCollectionViewCell.m in Sources */,
 				E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,
 				09B0B26B19F5D99A008DCE56 /* main.m in Sources */,

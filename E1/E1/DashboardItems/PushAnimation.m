@@ -9,6 +9,7 @@
 #import "PushAnimation.h"
 #import "DetailChartViewController.h"
 #import "DashboardTableViewController.h"
+#import "DashBoardViewController.h"
 
 @implementation PushAnimation
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -21,7 +22,8 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    if ([fromViewController isKindOfClass:[DashboardTableViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
+    //if ([fromViewController isKindOfClass:[DashboardTableViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
+    if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
     {
         //Presenting DetailChartViewController from DashboardTableViewController
         DetailChartViewController* dvc = (DetailChartViewController*)toViewController;

@@ -10,6 +10,7 @@
 #import "DetailChartViewController.h"
 #import "DashboardTableViewController.h"
 #import "Definations.h"
+#import "DashBoardViewController.h"
 @implementation PopAnimation
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
@@ -21,7 +22,8 @@
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashboardTableViewController class]])
+    //if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashboardTableViewController class]])
+    if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashBoardViewController class]])
     {
             //Dismissing MapViewControll from ChatViewController
             DetailChartViewController* dvc = (DetailChartViewController*)fromViewController;

@@ -24,7 +24,7 @@
 }
 -(void)handleRightButtonItem:(id) sender
 {
-    //NSLog(@"this is super clicked!");
+    NSLog(@"this is super clicked!");
 }
 
 - (void)didReceiveMemoryWarning
