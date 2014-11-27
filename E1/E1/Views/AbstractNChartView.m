@@ -43,6 +43,7 @@
         
         self.chart.legend.textColor=kcCharColor;
         self.chart.cartesianSystem.xAxis.textColor=kcCharColor;
+        self.userInteractionEnabled=NO;
     }
     return self;
 }

@@ -225,26 +225,26 @@
     }
     
 }
--(void)handleRightButtonItem:(id) sender
-{
-    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData: inView:)])
-        
-    {
-        [self.delegate searchButtonClickedWithData:self.dataForNChart inView:self.view];
-       
-    }
-    
-//    if (![self.chartView.chart isTransitionPlaying])
-//    {
-//        //[m_delegate chartDelegatePointOfChart:nil selected:nil];
+//-(void)handleRightButtonItem:(id) sender
+//{
+//    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData: inView:)])
 //        
-//        [self.chartView.chart  stopTransition];
-//        //[m_view.chart playTransition:TRANSITION_TIME reverse:YES];
-//        [self.chartView.chart  playTransition:0.45 reverse:NO];
+//    {
+//        [self.delegate searchButtonClickedWithData:self.dataForNChart inView:self.view];
+//       
 //    }
-
-    
-}
+//    
+////    if (![self.chartView.chart isTransitionPlaying])
+////    {
+////        //[m_delegate chartDelegatePointOfChart:nil selected:nil];
+////        
+////        [self.chartView.chart  stopTransition];
+////        //[m_view.chart playTransition:TRANSITION_TIME reverse:YES];
+////        [self.chartView.chart  playTransition:0.45 reverse:NO];
+////    }
+//
+//    
+//}
 
 - (void)didReceiveMemoryWarning
 {

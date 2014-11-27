@@ -8,26 +8,14 @@
 #import "DashboardTableViewController.h"
 #import "DashboardTwinCell.h"
 #import "DashboardItemViewController.h"
-//#import "DashboardMapViewController.h"
-//#import "DashboardGradientPercentViewController.h"
-//#import "DashboardStatisticsAnalyzerViewController.h"
-//#import "DashBoardPieChartViewController.h"
-//#import "ParagraphViewController.h"
-//#import "ColumnNChartViewController.h"
-//#import "BubbleChartViewController.h"
 #import "Definations.h"
 #import "GeneralNChartViewController.h"
 #import "NChartDataModel.h"
-//#import "SubDetailChartViewController.h"
 #import "GeneralNChartWithLabelViewController.h"
 #import "DoubleNChartWithLabelViewController.h"
 #import "DetailChartViewController.h"
 #import "ChartDataManager.h"
-
 #import "DashBoardViewController.h"
-//#import "ChartViewCell.h"
-//#import "DefaultChartViewCell.h"
-//#import "BlankViewCell.h"
 #import "GeneralCollectionViewCell.h"
 #import "EmptyCollectionViewCell.h"
 @interface DashBoardViewController()
@@ -36,6 +24,7 @@
 
 @property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
 @property (retain, nonatomic) UIPopoverController *masterPopoverController;
+@property (nonatomic, strong) NSMutableArray* chartDataAssembly;
 - (void)loadChartData;
 @end
 
@@ -50,7 +39,7 @@
     [self.flowLayout setItemSize:CGSizeMake(345,350)]; //设置每个cell显示数据的宽和高必须
     //[flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //水平滑动
     [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical]; //控制滑动分页用
-    self.flowLayout.sectionInset = UIEdgeInsetsMake(0, 2, 0, 0);
+    self.flowLayout.sectionInset = UIEdgeInsetsMake(8, 8, 8, 8);
     
     //创建一屏的视图大小
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
@@ -59,18 +48,18 @@
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
 
-    [self.collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.collectionView setBackgroundColor:kcWholeBackColor];
     [self.collectionView setUserInteractionEnabled:YES];
+    //self.collectionView.allowsSelection=YES;
     
-    [self.collectionView setDelegate:(id)self]; //代理－视图
-    [self.collectionView setDataSource:(id)self]; //代理－数据
-    
-    [self.view addSubview:self.collectionView];
+    [self.collectionView setDelegate:(id)self];
+    [self.collectionView setDataSource:(id)self];
+//    [self.view addSubview:self.collectionView];
     [self setupConstraints];
     
     //////////////////
     self.dashboardItemViewControllers = [NSMutableArray array];
-    self.view.backgroundColor=kcWholeBackColor;
+    //self.view.backgroundColor=kcWholeBackColor;
     
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
@@ -146,6 +135,7 @@
             
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
+            self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
             [manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
             for (NChartDataModel* oneChartData in chartsData)
             {
@@ -172,6 +162,7 @@
         else if([userd.allKeys containsObject:self.detailItem]&&[self.detailItem isEqualToString:kcDefaultChartName])
         {
             NSArray* chartDataArray=[manager parseFromDefaultFile:[NChartDataModel getStoredDefaultFilePath]];
+            self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
             
             for (NChartDataModel* dataForChart in chartDataArray)
             {
@@ -204,10 +195,10 @@
     //[self.view layoutSubviews];
     
 }
-- (void)handleRightButtonItem:(id)sender
-{
-    //want to add new chart
-}
+//- (void)handleRightButtonItem:(id)sender
+//{
+//    //want to add new chart
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -217,6 +208,7 @@
 
 -(void)setupConstraints
 {
+    [self.view addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints=NO;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collectionView]-0-|" options:0 metrics:0 views:@{ @"collectionView" : self.collectionView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collectionView]-0-|" options:0 metrics:0 views:@{ @"collectionView" : self.collectionView}]];
@@ -224,8 +216,13 @@
     //[self.visualEfView setNeedsLayout];
     
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
 
-#pragma mark <ChatViewDataSource>
+#pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
 }
@@ -275,6 +272,35 @@
     //cell.backgroundColor=kcWidgetBackColor;
    
     
+}
+#pragma mark <UICollectionViewDelegate>
+- (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
+{
+    //NSLog(@"did selected on %ld", indexPath.item);
+    DetailChartViewController* detailViewController=nil;
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
+    
+    if (indexPath.row>([self.dashboardItemViewControllers count]-1)||[self.dashboardItemViewControllers count]==0)
+        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
+    
+    else
+    detailViewController= [[DetailChartViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
+    
+    detailViewController.transitioningDelegate=(id)self;
+    
+    //detailViewController.transitioningDelegate=self;
+    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
+    self.transitioningView = cell;
+    
+    //[self.navigationController pushViewController:detailViewController animated:YES];
+    //[self.navigationController.splitViewController presentViewController:detailViewController animated:YES completion:nil];
+    [self presentViewController:detailViewController animated:YES completion:nil];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return  YES;
 }
 
 

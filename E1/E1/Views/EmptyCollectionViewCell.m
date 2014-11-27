@@ -7,9 +7,15 @@
 //
 
 #import "EmptyCollectionViewCell.h"
+#import "Definations.h"
 
 @implementation EmptyCollectionViewCell
 
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.emptyImageView.backgroundColor=kcWidgetBackColor;
 
+
+}
 @end

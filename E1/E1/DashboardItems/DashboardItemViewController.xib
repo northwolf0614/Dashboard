@@ -24,9 +24,7 @@
                         <color key="textColor" red="0.33725490196078434" green="0.32549019607843138" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </textAttributes>
                     <items>
-                        <navigationItem title="Title" id="EZz-Jc-WV9">
-                            <barButtonItem key="rightBarButtonItem" systemItem="search" id="BZm-hR-6lV"/>
-                        </navigationItem>
+                        <navigationItem title="Title" id="EZz-Jc-WV9"/>
                     </items>
                 </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c98-up-aKm" userLabel="ContentView">

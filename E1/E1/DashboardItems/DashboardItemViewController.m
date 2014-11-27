@@ -18,14 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.titleItem.rightBarButtonItem setTarget:self];
-    [self.titleItem.rightBarButtonItem setAction:@selector(handleRightButtonItem:)];
+    //[self.titleItem.rightBarButtonItem setTarget:self];
+    //[self.titleItem.rightBarButtonItem setAction:@selector(handleRightButtonItem:)];
     
 }
--(void)handleRightButtonItem:(id) sender
-{
-    NSLog(@"this is super clicked!");
-}
+//-(void)handleRightButtonItem:(id) sender
+//{
+//    NSLog(@"this is super clicked!");
+//}
 
 - (void)didReceiveMemoryWarning
 {

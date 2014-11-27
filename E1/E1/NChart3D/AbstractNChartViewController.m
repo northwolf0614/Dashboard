@@ -14,6 +14,7 @@
 
 @interface AbstractNChartViewController ()
 @property(nonatomic,assign) BOOL isShowMiddleLabel;
+//@property(nonatomic,strong) UITapGestureRecognizer* tapGestureRecognizer;
 @end
 
 @implementation AbstractNChartViewController
@@ -49,10 +50,32 @@
     self.chartView.chart.cartesianSystem.xAxis.font=[UIFont systemFontOfSize:12];
     [self setupAxesType];
     
+//    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                        action:@selector(handleTaps:)];
+//    // 手指数
+//    self.tapGestureRecognizer.numberOfTouchesRequired = 1;
+//    // 连续点击次数
+//    self.tapGestureRecognizer.numberOfTapsRequired = 1;
+//    // 添加手势识别
+//    [self.chartView addGestureRecognizer:self.tapGestureRecognizer];
+    
     //[_dataForNChart addObserver:self forKeyPath:@"chartAxisYCaption" options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial) context:nil];
     
 
 }
+
+//- (void) handleTaps:(UITapGestureRecognizer*)paramSender
+//{
+//    
+//    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(searchButtonClickedWithData: inView:)])
+//        
+//    {
+//        [self.delegate searchButtonClickedWithData:self.dataForNChart inView:self.view];
+//        
+//    }
+//}
+
+
 -(void)setDataForNChart:(NChartDataModel *)aDataChart
 {
     if (aDataChart!=_dataForNChart)

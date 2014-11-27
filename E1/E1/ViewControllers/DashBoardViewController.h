@@ -15,7 +15,7 @@
 @class PushAnimation;
 @class PopAnimation;
 
-@interface DashBoardViewController : UIViewController <ChartSubviewControllerResponse,UINavigationControllerDelegate,UISplitViewControllerDelegate,UIViewControllerAnimatedTransitioning,UIViewControllerAnimatedTransitioning>
+@interface DashBoardViewController : UIViewController <ChartSubviewControllerResponse,UINavigationControllerDelegate,UISplitViewControllerDelegate,UIViewControllerAnimatedTransitioning,UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property(nonatomic,strong) NSMutableArray* chartNames;
 @property(nonatomic,strong) UIView* transitioningView;
