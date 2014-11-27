@@ -272,7 +272,7 @@
     NSString* detailItem= [self.pagesNameArray objectAtIndex:indexPath.row];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
     {
-        self.detailViewController = [[DashboardTableViewController alloc] init] ;
+        self.detailViewController = [[DashBoardViewController alloc] init] ;
         self.detailViewController.detailItem = detailItem;
         UINavigationController* detailNavigationController=[[self.navigationController.splitViewController viewControllers] objectAtIndex:1];
         [detailNavigationController pushViewController:self.detailViewController animated:YES];

@@ -284,13 +284,15 @@
     //    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
     //    [self.navigationController pushViewController:detailViewController animated:YES];
     DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
+    detailViewController.transitioningDelegate=(id)self;
     
     //detailViewController.transitioningDelegate=self;
     detailViewController.modalTransitionStyle = UIModalPresentationCustom;
     self.transitioningView=contentView;
     
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    //[self.navigationController pushViewController:detailViewController animated:YES];
     //[self.navigationController.splitViewController presentViewController:detailViewController animated:YES completion:nil];
+    [self presentViewController:detailViewController animated:YES completion:nil];
     
     
 }
@@ -336,6 +338,123 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
+
+#pragma mark <UIViewControllerTransitioningDelegate>
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source
+{
+    return self;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
+{
+    return self;
+}
+
+#pragma mark <UIViewControllerAnimatedTransitioning>
+
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    NSLog(@"this is animateTransition");
+    //Get references to the view hierarchy
+    UIView *containerView = [transitionContext containerView];
+    UIViewController *fromViewController_topParent = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController *fromViewController=nil;
+    
+    if ([fromViewController_topParent isKindOfClass:[UISplitViewController class]])
+    {
+        for (UIViewController* vc in ((UISplitViewController*)fromViewController_topParent).viewControllers)
+        {
+            if ([vc isKindOfClass:[UINavigationController class]]&&[((UINavigationController*)vc).topViewController isKindOfClass:[DashBoardViewController class]])
+            {
+                fromViewController=((UINavigationController*)vc).topViewController;
+            }
+        }
+    }
+    
+    //UIViewController *fromViewController = fromViewController_topParent.
+    if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
+    {
+        //Presenting DetailChartViewController from DashboardTableViewController
+        DetailChartViewController* dvc = (DetailChartViewController*)toViewController;
+        DashboardTableViewController* dashvc=(DashboardTableViewController*) fromViewController;
+        //DashboardTableViewController* dashvc = [naviVC.viewControllers objectAtIndex:0 ];
+        
+        
+        CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
+        
+        //Destination view controller
+        dvc.view.transform = CGAffineTransformMakeScale(
+                                                        CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
+                                                        CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
+        dvc.view.frame = transitioningFrame;
+        dvc.view.alpha = 0.0f;
+        
+        //source view controller
+        dashvc.transitioningView.alpha = 1.0f;
+        
+        [containerView insertSubview:dvc.view aboveSubview:dashvc.view];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            //Destination view controller
+            dvc.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            dvc.view.frame = containerView.bounds;
+            dvc.view.alpha = 1.0f;
+            
+            //source view controller
+            dashvc.transitioningView.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
+    }
+    
+    
+    if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashBoardViewController class]])
+        
+    {
+        //Dismissing MapViewControll from ChatViewController
+        DetailChartViewController* dvc = (DetailChartViewController*)fromViewController;
+        DashboardTableViewController* dashvc = (DashboardTableViewController*)toViewController;
+        //DashboardTableViewController* dashvc = (DashboardTableViewController*)fromViewController;
+        
+        CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
+        
+        //desination view controller
+        dashvc.transitioningView.alpha = 0.0f;
+        [containerView addSubview:dashvc.view];
+        
+        //source view controller
+        dvc.view.alpha = 1.0f;
+        [containerView insertSubview:dvc.view aboveSubview:dashvc.view];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            //source view controller
+            dvc.view.transform = CGAffineTransformMakeScale(CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
+                                                            CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
+            dvc.view.frame = transitioningFrame;
+            dvc.view.alpha = 0.0f;
+            
+            //desination view controller
+            dashvc.transitioningView.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
+        
+    }
+}
+
+- (void)animationEnded:(BOOL)transitionCompleted
+{
+    
+}
+
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
+    return 0.45;
+}
+
 
 
 
