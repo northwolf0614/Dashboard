@@ -12,12 +12,9 @@
 //#import "AbstractDetailChartViewController.h"
 #import "DoubleNChartWithLabelViewController.h"
 //@interface DetailChartViewController : UIViewController
-@interface DetailChartViewController:DoubleNChartWithLabelViewController
+@interface DetailChartViewController:DoubleNChartWithLabelViewController<UISplitViewControllerDelegate>
+@property (strong, nonatomic) id detailItem;
 @property (weak, nonatomic) IBOutlet UIView *chartViewContainer;
 @property (weak, nonatomic) IBOutlet UIView *configurationViewContainer;
-//@property (nonatomic,strong) NChartDataModel* dataForChartView;
-//@property (nonatomic, strong) AbstractNChartView* chartView;
-//-(id)initWithChartData:(NChartDataModel*) dataForChart;
-
 
 @end

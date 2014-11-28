@@ -52,6 +52,7 @@
 		E7C2229F1A26852B00C9CAEE /* EmptyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2229E1A26852B00C9CAEE /* EmptyCollectionViewCell.m */; };
 		E7C222A21A26856A00C9CAEE /* GeneralCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */; };
 		E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */; };
+		E7DF19E31A27F45B00F0CAEF /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7DF19E21A27F45B00F0CAEF /* SettingsViewController.m */; };
 		E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */; };
 		E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7EC7AD11A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,8 @@
 		E7C222A01A26856A00C9CAEE /* GeneralCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralCollectionViewCell.h; sourceTree = "<group>"; };
 		E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralCollectionViewCell.m; sourceTree = "<group>"; };
 		E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
+		E7DF19E11A27F45B00F0CAEF /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		E7DF19E21A27F45B00F0CAEF /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		E7EC7ACB1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralNChartWithLabelViewController.h; sourceTree = "<group>"; };
 		E7EC7ACC1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralNChartWithLabelViewController.m; sourceTree = "<group>"; };
 		E7EC7AD01A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleNChartWithLabelViewController.h; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				E772CDD71A1D7D000034E553 /* SplitViewController.m */,
 				E7C2227F1A25A1C600C9CAEE /* DashBoardViewController.h */,
 				E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */,
+				E7DF19E11A27F45B00F0CAEF /* SettingsViewController.h */,
+				E7DF19E21A27F45B00F0CAEF /* SettingsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,
 				09B0B26B19F5D99A008DCE56 /* main.m in Sources */,
+				E7DF19E31A27F45B00F0CAEF /* SettingsViewController.m in Sources */,
 				E7EC7ACD1A0D88FE00A989A4 /* GeneralNChartWithLabelViewController.m in Sources */,
 				AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */,
 			);

@@ -18,6 +18,8 @@
 #import "DashBoardViewController.h"
 #import "GeneralCollectionViewCell.h"
 #import "EmptyCollectionViewCell.h"
+#import "SettingsViewController.h"
+#import "SplitViewController.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -221,6 +223,27 @@
     [super viewDidAppear:animated];
     
 }
+-(UISplitViewController*)configSplitDetailsController:(DetailChartViewController*)detailViewController
+{
+    SettingsViewController* masterViewController = [[SettingsViewController alloc] init] ;
+    UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
+    
+    //DetailChartViewController *detailViewController = [[DetailChartViewController alloc] init] ;
+    //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+    UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+    
+    
+    masterViewController.detailViewController = detailViewController;
+    
+    SplitViewController* splitViewController = [[SplitViewController alloc] init] ;
+    splitViewController.delegate = (id)detailViewController;
+    splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
+    //splitViewController.transitioningDelegate=self;
+    
+    return splitViewController;
+    
+    
+}
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -276,6 +299,7 @@
 #pragma mark <UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
+
     //NSLog(@"did selected on %ld", indexPath.item);
     DetailChartViewController* detailViewController=nil;
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
@@ -287,15 +311,23 @@
     else
     detailViewController= [[DetailChartViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
     
-    detailViewController.transitioningDelegate=(id)self;
-    
-    //detailViewController.transitioningDelegate=self;
-    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
     self.transitioningView = cell;
+#ifdef DetailViewController
     
-    //[self.navigationController pushViewController:detailViewController animated:YES];
-    //[self.navigationController.splitViewController presentViewController:detailViewController animated:YES completion:nil];
+    detailViewController.transitioningDelegate=(id)self;
+    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
+    
     [self presentViewController:detailViewController animated:YES completion:nil];
+    
+    
+#else
+    UISplitViewController* splitDetailViewController=[self configSplitDetailsController:detailViewController];
+    
+    splitDetailViewController.transitioningDelegate=(id)self;
+    splitDetailViewController.modalTransitionStyle = UIModalPresentationCustom;
+    
+    [self presentViewController:splitDetailViewController animated:YES completion:nil];
+#endif
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -304,24 +336,25 @@
 }
 
 
-#pragma ChartSubviewControllerResponse
--(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding inView:(UIView *)contentView
-{
-    //    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
-    //    [self.navigationController pushViewController:detailViewController animated:YES];
-    DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
-    detailViewController.transitioningDelegate=(id)self;
-    
-    //detailViewController.transitioningDelegate=self;
-    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
-    self.transitioningView=contentView;
-    
-    //[self.navigationController pushViewController:detailViewController animated:YES];
-    //[self.navigationController.splitViewController presentViewController:detailViewController animated:YES completion:nil];
-    [self presentViewController:detailViewController animated:YES completion:nil];
-    
-    
-}
+//#pragma <ChartSubviewControllerResponse>
+//-(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding inView:(UIView *)contentView
+//{
+//    //    SubDetailChartViewController* detailViewController= [[SubDetailChartViewController alloc] initWithChartData:dataSubviewControllerHolding];
+//    //    [self.navigationController pushViewController:detailViewController animated:YES];
+//    DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
+//    detailViewController.transitioningDelegate=(id)self;
+//    
+//    //detailViewController.transitioningDelegate=self;
+//    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
+//    self.transitioningView=contentView;
+//    
+//    //[self.navigationController pushViewController:detailViewController animated:YES];
+//    //[self.navigationController.splitViewController presentViewController:detailViewController animated:YES completion:nil];
+//    //[self presentViewController:detailViewController animated:YES completion:nil];
+//    //[self presentDetailsController];
+//    
+//    
+//}
 #pragma <UINavigationControllerDelegate>
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
@@ -394,13 +427,15 @@
     {
         for (UIViewController* vc in ((UISplitViewController*)fromViewController_topParent).viewControllers)
         {
-            if ([vc isKindOfClass:[UINavigationController class]]&&[((UINavigationController*)vc).topViewController isKindOfClass:[DashBoardViewController class]])
-            {
-                fromViewController=((UINavigationController*)vc).topViewController;
-            }
+            if ([vc isKindOfClass:[UINavigationController class]])
+                if ([((UINavigationController*)vc).topViewController isKindOfClass:[DashBoardViewController class]]||[((UINavigationController*)vc).topViewController isKindOfClass:[DetailChartViewController class]])
+                {
+                    fromViewController=((UINavigationController*)vc).topViewController;
+                    break;
+                }
         }
     }
-    
+#ifdef DetailViewController
     //UIViewController *fromViewController = fromViewController_topParent.
     if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
     {
@@ -470,6 +505,93 @@
         }];
         
     }
+    
+#else
+    if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[SplitViewController class]])
+    {
+        //Presenting DetailChartViewController from DashboardTableViewController
+        SplitViewController* dvc = (SplitViewController*)toViewController;
+        DashboardTableViewController* dashvc=(DashboardTableViewController*) fromViewController;
+        //DashboardTableViewController* dashvc = [naviVC.viewControllers objectAtIndex:0 ];
+        
+        
+        CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
+        
+        //Destination view controller
+        dvc.view.transform = CGAffineTransformMakeScale(
+                                                        CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
+                                                        CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
+        dvc.view.frame = transitioningFrame;
+        dvc.view.alpha = 0.0f;
+        
+        //source view controller
+        dashvc.transitioningView.alpha = 1.0f;
+        
+        [containerView insertSubview:dvc.view aboveSubview:dashvc.view];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            //Destination view controller
+            dvc.view.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            dvc.view.frame = containerView.bounds;
+            dvc.view.alpha = 1.0f;
+            
+            //source view controller
+            dashvc.transitioningView.alpha = 0.0f;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+        }];
+    }
+    
+    
+    if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[SplitViewController class]])
+        
+    {
+        
+        
+        //Dismissing MapViewControll from ChatViewController
+        DetailChartViewController* dvc = (DetailChartViewController*)fromViewController;
+        SplitViewController* dashvc_parent = (SplitViewController*)toViewController;
+        DashBoardViewController* dashvc=nil;
+        if ([dashvc_parent isKindOfClass:[SplitViewController class]])
+        {
+            for (UIViewController* vc in dashvc_parent.viewControllers)
+            {
+                if ([vc isKindOfClass:[UINavigationController class]])
+                    if ([((UINavigationController*)vc).topViewController isKindOfClass:[DashBoardViewController class]])
+                    {
+                        dashvc=(DashBoardViewController*)((UINavigationController*)vc).topViewController;
+                        break;
+                    }
+            }
+        }
+        
+        CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
+        
+        //desination view controller
+        dashvc.transitioningView.alpha = 0.0f;
+        //[containerView addSubview:dashvc.view];//?[containerView addSubview:dashvc_parent.view]
+        [containerView addSubview:dashvc_parent.view];
+        
+        //source view controller
+        dvc.view.alpha = 1.0f;
+        //[containerView insertSubview:dvc.view aboveSubview:dashvc.view];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            //source view controller
+            dvc.view.transform = CGAffineTransformMakeScale(CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
+                                                            CGRectGetHeight(transitioningFrame) / CGRectGetHeight(containerView.bounds));
+            dvc.view.frame = transitioningFrame;
+            dvc.view.alpha = 0.0f;
+            
+            //desination view controller
+            dashvc.transitioningView.alpha = 1.0f;
+        } completion:^(BOOL finished) {
+            [transitionContext completeTransition:YES];
+            [fromViewController_topParent.view removeFromSuperview];
+        }];
+        
+    }
+#endif
 }
 
 - (void)animationEnded:(BOOL)transitionCompleted

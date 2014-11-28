@@ -73,6 +73,11 @@
 
 #define kcPageTableCellHeight 44.0f
 
+
+
+//#define DetailViewController
+
+
 #endif
 
 
