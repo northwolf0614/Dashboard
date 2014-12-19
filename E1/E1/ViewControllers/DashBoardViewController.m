@@ -29,7 +29,7 @@
 @property (retain, nonatomic) UIPopoverController *masterPopoverController;
 @property(nonatomic,assign) BOOL isInitial;
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
--(void)presentViewControllerInteractive:(UIViewController *)viewControllerToPresent isInteractive:(BOOL)interactive completion:(void (^)(void))completion;
+
 
 @end
 
@@ -150,7 +150,8 @@
                 {
     
                     PageTableViewController* pageVC=[[PageTableViewController alloc] initWithDetailController:self];
-                    pageVC.interactionController.interactive=YES;
+                    //pageVC.interactionController.interactive=YES;
+                    pageVC.interactionController.interactive=NO;
                     pageVC.modalPresentationStyle = UIModalPresentationCustom;
                     [self presentViewController:pageVC animated:YES completion:^{}];
 
@@ -162,26 +163,26 @@
                 break;
             case UIGestureRecognizerStateChanged:
             {
-                CGFloat completionRation=0;
-                CGPoint location = [gesture locationInView:view];
-                if ([gesture isEqual:_leftEdgeGesture])
-                    completionRation= fabs(_beginTouchValue-location.x)/KcPopoverWidth;
-                [self.interactionController updateInteractiveTransition:completionRation];
+//                CGFloat completionRation=0;
+//                CGPoint location = [gesture locationInView:view];
+//                if ([gesture isEqual:_leftEdgeGesture])
+//                    completionRation= fabs(_beginTouchValue-location.x)/KcPopoverWidth;
+//                [self.interactionController updateInteractiveTransition:completionRation];
             }
                 break;
             case UIGestureRecognizerStateEnded:
             case UIGestureRecognizerStateCancelled:
             {
-                CGPoint location = [gesture locationInView:view];
-                CGFloat completionRation=0;
-
-                if ([gesture isEqual:_leftEdgeGesture])
-                    completionRation= fabs(_beginTouchValue-location.x)/KcPopoverWidth;
-                if (completionRation >= 0.5) {
-                    [self.interactionController finishInteractiveTransitionWithDuration:0.1];
-                } else {
-                    [self.interactionController cancelInteractiveTransitionWithDuration:0.1];
-                }
+//                CGPoint location = [gesture locationInView:view];
+//                CGFloat completionRation=0;
+//
+//                if ([gesture isEqual:_leftEdgeGesture])
+//                    completionRation= fabs(_beginTouchValue-location.x)/KcPopoverWidth;
+//                if (completionRation >= 0.5) {
+//                    [self.interactionController finishInteractiveTransitionWithDuration:0.1];
+//                } else {
+//                    [self.interactionController cancelInteractiveTransitionWithDuration:0.1];
+//                }
 
             }
                 break;
@@ -247,15 +248,25 @@
 
         else
         {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
             {
                 NSArray* chartDataArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem] ];
                 
 
-                dispatch_async(dispatch_get_main_queue(), ^
+                //dispatch_async(dispatch_get_main_queue(), ^
                 {
                     if (chartDataArray==nil)
                     {
+//                        for (UIViewController* vc in self.childViewControllers)
+//                        {
+//                            
+////                            for (UIView* view in ((DoubleNChartWithLabelViewController*)vc).contentView.subviews)
+////                            {
+////                                [view removeFromSuperview];
+////                            }
+////                            [vc.view removeFromSuperview];
+//                            [vc removeFromParentViewController];
+//                        }
                         [self.chartDataAssembly removeAllObjects];
                         [self.dashboardItemViewControllers removeAllObjects];
                         
@@ -264,6 +275,17 @@
                     
                     else
                     {
+//                        for (UIViewController* vc in self.childViewControllers) {
+//                            
+////                            for (UIView* view in ((DoubleNChartWithLabelViewController*)vc).contentView.subviews)
+////                            {
+////                                [view removeFromSuperview];
+////                            }
+////                            [vc.view removeFromSuperview];
+//                            [vc removeFromParentViewController];
+//                            
+//                            
+//                        }
                         [self.chartDataAssembly removeAllObjects];
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
                         [self.dashboardItemViewControllers removeAllObjects];
@@ -281,13 +303,16 @@
                     
                     
                     
-                });
-            });
+                }
+                //);
+            }
+           // );
             
             
 
         }
     }
+
 
     
 }

@@ -160,17 +160,29 @@
         CATransform3D mat1 = CATransform3DConcat(CATransform3DConcat(move, rotate1), back);
         CATransform3D final=CATransform3DPerspect(mat1, CGPointZero, 500);
         toViewController.view.alpha=0.0f;
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:[self transitionDuration:transitionContext]];
-        CABasicAnimation* anim=[CABasicAnimation animationWithKeyPath:@"transform"];
-        [anim setFromValue:[NSValue valueWithCATransform3D:semiFinal]];
-        [anim setToValue:[NSValue valueWithCATransform3D:final]];
-        anim.delegate=self;
-        [anim setValue:@"pagingAnimationNonTransitionOpen" forKey:@"pagingAnimationNonTransitionOpen"];
-        [toViewController.view.layer addAnimation:anim forKey:nil];
-        toViewController.view.layer.transform=final;
-        toViewController.view.alpha = 1.0f;
-        [CATransaction commit];
+        toViewController.view.layer.transform=semiFinal;
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:0.45];
+//        CABasicAnimation* anim=[CABasicAnimation animationWithKeyPath:@"transform"];
+//        [anim setFromValue:[NSValue valueWithCATransform3D:semiFinal]];
+//        [anim setToValue:[NSValue valueWithCATransform3D:final]];
+//        anim.delegate=self;
+//        [anim setValue:@"pagingAnimationNonTransitionOpen" forKey:@"pagingAnimationNonTransitionOpen"];
+//        [toViewController.view.layer addAnimation:anim forKey:nil];
+//        toViewController.view.layer.transform=final;
+//        toViewController.view.alpha = 1.0f;
+//        [CATransaction commit];
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^
+         {
+             toViewController.view.layer.transform=final;
+             toViewController.view.alpha=1.0f;
+         } completion:^(BOOL finished)
+         {
+             if (finished)
+                 [transitionContext completeTransition:YES];
+             
+             
+         }];
         
     }
     
@@ -191,17 +203,31 @@
         CATransform3D mat1 = CATransform3DConcat(CATransform3DConcat(move, rotate1), back);
         CATransform3D final=CATransform3DPerspect(mat1, CGPointZero, 500);
         fromViewController.view.alpha = 1.0f;
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:[self transitionDuration:transitionContext]];
-        CABasicAnimation* anim=[CABasicAnimation animationWithKeyPath:@"transform"];
-        [anim setFromValue:[NSValue valueWithCATransform3D:semiFinal]];
-        [anim setToValue:[NSValue valueWithCATransform3D:final]];
-        anim.delegate=self;
-        [anim setValue:@"pagingAnimationNonTransitionClose" forKey:@"pagingAnimationNonTransitionClose"];
-        [fromViewController.view.layer addAnimation:anim forKey:nil];
-        fromViewController.view.layer.transform=final;
-        //fromViewController.view.alpha = 0.0f;
-        [CATransaction commit];
+        fromViewController.view.layer.transform=semiFinal;
+        
+//        [CATransaction begin];
+//        [CATransaction setAnimationDuration:1];
+//        CABasicAnimation* anim=[CABasicAnimation animationWithKeyPath:@"transform"];
+//        [anim setFromValue:[NSValue valueWithCATransform3D:semiFinal]];
+//        [anim setToValue:[NSValue valueWithCATransform3D:final]];
+//        anim.delegate=self;
+//        [anim setValue:@"pagingAnimationNonTransitionClose" forKey:@"pagingAnimationNonTransitionClose"];
+//        [fromViewController.view.layer addAnimation:anim forKey:nil];
+//        fromViewController.view.layer.transform=final;
+//        
+//        fromViewController.view.alpha = 0.0f;
+//        [CATransaction commit];
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^
+         {
+             fromViewController.view.layer.transform=final;
+             fromViewController.view.alpha=0.0f;
+         } completion:^(BOOL finished)
+         {
+             if (finished)
+                 [transitionContext completeTransition:YES];
+             
+             
+         }];
         
         
     }

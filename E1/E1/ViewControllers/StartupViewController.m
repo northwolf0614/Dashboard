@@ -39,7 +39,7 @@
     [NSThread sleepForTimeInterval:3.0f];
     //centerPoint.y-=100;
     
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:0.45 animations:^{
         
         self.imageView.transform=CGAffineTransformTranslate(self.imageView.transform, 0, kcQBELogoMovingDistance);
         //self.imageView.center=centerPoint;

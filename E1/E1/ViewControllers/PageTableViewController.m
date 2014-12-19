@@ -32,6 +32,7 @@
 {
     id<UIViewControllerContextTransitioning> _context;
     UIPanGestureRecognizer* _panGestureRecognizer;
+    float  _beginTouchValue;
     
 }
 
@@ -143,54 +144,87 @@
     _panGestureRecognizer.minimumNumberOfTouches = 1;
     _panGestureRecognizer.delegate=self;
     //[self.tableView addGestureRecognizer:swipeGestureRecognizer];
-    [self.tableView addGestureRecognizer:_panGestureRecognizer];
+    //[self.tableView addGestureRecognizer:_panGestureRecognizer];
+    
+    UISwipeGestureRecognizer* swipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                                                                 action:@selector(handleSwipes:)];
+    // 定义滑动方向，即：向X滑动
+    swipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    // 几个手指
+    swipeGestureRecognizer.numberOfTouchesRequired = 1;
+    // 将手势添加到某个UI上
+    [self.tableView addGestureRecognizer:swipeGestureRecognizer];
 }
 - (void) handlePans:(UIPanGestureRecognizer *)recognizer
 {
     
-    UIView* view = self.view;
-    switch (recognizer.state)
+    UIView* view = self.tableView;
+    CGPoint location = [recognizer locationInView:view];
+    CGPoint translation = [recognizer translationInView:view];
+    NSLog(@"locatioin is %@",NSStringFromCGPoint(location));
+    NSLog(@"translation is %@",NSStringFromCGPoint(translation));
+    //if (location.x>0)
     {
-        case UIGestureRecognizerStateBegan:
+        switch (recognizer.state)
         {
-            //CGPoint location = [recognizer locationInView:view];
-            if ([recognizer isEqual:_panGestureRecognizer])
+            case UIGestureRecognizerStateBegan:
             {
-                self.interactionController.interactive=YES;
-                [self dismissViewControllerAnimated:YES completion:^{
+                
+                
+                if ([recognizer isEqual:_panGestureRecognizer])
+                {
+                   // if ((location.x-_beginTouchValue)>0)
+                    {
                     
-                }];
+                        _beginTouchValue=location.x;
+                        //self.interactionController.interactive=YES;
+                        self.interactionController.interactive=NO;
+                        [self dismissViewControllerAnimated:YES completion:^{
+                            
+                        }];
+                    }
 
+                    
+                }
                 
             }
-        }
-        break;
-        case UIGestureRecognizerStateChanged:
-        {
-            CGPoint translation = [recognizer translationInView:view];
-            CGFloat distanceRation = fabs(translation.x / CGRectGetWidth(view.bounds));
-            [self.interactionController updateInteractiveTransition:distanceRation];
-        }
-        break;
-        case UIGestureRecognizerStateEnded:
-        case UIGestureRecognizerStateCancelled:
-        {
-            CGPoint translation = [recognizer translationInView:view];
-            CGFloat distance = fabs(translation.x / CGRectGetWidth(view.bounds));
-            if (distance >= 0.5) {
-                [self.interactionController finishInteractiveTransitionWithDuration:0.1];
-            } else {
-                [self.interactionController cancelInteractiveTransitionWithDuration:0.1];
+            break;
+            case UIGestureRecognizerStateChanged:
+            {
+                //if ((location.x-_beginTouchValue)>0)
+//                {
+//                    CGPoint translation = [recognizer translationInView:view];
+//                    //
+//                    CGFloat distanceRation = fabs(translation.x / CGRectGetWidth(view.bounds));
+//                    [self.interactionController updateInteractiveTransition:distanceRation];
+//                }
             }
+            break;
+            case UIGestureRecognizerStateEnded:
+            case UIGestureRecognizerStateCancelled:
+            {
+                //if ((location.x-_beginTouchValue)>0)
+//                {
+//                    CGPoint translation = [recognizer translationInView:view];
+//                    CGFloat distance = fabs(translation.x / CGRectGetWidth(view.bounds));
+//                    if (distance >= 0.5) {
+//                        [self.interactionController finishInteractiveTransitionWithDuration:0.1];
+//                    }
+//                    else
+//                    {
+//                        [self.interactionController cancelInteractiveTransitionWithDuration:0.1];
+//                    }
+//                }
 
+            }
+            break;
+            case UIGestureRecognizerStatePossible:
+                break;
+            case UIGestureRecognizerStateFailed:
+                break;
+            default:
+                break;
         }
-        break;
-        case UIGestureRecognizerStatePossible:
-            break;
-        case UIGestureRecognizerStateFailed:
-            break;
-        default:
-            break;
     }
     
     

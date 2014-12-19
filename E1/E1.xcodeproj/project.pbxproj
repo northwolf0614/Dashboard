@@ -56,6 +56,7 @@
 		E796758C1A43CAA300482C92 /* MainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E796758B1A43CAA300482C92 /* MainWindow.m */; };
 		E79675901A43CD6800482C92 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E796758E1A43CD6800482C92 /* SliderCell.m */; };
 		E79675911A43CD6800482C92 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E796758F1A43CD6800482C92 /* SliderCell.xib */; };
+		E79675931A43D9D600482C92 /* coverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E79675921A43D9D600482C92 /* coverView.xib */; };
 		E7A254981A1570C000568E65 /* PushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A254971A1570C000568E65 /* PushAnimation.m */; };
 		E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A2549C1A15720100568E65 /* PopAnimation.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
@@ -161,6 +162,7 @@
 		E796758D1A43CD6800482C92 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		E796758E1A43CD6800482C92 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		E796758F1A43CD6800482C92 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
+		E79675921A43D9D600482C92 /* coverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = coverView.xib; sourceTree = "<group>"; };
 		E7A254961A1570C000568E65 /* PushAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushAnimation.h; sourceTree = "<group>"; };
 		E7A254971A1570C000568E65 /* PushAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushAnimation.m; sourceTree = "<group>"; };
 		E7A2549B1A15720100568E65 /* PopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopAnimation.h; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		AB18A9691A01C3F7006546D4 /* NChart3D */ = {
 			isa = PBXGroup;
 			children = (
+				E79675921A43D9D600482C92 /* coverView.xib */,
 				AB18A96A1A01C3F7006546D4 /* NChart3D.framework */,
 				AB18A9701A01C49E006546D4 /* AbstractNChartViewController.h */,
 				AB18A9711A01C49E006546D4 /* AbstractNChartViewController.m */,
@@ -517,6 +520,7 @@
 				E79675861A43C78E00482C92 /* SwitchCell.xib in Resources */,
 				AB0D11941A01FC31004C049B /* DashboardItemViewController.xib in Resources */,
 				E79675911A43CD6800482C92 /* SliderCell.xib in Resources */,
+				E79675931A43D9D600482C92 /* coverView.xib in Resources */,
 				E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */,
 				09B0B27A19F5D99A008DCE56 /* Images.xcassets in Resources */,
 				ABE8A46519FF5912004E35E1 /* .gitignore in Resources */,
