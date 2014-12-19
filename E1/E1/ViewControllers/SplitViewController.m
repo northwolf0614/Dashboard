@@ -28,6 +28,7 @@
 -(void)viewDidLayoutSubviews
 //-(void)viewWillLayoutSubviews
 {
+    
     const CGFloat kMasterViewWidth = kcMasterWidth;
     
     UIViewController *masterViewController = [self.viewControllers objectAtIndex:0];

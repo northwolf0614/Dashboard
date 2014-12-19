@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailChartViewController">
             <connections>
                 <outlet property="chartViewContainer" destination="eoe-s9-uC9" id="nTB-b3-dLz"/>
-                <outlet property="configurationViewContainer" destination="oXb-O3-R3J" id="oRf-OC-0k0"/>
+                <outlet property="navItem" destination="EyF-hl-gFN" id="x0D-wW-no4"/>
+                <outlet property="navigationBar" destination="rej-vT-XzO" id="UcM-Hr-Lku"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,27 +18,31 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rej-vT-XzO">
+                    <rect key="frame" x="-36" y="19" width="636" height="44"/>
+                    <items>
+                        <navigationItem title="Title" id="EyF-hl-gFN"/>
+                    </items>
+                </navigationBar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoe-s9-uC9" userLabel="ChartView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXb-O3-R3J" userLabel="ConfigurationView">
-                    <rect key="frame" x="0.0" y="0.0" width="592" height="600"/>
+                    <rect key="frame" x="0.0" y="63" width="600" height="537"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="eoe-s9-uC9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0kF-h9-iAf"/>
-                <constraint firstAttribute="bottom" secondItem="eoe-s9-uC9" secondAttribute="bottom" id="3pa-cD-McT"/>
-                <constraint firstItem="oXb-O3-R3J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8Ar-oK-QOI"/>
-                <constraint firstAttribute="trailing" secondItem="eoe-s9-uC9" secondAttribute="trailing" id="Jf2-fl-d23"/>
-                <constraint firstItem="eoe-s9-uC9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aDU-KD-gY6"/>
-                <constraint firstAttribute="trailing" secondItem="oXb-O3-R3J" secondAttribute="trailing" constant="8" id="ihC-47-A62"/>
-                <constraint firstItem="oXb-O3-R3J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="w4b-DQ-C34"/>
-                <constraint firstAttribute="bottom" secondItem="oXb-O3-R3J" secondAttribute="bottom" id="wd7-ML-w6m"/>
+                <constraint firstItem="rej-vT-XzO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="9lb-W2-Ysl"/>
+                <constraint firstAttribute="bottom" secondItem="eoe-s9-uC9" secondAttribute="bottom" id="Cqg-zz-egI"/>
+                <constraint firstItem="eoe-s9-uC9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HtX-QS-vtM"/>
+                <constraint firstItem="eoe-s9-uC9" firstAttribute="top" secondItem="rej-vT-XzO" secondAttribute="bottom" id="MUe-g6-lGh"/>
+                <constraint firstAttribute="trailing" secondItem="rej-vT-XzO" secondAttribute="trailing" id="QEw-N2-xSY"/>
+                <constraint firstAttribute="centerX" secondItem="eoe-s9-uC9" secondAttribute="centerX" id="d5N-8g-som"/>
+                <constraint firstItem="eoe-s9-uC9" firstAttribute="top" secondItem="rej-vT-XzO" secondAttribute="bottom" id="ogl-xX-Sro"/>
+                <constraint firstItem="rej-vT-XzO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-36" id="qcf-H9-ijR"/>
+                <constraint firstAttribute="trailing" secondItem="eoe-s9-uC9" secondAttribute="trailing" id="uvH-So-is1"/>
+                <constraint firstAttribute="centerX" secondItem="rej-vT-XzO" secondAttribute="centerX" constant="18" id="zVH-4o-zUl"/>
             </constraints>
-            <point key="canvasLocation" x="25" y="54"/>
+            <point key="canvasLocation" x="-70" y="-78"/>
         </view>
     </objects>
 </document>

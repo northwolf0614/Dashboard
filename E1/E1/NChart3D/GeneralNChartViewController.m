@@ -78,6 +78,9 @@
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
                 //[self updateChartData:self.chartView animated:YES];
+//                NChartColumnSeriesSettings *setting = [NChartColumnSeriesSettings seriesSettings];
+//                setting.animationType = NChartColumnAnimationTypeOneByOne;
+//                [self.chartView.chart addSeriesSettings:setting];
             }
                 break;
             case LINE:
@@ -99,7 +102,9 @@
                 self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
                 self.chartView.chart.cartesianSystem.syAxis.visible = NO;
-                //[self updateChartData:self.chartView animated:YES];
+//                NChartLineSeriesSettings *setting = [NChartLineSeriesSettings seriesSettings];
+//                setting.animationType = NChartLineAnimationTypeGrowRight;
+//                [self.chartView.chart addSeriesSettings:setting];
 
             }
                 break;
@@ -150,8 +155,9 @@
                 series.brush.opacity=0.8f;
                 series.dataSource = (id)self;
                 [self.chartView.chart addSeries:series];
-                self.chartView.chart.streamingMode = YES;
+                
                 self.chartView.chart.timeAxis.visible = NO;
+                self.chartView.chart.polarSystem.borderColor = nil;
                 self.chartView.chart.polarSystem.radiusAxis.labelsVisible=NO;
                 self.chartView.chart.polarSystem.radiusAxis.visible=NO;
                 self.chartView.chart.polarSystem.radiusAxis.caption.visible=NO;
@@ -175,7 +181,31 @@
 
             }
                 break;
-
+            case AREA:
+            {
+                NChartAreaSeries* series = [NChartAreaSeries new];
+                series.tag=count;
+                series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+                series.brush.opacity =  0.6f;
+                series.dataSource = (id)self;
+                series.dataSmoother=NO;
+                
+                //series.hostsOnSY = YES;
+                [self.chartView.chart addSeries:series];
+                
+                self.chartView.chart.cartesianSystem.yAlongX.visible=NO;
+                self.chartView.chart.cartesianSystem.xAlongY.visible=NO;
+                self.chartView.chart.cartesianSystem.borderVisible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.visible=NO;
+                self.chartView.chart.cartesianSystem.yAxis.labelsVisible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.caption.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.majorTicks.visible=NO;
+                self.chartView.chart.cartesianSystem.xAxis.minorTicks.visible=NO;
+                self.chartView.chart.streamingMode=NO;
+                
+            }
+                break;
                 
             default:
                 break;

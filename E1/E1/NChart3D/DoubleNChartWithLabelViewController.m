@@ -31,26 +31,33 @@
     if (self.isNeedsUpdate)
     {
         //specially fix the data for radar chart
-        NSMutableDictionary* radarSeriesData=nil;
-        if (self.dataForNChart.chartType==RADAR)
-        {
-            radarSeriesData=self.dataForNChart.chartDataForDrawing;
-            self.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData];
-            
-        }
-        
+//        NSMutableDictionary* radarSeriesData=nil;
+//        if (self.dataForNChart.chartType==RADAR)
+//        {
+//            radarSeriesData=self.dataForNChart.chartDataForDrawing;
+//            self.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData];
+//            
+//        }
         //specially fix the data for radar chart
+        
+        
         [self removeAllSeries];
         [self setupSeriesForChartView];
         self.isNeedsUpdate=NO;
         [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
+        if (self.percentageView!=nil) 
         [self updateChartData:self.percentageView animated:YES dataModel:self.dataForNChartPlus];
         //[self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
+        
+        
+        
+        
+        
         //specially fix the data for radar chart
 
-        if (radarSeriesData!=nil) {
-            self.dataForNChart.chartDataForDrawing=radarSeriesData;
-        }
+//        if (radarSeriesData!=nil) {
+//            self.dataForNChart.chartDataForDrawing=radarSeriesData;
+//        }
         //specially fix the data for radar chart
 
     }
@@ -77,12 +84,12 @@
     [super viewDidLoad];
     if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]]&&self.label!=nil&&[self.label isKindOfClass:[UILabel class]])
     {
-        self.chartViewPlus = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
-        self.chartViewPlus.chart.licenseKey = kcNchartViewlicense;
-        self.chartViewPlus.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
-        self.chartViewPlus.chart.shouldAntialias = YES;
+//        self.chartViewPlus = [[AbstractNChartView alloc] initWithFrame:CGRectZero];
+//        self.chartViewPlus.chart.licenseKey = kcNchartViewlicense;
+//        self.chartViewPlus.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
+//        self.chartViewPlus.chart.shouldAntialias = YES;
         //self.chartView.chart.drawIn3D = YES;
-        self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
+        //self.chartViewPlus.translatesAutoresizingMaskIntoConstraints = NO;
         //[self.contentView addSubview:self.chartViewPlus];
         self.chartView.chart.cartesianSystem.xAxis.dataSource = (id)self;
         self.chartView.chart.cartesianSystem.yAxis.dataSource = (id)self;
@@ -90,29 +97,31 @@
         self.chartView.chart.polarSystem.azimuthAxis.dataSource = (id)self;
         self.chartView.chart.polarSystem.radiusAxis.dataSource = (id)self;
         self.chartView.chart.sizeAxis.dataSource = (id)self;
-        self.chartViewPlus.chart.cartesianSystem.yAlongX.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.xAlongY.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.borderVisible=NO;
-        self.chartViewPlus.chart.cartesianSystem.yAxis.caption.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.yAxis.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.yAxis.labelsVisible=NO;
-        self.chartViewPlus.chart.cartesianSystem.xAxis.caption.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.xAxis.visible=NO;
-        self.chartViewPlus.chart.cartesianSystem.xAxis.labelsVisible=NO;
-        self.chartViewPlus.chart.legend.visible=NO;
-        self.chartViewPlus.chart.polarSystem.radiusAxis.labelsVisible=NO;
-        self.chartViewPlus.chart.polarSystem.radiusAxis.visible=NO;
-        self.chartViewPlus.chart.polarSystem.radiusAxis.caption.visible=NO;
-        self.chartViewPlus.chart.polarSystem.azimuthAxis.caption.visible=NO;
-        self.chartViewPlus.chart.polarSystem.azimuthAxis.visible=NO;
-        self.chartViewPlus.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.yAlongX.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.xAlongY.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.borderVisible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.yAxis.caption.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.yAxis.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.yAxis.labelsVisible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.xAxis.caption.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.xAxis.visible=NO;
+//        self.chartViewPlus.chart.cartesianSystem.xAxis.labelsVisible=NO;
+//        self.chartViewPlus.chart.legend.visible=NO;
+//        self.chartViewPlus.chart.polarSystem.radiusAxis.labelsVisible=NO;
+//        self.chartViewPlus.chart.polarSystem.radiusAxis.visible=NO;
+//        self.chartViewPlus.chart.polarSystem.radiusAxis.caption.visible=NO;
+//        self.chartViewPlus.chart.polarSystem.azimuthAxis.caption.visible=NO;
+//        self.chartViewPlus.chart.polarSystem.azimuthAxis.visible=NO;
+//        self.chartViewPlus.chart.polarSystem.azimuthAxis.labelsVisible=NO;
+//
+//        
+//        
+//        self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
 
-        
-        
-        self.chartViewPlus.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
-        float percent=[self.dataForNChartPlus.percentage floatValue];
-        
+        float percent=[self.dataForNChart.dataForNextView.percentage floatValue];
+
         self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:percent color1:kcLikeOrange color2:kcLikeRed];
+        //self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:floatingNumber color1:kcLikeOrange color2:kcLikeRed];
         self.percentageView.translatesAutoresizingMaskIntoConstraints=NO;
         self.percentageView.backgroundColor=[UIColor clearColor];
         [self.contentView addSubview:self.percentageView];
@@ -124,11 +133,19 @@
         }
 
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,
+                                                                                                                                                                  //@"chartViewPlus":self.chartViewPlus,
+                                                                                                                                                                  @"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,
+                                                                                                                                               //@"chartViewPlus":self.chartViewPlus,
+                                                                                                                                               @"percentageView":self.percentageView}]];
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,@"chartViewPlus":self.chartViewPlus,@"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,
+                                                                                                                                                                       //@"chartViewPlus":self.chartViewPlus,
+                                                                                                                                                                       @"percentageView":self.percentageView}]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.label,
+                                                                                                                                                               //@"chartViewPlus":self.chartViewPlus,
+                                                                                                                                                               @"percentageView":self.percentageView}]];
         
         
         
@@ -159,7 +176,7 @@
                     case COLUMN:
                     {
                         NChartColumnSeries* series = [NChartColumnSeries new];
-                        series.tag=count+base;
+                        series.tag=(int)(count+base);
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
@@ -169,7 +186,7 @@
                     case LINE:
                     {
                         NChartLineSeries* series = [NChartLineSeries new];
-                        series.tag=count+base;
+                        series.tag=(int)(count+base);
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
@@ -179,7 +196,7 @@
                     case BAR:
                     {
                         NChartBarSeries* series = [NChartBarSeries new];
-                        series.tag=count+base;
+                        series.tag=(int)(count+base);
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         //[self updateChartData:self.chartViewPlus animated:YES];
@@ -189,7 +206,7 @@
                     case DOUGHNUT:
                     {
                         NChartPieSeries* series = [NChartPieSeries new];
-                        series.tag=count+base;
+                        series.tag=(int)(count+base);
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
@@ -204,14 +221,15 @@
                     case RADAR:
                     {
                         NChartRadarSeries* series = [NChartRadarSeries new];
-                        series.tag=count+base;
+                        series.tag=(int)(count+base);
                         series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                         series.dataSource = (id)self;
                         [self.chartViewPlus.chart addSeries:series];
                         //[self updateChartData:self.chartViewPlus animated:YES];
                     }
                         break;
-                        
+                    
+   
                         
                     default:
                         break;
@@ -377,6 +395,24 @@
         }
         return result;
         
+        
+    }
+    else if (seriesType==AREA)
+    {
+        for (int count=0;count<[xValues count];count++)
+        {
+            NSNumber* yValueObject=[yValues objectAtIndex:count];
+            double yValueDouble=[yValueObject doubleValue];
+            NSNumber* xValueObject=[xValues objectAtIndex:count];
+            int xValueInt=[xValueObject intValue];
+            NChartPointState *state = [NChartPointState pointStateAlignedToXWithX:xValueInt Y:yValueDouble];
+            //state.marker = [NChartMarker new] ;
+            //state.marker.shape = NChartMarkerShapeCircle;
+            //state.marker.brush=[NChartSolidColorBrush solidColorBrushWithColor:kcLikeRed];
+            //state.marker.size=1.0f;//maybe not working
+            [result addObject:[NChartPoint pointWithState:state forSeries:series]];
+        }
+        return result;
         
     }
     

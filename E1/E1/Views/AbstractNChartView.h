@@ -17,7 +17,7 @@
 -(void)disableMiddleLabel;
 
 -(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration;
-//-(void)setTextForTopRightLabel:(NSString*) text;
-
+-(void)deleteMiddleLabel;
+-(void)addMiddleLabel;
 
 @end

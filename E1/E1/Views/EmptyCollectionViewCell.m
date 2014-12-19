@@ -14,8 +14,10 @@
 
 - (void)awakeFromNib{
     [super awakeFromNib];
-    self.emptyImageView.backgroundColor=kcWidgetBackColor;
-
-
+    self.backgroundColor=kcWidgetBackColor;
+    
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = 0.1;
+    self.layer.shadowOffset = CGSizeMake(0, 3);
 }
 @end

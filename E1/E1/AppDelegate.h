@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SplitViewController.h"
-
+#import "MainWindow.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property (strong, nonatomic) UIWindow* window;
+@property (strong, nonatomic) MainWindow* window;
 @property(nonatomic,strong) SplitViewController* splitViewController;
 @end

@@ -18,10 +18,10 @@
 @end
 
 @implementation AbstractNChartViewController
--(void)dealloc
-{
-    [_dataForNChart removeObserver:self forKeyPath:@"chartDataForDrawing"];
-}
+//-(void)dealloc
+//{
+////    [_dataForNChart removeObserver:self forKeyPath:@"chartDataForDrawing"];//chartDataForDrawing
+//}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -64,6 +64,7 @@
 
 }
 
+
 //- (void) handleTaps:(UITapGestureRecognizer*)paramSender
 //{
 //    
@@ -80,8 +81,9 @@
 {
     if (aDataChart!=_dataForNChart)
     {
+        _dataForNChart=nil;
         _dataForNChart=aDataChart;
-        [_dataForNChart addObserver:self forKeyPath:@"chartDataForDrawing" options:(NSKeyValueObservingOptionNew) context:nil];
+//        [_dataForNChart addObserver:self forKeyPath:@"chartDataForDrawing" options:(NSKeyValueObservingOptionNew) context:nil];
         
     }
     
@@ -90,15 +92,15 @@
 {
     return _dataForNChart;
 }
--(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (([keyPath isEqualToString:@"chartDataForDrawing"])&&[object isKindOfClass: [NChartDataModel class]])
-    {
-        
-        //self.isNeedsUpdate=YES;
-        //[self showSeries];
-    }
-}
+//-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    if (([keyPath isEqualToString:@"chartDataForDrawing"])&&[object isKindOfClass: [NChartDataModel class]])
+//    {
+//        
+//        //self.isNeedsUpdate=YES;
+//        //[self showSeries];
+//    }
+//}
 
 -(void) setupAxesType
 {}
@@ -221,7 +223,9 @@
         }
     }
     if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
+    //if(chartData.floatingNumber!=0.0f)
         [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+        //[view setTextForMiddleLabel:[NSNumber numberWithFloat:chartData.floatingNumber] animation:isAnimated animationTime:kcTRANSITION_TIME];
     
         //selcetion 2
 

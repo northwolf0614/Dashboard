@@ -8,56 +8,43 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "DashboardTableViewController.h"
+//#import "DashboardTableViewController.h"
 #import "PageTableViewController.h"
 #import "DashBoardViewController.h"
+#import "StartupViewController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
 //@property(nonatomic,strong) ViewController* rootViewController;
-@property (nonatomic, strong) DashboardTableViewController* rootViewController;
+//@property (nonatomic, strong) DashboardTableViewController* rootViewController;
 
 @end
 
 @implementation AppDelegate
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    //self.rootViewController= [[ViewController alloc] init ];
-//    self.rootViewController = [[DashboardTableViewController alloc] init];
-//    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
-//    self.window.rootViewController = self.navigationController;
-//    [self.window makeKeyAndVisible];
-//    return YES;
+
     
     
-     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
-     // Override point for customization after application launch.
-     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    
+    self.window =(MainWindow*) [[MainWindow alloc] initWithFrame:[AppDelegate screenRectForLandscape]] ;
+    //self.window =(MainWindow*) [MainWindow new];
+
+    //self.window =(MainWindow*) [[MainWindow alloc] init] ;
+#ifndef MASTERDETAIL
+     //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
      {
-         DashboardTableViewController* masterViewController = [[DashboardTableViewController alloc] init] ;
-         self.navigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
-         self.window.rootViewController = self.navigationController;
+         StartupViewController* startupVC=[[StartupViewController alloc] init];
+         //DashBoardViewController *detailViewController = [[DashBoardViewController alloc] init] ;
+         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
+         
+         //self.window.rootViewController = detailNavigationController;
+         //self.window.rootViewController = detailViewController;
+         self.window.rootViewController = startupVC;
      }
-//     else
-//     {
-//         PageTableViewController* masterViewController = [[PageTableViewController alloc] init] ;
-//         UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
-//         
-//         DashboardTableViewController *detailViewController = [[DashboardTableViewController alloc] init] ;
-//         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-//          UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-//         
-//         
-//        masterViewController.detailViewController = detailViewController;
-//         
-//         self.splitViewController = [[SplitViewController alloc] init] ;
-//         self.splitViewController.delegate = detailViewController;
-//         self.splitViewController.viewControllers = @[masterNavigationController, detailNavigationController];
-//         
-//         self.window.rootViewController = self.splitViewController;
-//     }
-     else
+     //else
+#else
      {
          PageTableViewController* masterViewController = [[PageTableViewController alloc] init] ;
          UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController] ;
@@ -75,8 +62,9 @@
          
          self.window.rootViewController = self.splitViewController;
      }
-
-     [self.window makeKeyAndVisible];
+#endif
+    [self.window makeKeyAndVisible];
+    self.window.frame = [AppDelegate screenRectForLandscape];
     
     
      return YES;
@@ -110,6 +98,29 @@
 - (void)applicationWillTerminate:(UIApplication*)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+//-(void)sendEvent:(UIEvent *)event
+//{
+//    if (event.type==UIEventTypeTouches) {f
+//        if ([[event.allTouches anyObject] phase]==UITouchPhaseBegan) {
+//            //响应触摸事件（手指刚刚放上屏幕）
+//            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:nScreenTouch object:nil userInfo:[NSDictionary dictionaryWithObject:event forKey:@"data"]]];
+//            //发送一个名为‘nScreenTouch’（自定义）的事件
+//        }
+//    }
+//    [super sendEvent:event];
+//}
+
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
++( CGRect )screenRectForLandscape
+{
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    return CGRectMake(0, 0, MAX(screenSize.width, screenSize.height), MIN(screenSize.width, screenSize.height));
 }
 
 @end

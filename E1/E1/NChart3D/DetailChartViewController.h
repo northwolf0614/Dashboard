@@ -11,10 +11,11 @@
 #import "AbstractNChartView.h"
 //#import "AbstractDetailChartViewController.h"
 #import "DoubleNChartWithLabelViewController.h"
-//@interface DetailChartViewController : UIViewController
-@interface DetailChartViewController:DoubleNChartWithLabelViewController<UISplitViewControllerDelegate>
-@property (strong, nonatomic) id detailItem;
+#import "SliderCell.h"
+@interface DetailChartViewController:DoubleNChartWithLabelViewController<UITableViewDataSource,UITableViewDelegate,SliderDelegate>
 @property (weak, nonatomic) IBOutlet UIView *chartViewContainer;
-@property (weak, nonatomic) IBOutlet UIView *configurationViewContainer;
-
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property(assign,nonatomic) BOOL isAdded;
+-(BOOL)shouldBeAddToPreviousPage;
 @end

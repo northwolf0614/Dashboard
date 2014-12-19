@@ -9,7 +9,6 @@
 #import "AbstractCollectionViewCell.h"
 
 @interface EmptyCollectionViewCell : AbstractCollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *emptyImageView;
 
 
 @end

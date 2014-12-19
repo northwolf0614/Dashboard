@@ -9,21 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "Definations.h"
 #import "AbstractNChartViewController.h"
-#import "PopAnimation.h"
-#import "PushAnimation.h"
+//#import "PopAnimation.h"
+//#import "PushAnimation.h"
+#import "AnimatedTransitioningManager.h"
 
 @class PushAnimation;
 @class PopAnimation;
 
-@interface DashBoardViewController : UIViewController <ChartSubviewControllerResponse,UINavigationControllerDelegate,UISplitViewControllerDelegate,UIViewControllerAnimatedTransitioning,UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
 
-@property(nonatomic,strong) NSMutableArray* chartNames;
+@property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
+@property (nonatomic, strong) NSMutableArray* chartDataAssembly;
+
+@property(nonatomic,strong) NSMutableArray* chartNames;//seem useless
 @property(nonatomic,strong) UIView* transitioningView;
-@property (copy, nonatomic) NSString* detailItem;
-
+@property (copy, nonatomic) NSString* detailItem;//page name
 @property (strong, nonatomic) PushAnimation *pushAnimation;
 @property (strong, nonatomic) PopAnimation *popAnimation;
-//@property (strong, nonatomic) UIPercentDrivenInteractiveTransition *interactionController;
+@property(nonatomic,weak) AnimatedTransitioningManager* interactionController;
 -(void)setupDefaultDataForDrawing;
+-(void)changeColorScheme:(BOOL)isWhiteSheme;
+
 
 @end

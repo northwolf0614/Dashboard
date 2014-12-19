@@ -18,5 +18,13 @@
 -(NSArray*)parseFromDefaultFile:(NSString*)file;
 +(NSString*)getStoredDefaultFilePath;
 +(NSString*)getStoredFilePath:(NSString*)pageName;
++(NChartDataModel*)templateBarChartData;
++(NChartDataModel*)templateColumnChartData;
++(NChartDataModel*)templateRadarChartData;
++(NChartDataModel*)templateAreaChartData;
+-(NSArray*)parseFromFile:(NSString*)file;
++(BOOL)deleteChartFile:(NSString*)file;
+
+
 +(id)defaultChartDataManager;
 @end

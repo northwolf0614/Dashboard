@@ -26,17 +26,20 @@
 {
     if (self=[super initWithFrame:frame])
     {
+        NSLog(@"this is initWithFrame in AbstractNChartView");
         self.middleLabel=[[UILabel alloc] init];
         self.middleLabel.backgroundColor=[UIColor clearColor];
+        //self.middleLabel.backgroundColor=[UIColor blackColor];
         self.middleLabel.hidden=YES;
         self.middleLabel.textColor=kcLikeRed;
         
-        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
+        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:60];
         
         self.middleLabel.adjustsFontSizeToFitWidth = YES;
         self.middleLabel.userInteractionEnabled = NO;
         self.middleLabel.numberOfLines = 1;
         self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.middleLabel.textAlignment=NSTextAlignmentCenter;
         self.middleLabel.hidden=YES;
         [self addSubview:self.middleLabel];
         //self.didUpdateStraints=NO;
@@ -46,6 +49,11 @@
         self.userInteractionEnabled=NO;
     }
     return self;
+}
+-(void)dealloc
+{
+    NSLog(@"this is initWithFrame in AbstractNChartView");
+    
 }
 
 
@@ -84,12 +92,17 @@
         if ([number floatValue]>=1)
             self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[number floatValue]] ;
         if ([number floatValue]>0&&[number floatValue]<1)
-            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([number floatValue]*100)];
+        {
+            NSString* str=[NSString stringWithFormat:@"%d",(int)([number floatValue]*100)];
+            self.middleLabel.text=[str stringByAppendingString:@"%"];
+        }
+        
 
     }
     else
     {
         self.timer =  [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(onTimer:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         self.changingValue=[NSNumber numberWithFloat:0.0f];
         
         
@@ -107,11 +120,52 @@
         if ([self.changingValue floatValue]>=1)
             self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[self.changingValue floatValue]] ;
         if ([self.changingValue floatValue]>0&&[self.changingValue floatValue]<1)
-            self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*100)];
+        {
+            //self.middleLabel.text=[NSString stringWithFormat:@"0.%d",(int)([self.changingValue floatValue]*100)];
+            NSString* str=[NSString stringWithFormat:@"%d",(int)([self.changingValue floatValue]*100)];
+
+            self.middleLabel.text=[str stringByAppendingString:@"%"];
+        }
     }
     else
          [self.timer setFireDate:[NSDate distantFuture]];
     
+    
+}
+-(void)deleteMiddleLabel
+{
+    if (self.middleLabel!=nil) {
+        
+        [self.middleLabel removeFromSuperview];
+        self.middleLabel=nil;
+        //[self setNeedsLayout];
+    }
+    
+}
+-(void)addMiddleLabel
+{
+    if (self.middleLabel==nil) {
+        self.middleLabel=[[UILabel alloc] init];
+        self.middleLabel.backgroundColor=[UIColor clearColor];
+        self.middleLabel.hidden=YES;
+        self.middleLabel.textColor=kcLikeRed;
+        
+        self.middleLabel.font=[UIFont fontWithName:@"Arial" size:80];
+        
+        //self.middleLabel.adjustsFontSizeToFitWidth = YES;
+        
+        self.middleLabel.userInteractionEnabled = NO;
+        self.middleLabel.numberOfLines = 1;
+        self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        self.middleLabel.hidden=YES;
+        [self addSubview:self.middleLabel];
+        //self.didUpdateStraints=NO;
+        
+        self.chart.legend.textColor=kcCharColor;
+        self.chart.cartesianSystem.xAxis.textColor=kcCharColor;
+        self.userInteractionEnabled=NO;
+        [self setNeedsLayout];
+    }
     
 }
 

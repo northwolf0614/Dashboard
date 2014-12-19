@@ -10,6 +10,7 @@
 
 @interface DashboardItemViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIView *contentView;
+@property (weak, nonatomic) IBOutlet UINavigationBar *naviBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *titleItem;
 -(void)handleRightButtonItem:(id) sender;
 

@@ -37,7 +37,7 @@ typedef enum : NSUInteger {
     ADDITIVE,
     PERCENT,
 } AxisType;
-@interface PrototypeDataModel : NSObject<NSCoding>
+@interface PrototypeDataModel : NSObject<NSCoding,NSCopying>
 @property(nonatomic,copy)   NSString* seriesName;
 @property(nonatomic,strong) NSArray* chartAxisXValues;
 @property(nonatomic,strong) NSArray* chartAxisYValues;
@@ -47,7 +47,7 @@ typedef enum : NSUInteger {
 @end
 
 
-@interface NChartDataModel : NSObject<NSCoding>
+@interface NChartDataModel : NSObject<NSCoding,NSCopying>
 @property(nonatomic,copy)   NSString* chartCaption;
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;
@@ -65,8 +65,9 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NChartDataModel* dataForNextView;
 @property(nonatomic,strong) NSString* labelText;
 @property(nonatomic,strong) NSNumber* percentage;
-//@property(nonatomic,strong) NSString* floatingNumber;
 @property(nonatomic,strong) NSNumber* floatingNumber;
+//@property(nonatomic,assign) float percentage;
+//@property(nonatomic,assign) float floatingNumber;
 
 //-(void)saveDataForKey:(NSString*)key;
 //+(NChartDataModel*)loadDataWithKey:(NSString*)key;
