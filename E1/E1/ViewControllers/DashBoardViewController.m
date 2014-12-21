@@ -77,34 +77,21 @@
     [super viewDidLoad];
     
     self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [self.flowLayout setItemSize:CGSizeMake(328,350)]; //设置每个cell显示数据的宽和高必须
-    //[flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal]; //水平滑动
-    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical]; //控制滑动分页用
-    
-
+    //[self.flowLayout setItemSize:CGSizeMake(328,350)];
+    [self.flowLayout setItemSize:CGSizeMake(328,365)];
+    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
-    
-    
-    //创建一屏的视图大小
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
-    
-    //self.collectionView.collectionViewLayout=self.flowLayout;
-    //对Cell注册(必须否则程序会挂掉)
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
-
     [self.collectionView setBackgroundColor:kcWholeBackColor];
-    
     [self.collectionView setUserInteractionEnabled:YES];
     [self.collectionView setDelegate:(id)self];
     [self.collectionView setDataSource:(id)self];
-
     [self setupConstraints];
-    
     //////////////////
     self.dashboardItemViewControllers = [NSMutableArray array];
     //self.view.backgroundColor=kcWholeBackColor;
-    
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     self.detailItem=kcDefaultChartName;//default page name
@@ -257,38 +244,33 @@
                 {
                     if (chartDataArray==nil)
                     {
-//                        for (UIViewController* vc in self.childViewControllers)
-//                        {
-//                            
-////                            for (UIView* view in ((DoubleNChartWithLabelViewController*)vc).contentView.subviews)
-////                            {
-////                                [view removeFromSuperview];
-////                            }
-////                            [vc.view removeFromSuperview];
-//                            [vc removeFromParentViewController];
-//                        }
+
                         [self.chartDataAssembly removeAllObjects];
                         [self.dashboardItemViewControllers removeAllObjects];
+                        for (DoubleNChartWithLabelViewController* vc in self.childViewControllers) {
+                            for (UIView* v in vc.contentView.subviews) {
+                                [v removeFromSuperview];
+                            }
+                            [vc removeFromParentViewController];
+                            
+                        }
                         
                         
                     }
                     
                     else
                     {
-//                        for (UIViewController* vc in self.childViewControllers) {
-//                            
-////                            for (UIView* view in ((DoubleNChartWithLabelViewController*)vc).contentView.subviews)
-////                            {
-////                                [view removeFromSuperview];
-////                            }
-////                            [vc.view removeFromSuperview];
-//                            [vc removeFromParentViewController];
-//                            
-//                            
-//                        }
+
                         [self.chartDataAssembly removeAllObjects];
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
                         [self.dashboardItemViewControllers removeAllObjects];
+                        for (DoubleNChartWithLabelViewController* vc in self.childViewControllers) {
+                            for (UIView* v in vc.contentView.subviews) {
+                                [v removeFromSuperview];
+                            }
+                            [vc removeFromParentViewController];
+                            
+                        }
                         for (NChartDataModel* dataForChart in chartDataArray)
                         {
                             
@@ -494,33 +476,24 @@
     else
     {
         cell=(GeneralCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class]) forIndexPath:indexPath];
-    
-//    long itemIndex = indexPath.row * 2;
-//    for (long i = itemIndex; i <= itemIndex + 1 && i < self.dashboardItemViewControllers.count; i++)
-//    {
-        //Find item view controller
         DashboardItemViewController* itemViewController = [self.dashboardItemViewControllers objectAtIndex:indexPath.row];
-        
-        //Add item vc as child vc.
         BOOL addChildViewContollerFlag = [self.childViewControllers containsObject:itemViewController];
         if (!addChildViewContollerFlag) {
             [self addChildViewController:itemViewController];
         }
-        
-        //Add item view to cell
         UIView* cellView =(GeneralCollectionViewCell*)cell.contentView;
-        [[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        //[[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         itemViewController.view.frame = cellView.bounds;
         [cellView addSubview:itemViewController.view];
-        
-        //Add item vc as child vc.
-        if (!addChildViewContollerFlag) {
+        if (!addChildViewContollerFlag)
+        {
             [itemViewController didMoveToParentViewController:self];
         }
+        NSLog(@"self.childViewController number is %d in cellForItemAtIndexPath",self.childViewControllers.count);
+
         return cell;
     }
-    //cell.backgroundColor=kcWidgetBackColor;
-   
+    
     
 }
 #pragma mark <UICollectionViewDelegate>
@@ -552,7 +525,32 @@
     
     
 }
+- (void)collectionView:(UICollectionView *)collectionView
+  didEndDisplayingCell:(UICollectionViewCell *)cell
+    forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    for (UIView* view in cell.contentView.subviews) {
+        [view removeFromSuperview];
+    }
+    NSLog(@"indexPath.row=%d in didEndDisplayingCell",indexPath.row);
+    NSLog(@"self.childViewController number is %d in didEndDisplayingCell",self.childViewControllers.count);
+    
+    if (indexPath.row<self.dashboardItemViewControllers.count) {
+        NSLog(@"indexPath.row which can  be deleted is %d",indexPath.row);
+        UIViewController* dashVC=[self.dashboardItemViewControllers objectAtIndex:indexPath.row];
+        if ([self.childViewControllers containsObject:dashVC]) {
+            NSUInteger index=[self.childViewControllers indexOfObjectIdenticalTo:dashVC];
+            UIViewController* vc=[self.childViewControllers objectAtIndex:index];
+            [vc removeFromParentViewController];
+            
+        }
+        
+    }
+    
+    
 
+
+}
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return  YES;

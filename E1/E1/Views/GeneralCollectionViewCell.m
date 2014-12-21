@@ -13,9 +13,10 @@
 -(void)prepareForReuse
 {
     NSLog(@"This is prepareForReuse");
-    for (UIView* view in self.contentView.subviews) {
-        [view removeFromSuperview];
-    }
+//    for (UIView* view in self.contentView.subviews)
+//    {
+//        [view removeFromSuperview];
+//    }
 }
 
 @end

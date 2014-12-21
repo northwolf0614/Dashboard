@@ -18,7 +18,7 @@
 -(id)init
 {
     if (self=[super init]) {
-        NSLog(@"This is init in DashboardItemViewController");
+        //NSLog(@"This is init in DashboardItemViewController");
         
     }
     return self;
@@ -26,7 +26,7 @@
 }
 -(void)dealloc
 {
-    NSLog(@"This is dealloc in DashboardItemViewController");
+    //NSLog(@"This is dealloc in DashboardItemViewController");
 }
 - (void)viewDidLoad
 {

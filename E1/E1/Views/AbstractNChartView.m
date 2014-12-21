@@ -52,7 +52,7 @@
 }
 -(void)dealloc
 {
-    NSLog(@"this is initWithFrame in AbstractNChartView");
+    NSLog(@"this is deallocview in AbstractNChartView");
     
 }
 

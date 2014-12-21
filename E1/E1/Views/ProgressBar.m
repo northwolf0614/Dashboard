@@ -76,9 +76,9 @@
 }
 - (id)initWithFinalPercentage:(CGFloat)percentage color1:(UIColor*)color1 color2:(UIColor*)color2
 {
-    self= [super init];
+    self= [super initWithFrame:CGRectZero];
     if (self) {
-         //NSLog(@"this is initWithFinalPercentage in ProgressBar");
+         NSLog(@"this is initWithFinalPercentage in ProgressBar");
         //_percent=0;
         self.animationLayer= [CALayer layer];
         [self.layer addSublayer:self.animationLayer];
