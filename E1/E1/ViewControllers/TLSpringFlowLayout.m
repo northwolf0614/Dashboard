@@ -1,7 +1,7 @@
 
 
 #import "TLSpringFlowLayout.h"
-
+#import "Definations.h"
 @interface TLSpringFlowLayout ()
 
 /// The dynamic animator used to animate the collection's bounce
@@ -17,15 +17,18 @@
 
 @implementation TLSpringFlowLayout
 
-- (instancetype)init {
+- (instancetype)init
+{
     self = [super init];
     if (self){
         [self setup];
+        
     }
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
     self = [super initWithCoder:aDecoder];
     if (self){
         [self setup];
@@ -33,17 +36,25 @@
     return self;
 }
 
-- (void)setup {
+- (void)setup
+{
     _dynamicAnimator = [[UIDynamicAnimator alloc] initWithCollectionViewLayout:self];
     _visibleIndexPathsSet = [NSMutableSet set];
-    _visibleHeaderAndFooterSet = [[NSMutableSet alloc] init];
+    //_visibleHeaderAndFooterSet = [[NSMutableSet alloc] init];
+    _visibleHeaderAndFooterSet = [NSMutableSet set];
+    self.itemSize=CGSizeMake(328,365);
+    self.scrollDirection=UICollectionViewScrollDirectionVertical;
+    self.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
 }
 
-- (void)prepareLayout {
+- (void)prepareLayout
+{
     [super prepareLayout];
     
     if ([[UIApplication sharedApplication] statusBarOrientation] != self.interfaceOrientation) {
         [self.dynamicAnimator removeAllBehaviors];
+        self.visibleIndexPathsSet=nil;
+        self.visibleHeaderAndFooterSet=nil;
         self.visibleIndexPathsSet = [NSMutableSet set];
         self.visibleHeaderAndFooterSet=[NSMutableSet set];//added by linchuang
     }
@@ -52,7 +63,7 @@
     
     // Need to overflow our actual visible rect slightly to avoid flickering.
     NSLog(@"self.collectionView.bounds.origin is %@",NSStringFromCGPoint(self.collectionView.bounds.origin));
-    NSLog(@"self.collectionView.frame.size is %@",NSStringFromCGSize(self.collectionView.frame.size));
+    //NSLog(@"self.collectionView.frame.size is %@",NSStringFromCGSize(self.collectionView.frame.size));
     
     CGRect visibleRect = CGRectInset((CGRect){.origin = self.collectionView.bounds.origin, .size = self.collectionView.frame.size}, -100, -100);
     
@@ -147,6 +158,10 @@
     UIScrollView *scrollView = self.collectionView;
     
     CGFloat delta;
+    NSLog(@"newBounds.origin is %@",NSStringFromCGPoint(newBounds.origin));
+    NSLog(@"self.collectionView origin is %@",NSStringFromCGPoint(scrollView.bounds.origin));
+
+    
     if (self.scrollDirection == UICollectionViewScrollDirectionVertical) delta = newBounds.origin.y - scrollView.bounds.origin.y;
     else delta = newBounds.origin.x - scrollView.bounds.origin.x;
     

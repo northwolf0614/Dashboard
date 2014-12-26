@@ -79,9 +79,9 @@
     //self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
     self.flowLayout=[[TLSpringFlowLayout alloc] init];
     //[self.flowLayout setItemSize:CGSizeMake(328,350)];
-    [self.flowLayout setItemSize:CGSizeMake(328,365)];
-    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
+//    [self.flowLayout setItemSize:CGSizeMake(328,365)];
+//    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+//    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
     
     
