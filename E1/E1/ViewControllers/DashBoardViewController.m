@@ -76,12 +76,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    //self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    self.flowLayout=[[TLSpringFlowLayout alloc] init];
     //[self.flowLayout setItemSize:CGSizeMake(328,350)];
     [self.flowLayout setItemSize:CGSizeMake(328,365)];
     [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
+    
+    
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
     [self.collectionView setBackgroundColor:kcWholeBackColor];
