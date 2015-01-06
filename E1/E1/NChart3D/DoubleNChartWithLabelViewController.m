@@ -15,7 +15,10 @@
 
 @implementation DoubleNChartWithLabelViewController
 @synthesize dataForNChartPlus;
-
+//-(void)dealloc
+//{
+//    NSLog(@"This is dealloc in DoubleNChartWithLabelViewController");
+//}
 -(void)removeAllSeries
 {
     [super removeAllSeries];

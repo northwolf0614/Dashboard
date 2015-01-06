@@ -23,9 +23,8 @@
 
 -(void)dealloc
 {
-    NSLog(@"this is dealloc in ProgressBar");
+    NSLog(@"This is dealloc in ProgressBar");
 }
-
 -(void)layoutSubviews
 {
     [super layoutSubviews];
@@ -78,7 +77,7 @@
 {
     self= [super initWithFrame:CGRectZero];
     if (self) {
-         NSLog(@"this is initWithFinalPercentage in ProgressBar");
+        
         //_percent=0;
         self.animationLayer= [CALayer layer];
         [self.layer addSublayer:self.animationLayer];
@@ -104,7 +103,7 @@
 
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
-    NSLog(@"current percent is %f",percent);
+    //NSLog(@"current percent is %f",percent);
 
     if (animated)
     {

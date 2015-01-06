@@ -62,7 +62,7 @@
     self.interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     // Need to overflow our actual visible rect slightly to avoid flickering.
-    NSLog(@"self.collectionView.bounds.origin is %@",NSStringFromCGPoint(self.collectionView.bounds.origin));
+    //NSLog(@"self.collectionView.bounds.origin is %@",NSStringFromCGPoint(self.collectionView.bounds.origin));
     //NSLog(@"self.collectionView.frame.size is %@",NSStringFromCGSize(self.collectionView.frame.size));
     
     CGRect visibleRect = CGRectInset((CGRect){.origin = self.collectionView.bounds.origin, .size = self.collectionView.frame.size}, -100, -100);
@@ -158,8 +158,8 @@
     UIScrollView *scrollView = self.collectionView;
     
     CGFloat delta;
-    NSLog(@"newBounds.origin is %@",NSStringFromCGPoint(newBounds.origin));
-    NSLog(@"self.collectionView origin is %@",NSStringFromCGPoint(scrollView.bounds.origin));
+    //NSLog(@"newBounds.origin is %@",NSStringFromCGPoint(newBounds.origin));
+    //NSLog(@"self.collectionView origin is %@",NSStringFromCGPoint(scrollView.bounds.origin));
 
     
     if (self.scrollDirection == UICollectionViewScrollDirectionVertical) delta = newBounds.origin.y - scrollView.bounds.origin.y;

@@ -31,6 +31,7 @@
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 
 
+
 @end
 
 
@@ -56,35 +57,10 @@
     return self;
     
 }
-//-(void)dealloc
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"mainWindowTouch" object:nil];
-//    //[super dealloc];
-//}
-//
-//-(void) onScreenTouch:(NSNotification *)notification
-//{
-//    UIEvent *event=[notification.userInfo objectForKey:@"data"];
-//    UITouch *touch=[event.allTouches anyObject];
-//    if(touch.tapCount==1)
-//        NSLog(@"This is the entry of tap of collection view");
-//    
-//    
-//    
-//    
-//}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //self.flowLayout = [[UICollectionViewFlowLayout alloc] init];
     self.flowLayout=[[TLSpringFlowLayout alloc] init];
-    //[self.flowLayout setItemSize:CGSizeMake(328,350)];
-//    [self.flowLayout setItemSize:CGSizeMake(328,365)];
-//    [self.flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-//    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
-    
-    
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
     [self.collectionView setBackgroundColor:kcWholeBackColor];
@@ -92,18 +68,9 @@
     [self.collectionView setDelegate:(id)self];
     [self.collectionView setDataSource:(id)self];
     [self setupConstraints];
-    //////////////////
-    self.dashboardItemViewControllers = [NSMutableArray array];
-    //self.view.backgroundColor=kcWholeBackColor;
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     self.detailItem=kcDefaultChartName;//default page name
-    //[self setupDefaultDataForDrawing];
-    //[self loadChartData];
-    //self.navigationController.delegate=self;
-    //self.pushAnimation= [[PushAnimation alloc] init];
-    //self.popAnimation= [[PopAnimation alloc] init];
-    
     _leftEdgeGesture=[[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGestures:)];
     _leftEdgeGesture.edges=UIRectEdgeRight;
     _leftEdgeGesture.delegate=self;
@@ -210,6 +177,7 @@
 
 -(void)setupDefaultDataForDrawing
 {
+    
 
     if (self.detailItem!=nil&&[self.detailItem isKindOfClass:[NSString class]])
     {
@@ -222,16 +190,8 @@
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
-            //[manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
-            [self.dashboardItemViewControllers removeAllObjects];
-            for (NChartDataModel* oneChartData in chartsData)
-            {
-                
-                [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:nil]];
-                
-            }
-            [self.collectionView reloadData];
+
             
         }
 
@@ -249,41 +209,40 @@
                     {
 
                         [self.chartDataAssembly removeAllObjects];
-                        [self.dashboardItemViewControllers removeAllObjects];
-                        for (DoubleNChartWithLabelViewController* vc in self.childViewControllers) {
-                            for (UIView* v in vc.contentView.subviews) {
-                                [v removeFromSuperview];
-                            }
-                            [vc removeFromParentViewController];
-                            
+                        for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
+                        {
+                            [dvc.view removeFromSuperview];
+                            [dvc removeFromParentViewController];
                         }
+                        
+                    
+
+                        
                         
                         
                     }
                     
                     else
                     {
-
                         [self.chartDataAssembly removeAllObjects];
-                        self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
-                        [self.dashboardItemViewControllers removeAllObjects];
-                        for (DoubleNChartWithLabelViewController* vc in self.childViewControllers) {
-                            for (UIView* v in vc.contentView.subviews) {
-                                [v removeFromSuperview];
-                            }
-                            [vc removeFromParentViewController];
-                            
-                        }
-                        for (NChartDataModel* dataForChart in chartDataArray)
+                        for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
                         {
-                            
-                            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dataForChart delegateHolder:nil]];
+                            [dvc.view removeFromSuperview];
+                            [dvc removeFromParentViewController];
+                        }
+                        self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
+                        for (NChartDataModel* d in self.chartDataAssembly) {
+                            DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                            [self addChildViewController:itemViewController];
                         }
                         
                         
+                        
+                        
+                    
                         
                     }
-                    [self.collectionView reloadData];
+
                     
                     
                     
@@ -297,6 +256,8 @@
 
         }
     }
+    [self.collectionView reloadData];
+    
 
 
     
@@ -323,6 +284,7 @@
 {
     [self.collectionView reloadData];
     [super viewDidAppear:animated];
+
 }
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -351,11 +313,9 @@
     CGFloat h = 0;
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
     {
-        
-        // 横屏的间距
+
 
         v = kcCollectionViewCellPVSpace;
-        
         h = kcCollectionViewCellLHSpace;
         
         
@@ -367,8 +327,7 @@
         h = kcCollectionViewCellPHSpace;
         
     }
-    
-    // 3.动画调整格子之间的距离
+
     
     [UIView animateWithDuration:1 animations:^{
         layout.sectionInset = UIEdgeInsetsMake(v, h, v, h);
@@ -384,7 +343,8 @@
 -(void)changeColorScheme:(BOOL)isWhiteSheme
 {
     self.collectionView.backgroundColor=kcWholeBackColor;
-    for (DoubleNChartWithLabelViewController* dVC in self.dashboardItemViewControllers)
+    //for (DoubleNChartWithLabelViewController* dVC in self.dashboardItemViewControllers)
+    for (DoubleNChartWithLabelViewController* dVC in self.childViewControllers)
     {
         dVC.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
         dVC.label.backgroundColor=kcWidgetBackColor;
@@ -399,9 +359,7 @@
         [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
         dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
-        
-//        dVC.view.layer.borderWidth=isWhiteScheme? 0:1;
-//        dVC.view.layer.borderColor=isWhiteScheme?nil:[[UIColor lightGrayColor] CGColor];
+
 
         
         
@@ -411,8 +369,7 @@
     if (self.emptyCell!=nil)
     {
         self.emptyCell.backgroundColor=kcWidgetBackColor;
-//        self.emptyCell.layer.borderWidth=isWhiteScheme? 0:1;
-//        self.emptyCell.layer.borderColor=isWhiteScheme?nil:[[UIColor lightGrayColor] CGColor];
+
     }
 }
 
@@ -426,10 +383,7 @@
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
     {
 
-        // 横屏的间距
-
         v = kcCollectionViewCellPVSpace;
-        
         h = kcCollectionViewCellLHSpace;
 
         
@@ -441,9 +395,6 @@
         h = kcCollectionViewCellPHSpace;
 
     }
-
-    // 3.动画调整格子之间的距离
-
     [UIView animateWithDuration:1 animations:^{
         layout.sectionInset = UIEdgeInsetsMake(v, h, v, h);
         layout.minimumLineSpacing = v;
@@ -462,14 +413,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return ([self.dashboardItemViewControllers count]+1);
-    //return ([self.dashboardItemViewControllers count]);
+    //return ([self.dashboardItemViewControllers count]+1);
+    return ([self.chartDataAssembly count]+1);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell* cell=nil;
-    if (indexPath.row>([self.dashboardItemViewControllers count]-1)||[self.dashboardItemViewControllers count]==0)
+    if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
         cell.backgroundColor=kcWidgetBackColor;
@@ -479,21 +430,14 @@
     else
     {
         cell=(GeneralCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class]) forIndexPath:indexPath];
-        DashboardItemViewController* itemViewController = [self.dashboardItemViewControllers objectAtIndex:indexPath.row];
-        BOOL addChildViewContollerFlag = [self.childViewControllers containsObject:itemViewController];
-        if (!addChildViewContollerFlag) {
-            [self addChildViewController:itemViewController];
-        }
+//        DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
+//        [self addChildViewController:itemViewController];
+        DashboardItemViewController* itemViewController=[self.childViewControllers objectAtIndex:indexPath.row];
         UIView* cellView =(GeneralCollectionViewCell*)cell.contentView;
         //[[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
         itemViewController.view.frame = cellView.bounds;
         [cellView addSubview:itemViewController.view];
-        if (!addChildViewContollerFlag)
-        {
-            [itemViewController didMoveToParentViewController:self];
-        }
-        NSLog(@"self.childViewController number is %d in cellForItemAtIndexPath",self.childViewControllers.count);
-
+        [itemViewController didMoveToParentViewController:self];
         return cell;
     }
     
@@ -507,7 +451,8 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
     
-    if (indexPath.row>([self.dashboardItemViewControllers count]-1)||[self.dashboardItemViewControllers count]==0)
+    //if (indexPath.row>([self.dashboardItemViewControllers count]-1)||[self.dashboardItemViewControllers count]==0)
+    if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
     {
         detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
         detailViewController.isAdded=YES;
@@ -532,27 +477,18 @@
   didEndDisplayingCell:(UICollectionViewCell *)cell
     forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (UIView* view in cell.contentView.subviews) {
-        [view removeFromSuperview];
-    }
-    NSLog(@"indexPath.row=%d in didEndDisplayingCell",indexPath.row);
-    NSLog(@"self.childViewController number is %d in didEndDisplayingCell",self.childViewControllers.count);
-    
-    if (indexPath.row<self.dashboardItemViewControllers.count) {
-        NSLog(@"indexPath.row which can  be deleted is %d",indexPath.row);
-        UIViewController* dashVC=[self.dashboardItemViewControllers objectAtIndex:indexPath.row];
-        if ([self.childViewControllers containsObject:dashVC]) {
-            NSUInteger index=[self.childViewControllers indexOfObjectIdenticalTo:dashVC];
-            UIViewController* vc=[self.childViewControllers objectAtIndex:index];
-            [vc removeFromParentViewController];
-            
-        }
-        
-    }
-    
-    
-
-
+//    for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
+//    {
+//        int count=[cell.contentView.subviews count];
+//        if ([cell isKindOfClass:[GeneralCollectionViewCell class]]&&count>0&&[dvc.view isEqual:[cell.contentView.subviews objectAtIndex:0]])
+//        {
+//            
+//            [dvc.view removeFromSuperview];
+//            [dvc removeFromParentViewController];
+//            
+//        }
+//    }
+  
 }
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -573,49 +509,6 @@
     
     
 }
-//#pragma <UINavigationControllerDelegate>
-
-//- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
-//                                  animationControllerForOperation:(UINavigationControllerOperation)operation
-//                                               fromViewController:(UIViewController *)fromVC
-//                                                 toViewController:(UIViewController *)toVC
-//{
-//    if (operation == UINavigationControllerOperationPush) {
-//        return self.pushAnimation;
-//    }
-//    else if (operation == UINavigationControllerOperationPop) {
-//        return self.popAnimation;
-//    }
-//    
-//    return nil;
-//}
-//
-//- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
-//    //return self.interactionController;
-//    return nil;
-//}
-
-//#pragma mark - <UISplitViewControllerDelegate>
-
-//- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-//{
-//    barButtonItem.title = NSLocalizedString(@"Pages", @"Pages");
-//    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-//    //popoverController.contentViewController is qual to master navigation controller
-//    if ([popoverController.contentViewController isKindOfClass:[UINavigationController
-//                                                                class]])
-//    {
-//        self.masterPopoverController = popoverController;
-//    }
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-//    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-//    self.masterPopoverController = nil;
-//}
-
 
 #pragma mark <UIViewControllerTransitioningDelegate>
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
@@ -639,14 +532,6 @@
     UIView *containerView = [transitionContext containerView];
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    //UIViewController *fromViewController=fromViewController_topParent;
-    
-//    if ([fromViewController_topParent isKindOfClass:[UINavigationController class]])
-//    {
-//        fromViewController=((UINavigationController*)fromViewController_topParent).topViewController;
-//
-//    }
-    //UIViewController *fromViewController = fromViewController_topParent.
     if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
     {
         //Presenting DetailChartViewController from DashboardTableViewController
@@ -687,31 +572,13 @@
     if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashBoardViewController class]])
         
     {
-        
-        
-        //Dismissing MapViewControll from ChatViewController
         DetailChartViewController* dvc = (DetailChartViewController*)fromViewController;
-        //UINavigationController* dashvc_parent = (DashBoardViewController*)toViewController;
         DashBoardViewController* dashvc=(DashBoardViewController*)toViewController;
-//        if ([dashvc_parent isKindOfClass:[UINavigationController class]])
-//        {
-//            
-//            dashvc=(DashBoardViewController*)((UINavigationController*)dashvc_parent).topViewController;
-//            
-//            
-//        }
-        
         CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
-        
-        //desination view controller
         dashvc.transitioningView.alpha = 0.0f;
-        //[containerView addSubview:dashvc.view];//?[containerView addSubview:dashvc_parent.view]
+        
         [containerView addSubview:dashvc.view];
-        
-        //source view controller
         dvc.view.alpha = 1.0f;
-        //[containerView insertSubview:dvc.view aboveSubview:dashvc.view];
-        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             //source view controller
             dvc.view.transform = CGAffineTransformMakeScale(CGRectGetWidth(transitioningFrame) / CGRectGetWidth(containerView.bounds),
@@ -719,16 +586,15 @@
             
             dvc.view.frame = transitioningFrame;
             dvc.view.alpha = 0.0f;
-            //desination view controller
             dashvc.transitioningView.alpha = 1.0f;
         } completion:^(BOOL finished) {
             [dvc.view removeFromSuperview];
             if ([dvc shouldBeAddToPreviousPage])
             {
-                [dashvc.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
+                [dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
+                
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-                //[manager syncwithPage:[NSString stringWithFormat:@"%lu",([dashvc.chartDataAssembly count])] withKey:dashvc.detailItem];
                 [manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
                 
             }

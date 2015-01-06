@@ -12,11 +12,13 @@
 
 -(void)prepareForReuse
 {
-    NSLog(@"This is prepareForReuse");
+//    NSLog(@"This is prepareForReuse");
 //    for (UIView* view in self.contentView.subviews)
 //    {
 //        [view removeFromSuperview];
 //    }
+//    [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [super prepareForReuse];
 }
 
 @end

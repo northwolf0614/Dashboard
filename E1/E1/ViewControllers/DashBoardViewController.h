@@ -18,10 +18,7 @@
 @class PopAnimation;
 
 @interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate>
-
-@property (nonatomic, strong) NSMutableArray* dashboardItemViewControllers;
 @property (nonatomic, strong) NSMutableArray* chartDataAssembly;
-
 @property(nonatomic,strong) NSMutableArray* chartNames;//seem useless
 @property(nonatomic,strong) UIView* transitioningView;
 @property (copy, nonatomic) NSString* detailItem;//page name
