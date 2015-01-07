@@ -128,7 +128,12 @@
         }
     }
     else
-         [self.timer setFireDate:[NSDate distantFuture]];
+    {
+         //[self.timer setFireDate:[NSDate distantFuture]];
+        [self.timer invalidate];
+        self.timer=nil;
+        
+    }
     
     
 }
@@ -168,5 +173,6 @@
     }
     
 }
+
 
 @end
