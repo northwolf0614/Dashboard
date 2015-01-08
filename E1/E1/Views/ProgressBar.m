@@ -8,8 +8,8 @@
 //@property(nonatomic,assign) CGFloat percent;
 
 //@property(nonatomic,strong) CAShapeLayer* backgroundLayer;
-@property(nonatomic,strong) CABasicAnimation* animation;
-@property(nonatomic,strong) CABasicAnimation* animation1;
+//@property(nonatomic,strong) CABasicAnimation* animation;
+//@property(nonatomic,strong) CABasicAnimation* animation1;
 @property(nonatomic,strong) UIColor* color1;
 @property(nonatomic,strong) UIColor* color2;
 @property(nonatomic,strong) NSNumber* FloatingNumber;
@@ -77,19 +77,13 @@
 {
     self= [super initWithFrame:CGRectZero];
     if (self) {
-        
-        //_percent=0;
+
         self.animationLayer= [CALayer layer];
         [self.layer addSublayer:self.animationLayer];
-        
-        //self.backgroundLayer = [CAShapeLayer layer];
         self.progressLayer = [CAShapeLayer layer];
         self.progressLayerPlus = [CAShapeLayer layer];
-        //[self.animationLayer addSublayer:self.backgroundLayer];
         [self.animationLayer addSublayer:self.progressLayer];
         [self.animationLayer addSublayer:self.progressLayerPlus];
-        self.animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
-        self.animation1 = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         self.color1=color1;
         self.color2=color2;
         self.finalPercentage=percentage;
@@ -109,7 +103,8 @@
     {
         
         CABasicAnimation *animation;
-        animation = self.animation;//this place the input parameter must be strokeEnd
+        //animation = self.animation;//this place the input parameter must be strokeEnd
+         animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         [animation setFromValue:[NSNumber numberWithFloat:0.0f] ];
         //[animation setFromValue:0 ];
         [animation setToValue:[NSNumber numberWithFloat:1.0f]];
@@ -117,9 +112,8 @@
         [animation setRemovedOnCompletion:NO];
         [animation setFillMode:kCAFillModeForwards];//must set up this property, otherwise this class does not work properly
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-        [animation setDelegate:self];
+        animation.delegate=self;
         [animation setValue:@"ProgressBarAnimation" forKey:@"animationBar"];
-        // Add the animation to our layer
         [[self progressLayer] addAnimation:animation forKey:nil];
     }
     
@@ -128,14 +122,20 @@
 }
 -(void)deleteAnimatedProgress
 {
-    [CATransaction begin];
-    [self.animationLayer removeAllAnimations];//delete the animations relevant to this layer
+
+    [self.progressLayer removeAllAnimations];
     [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
-    [CATransaction commit];
+
+}
+-(void)removeFromSuperview
+{
+    [self deleteAnimatedProgress];
+    [super removeFromSuperview];
+    
 }
 -(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration
 {
-    [self setPercent:self.finalPercentage  animated:YES];
+    [self setPercent:self.finalPercentage  animated:isAnimated];
     [super setTextForMiddleLabel:number animation:isAnimated animationTime:duration];
 
     
@@ -144,9 +144,11 @@
 #pragma CAAnimationDelegate
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
-    if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"]) {
+    if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"])
+    {
+        
         CABasicAnimation *animation1;
-        animation1 = self.animation1;
+        animation1=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         //[animation1 setFromValue:[NSNumber numberWithFloat:self.percent] ];
         [animation1 setFromValue:[NSNumber numberWithDouble:0.0f] ];
         [animation1 setToValue:[NSNumber numberWithDouble:1.0f]];
@@ -154,11 +156,10 @@
         [animation1 setRemovedOnCompletion:NO];
         [animation1 setFillMode:kCAFillModeForwards];//must set up this property, otherwise this class does not work properly
         [animation1 setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
-        [animation1 setDelegate:self];
-        //[animation1 setValue:[NSString stringWithFormat:@"%f", percent] forKey:@"animation1"];
-        // Add the animation to our layer
         [[self progressLayerPlus] addAnimation:animation1 forKey:nil];
+
     }
+    
     
     
     
