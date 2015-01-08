@@ -191,6 +191,11 @@
             NSArray* chartsData=[NChartDataModel chartDataDefault];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
+            for (NChartDataModel* d in self.chartDataAssembly) {
+                DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                [self addChildViewController:itemViewController];
+            }
+
 
             
         }
