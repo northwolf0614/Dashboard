@@ -111,7 +111,7 @@
         [animation setFromValue:[NSNumber numberWithFloat:0.0f] ];
         //[animation setFromValue:0 ];
         [animation setToValue:[NSNumber numberWithFloat:1.0f]];
-        [animation setDuration:kcAnimationTime];
+        [animation setDuration:kcAnimationTime*1.1];
         [animation setRemovedOnCompletion:NO];
         [animation setFillMode:kCAFillModeForwards];//must set up this property, otherwise this class does not work properly
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
