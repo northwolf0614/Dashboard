@@ -68,7 +68,7 @@
     self.progressLayerPlus.path=circlePath2.CGPath;
     
     self.maskLayer.frame=self.animationLayer.bounds;
-    self.maskLayer.strokeColor = [self.color2 CGColor];
+    self.maskLayer.strokeColor = [[UIColor blackColor] CGColor];
     self.maskLayer.fillColor = [[UIColor clearColor] CGColor];
     self.maskLayer.lineWidth=kcProgress_Line_Width;
     self.maskLayer.strokeEnd=0.f;//use this property to set up the default value
