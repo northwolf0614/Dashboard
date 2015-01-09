@@ -67,7 +67,7 @@
     [self.collectionView setUserInteractionEnabled:YES];
     [self.collectionView setDelegate:(id)self];
     [self.collectionView setDataSource:(id)self];
-    [self setupConstraints];
+    [self.view addSubview:self.collectionView];
     self.chartNames=[NSMutableArray array];
     [self.chartNames addObject:kcDefaultChartName];
     self.detailItem=kcDefaultChartName;//default page name
@@ -277,13 +277,18 @@
 
 -(void)setupConstraints
 {
-    [self.view addSubview:self.collectionView];
+    
     self.collectionView.translatesAutoresizingMaskIntoConstraints=NO;
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[collectionView]-0-|" options:0 metrics:0 views:@{ @"collectionView" : self.collectionView}]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[collectionView]-0-|" options:0 metrics:0 views:@{ @"collectionView" : self.collectionView}]];
     [self.view setNeedsLayout];
     //[self.visualEfView setNeedsLayout];
     
+}
+-(void)viewDidLayoutSubviews
+{
+    [self setupConstraints];
+    [super viewDidLayoutSubviews];
 }
 -(void)viewDidAppear:(BOOL)animated
 {
