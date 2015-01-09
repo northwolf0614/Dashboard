@@ -3762,11 +3762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/ProgressBar.m"
-            timestampString = "442377555.329997"
+            timestampString = "442464800.127943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "-removeFromSuperview"
             landmarkType = "5">
          </BreakpointContent>
@@ -3778,27 +3778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/ProgressBar.m"
-            timestampString = "442377555.329997"
+            timestampString = "442464800.127943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-animationDidStop:finished:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/Views/ProgressBar.m"
-            timestampString = "442377120.900216"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-deleteAnimatedProgress"
             landmarkType = "5">
          </BreakpointContent>
@@ -3810,11 +3794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/ProgressBar.m"
-            timestampString = "442377555.329997"
+            timestampString = "442464800.127943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "-setTextForMiddleLabel:animation:animationTime:"
             landmarkType = "5">
          </BreakpointContent>
