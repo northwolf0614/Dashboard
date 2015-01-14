@@ -652,14 +652,14 @@
     
     if (index<self.chartDataAssembly.count)
     {
-        [self.collectionView performBatchUpdates:^
-        {
-            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
-        } completion:nil];
+//        [self.collectionView performBatchUpdates:^
+//        {
+//            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+//            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
+//        } completion:nil];
 
-        
-        //[self.collectionView reloadData];
+        [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+        [self.collectionView reloadData];
 
 
 
