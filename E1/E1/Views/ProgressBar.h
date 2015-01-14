@@ -12,6 +12,7 @@
 @property(nonatomic,strong) CAShapeLayer* progressLayerPlus;
 @property(nonatomic,strong) CALayer* animationLayer;
 @property(nonatomic,assign) CGFloat finalPercentage;
+@property(nonatomic,assign) BOOL isAnimating;
 -(void)setTextForMiddleLabel:(NSNumber*) number animation:(BOOL)isAnimated animationTime:(float)duration;
 //-(void)setTextForTopRightLabel:(NSString*) text;
 //-(id)initWithFrame:(CGRect)frame strokeWidth:(CGFloat)strokeWidth color: (UIColor*) strokeColor;

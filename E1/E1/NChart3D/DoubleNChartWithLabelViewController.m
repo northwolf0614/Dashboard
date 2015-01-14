@@ -50,7 +50,28 @@
         [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
         if (self.percentageView!=nil) 
         [self updateChartData:self.percentageView animated:YES dataModel:self.dataForNChartPlus];
-        //[self updateChartData:self.chartViewPlus animated:YES dataModel:self.dataForNChartPlus];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            while (self.chartView.chart.isTransitionPlaying) ;
+            if (self.percentageView!=nil) {
+                 while (self.percentageView.isAnimating) ;
+            }
+            
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(allAnimatingFinished)])
+                {
+                    [self.delegate allAnimatingFinished];
+                }
+                
+                
+                
+                
+            });
+        });
+
         
         
         

@@ -115,6 +115,7 @@
         [animation setRemovedOnCompletion:NO];
         [animation setFillMode:kCAFillModeForwards];//must set up this property, otherwise this class does not work properly
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
+        animation.delegate=self;
         [animation setValue:@"ProgressBarAnimation" forKey:@"animationBar"];
         [self.maskLayer addAnimation:animation forKey:nil];
     }
@@ -146,6 +147,10 @@
 #pragma CAAnimationDelegate
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag
 {
+    if (flag) {
+        if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"])
+            self.isAnimating=NO;
+    }
 //    if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"])
 //    {
 //        
@@ -168,7 +173,8 @@
 }
 -(void)animationDidStart:(CAAnimation *)animation
 {
-    //NSLog(@"this is animationID=%s starting",[[animation valueForKey:@"animationBar"] UTF8String]);
+    if ([[animation valueForKey:@"animationBar"] isEqualToString:@"ProgressBarAnimation"])
+        self.isAnimating=YES;
     
 }
 

@@ -190,11 +190,16 @@
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
+            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0] ];
+
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
+            
             for (NChartDataModel* d in self.chartDataAssembly) {
-                DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                itemViewController.delegate=self;
                 [self addChildViewController:itemViewController];
             }
+            
 
 
             
@@ -214,6 +219,7 @@
                     {
 
                         [self.chartDataAssembly removeAllObjects];
+                        [self.chartsForDisplay removeAllObjects];
                         for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
                         {
                             [dvc.view removeFromSuperview];
@@ -230,16 +236,25 @@
                     else
                     {
                         [self.chartDataAssembly removeAllObjects];
+                        [self.chartsForDisplay removeAllObjects];
                         for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
                         {
                             [dvc.view removeFromSuperview];
                             [dvc removeFromParentViewController];
                         }
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
-                        for (NChartDataModel* d in self.chartDataAssembly) {
-                            DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                        self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
+                        
+                        for (NChartDataModel* d in self.chartDataAssembly)
+                        {
+                            DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+                            itemViewController.delegate=self;
                             [self addChildViewController:itemViewController];
+                            
                         }
+                        
+                        
+                        
                         
                         
                         
@@ -423,14 +438,16 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //return ([self.dashboardItemViewControllers count]+1);
-    return ([self.chartDataAssembly count]+1);
+    
+    //return ([self.chartDataAssembly count]+1);
+    return ([self.chartsForDisplay count]+1);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell* cell=nil;
-    if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
+    //if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
+    if (indexPath.row>([self.chartsForDisplay count]-1)||[self.chartsForDisplay count]==0)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
         cell.backgroundColor=kcWidgetBackColor;
@@ -604,6 +621,7 @@
                 [dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
                 
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
+                [dashvc.chartsForDisplay addObject:dvc.dataForNChart];
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
                 [manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
                 
@@ -625,6 +643,30 @@
     return 0.45;
 }
 
+
+#pragma mark <childControllerDelegate>
+-(void)allAnimatingFinished
+{
+//    NSLog(@"allAnimatingFinished");
+//    unsigned int index;
+//    if (self.chartsForDisplay==nil) {
+//        index=0;
+//    }
+//    else
+//        index=[self.chartsForDisplay count];
+    unsigned int index=[self.chartsForDisplay count];
+    
+    if (index<self.chartDataAssembly.count)
+    {
+        
+        [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+        [self.collectionView reloadData];
+
+
+
+        
+    }
+}
 
 
 
