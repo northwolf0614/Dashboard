@@ -323,7 +323,6 @@
 +(NChartDataModel*)templateAreaChartData
 {
     float percent;
-    int x;
     NChartDataModel* chartData5=[[NChartDataModel alloc] init];
     chartData5.chartCaption=@"doughnut";
     chartData5.chartAxisXCaption=@"product percentage";

@@ -383,7 +383,8 @@
         [dVC.naviBar setTranslucent: NO];
         [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
         [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
-        dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
+        //dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
+        dVC.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
 
 
         
@@ -648,23 +649,15 @@
 -(void)allAnimatingFinished
 {
 
-    unsigned int index=[self.chartsForDisplay count];
+    NSInteger index=[self.chartsForDisplay count];
     
     if (index<self.chartDataAssembly.count)
     {
-//        [self.collectionView performBatchUpdates:^
-//        {
-//            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
-//            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
-//        } completion:nil];
 
         [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
         [self.collectionView reloadData];
-
-
-
-        
     }
+    
 }
 
 

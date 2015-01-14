@@ -54,7 +54,10 @@
     [request setValue:@"text/plain;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     NSString* authStr = [NSString stringWithFormat:@"%@:%@", userName, password];
     NSData* authData = [authStr dataUsingEncoding:NSASCIIStringEncoding];
-    NSString* authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
+    
+    //NSString* authValue = [NSString stringWithFormat:@"Basic %@", [authData base64Encoding]];
+    NSString* authValue = [NSString stringWithFormat:@"Basic %@", [authData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed]];
+    
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     self.mutableData = [NSMutableData data];
     self.urlConnection = [NSURLConnection connectionWithRequest:request delegate:self];

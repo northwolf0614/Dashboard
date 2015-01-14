@@ -49,8 +49,8 @@
             NSLog(@"class: %@", NSStringFromClass([aSubiew class]));
             if ([aSubiew isKindOfClass:[UICollectionView class]])
             {
-                NSLog(@"collection sec: %ld", [((UICollectionView*)aSubiew) numberOfSections]);
-                NSLog(@"collection item: %ld", [((UICollectionView*)aSubiew) numberOfItemsInSection:0]);
+                NSLog(@"collection sec: %ld", (long)[((UICollectionView*)aSubiew) numberOfSections]);
+                NSLog(@"collection item: %ld", (long)[((UICollectionView*)aSubiew) numberOfItemsInSection:0]);
                 UICollectionView* cc = (UICollectionView*)aSubiew;
                 UICollectionViewCell* cell = [cc cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
                 [self findUIbutton:cell];
@@ -58,8 +58,8 @@
             }
             if ([aSubiew isKindOfClass:[UITableView class]])
             {
-                NSLog(@"table sec: %ld", [((UITableView*)aSubiew) numberOfSections]);
-                NSLog(@"table item: %ld", [((UITableView*)aSubiew) numberOfRowsInSection:0]);
+                NSLog(@"table sec: %ld", (long)[((UITableView*)aSubiew) numberOfSections]);
+                NSLog(@"table item: %ld", (long)[((UITableView*)aSubiew) numberOfRowsInSection:0]);
                 UITableView* cc = (UITableView*)aSubiew;
                 UITableViewCell* cell = [cc cellForRowAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
                 [self findUIbutton:cell];

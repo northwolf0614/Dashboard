@@ -13,12 +13,12 @@
 #import "DashBoardViewController.h"
 #import "DashboardItemViewController.h"
 @implementation PopAnimation
-//- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
-//{
-//    return kcControllerTransitionTime;
-//}
-//- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-//{
+- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    return kcControllerTransitionTime;
+}
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
 //    UIView *containerView = [transitionContext containerView];
 //    UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 //    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -55,6 +55,6 @@
 //            }];
 //            
 //        }
-//}
+}
 
 @end

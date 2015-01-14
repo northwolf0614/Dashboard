@@ -36,7 +36,8 @@
     [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
     
-    self.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
+    //self.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
+    self.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
     
         
     
