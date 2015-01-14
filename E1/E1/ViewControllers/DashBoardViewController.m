@@ -647,20 +647,19 @@
 #pragma mark <childControllerDelegate>
 -(void)allAnimatingFinished
 {
-//    NSLog(@"allAnimatingFinished");
-//    unsigned int index;
-//    if (self.chartsForDisplay==nil) {
-//        index=0;
-//    }
-//    else
-//        index=[self.chartsForDisplay count];
+
     unsigned int index=[self.chartsForDisplay count];
     
     if (index<self.chartDataAssembly.count)
     {
+        [self.collectionView performBatchUpdates:^
+        {
+            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
+        } completion:nil];
+
         
-        [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
-        [self.collectionView reloadData];
+        //[self.collectionView reloadData];
 
 
 
