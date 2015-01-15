@@ -34,13 +34,17 @@
     if (self.isNeedsUpdate)
     {
         //specially fix the data for radar chart
-//        NSMutableDictionary* radarSeriesData=nil;
-//        if (self.dataForNChart.chartType==RADAR)
-//        {
-//            radarSeriesData=self.dataForNChart.chartDataForDrawing;
-//            self.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData];
-//            
-//        }
+        NSMutableDictionary* radarSeriesData=nil;
+        if (self.dataForNChart.chartType==RADAR)
+        {
+            radarSeriesData=self.dataForNChart.chartDataForDrawing;
+            self.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData];
+            [self removeAllSeries];
+            [self setupSeriesForChartView];
+            [self.chartView.chart updateData];
+            self.dataForNChart.chartDataForDrawing=radarSeriesData;
+            
+        }
         //specially fix the data for radar chart
         
         

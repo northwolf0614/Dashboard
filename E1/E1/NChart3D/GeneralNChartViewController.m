@@ -29,11 +29,11 @@
     self.contentView.backgroundColor=self.backGroundColor;
     self.isNeedsUpdate=YES;
     
-    if (self.dataForNChart.chartType==RADAR) {
-        [self removeAllSeries];
-        [self setupSeriesForChartView];
-        [self.chartView.chart updateData];
-    }
+//    if (self.dataForNChart.chartType==RADAR) {
+//        [self removeAllSeries];
+//        [self setupSeriesForChartView];
+//        [self.chartView.chart updateData];
+//    }
     
    
     
