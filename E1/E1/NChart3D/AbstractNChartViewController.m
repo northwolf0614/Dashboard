@@ -223,9 +223,9 @@
         }
     }
     if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
-    //if(chartData.floatingNumber!=0.0f)
+
         [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
-        //[view setTextForMiddleLabel:[NSNumber numberWithFloat:chartData.floatingNumber] animation:isAnimated animationTime:kcTRANSITION_TIME];
+
     
         //selcetion 2
 
