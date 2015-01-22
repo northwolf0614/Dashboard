@@ -14,11 +14,12 @@
 #import "AnimatedTransitioningManager.h"
 #import "TLSpringFlowLayout.h"
 #import "DoubleNChartWithLabelViewController.h"
+#import "GerneralChartViewController.h"
 
 @class PushAnimation;
 @class PopAnimation;
 
-@interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate,childControllerDelegate>
+@interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate,childControllerDelegate,ControllerDelegate>
 @property (nonatomic, strong) NSMutableArray* chartDataAssembly;
 @property (nonatomic,strong) NSMutableArray* chartsForDisplay;
 @property(nonatomic,strong) NSMutableArray* chartNames;//seem useless

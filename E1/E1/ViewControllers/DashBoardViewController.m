@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 EY. All rights reserved.
 //
 //#import "DashboardTableViewController.h"
-#import "DashboardTwinCell.h"
+//#import "DashboardTwinCell.h"
 #import "DashboardItemViewController.h"
 #import "Definations.h"
 #import "GeneralNChartViewController.h"
@@ -23,12 +23,16 @@
 #import "PageTableViewController.h"
 #import "DoubleNChartWithLabelViewController.h"
 #import "AnimatedTransitioningManager.h"
+#import "OneViewCell.h"
+#import "TwoViewCell.h"
+#import "GerneralChartViewController.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
 @property (retain, nonatomic) UIPopoverController *masterPopoverController;
 @property(nonatomic,assign) BOOL isInitial;
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
+@property(nonatomic,strong) NSMutableArray* controllerArray;
 
 
 
@@ -53,6 +57,7 @@
     if (self=[super init]) {
         
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"mainWindowTouch" object:nil];
+        self.controllerArray=[NSMutableArray array];
     }
     return self;
     
@@ -62,6 +67,8 @@
     self.flowLayout=[[TLSpringFlowLayout alloc] init];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
+    [self.collectionView registerClass:[OneViewCell class] forCellWithReuseIdentifier:[OneViewCell reuseIdentifier]];
+    [self.collectionView registerClass:[TwoViewCell class] forCellWithReuseIdentifier:[TwoViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
     [self.collectionView setBackgroundColor:kcWholeBackColor];
     [self.collectionView setUserInteractionEnabled:YES];
@@ -194,11 +201,11 @@
 
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
             
-            for (NChartDataModel* d in self.chartDataAssembly) {
-                DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
-                itemViewController.delegate=self;
-                [self addChildViewController:itemViewController];
-            }
+//            for (NChartDataModel* d in self.chartDataAssembly) {
+//                DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+//                itemViewController.delegate=self;
+//                [self addChildViewController:itemViewController];
+//            }
             
 
 
@@ -245,13 +252,15 @@
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
                         self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
                         
-                        for (NChartDataModel* d in self.chartDataAssembly)
-                        {
-                            DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
-                            itemViewController.delegate=self;
-                            [self addChildViewController:itemViewController];
-                            
-                        }
+//                        for (NChartDataModel* d in self.chartDataAssembly)
+//                        {
+//                            DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
+//                            itemViewController.delegate=self;
+//                            [self addChildViewController:itemViewController];
+//                            
+//                        }
+                        
+
                         
                         
                         
@@ -304,6 +313,8 @@
 {
     [self setupConstraints];
     [super viewDidLayoutSubviews];
+    
+
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -457,15 +468,60 @@
     }
     else
     {
-        cell=(GeneralCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class]) forIndexPath:indexPath];
-//        DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
-//        [self addChildViewController:itemViewController];
-        DashboardItemViewController* itemViewController=[self.childViewControllers objectAtIndex:indexPath.row];
-        UIView* cellView =(GeneralCollectionViewCell*)cell.contentView;
-        //[[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        itemViewController.view.frame = cellView.bounds;
-        [cellView addSubview:itemViewController.view];
-        [itemViewController didMoveToParentViewController:self];
+//        cell=(GeneralCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class]) forIndexPath:indexPath];
+////        DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
+////        [self addChildViewController:itemViewController];
+//        DashboardItemViewController* itemViewController=[self.childViewControllers objectAtIndex:indexPath.row];
+//        UIView* cellView =(GeneralCollectionViewCell*)cell.contentView;
+//        //[[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+//        itemViewController.view.frame = cellView.bounds;
+//        [cellView addSubview:itemViewController.view];
+//        [itemViewController didMoveToParentViewController:self];
+//        return cell;
+//    }
+    
+        
+        NChartDataModel* chartData=[self.chartsForDisplay objectAtIndex:indexPath.row];
+        if (chartData.dataForNextView!=nil)
+        {
+            
+            cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
+            
+            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,nil]];
+            
+            itemViewController.delegate=self;
+            [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
+            ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
+            [self addChildViewController:itemViewController];
+            
+            itemViewController.view.frame=cell.contentView.bounds;
+            
+            
+            [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
+            
+            
+            
+            [itemViewController didMoveToParentViewController:self];
+
+        }
+        else
+        {
+            cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
+            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObject:((OneViewCell*)cell).chartView]];
+            
+            itemViewController.delegate=self;
+            [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
+            [self addChildViewController:itemViewController];
+            
+            itemViewController.view.frame=cell.contentView.bounds;
+            [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
+            
+            [itemViewController didMoveToParentViewController:self];
+
+        }
+
+        
+        
         return cell;
     }
     
@@ -505,6 +561,7 @@
   didEndDisplayingCell:(UICollectionViewCell *)cell
     forItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"This is didEndDisplayingCell ");
 //    for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
 //    {
 //        int count=[cell.contentView.subviews count];
@@ -518,6 +575,17 @@
 //    }
   
 }
+
+- (void)collectionView:(UICollectionView *)collectionView
+  willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSLog(@"This is willDisplayCell ");
+}
+
+
+
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return  YES;
@@ -656,6 +724,20 @@
 
         [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
         [self.collectionView reloadData];
+    }
+    
+}
+
+-(void)allAnimationsFinished
+{
+    
+    NSInteger index=[self.chartsForDisplay count];
+    
+    if (index<self.chartDataAssembly.count)
+    {
+        
+        [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+        [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
     }
     
 }

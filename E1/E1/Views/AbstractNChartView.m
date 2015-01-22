@@ -9,9 +9,6 @@
 #import "AbstractNChartView.h"
 #import "Definations.h"
 @interface AbstractNChartView()
-//@property(nonatomic,assign) BOOL didUpdateStraints;
-//@property(nonatomic,strong) UILabel* label;
-
 @property(nonatomic,strong) NSNumber* FloatingNumber;
 @property(nonatomic,strong) NSNumber* valuePerStep;
 @property(nonatomic,strong) NSTimer* timer;
