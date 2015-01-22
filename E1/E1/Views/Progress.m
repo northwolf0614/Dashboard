@@ -276,9 +276,9 @@
         self.animationDurationTime=[self.delegate animationTime:self];
         
     }
-    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(floatingNumber:)])
+    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(plusChartFloatingNumber:)])
     {
-        self.floatingNumber=[self.delegate finalPercentage:self] ;
+        self.floatingNumber=[self.delegate plusChartFloatingNumber:self] ;
         
     }
     if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(progressType:)])

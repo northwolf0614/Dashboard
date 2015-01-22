@@ -486,6 +486,7 @@
         {
             
             cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
+            ((TwoViewCell*)cell).yearLabel.text=chartData.labelText;
             
             GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,nil]];
             
@@ -493,29 +494,21 @@
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
             [self addChildViewController:itemViewController];
-            
-            itemViewController.view.frame=cell.contentView.bounds;
-            
-            
+            //itemViewController.view.frame=cell.contentView.bounds;
             [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
-            
-            
-            
             [itemViewController didMoveToParentViewController:self];
 
         }
         else
         {
             cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
+            ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
             GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObject:((OneViewCell*)cell).chartView]];
-            
             itemViewController.delegate=self;
             [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
             [self addChildViewController:itemViewController];
-            
-            itemViewController.view.frame=cell.contentView.bounds;
-            [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
-            
+            //itemViewController.view.frame=cell.contentView.bounds;
+            [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
 
         }

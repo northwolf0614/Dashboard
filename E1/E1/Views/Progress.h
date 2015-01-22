@@ -13,7 +13,7 @@ typedef enum : NSUInteger {
 -(UIColor*)colorForSecondBar:(Progress*) progressView;
 -(NSNumber*)finalPercentage:(Progress*) progressView;
 
--(NSNumber*)floatingNumber:(Progress*) progressView;
+-(NSNumber*)plusChartFloatingNumber:(Progress*) progressView;
 -(CGFloat)animationTime:(Progress*) progressView;
 -(ProgressType)progressType:(Progress*)progressView;
 

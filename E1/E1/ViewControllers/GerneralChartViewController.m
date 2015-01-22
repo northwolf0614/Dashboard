@@ -86,15 +86,17 @@
 
 
 #pragma <ProgressBarDataSource>
--(NSNumber*)floatingNumber:(Progress*) chartView
+-(NSNumber*)plusChartFloatingNumber:(Progress*) chartView
 {
-    if (self.dataForNChart.dataForNextView!=nil)
-    {
-        return self.dataForNChart.dataForNextView.floatingNumber;
-    }
-    else
-        
-        return self.dataForNChart.floatingNumber;
+//    if (self.dataForNChart.dataForNextView!=nil)
+//    {
+//        return self.dataForNChart.dataForNextView.floatingNumber;
+//    }
+//    else
+//        
+//        return self.dataForNChart.floatingNumber;
+    
+    return self.dataForNChart.dataForNextView.floatingNumber;
 }
 
 -(CGFloat)animationTime:(Progress*) chartView
@@ -341,6 +343,17 @@
             break;
     }
 }
+
+-(NSNumber*)mainChartFloatingNumber:(ChartView*) chartView
+{
+    return self.dataForNChart.floatingNumber;
+}
+
+-(float) mainChartFloatingNumberAnimationtime:(ChartView*) chartView
+{
+    return 0.45;
+}
+
 #pragma mark - NChart Data Source
 - (NSArray*)seriesDataSourcePointsForSeries:(NChartSeries*)series
 {

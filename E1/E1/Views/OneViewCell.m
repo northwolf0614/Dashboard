@@ -16,6 +16,7 @@
 -(void)prepareForReuse
 {
     [self.chartView.chart removeAllSeries];
+    [self.chartView clean];
     [super prepareForReuse];
 }
 -(id)initWithFrame:(CGRect)frame
@@ -49,8 +50,8 @@
 -(void)setupYearLabel
 {
     self.yearLabel=[[UILabel alloc] init];
-    //self.yearLabel.backgroundColor=[UIColor clearColor];
-    self.yearLabel.backgroundColor=[UIColor redColor];
+    self.yearLabel.backgroundColor=[UIColor clearColor];
+    //self.yearLabel.backgroundColor=[UIColor redColor];
     self.yearLabel.textColor=kcCharColor;
     self.yearLabel.translatesAutoresizingMaskIntoConstraints=NO;
     self.yearLabel.font=[UIFont fontWithName:@"Arial" size:120];

@@ -11,6 +11,8 @@
 @protocol AbstractNChartViewDelegate <NSObject>
 -(void) setupAxesTypeForView:(ChartView*) chartView;
 -(void) setupSeriesForChartView:(ChartView*) chartView;
+-(NSNumber*)mainChartFloatingNumber:(ChartView*) chartView;
+-(float) mainChartFloatingNumberAnimationtime:(ChartView*) chartView;
 
 @end
 
@@ -21,5 +23,6 @@
 
 -(void)showSeries:(BOOL)isAnimated;
 -(void)setupDelegate:(id)delegate;
+-(void)clean;
 
 @end
