@@ -318,7 +318,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
     [super viewDidAppear:animated];
 
 }
@@ -677,10 +677,12 @@
             [dvc.view removeFromSuperview];
             if ([dvc shouldBeAddToPreviousPage])
             {
-                [dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
-                
+                //[dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
+                unsigned int index=dashvc.chartDataAssembly.count;
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
                 [dashvc.chartsForDisplay addObject:dvc.dataForNChart];
+                [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+                
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
                 [manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
                 

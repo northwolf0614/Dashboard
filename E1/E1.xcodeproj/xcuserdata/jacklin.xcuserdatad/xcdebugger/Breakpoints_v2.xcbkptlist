@@ -3090,11 +3090,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "697"
-            endingLineNumber = "697"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "-animationEnded:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3106,11 +3106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "694"
-            endingLineNumber = "694"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "-animateTransition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3186,11 +3186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "789"
-            endingLineNumber = "789">
+            startingLineNumber = "791"
+            endingLineNumber = "791">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3200,11 +3200,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "757"
-            endingLineNumber = "757">
+            startingLineNumber = "759"
+            endingLineNumber = "759">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3214,11 +3214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "694"
-            endingLineNumber = "694"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
             landmarkName = "-animateTransition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3230,11 +3230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "696"
-            endingLineNumber = "696"
+            startingLineNumber = "698"
+            endingLineNumber = "698"
             landmarkName = "-animationEnded:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3246,11 +3246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "792"
-            endingLineNumber = "792">
+            startingLineNumber = "794"
+            endingLineNumber = "794">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3260,11 +3260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "754"
-            endingLineNumber = "754">
+            startingLineNumber = "756"
+            endingLineNumber = "756">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3750,11 +3750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "689"
-            endingLineNumber = "689"
+            startingLineNumber = "691"
+            endingLineNumber = "691"
             landmarkName = "-animateTransition:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4294,11 +4294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "778"
-            endingLineNumber = "778">
+            startingLineNumber = "780"
+            endingLineNumber = "780">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4324,11 +4324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
-            timestampString = "443672385.009116"
+            timestampString = "443675379.15446"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "786"
-            endingLineNumber = "786">
+            startingLineNumber = "788"
+            endingLineNumber = "788">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4584,6 +4584,38 @@
             startingLineNumber = "80"
             endingLineNumber = "80"
             landmarkName = "-viewDidAppear:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/Views/OneViewCell.m"
+            timestampString = "443674732.142013"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "-prepareForReuse"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/Views/ChartView.m"
+            timestampString = "443675844.35946"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "-clean"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
