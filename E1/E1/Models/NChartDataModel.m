@@ -35,7 +35,7 @@
     //data.floatingNumber=[self.floatingNumber copy];
     data.percentage=self.percentage;
     data.floatingNumber=self.floatingNumber;
-    
+    data.isAnimated=self.isAnimated;
     
     return data;
 }
@@ -141,6 +141,7 @@
     [aCoder encodeObject:self.labelText forKey:@"labelText"];//dataForNextView
     [aCoder encodeObject:self.floatingNumber forKey:@"floatingNumber"];//dataForNextView
     [aCoder encodeObject:self.percentage forKey:@"percentage"];//percentage
+    //[aCoder encodeBool:self.isAnimated forKey:@"isAnimated"];
     
 
     
@@ -168,6 +169,7 @@
         self.labelText=[aDecoder decodeObjectForKey:@"labelText"];
         self.floatingNumber=[aDecoder decodeObjectForKey:@"floatingNumber"];//floatingNumber
         self.percentage=[aDecoder decodeObjectForKey:@"percentage"];//percentage
+        //self.isAnimated=[aDecoder decodeBoolForKey:@"isAnimated"];
 
         
         

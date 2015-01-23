@@ -21,7 +21,7 @@
 //@interface GerneralChartViewController : NSObject
 @interface GerneralChartViewController : UIViewController
 <NChartSeriesDataSource,NChartValueAxisDataSource,AbstractNChartViewDelegate,ProgressBarDataSource>
-
+@property(nonatomic,strong) ChartView* chartView;
 @property(nonatomic,weak) id<ControllerDelegate> delegate;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews;
 -(void)showCharts:(BOOL)isAnimated;

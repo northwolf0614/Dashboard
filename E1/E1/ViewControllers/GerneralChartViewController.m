@@ -14,9 +14,9 @@
 @interface GerneralChartViewController ()
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
 @property(nonatomic,strong) Progress* percentageView;
-@property(nonatomic,strong) ChartView* chartView;
+
 @property(nonatomic,strong) NSArray* chartViews;
-@property(nonatomic,assign) BOOL isInitial;
+
 
 @end
 
@@ -36,7 +36,7 @@
                 self.chartView=(ChartView*)view;
             }
         }
-        self.isInitial=YES;
+        
         
         
         
@@ -78,9 +78,10 @@
 {
     //NSLog(@"ViewDidAppear in GerneralChartViewController");
     self.view=nil;
+    BOOL isAnimated=!self.dataForNChart.isAnimated;
+    [self showCharts:isAnimated];
+    self.dataForNChart.isAnimated=YES;
     
-    [self showCharts:self.isInitial];
-    self.isInitial=NO;
     
 }
 
@@ -101,7 +102,7 @@
 
 -(CGFloat)animationTime:(Progress*) chartView
 {
-    return 0.45;
+    return 1;
 }
 
 -(UIColor*)colorForfirstBar:(Progress*)progressView;

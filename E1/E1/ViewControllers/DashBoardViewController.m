@@ -494,7 +494,7 @@
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
             [self addChildViewController:itemViewController];
-            //itemViewController.view.frame=cell.contentView.bounds;
+            
             [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
 
@@ -507,7 +507,6 @@
             itemViewController.delegate=self;
             [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
             [self addChildViewController:itemViewController];
-            //itemViewController.view.frame=cell.contentView.bounds;
             [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
 
@@ -555,17 +554,15 @@
     forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"This is didEndDisplayingCell ");
-//    for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
-//    {
-//        int count=[cell.contentView.subviews count];
-//        if ([cell isKindOfClass:[GeneralCollectionViewCell class]]&&count>0&&[dvc.view isEqual:[cell.contentView.subviews objectAtIndex:0]])
-//        {
-//            
-//            [dvc.view removeFromSuperview];
-//            [dvc removeFromParentViewController];
-//            
-//        }
-//    }
+    if ([cell isKindOfClass:[OneViewCell class]]) {
+        for (GerneralChartViewController* dvc in self.childViewControllers)
+        {
+            if ([dvc.chartView isEqual:((OneViewCell*)cell).chartView]) {
+                [dvc removeFromParentViewController];
+            }
+        }
+    }
+    
   
 }
 

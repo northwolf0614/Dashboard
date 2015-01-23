@@ -66,11 +66,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSString* labelText;
 @property(nonatomic,strong) NSNumber* percentage;
 @property(nonatomic,strong) NSNumber* floatingNumber;
-//@property(nonatomic,assign) float percentage;
-//@property(nonatomic,assign) float floatingNumber;
-
-//-(void)saveDataForKey:(NSString*)key;
-//+(NChartDataModel*)loadDataWithKey:(NSString*)key;
+@property(nonatomic,assign) BOOL isAnimated;
 +(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
 +(NSMutableDictionary*)radarSeriesData;
