@@ -173,7 +173,7 @@
 }
 -(void)showMiddleFloatingNumber:(BOOL)isAnimated
 {
-    if ([self.delegate mainChartFloatingNumber:self]!=nil)
+    if (self.FloatingNumber!=nil)
     {
         self.middleLabel.hidden=NO;
         [self addSubview:self.middleLabel];

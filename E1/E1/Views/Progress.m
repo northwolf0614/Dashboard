@@ -42,7 +42,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    [self updateData];
+    //[self updateData];
     self.animationLayer.frame =self.bounds;
 
     
@@ -186,7 +186,8 @@
 
 -(void)showSeries:(BOOL)isAnimated
 {
-    
+    [self updateData];
+    [self layoutSubviews];
     [self setPercent:0  animated:isAnimated];
     [self showFloatingNumber:isAnimated];
     
