@@ -45,7 +45,8 @@
 }
 -(void)loadView
 {
-    self.view=self.controllerView;
+    [super loadView];
+    //self.view=self.controllerView;
 }
 -(void)showCharts:(BOOL)isAnimated
 {
@@ -81,6 +82,7 @@
     //NSLog(@"ViewDidAppear in GerneralChartViewController");
     
     self.view.hidden=YES;
+    self.view=nil;
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     [self showCharts:isAnimated];
     self.dataForNChart.isAnimated=YES;
