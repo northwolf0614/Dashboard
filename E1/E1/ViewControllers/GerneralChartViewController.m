@@ -80,18 +80,32 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //NSLog(@"ViewDidAppear in GerneralChartViewController");
-    
     self.view.hidden=YES;
-    self.view=nil;
+    if (self.view!=nil) {
+        self.view=nil;
+    }
+    
+    
     BOOL isAnimated=!self.dataForNChart.isAnimated;
-    [self showCharts:isAnimated];
-    self.dataForNChart.isAnimated=YES;
+    if (isAnimated) {
+        [self showCharts:YES];
+        self.dataForNChart.isAnimated=YES;
+    }
+    
+    
     
     
 }
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+
+    BOOL isAnimated=!self.dataForNChart.isAnimated;
+    if (!isAnimated) {
+        [self showCharts:NO];
+        //self.dataForNChart.isAnimated=YES;
+    }
 }
 -(void)viewDidLayoutSubviews
 {
@@ -375,7 +389,7 @@
 -(float) mainChartFloatingNumberAnimationtime:(ChartView*) chartView
 {
     if ([self.chartView isEqual:chartView])
-        return 0.45;
+        return 1.0f;
     return 0.0f;
     
 }
