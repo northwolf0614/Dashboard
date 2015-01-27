@@ -14,8 +14,8 @@
 @interface GerneralChartViewController ()
 @property(nonatomic,strong) NChartDataModel* dataForNChart;
 @property(nonatomic,strong) Progress* percentageView;
-
 @property(nonatomic,strong) NSArray* chartViews;
+@property(nonatomic,strong) UIView* controllerView;
 
 
 @end
@@ -28,22 +28,26 @@
     {
         self.dataForNChart=drawingData;
         self.chartViews=chartViews;
-        for (UIView* view in chartViews) {
-            if ([view isKindOfClass:[Progress class]]) {
-                self.percentageView=(Progress*)view;
-            }
-            if ([view isKindOfClass:[ChartView class]] ) {
-                self.chartView=(ChartView*)view;
-            }
+        if ([chartViews count]==2) {
+            self.chartView=[chartViews objectAtIndex:0];
+            self.controllerView=[chartViews objectAtIndex:1];
+        }
+        if ([chartViews count]==3) {
+            
+            self.chartView=[chartViews objectAtIndex:0];
+            self.percentageView=[chartViews objectAtIndex:1];
+            self.controllerView=[chartViews objectAtIndex:2];
         }
         
-        
-        
-        
-        
-        
+
     }
     return self;
+}
+-(void)loadView
+{
+    [super loadView];
+    self.view=self.controllerView;
+    
 }
 -(void)showCharts:(BOOL)isAnimated
 {
@@ -77,14 +81,22 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //NSLog(@"ViewDidAppear in GerneralChartViewController");
-    self.view=nil;
+    
+    self.view.hidden=YES;
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     [self showCharts:isAnimated];
     self.dataForNChart.isAnimated=YES;
     
     
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+}
 
 #pragma <ProgressBarDataSource>
 -(NSNumber*)plusChartFloatingNumber:(Progress*) chartView
@@ -96,18 +108,24 @@
 //    else
 //        
 //        return self.dataForNChart.floatingNumber;
-    
-    return self.dataForNChart.dataForNextView.floatingNumber;
+    if ([self.percentageView isEqual:chartView]) {
+        return self.dataForNChart.dataForNextView.floatingNumber;
+    }
+    return nil;
 }
 
 -(CGFloat)animationTime:(Progress*) chartView
 {
-    return 1;
+    if ([self.percentageView isEqual:chartView]) {
+        return 1;
+    }
+    return 0.0f;
+    
 }
 
 -(UIColor*)colorForfirstBar:(Progress*)progressView;
 {
-    if ([progressView isEqual:[self.chartViews objectAtIndex:1]]) {
+    if ([progressView isEqual:self.percentageView]) {
         if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
             return nil;
         }
@@ -124,7 +142,7 @@
 }
 -(UIColor*)colorForSecondBar:(Progress*) progressView
 {
-    if ([progressView isEqual:[self.chartViews objectAtIndex:1]])
+    if ([progressView isEqual:self.percentageView])
     {
         if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
             return nil;
@@ -141,7 +159,7 @@
 }
 -(NSNumber*)finalPercentage:(Progress*) progressView
 {
-    if ([progressView isEqual:[self.chartViews objectAtIndex:1]])
+    if ([progressView isEqual:self.percentageView])
     {
         if (self.dataForNChart.dataForNextView==nil) {
             return nil;
@@ -161,7 +179,7 @@
 
 
 #pragma <AbstractNChartViewDelegate>
--(void) setupSeriesForChartView:(ChartView*) chartView
+-(void) setupSeriesForChartView:(SingleChartView*) chartView
 {
     
     NSArray* keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
@@ -324,7 +342,7 @@
 
 
 
--(void)setupAxesTypeForView:(ChartView*) chartView
+-(void) setupAxesTypeForView:(SingleChartView*) chartView
 
 {
     switch (self.dataForNChart.axisType)
@@ -347,12 +365,19 @@
 
 -(NSNumber*)mainChartFloatingNumber:(ChartView*) chartView
 {
-    return self.dataForNChart.floatingNumber;
+    if ([self.chartView isEqual:chartView]) {
+        return self.dataForNChart.floatingNumber;
+    }
+    return nil;
+    
 }
 
 -(float) mainChartFloatingNumberAnimationtime:(ChartView*) chartView
 {
-    return 0.45;
+    if ([self.chartView isEqual:chartView])
+        return 0.45;
+    return 0.0f;
+    
 }
 
 #pragma mark - NChart Data Source

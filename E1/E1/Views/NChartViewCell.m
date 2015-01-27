@@ -6,16 +6,15 @@
 //  Copyright (c) 2015 EY. All rights reserved.
 //
 
-#import "OneViewCell.h"
+
 #import "Definations.h"
-#import "ChartView.h"
-@interface OneViewCell()
+#import "NChartViewCell.h"
+@interface NChartViewCell()
 @property(nonatomic,assign) BOOL didSetupConstraintsOneViewCell;
 @end
-@implementation OneViewCell
+@implementation NChartViewCell
 -(void)prepareForReuse
 {
-    
     [self.chartView clean];
     [super prepareForReuse];
 }
@@ -39,7 +38,8 @@
 }
 -(void)setupChartView
 {
-    self.chartView = [[ChartView alloc] initWithFrame:CGRectZero];
+    self.chartView = [[SingleChartView alloc] initWithFrame:CGRectZero];
+    
     self.chartView.chart.licenseKey = kcNchartViewlicense;
     self.chartView.chart.cartesianSystem.margin = NChartMarginMake(0, 0, 0, 0);
     self.chartView.chart.shouldAntialias = YES;
@@ -81,7 +81,7 @@
     if (self.didSetupConstraintsOneViewCell) {
         return;
     }
-    if ([self isKindOfClass:[OneViewCell class]])
+    if ([self isKindOfClass:[NChartViewCell class]])
     {
         NSArray* constraints=[self.viewContainer constraints];
         if ([constraints count]>0)

@@ -19,15 +19,6 @@
 
 @implementation ChartView
 
-//-(id)initWithFrame:(CGRect)frame
-//{
-//    if (self=[super initWithFrame:frame])
-//    {
-//        NSLog(@"this is initWithFrame in AbstractNChartView");
-//        self.userInteractionEnabled=NO;
-//    }
-//    return self;
-//}
 -(void)dealloc
 {
     NSLog(@"this is deallocview in AbstractNChartView");
@@ -68,22 +59,22 @@
 -(void)showSeries:(BOOL)isAnimated
 {
     
-    [self.chart removeAllSeries];
-    
-    [self updateData];
-    if (isAnimated)
-    {
-        if ([[self.chart series] count]>0&&![self.chart isTransitionPlaying])
-            
-        {
-
-            [self.chart stopTransition];
-            [self.chart playTransition:kcTRANSITION_TIME reverse:NO];
-            [self.chart flushChanges];
-            
-        }
-    }
-    
+//    [self.chart removeAllSeries];
+//    
+//    [self updateData];
+//    if (isAnimated)
+//    {
+//        if ([[self.chart series] count]>0&&![self.chart isTransitionPlaying])
+//            
+//        {
+//
+//            [self.chart stopTransition];
+//            [self.chart playTransition:kcTRANSITION_TIME reverse:NO];
+//            [self.chart flushChanges];
+//            
+//        }
+//    }
+    [super showSeries:isAnimated];
     [self showMiddleFloatingNumber:isAnimated];
     
     
@@ -92,16 +83,7 @@
 }
 -(void)setupDelegate:(id)delegate
 {
-    self.chart.cartesianSystem.xAxis.dataSource = (id)delegate;
-    self.chart.cartesianSystem.yAxis.dataSource = (id)delegate;
-    self.chart.cartesianSystem.zAxis.dataSource = (id)delegate;
-    self.chart.cartesianSystem.syAxis.dataSource=(id)delegate;
-    self.chart.cartesianSystem.sxAxis.dataSource=(id)delegate;
-    self.chart.polarSystem.azimuthAxis.dataSource = (id)delegate;
-    self.chart.polarSystem.radiusAxis.dataSource = (id)delegate;
-    self.chart.sizeAxis.dataSource = (id)delegate;
-    self.chart.cartesianSystem.syAxis.dataSource=(id)delegate;
-    self.delegate=(id)delegate;
+    [super setupDelegate:delegate];
 }
 
 -(id)initWithFrame:(CGRect)frame
@@ -120,7 +102,7 @@
         self.middleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         self.middleLabel.textAlignment=NSTextAlignmentCenter;
         self.middleLabel.hidden=YES;
-        //[self addSubview:self.middleLabel];
+        [self addSubview:self.middleLabel];
         self.chart.legend.textColor=kcCharColor;
         self.chart.cartesianSystem.xAxis.textColor=kcCharColor;
         self.userInteractionEnabled=NO;
@@ -176,7 +158,6 @@
     if (self.FloatingNumber!=nil)
     {
         self.middleLabel.hidden=NO;
-        [self addSubview:self.middleLabel];
         [self setTextForMiddleLabel:self.FloatingNumber animation:isAnimated animationTime:self.animationTime];
     }
     
@@ -208,9 +189,8 @@
 }
 -(void)clean
 {
-    if ([self.subviews containsObject:self.middleLabel]) {
-        [self.middleLabel removeFromSuperview];
-    }
+    [super clean];
+    
 }
 
 @end

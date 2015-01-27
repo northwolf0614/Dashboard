@@ -9,6 +9,7 @@
 #import "CollectionViewCell.h"
 #import "OneViewCell.h"
 #import "Progress.h"
-@interface TwoViewCell : OneViewCell
+#import "NChartViewCell.h"
+@interface TwoViewCell : NChartViewCell
 @property(nonatomic,strong) Progress* percentageView;
 @end

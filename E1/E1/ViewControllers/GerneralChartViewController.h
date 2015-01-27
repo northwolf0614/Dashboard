@@ -11,6 +11,7 @@
 #import <NChart3D/NChart3D.h>
 #import "ChartView.h"
 #import "Progress.h"
+#import "SingleChartView.h"
 @protocol ControllerDelegate <NSObject>
 
 -(void)allAnimationsFinished;
@@ -21,7 +22,7 @@
 //@interface GerneralChartViewController : NSObject
 @interface GerneralChartViewController : UIViewController
 <NChartSeriesDataSource,NChartValueAxisDataSource,AbstractNChartViewDelegate,ProgressBarDataSource>
-@property(nonatomic,strong) ChartView* chartView;
+@property(nonatomic,strong) SingleChartView* chartView;
 @property(nonatomic,weak) id<ControllerDelegate> delegate;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews;
 -(void)showCharts:(BOOL)isAnimated;

@@ -26,6 +26,8 @@
 #import "OneViewCell.h"
 #import "TwoViewCell.h"
 #import "GerneralChartViewController.h"
+#import "NChartViewCell.h"
+
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -68,6 +70,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerClass:[OneViewCell class] forCellWithReuseIdentifier:[OneViewCell reuseIdentifier]];
+    [self.collectionView registerClass:[NChartViewCell class] forCellWithReuseIdentifier:[NChartViewCell reuseIdentifier]];
     [self.collectionView registerClass:[TwoViewCell class] forCellWithReuseIdentifier:[TwoViewCell reuseIdentifier]];
     [self.collectionView registerNib:[UINib nibWithNibName:[EmptyCollectionViewCell reuseIdentifier] bundle:nil] forCellWithReuseIdentifier:[EmptyCollectionViewCell reuseIdentifier]];
     [self.collectionView setBackgroundColor:kcWholeBackColor];
@@ -285,7 +288,7 @@
 
         }
     }
-    [self.collectionView reloadData];
+    //[self.collectionView reloadData];
     
 
 
@@ -488,27 +491,41 @@
             cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
             ((TwoViewCell*)cell).yearLabel.text=chartData.labelText;
             
-            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,nil]];
+            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil]];
             
             itemViewController.delegate=self;
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
             [self addChildViewController:itemViewController];
-            
             [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
 
         }
         else
         {
-            cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
-            ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
-            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObject:((OneViewCell*)cell).chartView]];
-            itemViewController.delegate=self;
-            [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
-            [self addChildViewController:itemViewController];
-            [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
-            [itemViewController didMoveToParentViewController:self];
+            if (chartData.floatingNumber!=nil)
+            {
+                cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
+                ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
+                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil]];
+                itemViewController.delegate=self;
+                [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
+                [self addChildViewController:itemViewController];
+                [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
+                [itemViewController didMoveToParentViewController:self];
+            }
+            else
+            {
+                cell=(NChartViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([NChartViewCell class]) forIndexPath:indexPath];
+                ((NChartViewCell*)cell).yearLabel.text=chartData.labelText;
+                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil]];
+                itemViewController.delegate=self;
+                [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
+                [self addChildViewController:itemViewController];
+                [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
+                [itemViewController didMoveToParentViewController:self];
+                
+            }
 
         }
 
@@ -554,10 +571,10 @@
     forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"This is didEndDisplayingCell ");
-    if ([cell isKindOfClass:[OneViewCell class]]) {
+    if ([cell isKindOfClass:[CollectionViewCell class]]) {
         for (GerneralChartViewController* dvc in self.childViewControllers)
         {
-            if ([dvc.chartView isEqual:((OneViewCell*)cell).chartView]) {
+            if ([cell.contentView.subviews containsObject:dvc.chartView]) {
                 [dvc removeFromParentViewController];
             }
         }
@@ -708,9 +725,7 @@
 #pragma mark <childControllerDelegate>
 -(void)allAnimatingFinished
 {
-
     NSInteger index=[self.chartsForDisplay count];
-    
     if (index<self.chartDataAssembly.count)
     {
 

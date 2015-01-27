@@ -39,6 +39,8 @@
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
 		E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E7938CFE1A1D65D300038CE4 /* ProgressBar.m */; };
+		E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79531E31A76F39600B5CB40 /* NChartViewCell.m */; };
+		E79531E71A76F6E200B5CB40 /* SingleChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E79531E61A76F6E200B5CB40 /* SingleChartView.m */; };
 		E796756E1A43C6BF00482C92 /* PageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E796756D1A43C6BF00482C92 /* PageTableViewController.xib */; };
 		E796757B1A43C6F100482C92 /* AlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79675701A43C6F100482C92 /* AlertController.m */; };
 		E796757C1A43C6F100482C92 /* AnimatedTransitioningManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E79675721A43C6F100482C92 /* AnimatedTransitioningManager.m */; };
@@ -138,6 +140,11 @@
 		E78256D419F88461005E42C1 /* ClaimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimModel.m; sourceTree = "<group>"; };
 		E7938CFD1A1D65D300038CE4 /* ProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBar.h; sourceTree = "<group>"; };
 		E7938CFE1A1D65D300038CE4 /* ProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBar.m; sourceTree = "<group>"; };
+		E79531E21A76F39600B5CB40 /* NChartViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartViewCell.h; sourceTree = "<group>"; };
+		E79531E31A76F39600B5CB40 /* NChartViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NChartViewCell.m; sourceTree = "<group>"; };
+		E79531E51A76F6E200B5CB40 /* SingleChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleChartView.h; sourceTree = "<group>"; };
+		E79531E61A76F6E200B5CB40 /* SingleChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleChartView.m; sourceTree = "<group>"; };
+		E79531E81A76F7E600B5CB40 /* AbstractNChartViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractNChartViewDelegate.h; sourceTree = "<group>"; };
 		E796756D1A43C6BF00482C92 /* PageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewController.xib; sourceTree = "<group>"; };
 		E796756F1A43C6F100482C92 /* AlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertController.h; sourceTree = "<group>"; };
 		E79675701A43C6F100482C92 /* AlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertController.m; sourceTree = "<group>"; };
@@ -257,6 +264,10 @@
 		090FB6E819F5DA6A008F437F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E79531E51A76F6E200B5CB40 /* SingleChartView.h */,
+				E79531E61A76F6E200B5CB40 /* SingleChartView.m */,
+				E79531E21A76F39600B5CB40 /* NChartViewCell.h */,
+				E79531E31A76F39600B5CB40 /* NChartViewCell.m */,
 				E7C436481A6F655C00FB34CE /* CollectionViewCell.h */,
 				E7C436491A6F655C00FB34CE /* CollectionViewCell.m */,
 				E7E0922E1A6F6294006A8752 /* ChartView.h */,
@@ -291,6 +302,7 @@
 				E7C222A01A26856A00C9CAEE /* GeneralCollectionViewCell.h */,
 				E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */,
 				E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */,
+				E79531E81A76F7E600B5CB40 /* AbstractNChartViewDelegate.h */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -557,12 +569,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E79531E71A76F6E200B5CB40 /* SingleChartView.m in Sources */,
 				E79675801A43C6F100482C92 /* StartupViewController.m in Sources */,
 				E7711AF81A0790280096650B /* NChartDataModel.m in Sources */,
 				E796757C1A43C6F100482C92 /* AnimatedTransitioningManager.m in Sources */,
 				E7A666ED1A4D44EA00D1E788 /* TLSpringFlowLayout.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
 				E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */,
+				E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */,
 				E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */,
 				090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */,
 				E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */,
