@@ -29,6 +29,7 @@
 		AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB18A9711A01C49E006546D4 /* AbstractNChartViewController.m */; };
 		AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */; };
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
+		E704FA791A77472A00309805 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704FA781A77472A00309805 /* CoreData.framework */; };
 		E70C44ED1A061E4600D5524E /* DetailChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E70C44EB1A061E4600D5524E /* DetailChartViewController.m */; };
 		E70C44EE1A061E4600D5524E /* DetailChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */; };
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
@@ -121,6 +122,7 @@
 		AB7F115A1A0062CA00145E96 /* DashboardItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardItemViewController.h; sourceTree = "<group>"; };
 		AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardItemViewController.m; sourceTree = "<group>"; };
 		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E704FA781A77472A00309805 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E70C44EA1A061E4600D5524E /* DetailChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailChartViewController.h; sourceTree = "<group>"; };
 		E70C44EB1A061E4600D5524E /* DetailChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailChartViewController.m; sourceTree = "<group>"; };
 		E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailChartViewController.xib; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E704FA791A77472A00309805 /* CoreData.framework in Frameworks */,
 				AB18A96F1A01C44B006546D4 /* libstdc++.dylib in Frameworks */,
 				09331BC419F901F2004EDFEA /* QuartzCore.framework in Frameworks */,
 				09B0B26119F5D99A008DCE56 /* CoreGraphics.framework in Frameworks */,
@@ -330,6 +333,7 @@
 		09B0B25D19F5D99A008DCE56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E704FA781A77472A00309805 /* CoreData.framework */,
 				AB18A96E1A01C44B006546D4 /* libstdc++.dylib */,
 				09331BC319F901F2004EDFEA /* QuartzCore.framework */,
 				09B0B25E19F5D99A008DCE56 /* Foundation.framework */,

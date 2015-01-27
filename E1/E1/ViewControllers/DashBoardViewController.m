@@ -230,7 +230,7 @@
 
                         [self.chartDataAssembly removeAllObjects];
                         [self.chartsForDisplay removeAllObjects];
-                        for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
+                        for (GerneralChartViewController* dvc in self.childViewControllers)
                         {
                             [dvc.view removeFromSuperview];
                             [dvc removeFromParentViewController];
@@ -247,7 +247,7 @@
                     {
                         [self.chartDataAssembly removeAllObjects];
                         [self.chartsForDisplay removeAllObjects];
-                        for (DoubleNChartWithLabelViewController* dvc in self.childViewControllers)
+                        for (GerneralChartViewController* dvc in self.childViewControllers)
                         {
                             [dvc.view removeFromSuperview];
                             [dvc removeFromParentViewController];
@@ -288,7 +288,7 @@
 
         }
     }
-    //[self.collectionView reloadData];
+    [self.collectionView reloadData];
     
 
 
@@ -575,6 +575,7 @@
         for (GerneralChartViewController* dvc in self.childViewControllers)
         {
             if ([((CollectionViewCell*)cell).viewContainer.subviews containsObject:dvc.chartView]) {
+                [dvc.view removeFromSuperview];
                 [dvc removeFromParentViewController];
             }
         }

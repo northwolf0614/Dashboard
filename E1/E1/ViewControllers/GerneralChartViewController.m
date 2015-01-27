@@ -81,9 +81,9 @@
 {
     //NSLog(@"ViewDidAppear in GerneralChartViewController");
     self.view.hidden=YES;
-    if (self.view!=nil) {
-        self.view=nil;
-    }
+//    if (self.view!=nil) {
+//        self.view=nil;
+//    }
     
     
     BOOL isAnimated=!self.dataForNChart.isAnimated;
