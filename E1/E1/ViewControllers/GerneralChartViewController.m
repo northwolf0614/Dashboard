@@ -45,9 +45,7 @@
 }
 -(void)loadView
 {
-    [super loadView];
     self.view=self.controllerView;
-    
 }
 -(void)showCharts:(BOOL)isAnimated
 {

@@ -574,7 +574,7 @@
     if ([cell isKindOfClass:[CollectionViewCell class]]) {
         for (GerneralChartViewController* dvc in self.childViewControllers)
         {
-            if ([cell.contentView.subviews containsObject:dvc.chartView]) {
+            if ([((CollectionViewCell*)cell).viewContainer.subviews containsObject:dvc.chartView]) {
                 [dvc removeFromParentViewController];
             }
         }
