@@ -21,9 +21,13 @@
 @end
 
 @implementation GerneralChartViewController
-
+-(void)dealloc
+{
+    NSLog(@"This is dealloc in GerneralChartViewController");
+}
 -(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews
 {
+    NSLog(@"This is initWithDrawingData in GerneralChartViewController");
     if (self=[super init])
     {
         self.dataForNChart=drawingData;

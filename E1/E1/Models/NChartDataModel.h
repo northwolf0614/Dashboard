@@ -48,6 +48,7 @@ typedef enum : NSUInteger {
 
 
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
+@property(nonatomic,assign) BOOL isEmpty;
 @property(nonatomic,copy)   NSString* chartCaption;
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;

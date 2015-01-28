@@ -19,7 +19,7 @@
 @class PushAnimation;
 @class PopAnimation;
 
-@interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate,childControllerDelegate,ControllerDelegate>
+@interface DashBoardViewController : UIViewController <UIViewControllerAnimatedTransitioning,UICollectionViewDataSource,UICollectionViewDelegate,UIGestureRecognizerDelegate,childControllerDelegate,ControllerDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray* chartDataAssembly;
 @property (nonatomic,strong) NSMutableArray* chartsForDisplay;
 @property(nonatomic,strong) NSMutableArray* chartNames;//seem useless

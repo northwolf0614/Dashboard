@@ -27,7 +27,7 @@
 #import "TwoViewCell.h"
 #import "GerneralChartViewController.h"
 #import "NChartViewCell.h"
-
+#import "NChartDataModel.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -35,6 +35,7 @@
 @property(nonatomic,assign) BOOL isInitial;
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 @property(nonatomic,strong) NSMutableArray* controllerArray;
+@property(nonatomic,assign) CGPoint currentOffset;
 
 
 
@@ -67,7 +68,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.flowLayout=[[TLSpringFlowLayout alloc] init];
+//    self.flowLayout=[[UICollectionViewFlowLayout alloc] init];
+//    self.flowLayout.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
+//    self.flowLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
+//    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
+    self.collectionView.pagingEnabled=NO;
+    self.collectionView.delegate=self;
     [self.collectionView registerClass:[GeneralCollectionViewCell class] forCellWithReuseIdentifier:[GeneralCollectionViewCell reuseIdentifier]];
     [self.collectionView registerClass:[OneViewCell class] forCellWithReuseIdentifier:[OneViewCell reuseIdentifier]];
     [self.collectionView registerClass:[NChartViewCell class] forCellWithReuseIdentifier:[NChartViewCell reuseIdentifier]];
@@ -321,7 +328,7 @@
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    //[self.collectionView reloadData];
+
     [super viewDidAppear:animated];
 
 }
@@ -454,15 +461,16 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     
-    //return ([self.chartDataAssembly count]+1);
-    return ([self.chartsForDisplay count]+1);
+    return ([self.chartsForDisplay count]);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell* cell=nil;
+    NChartDataModel* data=[self.chartsForDisplay objectAtIndex:indexPath.row];
     //if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
-    if (indexPath.row>([self.chartsForDisplay count]-1)||[self.chartsForDisplay count]==0)
+    //if (indexPath.row>([self.chartsForDisplay count]-1)||[self.chartsForDisplay count]==0)
+    if (data.isEmpty)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
         cell.backgroundColor=kcWidgetBackColor;
@@ -698,7 +706,7 @@
                 //[dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
                 unsigned int index=dashvc.chartDataAssembly.count;
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
-                [dashvc.chartsForDisplay addObject:dvc.dataForNChart];
+                [dashvc.chartsForDisplay insertObject:dvc.dataForNChart atIndex:index];
                 [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
                 
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
@@ -739,17 +747,72 @@
 -(void)allAnimationsFinished
 {
     
+    if (self.collectionView.contentInset.bottom!=0) {
+        [UIView animateWithDuration:0.45 animations:^{
+            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            
+        }];
+    }
     NSInteger index=[self.chartsForDisplay count];
-    
-    if (index<self.chartDataAssembly.count)
+    if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
     {
-        
-        [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
-        [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+        if (index<self.chartDataAssembly.count)
+        {
+            
+            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            
+        }
+        if (index==self.chartDataAssembly.count)
+        {
+            NChartDataModel* emptyData=[[NChartDataModel alloc] init];
+            emptyData.isEmpty=YES;
+            
+            [self.chartsForDisplay addObject:emptyData];
+            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            
+        }
     }
     
+    
+    
 }
-
+#pragma <UIScrollViewDelegate>
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    self.currentOffset=scrollView.contentOffset;
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    CGSize size=scrollView.contentSize;
+    if (scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height+kcOffsetBuffer)
+    {
+        NSInteger index=[self.chartsForDisplay count];
+            
+        
+        if (index<self.chartDataAssembly.count)
+        {
+            scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
+            [scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            
+        }
+        if (index==self.chartDataAssembly.count)
+        {
+            scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
+            [scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            NChartDataModel* emptyData=[[NChartDataModel alloc] init];
+            emptyData.isEmpty=YES;
+            
+            [self.chartsForDisplay addObject:emptyData];
+            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            
+        }
+    }
+}
 
 
 

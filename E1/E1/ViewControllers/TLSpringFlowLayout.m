@@ -42,7 +42,7 @@
     _visibleIndexPathsSet = [NSMutableSet set];
     //_visibleHeaderAndFooterSet = [[NSMutableSet alloc] init];
     _visibleHeaderAndFooterSet = [NSMutableSet set];
-    self.itemSize=CGSizeMake(328,365);
+    self.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
     self.scrollDirection=UICollectionViewScrollDirectionVertical;
     self.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
 }
@@ -97,7 +97,7 @@
         
         springBehaviour.length = 1.0f;
         springBehaviour.damping = 0.8f;
-        springBehaviour.frequency = 1.0f;
+        springBehaviour.frequency = 0.5f;
         
         // If our touchLocation is not (0,0), we'll need to adjust our item's center "in flight"
         if (!CGPointEqualToPoint(CGPointZero, touchLocation))
