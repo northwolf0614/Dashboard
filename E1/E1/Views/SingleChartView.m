@@ -45,7 +45,6 @@
 {
     
     [self.chart removeAllSeries];
-    
     [self updateData];
     if (isAnimated)
     {

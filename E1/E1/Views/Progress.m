@@ -291,6 +291,11 @@
 
     
 }
+-(void)clean
+{
+    self.middleLabel.text=@"";
+    
+}
 
 
 

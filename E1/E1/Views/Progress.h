@@ -27,5 +27,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,weak) id<ProgressBarDataSource>delegate;
 
 -(void)showSeries:(BOOL)isAnimated;
+-(void)updateData;
+-(void)clean;
 
 @end

@@ -15,5 +15,6 @@
 -(void)showSeries:(BOOL)isAnimated;
 -(void)setupDelegate:(id)delegate;
 -(void)clean;
+-(void)updateData;
 
 @end

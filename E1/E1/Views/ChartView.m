@@ -190,6 +190,7 @@
 -(void)clean
 {
     [super clean];
+    self.middleLabel.text=@"";
     
 }
 

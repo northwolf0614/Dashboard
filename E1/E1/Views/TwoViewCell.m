@@ -23,6 +23,8 @@
 {
     
     [super prepareForReuse];
+    [self.chartView clean];
+    [self.percentageView clean];
 }
 -(id)initWithFrame:(CGRect)frame
 {

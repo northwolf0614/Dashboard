@@ -12,4 +12,5 @@
 #import "NChartViewCell.h"
 @interface TwoViewCell : NChartViewCell
 @property(nonatomic,strong) Progress* percentageView;
+
 @end

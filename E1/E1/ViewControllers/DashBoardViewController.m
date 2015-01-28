@@ -504,6 +504,13 @@
             itemViewController.delegate=self;
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
+            if (chartData.isAnimated) {
+                [((TwoViewCell*)cell).chartView updateData];
+                [((TwoViewCell*)cell).percentageView updateData];
+
+            }
+            
+            
             [self addChildViewController:itemViewController];
             [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
@@ -518,6 +525,9 @@
                 GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil]];
                 itemViewController.delegate=self;
                 [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
+                if (chartData.isAnimated)
+                [((OneViewCell*)cell).chartView updateData];
+                
                 [self addChildViewController:itemViewController];
                 [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
                 [itemViewController didMoveToParentViewController:self];
@@ -528,9 +538,13 @@
                 ((NChartViewCell*)cell).yearLabel.text=chartData.labelText;
                 GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil]];
                 itemViewController.delegate=self;
-                [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
+                [((NChartViewCell*)cell).chartView setupDelegate:itemViewController];
+                if (chartData.isAnimated)
+                [((NChartViewCell*)cell).chartView updateData];
+                
+                
                 [self addChildViewController:itemViewController];
-                [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
+                [((NChartViewCell*)cell).contentView addSubview:itemViewController.view];
                 [itemViewController didMoveToParentViewController:self];
                 
             }
@@ -794,7 +808,7 @@
         {
             scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
             scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
-            [scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            //[scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
             [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
             
@@ -803,7 +817,7 @@
         {
             scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
             scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
-            [scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            //[scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
             NChartDataModel* emptyData=[[NChartDataModel alloc] init];
             emptyData.isEmpty=YES;
             
