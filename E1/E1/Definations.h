@@ -96,7 +96,7 @@ extern BOOL isWhiteScheme;
 #define kcMaxCellsinOneScreen 6
 #define kcCellWidth 328
 #define kcCellHeight 365
-#define kcOffsetBuffer 100
+#define kcOffsetBuffer 150
 
 
 

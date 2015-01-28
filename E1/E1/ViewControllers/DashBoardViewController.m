@@ -798,31 +798,29 @@
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    CGSize size=scrollView.contentSize;
-    if (scrollView.contentOffset.y + scrollView.frame.size.height >= scrollView.contentSize.height+kcOffsetBuffer)
+    //CGSize size=scrollView.contentSize;
+    if (scrollView.contentOffset.y + scrollView.frame.size.height >= (scrollView.contentSize.height+kcOffsetBuffer))
     {
         NSInteger index=[self.chartsForDisplay count];
-            
-        
+        float verticalSpaceBuffer=kcCellHeight+kcCollectionViewCellPVSpace;
         if (index<self.chartDataAssembly.count)
         {
-            scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
-            scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
-            //[scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            
             [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, verticalSpaceBuffer, 0);
+            
             
         }
         if (index==self.chartDataAssembly.count)
         {
-            scrollView.contentSize=CGSizeMake(size.width, size.height+kcCellHeight);
-            scrollView.contentInset = UIEdgeInsetsMake(0, 0, kcCellHeight, 0);
-            //[scrollView setContentOffset:CGPointMake(self.currentOffset.x, self.currentOffset.y+kcCellHeight) animated:YES];
+            
             NChartDataModel* emptyData=[[NChartDataModel alloc] init];
             emptyData.isEmpty=YES;
-            
             [self.chartsForDisplay addObject:emptyData];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+            scrollView.contentInset = UIEdgeInsetsMake(0, 0, verticalSpaceBuffer, 0);
+            
             
         }
     }
