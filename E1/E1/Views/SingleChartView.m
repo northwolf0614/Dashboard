@@ -44,6 +44,7 @@
 -(void)showSeries:(BOOL)isAnimated
 {
     
+    
     [self.chart removeAllSeries];
     [self updateData];
     if (isAnimated)

@@ -54,6 +54,18 @@
 }
 -(void)showCharts:(BOOL)isAnimated
 {
+    //special for RADAR
+    NSMutableDictionary* radarSeriesData=nil;
+    if (self.dataForNChart.chartType==RADAR)
+    {
+        radarSeriesData=self.dataForNChart.chartDataForDrawing;
+        self.dataForNChart.chartDataForDrawing=[NChartDataModel radarSeriesData];
+        [self.chartView.chart removeAllSeries];
+        [self.chartView updateData];
+        self.dataForNChart.chartDataForDrawing=radarSeriesData;
+        
+    }
+    //nomal procedure
     [self.percentageView showSeries:isAnimated];
     [self.chartView showSeries:isAnimated];
     

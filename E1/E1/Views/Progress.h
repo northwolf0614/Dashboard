@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 @end
 
 
-//@interface ProgressBar : AbstractNChartView
+//@interface ProgressBar : AbstractNChartVieww
 @interface Progress : UIView
 
 @property(nonatomic,assign) BOOL isAnimating;
