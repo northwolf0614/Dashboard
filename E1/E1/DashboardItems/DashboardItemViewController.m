@@ -31,13 +31,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.naviBar setBarTintColor: kcNavigationBarColor];
-    [self.naviBar setTranslucent: NO];
-    [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
-    
-    //self.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
-    self.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
+//    [self.naviBar setBarTintColor: kcNavigationBarColor];
+//    [self.naviBar setTranslucent: NO];
+//    [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
+//    self.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
     
         
     

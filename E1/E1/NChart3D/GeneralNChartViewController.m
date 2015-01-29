@@ -188,7 +188,7 @@
                 series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
                 series.brush.opacity =  0.6f;
                 series.dataSource = (id)self;
-                series.dataSmoother=NO;
+                series.dataSmoother=nil;
                 
                 //series.hostsOnSY = YES;
                 [self.chartView.chart addSeries:series];

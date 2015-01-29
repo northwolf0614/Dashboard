@@ -748,7 +748,7 @@
             if ([dvc shouldBeAddToPreviousPage])
             {
                 //[dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
-                unsigned int index=dashvc.chartDataAssembly.count;
+                NSInteger index=dashvc.chartDataAssembly.count;
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
                 [dashvc.chartsForDisplay insertObject:dvc.dataForNChart atIndex:index];
                 [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
