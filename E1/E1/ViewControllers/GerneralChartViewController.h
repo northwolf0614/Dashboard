@@ -24,6 +24,7 @@
 <NChartSeriesDataSource,NChartValueAxisDataSource,AbstractNChartViewDelegate,ProgressBarDataSource>
 @property(nonatomic,strong) SingleChartView* chartView;
 @property(nonatomic,weak) id<ControllerDelegate> delegate;
+-(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews index:(NSIndexPath*)indexPath mainView:(UICollectionView*)view;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews;
 -(void)showCharts:(BOOL)isAnimated;
 

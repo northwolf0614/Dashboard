@@ -16,7 +16,8 @@
 @property(nonatomic,strong) Progress* percentageView;
 @property(nonatomic,strong) NSArray* chartViews;
 @property(nonatomic,strong) UIView* controllerView;
-
+@property(nonatomic,weak) UICollectionView* cv;
+@property(nonatomic,strong) NSIndexPath* index;
 
 @end
 
@@ -44,6 +45,15 @@
         }
         
 
+    }
+    return self;
+}
+-(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews index:(NSIndexPath*)indexPath mainView:(UICollectionView*)view;
+{
+    if ([self initWithDrawingData:drawingData views:chartViews]!=nil)
+    {
+        self.index=indexPath;
+        self.cv=view;
     }
     return self;
 }
@@ -95,13 +105,11 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    //NSLog(@"ViewDidAppear in GerneralChartViewController");
+    [super viewDidAppear:animated];
+    [self.cv  scrollToItemAtIndexPath:self.index
+                     atScrollPosition:UICollectionViewScrollPositionTop
+                             animated:YES];
     self.view.hidden=YES;
-//    if (self.view!=nil) {
-//        self.view=nil;
-//    }
-    
-    
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (isAnimated) {
         [self showCharts:YES];
@@ -114,8 +122,10 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     
+    [super viewWillAppear:animated];
+   
+
 
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (!isAnimated) {

@@ -73,6 +73,7 @@
 //    self.flowLayout.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
 //    self.flowLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
 //    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
+    
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
     self.collectionView.pagingEnabled=NO;
     self.collectionView.delegate=self;
@@ -497,7 +498,6 @@
 {
     UICollectionViewCell* cell=nil;
     NChartDataModel* data=[self.chartsForDisplay objectAtIndex:indexPath.row];
-    
     if (data.isEmpty)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
@@ -527,7 +527,8 @@
             cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
             ((TwoViewCell*)cell).yearLabel.text=chartData.labelText;
             
-            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil]];
+//            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil]];
+             GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
             
             itemViewController.delegate=self;
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
@@ -550,7 +551,9 @@
             {
                 cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
                 ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
-                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil]];
+//                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil]];
+                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
+                
                 itemViewController.delegate=self;
                 [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
                 if (chartData.isAnimated)
@@ -565,7 +568,10 @@
             {
                 cell=(NChartViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([NChartViewCell class]) forIndexPath:indexPath];
                 ((NChartViewCell*)cell).yearLabel.text=chartData.labelText;
-                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil]];
+                
+                //GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil]];
+                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
+                
                 itemViewController.delegate=self;
                 [((NChartViewCell*)cell).chartView setupDelegate:itemViewController];
                 if (chartData.isAnimated)
@@ -641,7 +647,7 @@
 {
     
     NSLog(@"This is willDisplayCell ");
-}
+    }
 
 
 
@@ -842,13 +848,19 @@
     if (scrollView.contentOffset.y + scrollView.frame.size.height >= (scrollView.contentSize.height+kcOffsetBuffer))
     {
         NSInteger index=[self.chartsForDisplay count];
-        float verticalSpaceBuffer=kcCellHeight+kcCollectionViewCellPVSpace;
+        
+        
+        
         if (index<self.chartDataAssembly.count)
         {
             
             [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            scrollView.contentInset = UIEdgeInsetsMake(0, 0, verticalSpaceBuffer, 0);
+            
+            
+            
+            
+
             
             
         }
@@ -859,7 +871,8 @@
             emptyData.isEmpty=YES;
             [self.chartsForDisplay addObject:emptyData];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            scrollView.contentInset = UIEdgeInsetsMake(0, 0, verticalSpaceBuffer, 0);
+            
+
             
             
         }
