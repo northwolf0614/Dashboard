@@ -770,28 +770,31 @@
         }];
     }
     NSInteger index=[self.chartsForDisplay count];
-    if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
+    NSInteger indexOfAssembly=[self.chartDataAssembly count];
+    self.collectionView.scrollEnabled=YES;
+    if (index<indexOfAssembly)
+        if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
+        {
+            self.collectionView.scrollEnabled=NO;
+            if (index<self.chartDataAssembly.count)
+            {
+                
+                [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
+                [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+                
+            }
+            
+        }
+    
+    if (index==indexOfAssembly)
     {
-        self.collectionView.scrollEnabled=NO;
-        if (index<self.chartDataAssembly.count)
-        {
-            
-            [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            
-        }
-        if (index==self.chartDataAssembly.count)
-        {
-            NChartDataModel* emptyData=[[NChartDataModel alloc] init];
-            emptyData.isEmpty=YES;
-            
-            [self.chartsForDisplay addObject:emptyData];
-            [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            
-        }
+        NChartDataModel* emptyData=[[NChartDataModel alloc] init];
+        emptyData.isEmpty=YES;
+        
+        [self.chartsForDisplay addObject:emptyData];
+        [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+        
     }
-    else
-        self.collectionView.scrollEnabled=YES;
     
 
     
