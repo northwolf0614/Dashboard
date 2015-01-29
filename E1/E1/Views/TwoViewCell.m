@@ -38,6 +38,7 @@
     self.percentageView=[[Progress alloc] init];
     self.percentageView.translatesAutoresizingMaskIntoConstraints=NO;
     [self.viewContainer addSubview:self.percentageView];
+    self.percentageView.backgroundColor=kcWidgetBackColor;
     
 }
 

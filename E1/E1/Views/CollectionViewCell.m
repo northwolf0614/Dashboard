@@ -33,6 +33,9 @@
     if (self=[super initWithFrame:frame])
     {
         [self setup];
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowOpacity = 0.1;
+        self.layer.shadowOffset = CGSizeMake(0, 3);
         
         
         
@@ -55,6 +58,9 @@
     self.viewContainer.translatesAutoresizingMaskIntoConstraints=NO;
     [self.contentView addSubview:self.viewContainer];
     [self.contentView addSubview:self.title];
+    self.title.backgroundColor=kcWidgetBackColor;
+    self.viewContainer.backgroundColor=kcWidgetBackColor;
+
     
 }
 -(void)updateConstraints
@@ -87,6 +93,7 @@
 {
     [super updateColorScheme];
     self.title.backgroundColor=kcWidgetBackColor;
+    self.viewContainer.backgroundColor=kcWidgetBackColor;
     
 }
 -(void)clean
@@ -94,6 +101,7 @@
     [super clean];
     self.title.text=@"";
 }
+
 
 
 
