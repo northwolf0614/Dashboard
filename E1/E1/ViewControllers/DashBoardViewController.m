@@ -208,7 +208,12 @@
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
-            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0] ];
+            if (self.chartDataAssembly.count>0) {
+                self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0] ];
+            }
+            else
+                self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
+            
 
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
             
@@ -238,11 +243,15 @@
 
                         [self.chartDataAssembly removeAllObjects];
                         [self.chartsForDisplay removeAllObjects];
+                        
                         for (GerneralChartViewController* dvc in self.childViewControllers)
                         {
                             [dvc.view removeFromSuperview];
                             [dvc removeFromParentViewController];
                         }
+                        NChartDataModel* emptyData=[[NChartDataModel alloc] init];
+                        emptyData.isEmpty=YES;
+                        [self.chartsForDisplay addObject:emptyData];
                         
                     
 
@@ -261,7 +270,14 @@
                             [dvc removeFromParentViewController];
                         }
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
-                        self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
+                        
+                        if (self.chartDataAssembly.count==0) {
+                            NChartDataModel* emptyData=[[NChartDataModel alloc] init];
+                            emptyData.isEmpty=YES;
+                            [self.chartsForDisplay addObject:emptyData];
+                        }
+                        else
+                            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
                         
 //                        for (NChartDataModel* d in self.chartDataAssembly)
 //                        {
@@ -481,8 +497,7 @@
 {
     UICollectionViewCell* cell=nil;
     NChartDataModel* data=[self.chartsForDisplay objectAtIndex:indexPath.row];
-    //if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
-    //if (indexPath.row>([self.chartsForDisplay count]-1)||[self.chartsForDisplay count]==0)
+    
     if (data.isEmpty)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
