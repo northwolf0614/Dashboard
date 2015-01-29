@@ -36,7 +36,7 @@
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 @property(nonatomic,strong) NSMutableArray* controllerArray;
 @property(nonatomic,assign) CGPoint currentOffset;
-
+@property(nonatomic,assign) BOOL enableScroll;
 
 
 @end
@@ -504,13 +504,13 @@
             itemViewController.delegate=self;
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
-            if (chartData.isAnimated) {
+            if (chartData.isAnimated)
+            {
                 [((TwoViewCell*)cell).chartView updateData];
                 [((TwoViewCell*)cell).percentageView updateData];
 
             }
-            
-            
+            ((TwoViewCell*)cell).title.text=chartData.chartCaption;
             [self addChildViewController:itemViewController];
             [((TwoViewCell*)cell).contentView addSubview:itemViewController.view];
             [itemViewController didMoveToParentViewController:self];
@@ -526,7 +526,8 @@
                 itemViewController.delegate=self;
                 [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
                 if (chartData.isAnimated)
-                [((OneViewCell*)cell).chartView updateData];
+                    [((OneViewCell*)cell).chartView updateData];
+                ((OneViewCell*)cell).title.text=chartData.chartCaption;
                 
                 [self addChildViewController:itemViewController];
                 [((OneViewCell*)cell).contentView addSubview:itemViewController.view];
@@ -540,7 +541,8 @@
                 itemViewController.delegate=self;
                 [((NChartViewCell*)cell).chartView setupDelegate:itemViewController];
                 if (chartData.isAnimated)
-                [((NChartViewCell*)cell).chartView updateData];
+                    [((NChartViewCell*)cell).chartView updateData];
+                ((NChartViewCell*)cell).title.text=chartData.chartCaption;
                 
                 
                 [self addChildViewController:itemViewController];
@@ -770,6 +772,7 @@
     NSInteger index=[self.chartsForDisplay count];
     if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
     {
+        self.collectionView.scrollEnabled=NO;
         if (index<self.chartDataAssembly.count)
         {
             
@@ -787,6 +790,12 @@
             
         }
     }
+    else
+        self.collectionView.scrollEnabled=YES;
+    
+
+    
+    
     
     
     
@@ -798,7 +807,7 @@
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    //CGSize size=scrollView.contentSize;
+
     if (scrollView.contentOffset.y + scrollView.frame.size.height >= (scrollView.contentSize.height+kcOffsetBuffer))
     {
         NSInteger index=[self.chartsForDisplay count];

@@ -10,7 +10,7 @@
 
 @interface CollectionViewCell : AbstractCollectionViewCell
 
--(void)showCharts:(BOOL)isAnimated;
+
 @property(nonatomic,strong)UIView* viewContainer;
-@property(nonatomic,strong)UINavigationBar* naviBar;
+@property(nonatomic,strong)UILabel* title;
 @end
