@@ -18,12 +18,7 @@
 @implementation CollectionViewCell
 
 
--(void)prepareForReuse
-{
-    
-    [super prepareForReuse];
-    
-}
+
 -(void)layoutSubviews
 {
     
@@ -87,15 +82,18 @@
     
     
 }
--(void)loadView
+
+-(void)updateColorScheme
 {
-        self.backgroundColor=[UIColor redColor];
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.layer.shadowOpacity = 0.1;
-        self.layer.shadowOffset = CGSizeMake(0, 3);
+    [super updateColorScheme];
+    self.title.backgroundColor=kcWidgetBackColor;
     
 }
-
+-(void)clean
+{
+    [super clean];
+    self.title.text=@"";
+}
 
 
 

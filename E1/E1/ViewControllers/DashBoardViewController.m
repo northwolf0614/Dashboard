@@ -28,6 +28,7 @@
 #import "GerneralChartViewController.h"
 #import "NChartViewCell.h"
 #import "NChartDataModel.h"
+#import "AbstractCollectionViewCell.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -388,36 +389,48 @@
 }
 -(void)changeColorScheme:(BOOL)isWhiteSheme
 {
+//    self.collectionView.backgroundColor=kcWholeBackColor;
+//    //for (DoubleNChartWithLabelViewController* dVC in self.dashboardItemViewControllers)
+//    for (DoubleNChartWithLabelViewController* dVC in self.childViewControllers)
+//    {
+//        dVC.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+//        dVC.label.backgroundColor=kcWidgetBackColor;
+//        dVC.contentView.backgroundColor=kcWidgetBackColor;
+//        if (dVC!=nil)
+//        {
+//            dVC.percentageView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+//        }
+//        
+//        [dVC.naviBar setBarTintColor: kcNavigationBarColor];
+//        [dVC.naviBar setTranslucent: NO];
+//        [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+//        [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
+//        //dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
+//        dVC.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
+//
+//
+//        
+//        
+//        
+//        
+//    }
+//    if (self.emptyCell!=nil)
+//    {
+//        self.emptyCell.backgroundColor=kcWidgetBackColor;
+//
+//    }
     self.collectionView.backgroundColor=kcWholeBackColor;
-    //for (DoubleNChartWithLabelViewController* dVC in self.dashboardItemViewControllers)
-    for (DoubleNChartWithLabelViewController* dVC in self.childViewControllers)
-    {
-        dVC.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
-        dVC.label.backgroundColor=kcWidgetBackColor;
-        dVC.contentView.backgroundColor=kcWidgetBackColor;
-        if (dVC!=nil)
+    NSArray* visibleCells=[self.collectionView visibleCells];
+    for (AbstractCollectionViewCell* cell in visibleCells) {
+        //if ([cell respondsToSelector:@selector(updateColorScheme)])
         {
-            dVC.percentageView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+            [cell updateColorScheme];
         }
-        
-        [dVC.naviBar setBarTintColor: kcNavigationBarColor];
-        [dVC.naviBar setTranslucent: NO];
-        [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-        [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
-        //dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
-        dVC.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
-
-
-        
-        
-        
-        
     }
-    if (self.emptyCell!=nil)
-    {
-        self.emptyCell.backgroundColor=kcWidgetBackColor;
-
-    }
+    
+    
+    
+    
 }
 
 

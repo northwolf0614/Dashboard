@@ -12,12 +12,16 @@
 @implementation EmptyCollectionViewCell
 
 
-- (void)awakeFromNib{
-    [super awakeFromNib];
+//- (void)awakeFromNib{
+//    [super awakeFromNib];
+//    self.backgroundColor=kcWidgetBackColor;
+//    
+//    self.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.layer.shadowOpacity = 0.1;
+//    self.layer.shadowOffset = CGSizeMake(0, 3);
+//}
+-(void)updateColorScheme;
+{
     self.backgroundColor=kcWidgetBackColor;
-    
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.1;
-    self.layer.shadowOffset = CGSizeMake(0, 3);
 }
 @end

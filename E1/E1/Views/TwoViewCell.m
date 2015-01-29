@@ -19,13 +19,6 @@
 @end
 @implementation TwoViewCell
 
--(void)prepareForReuse
-{
-    
-    [super prepareForReuse];
-    [self.chartView clean];
-    [self.percentageView clean];
-}
 -(id)initWithFrame:(CGRect)frame
 {
     if (self=[super initWithFrame:frame])
@@ -77,7 +70,21 @@
 
     
 }
+-(void)updateColorScheme
+{
+    
+    
+    [super updateColorScheme];
+    self.percentageView.backgroundColor=kcWidgetBackColor;
+    
+    
+}
+-(void)clean
+{
+    [super clean];
+    [self.percentageView clean];
 
+}
 
 
 

@@ -10,4 +10,6 @@
 
 @interface AbstractCollectionViewCell : UICollectionViewCell
 + (NSString*)reuseIdentifier;
+-(void)updateColorScheme;
+-(void)clean;
 @end

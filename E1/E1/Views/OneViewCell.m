@@ -13,12 +13,7 @@
 @property(nonatomic,assign) BOOL didSetupConstraintsOneViewCell;
 @end
 @implementation OneViewCell
--(void)prepareForReuse
-{
-    
-    [self.chartView clean];
-    [super prepareForReuse];
-}
+
 -(id)initWithFrame:(CGRect)frame
 {
     if (self=[super initWithFrame:frame])
@@ -98,6 +93,20 @@
     
     
     
+}
+-(void)updateColorScheme
+{
+    [super updateColorScheme];
+    self.chartView.chart.background=[NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+    self.yearLabel.backgroundColor=kcWidgetBackColor;
+
+    
+}
+-(void)clean
+{
+    [super clean];
+    [self.chartView clean];
+    self.yearLabel.text=@"";
 }
 
 @end
