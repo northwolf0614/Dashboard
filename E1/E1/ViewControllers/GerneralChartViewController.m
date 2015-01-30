@@ -106,12 +106,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.cv  scrollToItemAtIndexPath:self.index
-                     atScrollPosition:UICollectionViewScrollPositionTop
-                             animated:YES];
+    
     self.view.hidden=YES;
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (isAnimated) {
+        [self.cv  scrollToItemAtIndexPath:self.index atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [self showCharts:YES];
         self.dataForNChart.isAnimated=YES;
     }

@@ -36,10 +36,6 @@
 @property(nonatomic,assign) BOOL isInitial;
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 @property(nonatomic,strong) NSMutableArray* controllerArray;
-@property(nonatomic,assign) CGPoint currentOffset;
-@property(nonatomic,assign) BOOL enableScroll;
-
-
 @end
 
 
@@ -796,13 +792,6 @@
 
 -(void)allAnimationsFinished
 {
-    
-    if (self.collectionView.contentInset.bottom!=0) {
-        [UIView animateWithDuration:0.45 animations:^{
-            self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-            
-        }];
-    }
     NSInteger index=[self.chartsForDisplay count];
     NSInteger indexOfAssembly=[self.chartDataAssembly count];
     self.collectionView.scrollEnabled=YES;
@@ -838,10 +827,7 @@
     
 }
 #pragma <UIScrollViewDelegate>
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    self.currentOffset=scrollView.contentOffset;
-}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
 
