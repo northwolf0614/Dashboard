@@ -108,12 +108,12 @@
     if (self= [super init]) {
         
         self.animationLayer= [CALayer layer];
-        [self.layer addSublayer:self.animationLayer];
+        //[self.layer addSublayer:self.animationLayer];
         self.progressLayer = [CAShapeLayer layer];
         self.progressLayerPlus = [CAShapeLayer layer];
         self.maskLayer=[CAShapeLayer layer];
-        [self.animationLayer addSublayer:self.progressLayer];
-        [self.animationLayer addSublayer:self.progressLayerPlus];
+        //[self.animationLayer addSublayer:self.progressLayer];
+        //[self.animationLayer addSublayer:self.progressLayerPlus];
         //self.animationLayer.mask=self.maskLayer;
         [self setupMiddleLabel];
         
@@ -197,7 +197,6 @@
 -(void)showSeries:(BOOL)isAnimated
 {
     [self updateData];
-    //[self layoutSubviews];
     [self setPercent:0  animated:isAnimated];
     [self showFloatingNumber:isAnimated];
     
