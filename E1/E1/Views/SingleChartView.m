@@ -59,6 +59,11 @@
             
         }
     }
+    else
+    {
+        [self.chart flushChanges];
+        
+    }
     
 
     
@@ -106,6 +111,7 @@
 -(void)clean
 {
     [self.chart removeAllSeries];
+    [self.chart flushChanges];
 }
 
 

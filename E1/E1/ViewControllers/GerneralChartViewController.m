@@ -118,6 +118,11 @@
         [self showCharts:YES];
         self.dataForNChart.isAnimated=YES;
     }
+    else
+    {
+        [self showCharts:NO];
+
+    }
     
     
     
@@ -130,11 +135,10 @@
    
 
 
-    BOOL isAnimated=!self.dataForNChart.isAnimated;
-    if (!isAnimated) {
-        [self showCharts:NO];
-        //self.dataForNChart.isAnimated=YES;
-    }
+//    BOOL isAnimated=!self.dataForNChart.isAnimated;
+//    if (!isAnimated) {
+//        //self.dataForNChart.isAnimated=YES;
+//    }
 }
 -(void)viewDidLayoutSubviews
 {

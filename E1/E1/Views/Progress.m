@@ -36,13 +36,11 @@
 {
     NSLog(@"This is dealloc in ProgressBar");
 }
--(void)layoutSubviews
+-(void)setupLayers
 {
-    [super layoutSubviews];
     [self updateData];
+    [self addLayers];
     self.animationLayer.frame =self.bounds;
-
-    
     CGFloat radius= self.animationLayer.frame.size.width>self.animationLayer.frame.size.height? self.animationLayer.frame.size.height/2:self.animationLayer.frame.size.width/2;
     radius-=kcProgress_Line_Width/2;
     
@@ -73,22 +71,25 @@
     self.progressLayer.lineWidth=kcProgress_Line_Width;
     self.progressLayer.path=circlePath1.CGPath;
     self.progressLayer.strokeEnd=1.0f;
-    self.progressLayer.hidden=YES;
-    //
+
     self.progressLayerPlus.frame=self.animationLayer.bounds;
     self.progressLayerPlus.strokeColor = [self.color2 CGColor];
     self.progressLayerPlus.fillColor = [[UIColor clearColor] CGColor];
     self.progressLayerPlus.lineWidth=kcProgress_Line_Width;
     self.progressLayerPlus.path=circlePath2.CGPath;
     self.progressLayerPlus.strokeEnd=1.0f;
-    self.progressLayerPlus.hidden=YES;
-    
     self.maskLayer.frame=self.animationLayer.bounds;
     self.maskLayer.strokeColor = [[UIColor blackColor] CGColor];
     self.maskLayer.fillColor = [[UIColor clearColor] CGColor];
     self.maskLayer.lineWidth=kcProgress_Line_Width;
     self.maskLayer.strokeEnd=0.f;//use this property to set up the default value
     self.maskLayer.path=maskPath.CGPath;
+    
+}
+-(void)layoutSubviews
+{
+    [super layoutSubviews];
+    
     
     [self layoutLabel];
 }
@@ -145,14 +146,12 @@
 
     if (animated)
     {
-        self.progressLayerPlus.hidden=NO;
-        self.progressLayer.hidden=NO;
+
         self.animationLayer.mask=self.maskLayer;
+        [self setupLayers];
         CABasicAnimation *animation;
-        //animation = self.animation;//this place the input parameter must be strokeEnd
         animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         [animation setFromValue:[NSNumber numberWithFloat:0.0f] ];
-        //[animation setFromValue:0 ];
         [animation setToValue:[NSNumber numberWithFloat:1.0f]];
         [animation setDuration:self.animationDurationTime];
         [animation setRemovedOnCompletion:NO];
@@ -164,19 +163,27 @@
     }
     else
     {
-        self.progressLayerPlus.hidden=NO;
-        self.progressLayer.hidden=NO;
-        return ;
+        [self setupLayers];
+
     }
     
     
 
 }
+-(void)addLayers
+{
 
+    [self.layer addSublayer:self.animationLayer];
+    [self.animationLayer addSublayer:self.progressLayer];
+    [self.animationLayer addSublayer:self.progressLayerPlus];
+}
 -(void)deleteAnimatedProgress
 {
 
     [self.maskLayer removeAllAnimations];
+    self.animationLayer.mask=nil;
+    [self.progressLayerPlus removeFromSuperlayer];
+    [self.progressLayer removeFromSuperlayer];
     [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
 
 }
@@ -296,7 +303,9 @@
 }
 -(void)clean
 {
+    [self deleteAnimatedProgress];
     self.middleLabel.text=@"";
+    
     
 }
 

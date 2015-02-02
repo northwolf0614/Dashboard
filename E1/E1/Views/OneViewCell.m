@@ -98,6 +98,7 @@
 {
     [super updateColorScheme];
     self.chartView.chart.background=[NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
+    [self.chartView.chart flushChanges];
     self.yearLabel.backgroundColor=kcWidgetBackColor;
 
     
