@@ -643,7 +643,7 @@
 {
     
     NSLog(@"This is willDisplayCell ");
-    }
+}
 
 
 
@@ -842,13 +842,6 @@
             
             [self.chartsForDisplay addObject:[self.chartDataAssembly objectAtIndex:index]];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            
-            
-            
-            
-
-            
-            
         }
         if (index==self.chartDataAssembly.count)
         {
@@ -857,10 +850,6 @@
             emptyData.isEmpty=YES;
             [self.chartsForDisplay addObject:emptyData];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-            
-
-            
-            
         }
     }
 }

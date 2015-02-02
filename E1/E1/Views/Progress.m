@@ -10,15 +10,12 @@
 @property(nonatomic,strong) CAShapeLayer* progressLayerPlus;
 @property(nonatomic,strong) CALayer* animationLayer;
 @property(nonatomic,strong) UILabel* middleLabel;
-
-
 @property(nonatomic,strong) NSNumber* floatingNumber;
 @property(nonatomic,strong) NSNumber* valuePerStep;
 @property(nonatomic,strong) NSTimer* timer;
 @property(nonatomic,strong) NSNumber* changingValue;
 @property(nonatomic,assign) float animationDurationTime;
 @property(nonatomic,assign) ProgressType progressType;
-
 @property(nonatomic,assign) CGFloat finalPercentage;
 @property(nonatomic,strong) UIColor* color1;
 @property(nonatomic,strong) UIColor* color2;
@@ -42,7 +39,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    //[self updateData];
+    [self updateData];
     self.animationLayer.frame =self.bounds;
 
     
@@ -76,6 +73,7 @@
     self.progressLayer.lineWidth=kcProgress_Line_Width;
     self.progressLayer.path=circlePath1.CGPath;
     self.progressLayer.strokeEnd=1.0f;
+    self.progressLayer.hidden=YES;
     //
     self.progressLayerPlus.frame=self.animationLayer.bounds;
     self.progressLayerPlus.strokeColor = [self.color2 CGColor];
@@ -83,6 +81,7 @@
     self.progressLayerPlus.lineWidth=kcProgress_Line_Width;
     self.progressLayerPlus.path=circlePath2.CGPath;
     self.progressLayerPlus.strokeEnd=1.0f;
+    self.progressLayerPlus.hidden=YES;
     
     self.maskLayer.frame=self.animationLayer.bounds;
     self.maskLayer.strokeColor = [[UIColor blackColor] CGColor];
@@ -142,10 +141,12 @@
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
     //NSLog(@"current percent is %f",percent);
+    
 
     if (animated)
     {
-        
+        self.progressLayerPlus.hidden=NO;
+        self.progressLayer.hidden=NO;
         self.animationLayer.mask=self.maskLayer;
         CABasicAnimation *animation;
         //animation = self.animation;//this place the input parameter must be strokeEnd
@@ -163,6 +164,8 @@
     }
     else
     {
+        self.progressLayerPlus.hidden=NO;
+        self.progressLayer.hidden=NO;
         return ;
     }
     
@@ -187,7 +190,7 @@
 -(void)showSeries:(BOOL)isAnimated
 {
     [self updateData];
-    [self layoutSubviews];
+    //[self layoutSubviews];
     [self setPercent:0  animated:isAnimated];
     [self showFloatingNumber:isAnimated];
     

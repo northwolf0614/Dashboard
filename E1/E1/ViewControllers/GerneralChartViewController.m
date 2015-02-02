@@ -78,29 +78,33 @@
     //nomal procedure
     [self.percentageView showSeries:isAnimated];
     [self.chartView showSeries:isAnimated];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        while (self.chartView.chart.isTransitionPlaying) ;
-        if (self.percentageView!=nil)
-        {
-            while (self.percentageView.isAnimating) ;
-        }
-        
-        
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(allAnimationsFinished)])
+    if (isAnimated)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            while (self.chartView.chart.isTransitionPlaying) ;
+            if (self.percentageView!=nil)
             {
-                [self.delegate allAnimationsFinished];
+                while (self.percentageView.isAnimating) ;
             }
             
             
             
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(allAnimationsFinished)])
+                {
+                    [self.delegate allAnimationsFinished];
+                }
+                
+                
+                
+                
+            });
         });
-    });
 
+    }
+   
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -121,7 +125,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+    NSLog(@"This is viewWillAppear in GerneralChartViewController");
     [super viewWillAppear:animated];
    
 
