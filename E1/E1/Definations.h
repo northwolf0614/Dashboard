@@ -45,9 +45,9 @@ extern BOOL isWhiteScheme;
 #define kcPieChartTitleFontSize 10
 #define UsingFileStoreData
 
-             #define kcPagesArrayName @"QBEPagesArray742"
-       #define kcDefaultChartName @"defaultNChartName742"
-#define kcDefaultDataFielName @"kcDefaultDataFielName742.plist"
+             #define kcPagesArrayName @"QBEPagesArray743"
+       #define kcDefaultChartName @"defaultNChartName743"
+#define kcDefaultDataFielName @"kcDefaultDataFielName743.plist"
 #define kcNchartViewlicense @"Z0Bz5B9H3rsEqlV/D+1cg9ZnCIKWbj8/rxtuTk7KcmaVN8p8sNUCeG3tl+3tz90H+FlZ8nB1QLOQOT5uCr1Ko829wbEKm90MT58a+b6wM8Bgt3RHdKOq4awN1VYxTDI5vnrQm2dL/Ov87EYpr/e4HYHqCFn4NXG857CA0q7UYBdiFeZGymn02106jau/eUp367+6usrY9Iq20Lcyj6cO/utglxqRyFuu/Iv52NbOstNifMsxnNh3tGilK+xxx++BV03HUB46kqpJSt5wcC9TdEpUDN5+UX8dEQ+d0Z2S21TkjiWAsC2Gf8FqgZWxjj+Wp7Uqvbowa5PLvHyccAInqP88o9f7QP7Bqocku0+W8Kt0i8mgZk/5BRQuRF6v6ZziEfCu7H0snHY9q2b0IfNtqqiOJxJ3LexsI9S1HSJp+cTpzv7T6BrtUo8/XEgqaIQc93mIDrFxIQWkoTXkFPutXihiQd7/9xVVciw5PP1LDpcnN6sIU1POd5IdqfVdQq6jdoKlg8nOwHejB+7OGAQ1bplhs4iEdsPjvJwq6RZCucZUpYtHq+K7cA2WVvwmF5hxV0rKpxmuQf5WH3R26fs2dz85mtTPCF26Eyvjxlp1iHlLhmBHVt78yFXd4N4MX8AUxHdMPqnTJZj45TCiVJ+i/o8TGAaOpWSUR4GTXsRzvXk="
 
 #define kcMinmumMarkSize 10

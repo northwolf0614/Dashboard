@@ -118,11 +118,11 @@
         [self showCharts:YES];
         self.dataForNChart.isAnimated=YES;
     }
-    else
-    {
-        [self showCharts:NO];
-
-    }
+//    else
+//    {
+//        [self showCharts:NO];
+//
+//    }
     
     
     
@@ -135,14 +135,15 @@
    
 
 
-//    BOOL isAnimated=!self.dataForNChart.isAnimated;
-//    if (!isAnimated) {
-//        //self.dataForNChart.isAnimated=YES;
-//    }
+    
 }
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    BOOL isAnimated=!self.dataForNChart.isAnimated;
+    if (!isAnimated) {
+        [self showCharts:NO];
+    }
 }
 
 #pragma <ProgressBarDataSource>
