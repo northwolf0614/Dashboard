@@ -146,9 +146,9 @@
 
     if (animated)
     {
-
-        
         CABasicAnimation *animation;
+        if([self.maskLayer.animationKeys containsObject:@"dounutAnimation"])
+            [self.maskLayer removeAnimationForKey:@"dounutAnimation"];
         animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         [animation setFromValue:[NSNumber numberWithFloat:0.0f] ];
         [animation setToValue:[NSNumber numberWithFloat:1.0f]];
@@ -158,7 +158,8 @@
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
         animation.delegate=self;
         [animation setValue:@"ProgressBarAnimation" forKey:@"animationBar"];
-        [self.maskLayer addAnimation:animation forKey:nil];
+        //[self.maskLayer addAnimation:animation forKey:nil];
+        [self.maskLayer addAnimation:animation forKey:@"dounutAnimation"];
     }
     else
     {
@@ -181,10 +182,10 @@
 {
 
     [self.maskLayer removeAllAnimations];
-//    self.animationLayer.mask=nil;
-//    [self.progressLayerPlus removeFromSuperlayer];
-//    [self.progressLayer removeFromSuperlayer];
-//    [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
+    self.animationLayer.mask=nil;
+    [self.progressLayerPlus removeFromSuperlayer];
+    [self.progressLayer removeFromSuperlayer];
+    [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
 
 }
 -(void)removeFromSuperview
@@ -302,7 +303,7 @@
 }
 -(void)clean
 {
-    [self deleteAnimatedProgress];
+    //[self deleteAnimatedProgress];
     self.middleLabel.text=@"";
     
     
