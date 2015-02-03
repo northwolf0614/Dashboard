@@ -165,7 +165,7 @@
 -(CGFloat)animationTime:(Progress*) chartView
 {
     if ([self.percentageView isEqual:chartView]) {
-        return 1;
+        return kcTRANSITION_TIME;
     }
     return 0.0f;
     
@@ -423,7 +423,7 @@
 -(float) mainChartFloatingNumberAnimationtime:(ChartView*) chartView
 {
     if ([self.chartView isEqual:chartView])
-        return 1.0f;
+        return kcTRANSITION_TIME;
     return 0.0f;
     
 }
