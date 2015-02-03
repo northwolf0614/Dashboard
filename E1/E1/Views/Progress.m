@@ -181,10 +181,10 @@
 {
 
     [self.maskLayer removeAllAnimations];
-    self.animationLayer.mask=nil;
-    [self.progressLayerPlus removeFromSuperlayer];
-    [self.progressLayer removeFromSuperlayer];
-    [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
+//    self.animationLayer.mask=nil;
+//    [self.progressLayerPlus removeFromSuperlayer];
+//    [self.progressLayer removeFromSuperlayer];
+//    [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
 
 }
 -(void)removeFromSuperview
@@ -302,7 +302,7 @@
 }
 -(void)clean
 {
-    //[self deleteAnimatedProgress];
+    [self deleteAnimatedProgress];
     self.middleLabel.text=@"";
     
     
