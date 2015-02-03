@@ -39,6 +39,7 @@
 -(void)setupLayers
 {
     [self updateData];
+    [self addLayers];
     self.animationLayer.frame =self.bounds;
     CGFloat radius= self.animationLayer.frame.size.width>self.animationLayer.frame.size.height? self.animationLayer.frame.size.height/2:self.animationLayer.frame.size.width/2;
     radius-=kcProgress_Line_Width/2;
@@ -109,12 +110,12 @@
     if (self= [super init]) {
         
         self.animationLayer= [CALayer layer];
-        [self.layer addSublayer:self.animationLayer];
+        //[self.layer addSublayer:self.animationLayer];
         self.progressLayer = [CAShapeLayer layer];
         self.progressLayerPlus = [CAShapeLayer layer];
         self.maskLayer=[CAShapeLayer layer];
-        [self.animationLayer addSublayer:self.progressLayer];
-        [self.animationLayer addSublayer:self.progressLayerPlus];
+        //[self.animationLayer addSublayer:self.progressLayer];
+        //[self.animationLayer addSublayer:self.progressLayerPlus];
         [self setupMiddleLabel];
         
     }
@@ -142,7 +143,7 @@
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
     [self setupLayers];
-    
+    self.animationLayer.mask=self.maskLayer;
 
     if (animated)
     {
@@ -177,14 +178,15 @@
     [self.layer addSublayer:self.animationLayer];
     [self.animationLayer addSublayer:self.progressLayer];
     [self.animationLayer addSublayer:self.progressLayerPlus];
+
 }
 -(void)deleteAnimatedProgress
 {
 
-    [self.maskLayer removeAllAnimations];
-    self.animationLayer.mask=nil;
-    [self.progressLayerPlus removeFromSuperlayer];
-    [self.progressLayer removeFromSuperlayer];
+//    [self.maskLayer removeAllAnimations];
+//    self.animationLayer.mask=nil;
+//    [self.progressLayerPlus removeFromSuperlayer];
+//    [self.progressLayer removeFromSuperlayer];
     [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
 
 }
@@ -303,7 +305,7 @@
 }
 -(void)clean
 {
-    //[self deleteAnimatedProgress];
+    [self deleteAnimatedProgress];
     self.middleLabel.text=@"";
     
     

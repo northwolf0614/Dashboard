@@ -3898,11 +3898,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-updateData"
             landmarkType = "5">
          </BreakpointContent>
@@ -3914,11 +3914,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "-showFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3930,11 +3930,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "-onTimer:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3946,11 +3946,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
@@ -3962,11 +3962,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -3978,11 +3978,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "-layoutLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -3994,11 +3994,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -4010,11 +4010,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -4106,11 +4106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
@@ -4278,11 +4278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-showFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4290,15 +4290,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4310,11 +4310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "-animationDidStart:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4326,11 +4326,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "351"
-            endingLineNumber = "351">
+            startingLineNumber = "349"
+            endingLineNumber = "349">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -4340,11 +4340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-layoutLabel"
             landmarkType = "5">
          </BreakpointContent>
@@ -4500,11 +4500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "-showFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
@@ -4916,11 +4916,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-showSeries:"
             landmarkType = "5">
          </BreakpointContent>
@@ -5536,7 +5536,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
@@ -5684,11 +5684,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "-layoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
@@ -5700,11 +5700,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "-addLayers"
             landmarkType = "5">
          </BreakpointContent>
@@ -5716,11 +5716,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-deleteAnimatedProgress"
             landmarkType = "5">
          </BreakpointContent>
@@ -5732,11 +5732,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
@@ -5748,11 +5748,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "-setupLayers"
             landmarkType = "5">
          </BreakpointContent>
@@ -5764,11 +5764,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-setupLayers"
             landmarkType = "5">
          </BreakpointContent>
@@ -5780,11 +5780,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-removeFromSuperview"
             landmarkType = "5">
          </BreakpointContent>
@@ -5844,12 +5844,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-deleteAnimatedProgress"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5860,7 +5860,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444696071.523638"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "151"
@@ -5872,31 +5872,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/Views/Progress.m"
-            timestampString = "444698139.346865"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-setPercent:animated:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-removeFromSuperview"
             landmarkType = "5">
          </BreakpointContent>
@@ -5908,11 +5892,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "-clean"
             landmarkType = "5">
          </BreakpointContent>
@@ -5956,7 +5940,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
+            landmarkName = "-animationDidStop:finished:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/Views/Progress.m"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "327"
@@ -5972,27 +5972,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "-animationDidStop:finished:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "-animationDidStart:"
             landmarkType = "5">
          </BreakpointContent>
@@ -6004,11 +5988,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
@@ -6020,11 +6004,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444617166.778439"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
@@ -6064,7 +6048,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/DashBoardViewController.m"
@@ -6116,11 +6100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-updateData"
             landmarkType = "5">
          </BreakpointContent>
@@ -6132,11 +6116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "-updateData"
             landmarkType = "5">
          </BreakpointContent>
@@ -6148,11 +6132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "-updateData"
             landmarkType = "5">
          </BreakpointContent>
@@ -6164,11 +6148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "305"
+            endingLineNumber = "305"
             landmarkName = "-updateData"
             landmarkType = "5">
          </BreakpointContent>
@@ -6176,15 +6160,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/Views/Progress.m"
-            timestampString = "444698197.55298"
+            timestampString = "444699267.833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-setPercent:animated:"
             landmarkType = "5">
          </BreakpointContent>
