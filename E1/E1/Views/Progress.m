@@ -39,7 +39,6 @@
 -(void)setupLayers
 {
     [self updateData];
-    [self addLayers];
     self.animationLayer.frame =self.bounds;
     CGFloat radius= self.animationLayer.frame.size.width>self.animationLayer.frame.size.height? self.animationLayer.frame.size.height/2:self.animationLayer.frame.size.width/2;
     radius-=kcProgress_Line_Width/2;
@@ -85,6 +84,8 @@
     self.maskLayer.strokeEnd=0.f;//use this property to set up the default value
     self.maskLayer.path=maskPath.CGPath;
     
+    self.animationLayer.mask=self.maskLayer;
+    
 }
 -(void)layoutSubviews
 {
@@ -108,13 +109,12 @@
     if (self= [super init]) {
         
         self.animationLayer= [CALayer layer];
-        //[self.layer addSublayer:self.animationLayer];
+        [self.layer addSublayer:self.animationLayer];
         self.progressLayer = [CAShapeLayer layer];
         self.progressLayerPlus = [CAShapeLayer layer];
         self.maskLayer=[CAShapeLayer layer];
-        //[self.animationLayer addSublayer:self.progressLayer];
-        //[self.animationLayer addSublayer:self.progressLayerPlus];
-        //self.animationLayer.mask=self.maskLayer;
+        [self.animationLayer addSublayer:self.progressLayer];
+        [self.animationLayer addSublayer:self.progressLayerPlus];
         [self setupMiddleLabel];
         
     }
@@ -141,14 +141,13 @@
 
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
-    //NSLog(@"current percent is %f",percent);
+    [self setupLayers];
     
 
     if (animated)
     {
 
-        self.animationLayer.mask=self.maskLayer;
-        [self setupLayers];
+        
         CABasicAnimation *animation;
         animation=[CABasicAnimation animationWithKeyPath:@"strokeEnd"];//this place the input parameter must be strokeEnd
         [animation setFromValue:[NSNumber numberWithFloat:0.0f] ];
@@ -163,9 +162,10 @@
     }
     else
     {
-        [self setupLayers];
-
+        
+        self.maskLayer.strokeEnd=1.0f;
     }
+    
     
     
 
@@ -302,7 +302,7 @@
 }
 -(void)clean
 {
-    [self deleteAnimatedProgress];
+    //[self deleteAnimatedProgress];
     self.middleLabel.text=@"";
     
     
