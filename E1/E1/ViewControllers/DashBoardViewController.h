@@ -28,6 +28,7 @@
 @property (strong, nonatomic) PushAnimation *pushAnimation;
 @property (strong, nonatomic) PopAnimation *popAnimation;
 @property(nonatomic,weak) AnimatedTransitioningManager* interactionController;
+@property(nonatomic,assign) BOOL isAnimating;
 -(void)setupDefaultDataForDrawing;
 -(void)changeColorScheme:(BOOL)isWhiteSheme;
 

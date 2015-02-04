@@ -12,9 +12,11 @@
 #import "ChartView.h"
 #import "Progress.h"
 #import "SingleChartView.h"
+@class GerneralChartViewController;
 @protocol ControllerDelegate <NSObject>
 
 -(void)allAnimationsFinished;
+-(void)setAnimationStatus:(GerneralChartViewController*)vc value:(BOOL)isAnimating;
 
 @end
 

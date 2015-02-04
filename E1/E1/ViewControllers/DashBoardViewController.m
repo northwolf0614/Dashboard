@@ -794,11 +794,10 @@
 {
     NSInteger index=[self.chartsForDisplay count];
     NSInteger indexOfAssembly=[self.chartDataAssembly count];
-    self.collectionView.scrollEnabled=YES;
     if (index<indexOfAssembly)
         if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
         {
-            //self.collectionView.scrollEnabled=NO;
+
             if (index<self.chartDataAssembly.count)
             {
                 
@@ -819,6 +818,7 @@
         
     }
     
+    
 
     
     
@@ -826,17 +826,21 @@
     
     
 }
+-(void)setAnimationStatus:(GerneralChartViewController*)vc value:(BOOL)isAnimating
+{
+    if ([self.childViewControllers containsObject:vc])
+    {
+        self.isAnimating=isAnimating;
+    }
+}
 #pragma <UIScrollViewDelegate>
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
 
-    if (scrollView.contentOffset.y + scrollView.frame.size.height >= (scrollView.contentSize.height+kcOffsetBuffer))
+    if (scrollView.contentOffset.y + scrollView.frame.size.height >= (scrollView.contentSize.height+kcOffsetBuffer)&&!self.isAnimating)
     {
         NSInteger index=[self.chartsForDisplay count];
-        
-        
-        
         if (index<self.chartDataAssembly.count)
         {
             

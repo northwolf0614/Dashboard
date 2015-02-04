@@ -48,7 +48,7 @@
     }
     return self;
 }
--(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews index:(NSIndexPath*)indexPath mainView:(UICollectionView*)view;
+-(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews index:(NSIndexPath*)indexPath mainView:(UICollectionView*)view
 {
     if ([self initWithDrawingData:drawingData views:chartViews]!=nil)
     {
@@ -91,8 +91,9 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(allAnimationsFinished)])
+                if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(allAnimationsFinished)]&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
                 {
+                    [self.delegate setAnimationStatus:self value:NO];
                     [self.delegate allAnimationsFinished];
                 }
                 
@@ -114,6 +115,10 @@
     self.view.hidden=YES;
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (isAnimated) {
+        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+            [self.delegate setAnimationStatus:self value:YES];
+            
+                                
         [self.cv  scrollToItemAtIndexPath:self.index atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
         [self showCharts:YES];
         self.dataForNChart.isAnimated=YES;
