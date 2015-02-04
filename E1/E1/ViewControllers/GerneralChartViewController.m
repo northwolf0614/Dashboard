@@ -64,6 +64,8 @@
 }
 -(void)showCharts:(BOOL)isAnimated
 {
+    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+        [self.delegate setAnimationStatus:self value:YES];
     //special for RADAR
     NSMutableDictionary* radarSeriesData=nil;
     if (self.dataForNChart.chartType==RADAR)
@@ -104,6 +106,11 @@
         });
 
     }
+    else
+    {
+        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+            [self.delegate setAnimationStatus:self value:NO];
+    }
    
     
 }
@@ -115,8 +122,7 @@
     self.view.hidden=YES;
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (isAnimated) {
-        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
-            [self.delegate setAnimationStatus:self value:YES];
+        
             
                                 
         [self.cv  scrollToItemAtIndexPath:self.index atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
