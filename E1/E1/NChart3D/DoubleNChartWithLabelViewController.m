@@ -148,7 +148,7 @@
 
         float percent=[self.dataForNChart.dataForNextView.percentage floatValue];
 
-        self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:percent color1:kcLikeOrange color2:kcLikeRed];
+        self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:percent color1:kcLikeBlue color2:kcLikeRed];
         //self.percentageView=[[ProgressBar alloc] initWithFinalPercentage:floatingNumber color1:kcLikeOrange color2:kcLikeRed];
         self.percentageView.translatesAutoresizingMaskIntoConstraints=NO;
         self.percentageView.backgroundColor=[UIColor clearColor];
