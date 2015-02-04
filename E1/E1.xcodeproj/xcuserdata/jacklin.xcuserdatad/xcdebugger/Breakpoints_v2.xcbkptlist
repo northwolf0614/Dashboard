@@ -3882,12 +3882,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "-colorForSecondBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4232,12 +4232,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-colorForfirstBar:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4262,12 +4262,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4473,7 +4473,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
             endingLineNumber = "138"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4596,12 +4596,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -4612,12 +4612,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5028,12 +5028,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5044,12 +5044,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5065,7 +5065,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "142"
             endingLineNumber = "142"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5097,7 +5097,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
             endingLineNumber = "118"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5156,12 +5156,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5369,7 +5369,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "144"
             endingLineNumber = "144"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5385,7 +5385,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "114"
             endingLineNumber = "114"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5524,12 +5524,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5545,7 +5545,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "113"
             endingLineNumber = "113"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5657,7 +5657,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "134"
             endingLineNumber = "134"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -5668,12 +5668,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6041,7 +6041,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "-showCharts:"
+            landmarkName = "-viewDidLayoutSubviews"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6068,12 +6068,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-finalPercentage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6084,12 +6084,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "E1/ViewControllers/GerneralChartViewController.m"
-            timestampString = "444706897.767757"
+            timestampString = "444708976.251691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-showCharts:"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-plusChartFloatingNumber:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -6266,6 +6266,22 @@
             startingLineNumber = "813"
             endingLineNumber = "813"
             landmarkName = "-allAnimationsFinished"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "E1/ViewControllers/DashBoardViewController.m"
+            timestampString = "444707635.152869"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "833"
+            endingLineNumber = "833"
+            landmarkName = "-setAnimationStatus:value:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

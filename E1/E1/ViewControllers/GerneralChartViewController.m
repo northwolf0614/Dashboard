@@ -147,6 +147,8 @@
     [super viewDidLayoutSubviews];
     BOOL isAnimated=!self.dataForNChart.isAnimated;
     if (!isAnimated) {
+        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+            [self.delegate setAnimationStatus:self value:NO];
         [self showCharts:NO];
     }
 }
