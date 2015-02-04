@@ -798,7 +798,7 @@
     if (index<indexOfAssembly)
         if (index<kcMaxCellsinOneScreen||(index>6&&index%3!=0))
         {
-            self.collectionView.scrollEnabled=NO;
+            //self.collectionView.scrollEnabled=NO;
             if (index<self.chartDataAssembly.count)
             {
                 
