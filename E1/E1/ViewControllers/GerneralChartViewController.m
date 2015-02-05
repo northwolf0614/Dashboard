@@ -194,8 +194,10 @@
         if ([keysArray count]<1) {
             return nil;
         }
-        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:0]];
-        return drawingData.brushColor;
+//        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:0]];
+//        return drawingData.brushColor;
+        //work around here
+        return kcLikeBlue;
     }
     return nil;
     
@@ -212,8 +214,10 @@
         if ([keysArray count]<2) {
             return nil;
         }
-        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:1]];
-        return drawingData.brushColor;
+//        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:1]];
+//        return drawingData.brushColor;
+        //work around here
+        return kcLikeRed;
     }
     return nil;
     
