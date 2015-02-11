@@ -28,15 +28,12 @@
 @implementation DetailChartViewController
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return  UIInterfaceOrientationMaskLandscapeLeft;
+    return  UIInterfaceOrientationMaskLandscape;
 }
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
-//    for (UIView* view in self.contentView.subviews) {
-//        NSLog(@"This is subview of contentView %@",NSStringFromClass([view class]));
-//    }
     self.navigationBar.delegate=self;
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
     {
@@ -83,9 +80,6 @@
 
 -(void)setupLayout
 {
-//    for (UIView* view in self.contentView.subviews) {
-//        NSLog(@"This is subview of contentView %@",NSStringFromClass([view class]));
-//    }
     if (self.label==nil)
     {
         self.label=[[UILabel alloc] init];
