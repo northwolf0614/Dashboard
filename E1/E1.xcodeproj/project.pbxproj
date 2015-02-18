@@ -34,6 +34,7 @@
 		E70C44EE1A061E4600D5524E /* DetailChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E70C44EC1A061E4600D5524E /* DetailChartViewController.xib */; };
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
 		E7711AF81A0790280096650B /* NChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7711AF71A0790280096650B /* NChartDataModel.m */; };
+		E772A4881A898CF800110CF7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E772A4861A898CF800110CF7 /* Model.xcdatamodeld */; };
 		E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E772CDD41A1D71560034E553 /* PageTableViewController.m */; };
 		E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E772CDD71A1D7D000034E553 /* SplitViewController.m */; };
 		E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */; };
@@ -70,6 +71,11 @@
 		E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */; };
 		E7C4364A1A6F655C00FB34CE /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C436491A6F655C00FB34CE /* CollectionViewCell.m */; };
 		E7C4364D1A6F6C6E00FB34CE /* GerneralChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C4364C1A6F6C6E00FB34CE /* GerneralChartViewController.m */; };
+		E7D39A2E1A91677A00037841 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A2D1A91677A00037841 /* Serie.m */; };
+		E7D39A311A91677A00037841 /* MainMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A301A91677A00037841 /* MainMap.m */; };
+		E7D39A341A91677A00037841 /* PlusMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A331A91677A00037841 /* PlusMap.m */; };
+		E7D39A371A91677A00037841 /* AxisTickValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A361A91677A00037841 /* AxisTickValue.m */; };
+		E7D39A3A1A91677A00037841 /* AxisValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A391A91677A00037841 /* AxisValue.m */; };
 		E7E092361A6F6294006A8752 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E0922F1A6F6294006A8752 /* ChartView.m */; };
 		E7E092371A6F6294006A8752 /* OneViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E092311A6F6294006A8752 /* OneViewCell.m */; };
 		E7E092381A6F6294006A8752 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E092331A6F6294006A8752 /* Progress.m */; };
@@ -130,6 +136,7 @@
 		E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartDataManager.m; sourceTree = "<group>"; };
 		E7711AF61A0790280096650B /* NChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartDataModel.h; sourceTree = "<group>"; };
 		E7711AF71A0790280096650B /* NChartDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NChartDataModel.m; sourceTree = "<group>"; };
+		E772A4871A898CF800110CF7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E772CDD31A1D71560034E553 /* PageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableViewController.h; sourceTree = "<group>"; };
 		E772CDD41A1D71560034E553 /* PageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableViewController.m; sourceTree = "<group>"; };
 		E772CDD61A1D7D000034E553 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
@@ -196,6 +203,16 @@
 		E7C436491A6F655C00FB34CE /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewCell.m; path = E1/Views/CollectionViewCell.m; sourceTree = SOURCE_ROOT; };
 		E7C4364B1A6F6C6E00FB34CE /* GerneralChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GerneralChartViewController.h; sourceTree = "<group>"; };
 		E7C4364C1A6F6C6E00FB34CE /* GerneralChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GerneralChartViewController.m; sourceTree = "<group>"; };
+		E7D39A2C1A91677A00037841 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
+		E7D39A2D1A91677A00037841 /* Serie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serie.m; sourceTree = "<group>"; };
+		E7D39A2F1A91677A00037841 /* MainMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMap.h; sourceTree = "<group>"; };
+		E7D39A301A91677A00037841 /* MainMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMap.m; sourceTree = "<group>"; };
+		E7D39A321A91677A00037841 /* PlusMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlusMap.h; sourceTree = "<group>"; };
+		E7D39A331A91677A00037841 /* PlusMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlusMap.m; sourceTree = "<group>"; };
+		E7D39A351A91677A00037841 /* AxisTickValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisTickValue.h; sourceTree = "<group>"; };
+		E7D39A361A91677A00037841 /* AxisTickValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisTickValue.m; sourceTree = "<group>"; };
+		E7D39A381A91677A00037841 /* AxisValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisValue.h; sourceTree = "<group>"; };
+		E7D39A391A91677A00037841 /* AxisValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisValue.m; sourceTree = "<group>"; };
 		E7E0922E1A6F6294006A8752 /* ChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartView.h; sourceTree = "<group>"; };
 		E7E0922F1A6F6294006A8752 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartView.m; sourceTree = "<group>"; };
 		E7E092301A6F6294006A8752 /* OneViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewCell.h; sourceTree = "<group>"; };
@@ -241,6 +258,7 @@
 		090FB6E019F5DA6A008F437F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E772A4861A898CF800110CF7 /* Model.xcdatamodeld */,
 				E7711AF61A0790280096650B /* NChartDataModel.h */,
 				E7711AF71A0790280096650B /* NChartDataModel.m */,
 				090FB6E119F5DA6A008F437F /* StatisticsModel.h */,
@@ -249,6 +267,16 @@
 				E78256D419F88461005E42C1 /* ClaimModel.m */,
 				E76FA6361A1A0DE400FA4613 /* ChartDataManager.h */,
 				E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */,
+				E7D39A381A91677A00037841 /* AxisValue.h */,
+				E7D39A391A91677A00037841 /* AxisValue.m */,
+				E7D39A351A91677A00037841 /* AxisTickValue.h */,
+				E7D39A361A91677A00037841 /* AxisTickValue.m */,
+				E7D39A321A91677A00037841 /* PlusMap.h */,
+				E7D39A331A91677A00037841 /* PlusMap.m */,
+				E7D39A2F1A91677A00037841 /* MainMap.h */,
+				E7D39A301A91677A00037841 /* MainMap.m */,
+				E7D39A2C1A91677A00037841 /* Serie.h */,
+				E7D39A2D1A91677A00037841 /* Serie.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -574,11 +602,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79531E71A76F6E200B5CB40 /* SingleChartView.m in Sources */,
+				E7D39A341A91677A00037841 /* PlusMap.m in Sources */,
+				E772A4881A898CF800110CF7 /* Model.xcdatamodeld in Sources */,
 				E79675801A43C6F100482C92 /* StartupViewController.m in Sources */,
 				E7711AF81A0790280096650B /* NChartDataModel.m in Sources */,
 				E796757C1A43C6F100482C92 /* AnimatedTransitioningManager.m in Sources */,
 				E7A666ED1A4D44EA00D1E788 /* TLSpringFlowLayout.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
+				E7D39A311A91677A00037841 /* MainMap.m in Sources */,
 				E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */,
 				E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */,
 				E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */,
@@ -588,6 +619,7 @@
 				E7E092381A6F6294006A8752 /* Progress.m in Sources */,
 				E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */,
 				E7C4364A1A6F655C00FB34CE /* CollectionViewCell.m in Sources */,
+				E7D39A3A1A91677A00037841 /* AxisValue.m in Sources */,
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
 				E7E092371A6F6294006A8752 /* OneViewCell.m in Sources */,
 				E796758C1A43CAA300482C92 /* MainWindow.m in Sources */,
@@ -595,6 +627,7 @@
 				E796757F1A43C6F100482C92 /* OutlinePresentationViewController.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
+				E7D39A371A91677A00037841 /* AxisTickValue.m in Sources */,
 				E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */,
 				E7E092391A6F6294006A8752 /* TwoViewCell.m in Sources */,
 				E79675891A43C7F800482C92 /* LoginPresentationController.m in Sources */,
@@ -610,6 +643,7 @@
 				E79675901A43CD6800482C92 /* SliderCell.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
+				E7D39A2E1A91677A00037841 /* Serie.m in Sources */,
 				E7C2229F1A26852B00C9CAEE /* EmptyCollectionViewCell.m in Sources */,
 				E796757B1A43C6F100482C92 /* AlertController.m in Sources */,
 				E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */,
@@ -862,6 +896,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E772A4861A898CF800110CF7 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E772A4871A898CF800110CF7 /* Model.xcdatamodel */,
+			);
+			currentVersion = E772A4871A898CF800110CF7 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 09B0B25319F5D99A008DCE56 /* Project object */;
 }

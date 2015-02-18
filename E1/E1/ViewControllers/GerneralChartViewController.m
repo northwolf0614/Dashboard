@@ -186,40 +186,60 @@
 
 -(UIColor*)colorForfirstBar:(Progress*)progressView;
 {
-    if ([progressView isEqual:self.percentageView]) {
-        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
-            return nil;
-        }
-        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
-        if ([keysArray count]<1) {
-            return nil;
-        }
-//        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:0]];
-//        return drawingData.brushColor;
-        //work around here
-        return kcLikeBlue;
-    }
-    return nil;
+//    if ([progressView isEqual:self.percentageView])
+//    {
+//        return self.dataForNChart.dataForNextView.color1;
+//        
+//    }
+//    else
+//            
+//        return nil;
+    
+//    if ([progressView isEqual:self.percentageView]) {
+//        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
+//            return nil;
+//        }
+//        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
+//        if ([keysArray count]<1) {
+//            return nil;
+//        }
+////        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:0]];
+////        return drawingData.brushColor;
+//        //work around here
+//        return kcLikeBlue;
+//    }
+//    return nil;
+    return kcLikeBlue;
     
     
 }
 -(UIColor*)colorForSecondBar:(Progress*) progressView
 {
-    if ([progressView isEqual:self.percentageView])
-    {
-        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
-            return nil;
-        }
-        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
-        if ([keysArray count]<2) {
-            return nil;
-        }
-//        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:1]];
-//        return drawingData.brushColor;
-        //work around here
-        return kcLikeRed;
-    }
-    return nil;
+//    if ([progressView isEqual:self.percentageView])
+//    {
+//        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
+//            return nil;
+//        }
+//        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
+//        if ([keysArray count]<2) {
+//            return nil;
+//        }
+////        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:1]];
+////        return drawingData.brushColor;
+//        //work around here
+//        return kcLikeRed;
+//    }
+//    return nil;
+//    if ([progressView isEqual:self.percentageView])
+//    {
+//        return self.dataForNChart.dataForNextView.color2;
+//        
+//    }
+//    else
+//        
+//        return nil;
+    return kcLikeRed;
+
     
 }
 -(NSNumber*)finalPercentage:(Progress*) progressView
@@ -624,22 +644,38 @@
             
         case NChartValueAxisX:
         {
+            if (self.dataForNChart.chartAxisXTicksValues.count==0) {
+                return nil;
+            }
             return self.dataForNChart.chartAxisXTicksValues;
         }
             break;
         case NChartValueAxisY:
         {
             
-            if (self.dataForNChart.chartType == BAR)
-                //NSArray* value=self.dataForNChart.chartAxisYTicksValues;
-                return self.dataForNChart.chartAxisYTicksValues;
-            
-            else
+//            if (self.dataForNChart.chartType == BAR)
+//                return self.dataForNChart.chartAxisYTicksValues;
+//            
+//            else
+//                return nil;
+            if (self.dataForNChart.chartAxisYTicksValues.count==0)
+            {
                 return nil;
+            }
+            return self.dataForNChart.chartAxisYTicksValues;
         }
+            break;
+
+        
         case NChartValueAxisAzimuth:
             if (self.dataForNChart.chartType == RADAR)
+            {
+                if (self.dataForNChart.chartAxisXTicksValues.count==0) {
+                    return nil;
+                }
+                
                 return self.dataForNChart.chartAxisXTicksValues;
+            }
             else
                 return nil;
         case NChartValueAxisRadius:

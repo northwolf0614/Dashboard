@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="13F34" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AxisTickValue" representedClassName="AxisTickValue" syncable="YES">
+        <attribute name="axisValueType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="chartAxisTickValues" inverseEntity="MainMap" syncable="YES"/>
+    </entity>
+    <entity name="AxisValue" representedClassName="AxisValue" syncable="YES">
+        <attribute name="axisValueType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="serie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Serie" inverseName="axisValues" inverseEntity="Serie" syncable="YES"/>
+    </entity>
+    <entity name="MainMap" representedClassName="MainMap" syncable="YES">
+        <attribute name="axisType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="chartAxisXCaption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chartAxisYCaption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chartAxisZCaption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chartCaption" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chartType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="floatingNumber" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="labelText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="percentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="chartAxisTickValues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AxisTickValue" inverseName="mainMapData" inverseEntity="AxisTickValue" syncable="YES"/>
+        <relationship name="plusMapData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PlusMap" inverseName="mainMapData" inverseEntity="PlusMap" syncable="YES"/>
+        <relationship name="series" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Serie" inverseName="mainMapData" inverseEntity="Serie" syncable="YES"/>
+    </entity>
+    <entity name="PlusMap" representedClassName="PlusMap" syncable="YES">
+        <attribute name="color1" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" syncable="YES"/>
+        <attribute name="color2" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" syncable="YES"/>
+        <attribute name="finalPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="floatingNumber" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="plusMapData" inverseEntity="MainMap" syncable="YES"/>
+    </entity>
+    <entity name="Serie" representedClassName="Serie" syncable="YES">
+        <attribute name="brushColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" syncable="YES"/>
+        <attribute name="seriesName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="seriesType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="axisValues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AxisValue" inverseName="serie" inverseEntity="AxisValue" syncable="YES"/>
+        <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="series" inverseEntity="MainMap" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="AxisTickValue" positionX="-110" positionY="-522" width="128" height="103"/>
+        <element name="AxisValue" positionX="70" positionY="-396" width="128" height="103"/>
+        <element name="MainMap" positionX="-486" positionY="-531" width="128" height="238"/>
+        <element name="PlusMap" positionX="-110" positionY="-649" width="128" height="120"/>
+        <element name="Serie" positionX="-108" positionY="-396" width="128" height="118"/>
+    </elements>
+</model>

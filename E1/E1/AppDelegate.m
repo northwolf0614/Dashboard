@@ -11,6 +11,7 @@
 #import "PageTableViewController.h"
 #import "DashBoardViewController.h"
 #import "StartupViewController.h"
+#import "ChartDataManager.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
@@ -96,19 +97,10 @@
 
 - (void)applicationWillTerminate:(UIApplication*)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[ChartDataManager defaultChartDataManager] saveContext];
+    
 }
-//-(void)sendEvent:(UIEvent *)event
-//{
-//    if (event.type==UIEventTypeTouches) {f
-//        if ([[event.allTouches anyObject] phase]==UITouchPhaseBegan) {
-//            //响应触摸事件（手指刚刚放上屏幕）
-//            [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:nScreenTouch object:nil userInfo:[NSDictionary dictionaryWithObject:event forKey:@"data"]]];
-//            //发送一个名为‘nScreenTouch’（自定义）的事件
-//        }
-//    }
-//    [super sendEvent:event];
-//}
+
 
 - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
 {
@@ -121,5 +113,7 @@
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     return CGRectMake(0, 0, MAX(screenSize.width, screenSize.height), MIN(screenSize.width, screenSize.height));
 }
+
+
 
 @end

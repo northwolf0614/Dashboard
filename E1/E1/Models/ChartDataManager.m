@@ -9,6 +9,21 @@
 #import "ChartDataManager.h"
 #import "Definations.h"
 #import "NChartDataModel.h"
+#import "MainMap.h"
+#import "PlusMap.h"
+#import "AxisTickValue.h"
+#import "AxisValue.h"
+#import "Serie.h"
+
+@interface ChartDataManager()
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+//+(NSString*)getStoredDefaultFilePath;
+
+
+@end
+
 
 @implementation ChartDataManager
 
@@ -16,61 +31,63 @@
 
 -(void)storeChartDataToFile:(NSArray*) chartData fileName:(NSString*)file
 {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSMutableArray* chartNames=[NSMutableArray array];
-    NSMutableData   * data = [[NSMutableData alloc] init];
-    NSFileManager* manager=[NSFileManager defaultManager];
-    //NSString* filePath=[ChartDataManager getStoredFilePath:file ];
-    //BOOL result=NO;
-    if (chartData==nil)
-    {
-        if (![manager fileExistsAtPath:file])
-        {
-            [manager createFileAtPath:file contents:nil attributes:nil];
-            
-        }
-        
-        return;
+    if (chartData==nil) {
+        return ;
     }
+    
+//    NSFileManager* manager=[NSFileManager defaultManager];
+//    if (chartData==nil)
+//    {
+//        if (![manager fileExistsAtPath:file])
+//        {
+//            [manager createFileAtPath:file contents:nil attributes:nil];
+//
+//        }
+//
+//        return;
+//    }
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSMutableArray* chartNames=[NSMutableArray array];
+//
+//    int i=0;//
+//    for (NChartDataModel* dataChart in chartData)
+//    {
+//        
+//        if ([dataChart isKindOfClass:[NChartDataModel class]])
+//        {
+//            [chartNames addObject:[NSString stringWithFormat:@"%d",i]];
+//        }
+//        ++i;//
+//    }
+//    [userDefault setObject:chartNames forKey:[[file stringByDeletingPathExtension] lastPathComponent]];
+//    
+//    [userDefault synchronize];
 
-    //NSString* fileString=[NChartDataModel getStoredDefaultFilePath];
-    // 这个NSKeyedArchiver则是进行编码用的
-    NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-    int i=0;//
-    for (NChartDataModel* dataChart in chartData)
+//    if (chartData==nil) {
+//        return ;
+//    }
+    //else
     {
-        
-        if ([dataChart isKindOfClass:[NChartDataModel class]])
-        {
-            //[archiver encodeObject:dataChart forKey:dataChart.chartCaption];
-            [archiver encodeObject:dataChart forKey:[NSString stringWithFormat:@"%d",i]];
-            [chartNames addObject:[NSString stringWithFormat:@"%d",i]];
+
+        for (NChartDataModel* chart in chartData) {
+            [self insertChartData:chart pageName:[file lastPathComponent]];
         }
-        ++i;//
     }
-    //[userDefault setObject:chartNames forKey:kcDefaultChartName];
-    [userDefault setObject:chartNames forKey:[[file stringByDeletingPathExtension] lastPathComponent]];
     
-    [userDefault synchronize];
-    [archiver finishEncoding];
     
-    if (![manager fileExistsAtPath:file])
-    {
-        [manager createFileAtPath:file contents:nil attributes:nil];
-        
-    }
-    [data writeToFile:file atomically:YES];
+    
+    
 
     
 }
 
-+(BOOL)deleteChartFile:(NSString*)file
++(BOOL)deleteChartFile:(NSString*)pageName
 {
 //    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
 //    NSMutableArray* chartNames=[NSMutableArray array];
 //    NSMutableData   * data = [[NSMutableData alloc] init];
     NSFileManager* manager=[NSFileManager defaultManager];
-    NSString* filePath=[ChartDataManager getStoredFilePath:file ];
+    NSString* filePath=[ChartDataManager getStoredFilePath:pageName ];
     
     if ([manager fileExistsAtPath:filePath])
     {
@@ -88,81 +105,53 @@
     
 }
 
--(NSArray*)parseFromDefaultFile:(NSString*)file
-{
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userd = [userDefault dictionaryRepresentation];
-    NSMutableArray* array=[NSMutableArray array];
-    if ([userd.allKeys containsObject:kcDefaultChartName])
-    {
-        
-        NSFileManager* manager=[NSFileManager defaultManager];
-        if(![manager fileExistsAtPath:file])
-            return nil;
-        NSData *data = [NSData dataWithContentsOfFile:file];
-        // 根据数据，解析成一个NSKeyedUnarchiver对象
-        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-        for (NSString* chartName in [userd objectForKey:kcDefaultChartName]) {
-            [array addObject:[unarchiver decodeObjectForKey:chartName]];
-        }
-        
-        [unarchiver finishDecoding];
-        return array;
-
-    }
-    
-    
-    
-    
-    return nil;
-    
-}
 
 -(NSArray*)parseFromFile:(NSString*)file
 {
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userd = [userDefault dictionaryRepresentation];
-    NSMutableArray* array=[NSMutableArray array];
-    if ([userd.allKeys containsObject:kcPagesArrayName])
-    {
-        NSArray* pageNameArray=[userd objectForKey: kcPagesArrayName];
-        if ([pageNameArray containsObject:[[file stringByDeletingPathExtension] lastPathComponent]])
-        {
-            NSFileManager* manager=[NSFileManager defaultManager];
-            if(![manager fileExistsAtPath:file])
-                return nil;
-            NSData *data = [NSData dataWithContentsOfFile:file];
-            if ([data length]==0)
-            {
-                return nil;
-            }
-            // 根据数据，解析成一个NSKeyedUnarchiver对象
-            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-            for (NSString* chartName in [userd objectForKey:[[file stringByDeletingPathExtension] lastPathComponent]])
-            {
-                [array addObject:[unarchiver decodeObjectForKey:chartName]];
-            }
-            
-            [unarchiver finishDecoding];
-            return array;
-        }
-        
-        
-    }
-    
-    
-    
-    
-    return nil;
+//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+//    NSDictionary *userd = [userDefault dictionaryRepresentation];
+//    NSMutableArray* array=[NSMutableArray array];
+//    if ([userd.allKeys containsObject:kcPagesArrayName])
+//    {
+//        NSArray* pageNameArray=[userd objectForKey: kcPagesArrayName];
+//        if ([pageNameArray containsObject:[[file stringByDeletingPathExtension] lastPathComponent]])
+//        {
+//            NSFileManager* manager=[NSFileManager defaultManager];
+//            if(![manager fileExistsAtPath:file])
+//                return nil;
+//            NSData *data = [NSData dataWithContentsOfFile:file];
+//            if ([data length]==0)
+//            {
+//                return nil;
+//            }
+//            // 根据数据，解析成一个NSKeyedUnarchiver对象
+//            NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+//            for (NSString* chartName in [userd objectForKey:[[file stringByDeletingPathExtension] lastPathComponent]])
+//            {
+//                [array addObject:[unarchiver decodeObjectForKey:chartName]];
+//            }
+//            
+//            [unarchiver finishDecoding];
+//            return array;
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    
+//    
+//    return nil;
+    return [self dataFetchRequest:[file lastPathComponent]];
     
 }
 
-+(NSString*)getStoredDefaultFilePath
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docPath = [paths objectAtIndex:0];
-    return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
-}
+//+(NSString*)getStoredDefaultFilePath
+//{
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docPath = [paths objectAtIndex:0];
+//    return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
+//}
 
 +(NSString*)getStoredFilePath:(NSString*)pageName
 {
@@ -177,9 +166,7 @@
     dispatch_once(&pred, ^{
                     manager = [[ChartDataManager alloc] init];
     });
-    //manager.defaultChartDataQueue=[[NSMutableArray alloc] initWithArray:[NChartDataModel chartDataDefault]];
-    manager.defaultChartDataQueue=[NSMutableArray array];
-    manager.chartDataQueue=[NSMutableArray array];
+    
     return manager;
     
     
@@ -232,36 +219,39 @@
 {
     
     
-    //doughnut
-    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
-    chartData3.chartCaption=@"doughnut";
-    chartData3.chartAxisXCaption=@"product percentage";
-    chartData3.chartAxisYCaption=@"Years";
-    //chartData3.chartType=Dimention2;
-    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//    //doughnut
+//    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
+//    chartData3.chartCaption=@"doughnut";
+//    chartData3.chartAxisXCaption=@"product percentage";
+//    chartData3.chartAxisYCaption=@"Years";
+//    //chartData3.chartType=Dimention2;
+//    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//    
+//    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
+//    
+//    //setup rawData3
+//    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
+//    rawData5.seriesName=@"percentage5";
+//    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+////    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
+//    rawData5.seriesType=DOUGHNUT;
+//    rawData5.brushColor=kcLikeBlue;
+//    //setup data4
+//    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
+//    rawData6.seriesName=@"percentage6";
+//    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+////    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
+//    rawData6.seriesType=DOUGHNUT;
+//    rawData6.brushColor=kcLikeRed;
+//    
+//    //additive
+//    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
+//    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
+//    chartData3.axisType=ABSOLUTE;
     
-    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
-    
-    //setup rawData3
-    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
-    rawData5.seriesName=@"percentage5";
-    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-    rawData5.seriesType=DOUGHNUT;
-    rawData5.brushColor=kcLikeBlue;
-    //setup data4
-    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
-    rawData6.seriesName=@"percentage6";
-    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-    rawData6.seriesType=DOUGHNUT;
-    rawData6.brushColor=kcLikeRed;
-    
-    //additive
-    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
-    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
-    chartData3.axisType=ABSOLUTE;
-    //[chartData3 adaptedForFloatingNumber];
+    AddedMap* chartData3=[[AddedMap alloc] init];
+    chartData3.color1=kcLikeBlue;
+    chartData3.color2=kcLikeRed;
     chartData3.floatingNumber=[NSNumber numberWithFloat:10.0f];
     chartData3.percentage=[NSNumber numberWithFloat:0.1f];
     
@@ -323,37 +313,39 @@
 +(NChartDataModel*)templateAreaChartData
 {
     float percent;
-    NChartDataModel* chartData5=[[NChartDataModel alloc] init];
-    chartData5.chartCaption=@"doughnut";
-    chartData5.chartAxisXCaption=@"product percentage";
-    chartData5.chartAxisYCaption=@"Years";
-    //chartData3.chartType=Dimention2;
-    chartData5.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//    NChartDataModel* chartData5=[[NChartDataModel alloc] init];
+//    chartData5.chartCaption=@"doughnut";
+//    chartData5.chartAxisXCaption=@"product percentage";
+//    chartData5.chartAxisYCaption=@"Years";
+//    //chartData3.chartType=Dimention2;
+//    chartData5.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//    
+//    chartData5.chartDataForDrawing= [NSMutableDictionary dictionary];
+//    
+//    //setup rawData3
+//    PrototypeDataModel* rawData9=[[PrototypeDataModel alloc] init];
+//    rawData9.seriesName=@"percentage5";
+//    rawData9.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//    rawData9.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
+//    rawData9.seriesType=DOUGHNUT;
+//    rawData9.brushColor=kcLikeBlue;
+//    //setup data4
+//    PrototypeDataModel* rawData10=[[PrototypeDataModel alloc] init];
+//    rawData10.seriesName=@"percentage6";
+//    rawData10.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//    rawData10.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
+//    rawData10.seriesType=DOUGHNUT;
+//    rawData10.brushColor=kcLikeRed;
+//    
+//    //additive
+//    [chartData5.chartDataForDrawing setObject:rawData9 forKey:rawData9.seriesName];
+//    [chartData5.chartDataForDrawing setObject:rawData10 forKey:rawData10.seriesName];
+//    chartData5.axisType=ABSOLUTE;
     
-    chartData5.chartDataForDrawing= [NSMutableDictionary dictionary];
-    
-    //setup rawData3
-    PrototypeDataModel* rawData9=[[PrototypeDataModel alloc] init];
-    rawData9.seriesName=@"percentage5";
-    rawData9.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData9.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-    rawData9.seriesType=DOUGHNUT;
-    rawData9.brushColor=kcLikeBlue;
-    //setup data4
-    PrototypeDataModel* rawData10=[[PrototypeDataModel alloc] init];
-    rawData10.seriesName=@"percentage6";
-    rawData10.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData10.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-    rawData10.seriesType=DOUGHNUT;
-    rawData10.brushColor=kcLikeRed;
-    
-    //additive
-    [chartData5.chartDataForDrawing setObject:rawData9 forKey:rawData9.seriesName];
-    [chartData5.chartDataForDrawing setObject:rawData10 forKey:rawData10.seriesName];
-    chartData5.axisType=ABSOLUTE;
-    //[chartData3 adaptedForFloatingNumber];
+    AddedMap* chartData5=[[AddedMap alloc] init];
+    chartData5.color1=kcLikeBlue;
+    chartData5.color2=kcLikeRed;
     percent = floorf(((double)arc4random() / ARC4RANDOM_MAX) * 100.0f)/100.0f;//0-1 random double number
-    //x = arc4random() % 100;
     chartData5.floatingNumber=[NSNumber numberWithFloat:percent];
     chartData5.percentage=[NSNumber numberWithFloat:percent];
     
@@ -455,5 +447,328 @@
     NSString *docPath = [paths objectAtIndex:0];
     return [docPath stringByAppendingPathComponent:fileName];
 }
+
+
+#pragma mark - Core Data stack
+
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (NSURL *)applicationDocumentsDirectory {
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "EY-E.ee" in the application's documents directory.
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSManagedObjectModel *)managedObjectModel {
+    // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
+    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return _managedObjectModel;
+    
+}
+
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it.
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:kcDataBaseFileName];
+    NSError *error = nil;
+    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[NSLocalizedDescriptionKey] = @"Failed to initialize the application's saved data";
+        dict[NSLocalizedFailureReasonErrorKey] = failureReason;
+        dict[NSUnderlyingErrorKey] = error;
+        error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
+
+- (NSManagedObjectContext *)managedObjectContext {
+    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (!coordinator) {
+        return nil;
+    }
+    _managedObjectContext = [[NSManagedObjectContext alloc] init];
+    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _managedObjectContext;
+}
+
+#pragma mark - Core Data Saving support
+
+- (void)saveContext {
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        NSError *error = nil;
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            // Replace this implementation with code to handle the error appropriately.
+            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+}
+
+-(void)addTickValues:(NSArray*)xAxisTickValues yAxis:(NSArray*)yAxisTickValues zAxis:(NSArray*)zAxisTickValues mainMap:(MainMap*)map context:(NSManagedObjectContext*)context
+{
+    
+    if (xAxisTickValues!=nil&&xAxisTickValues.count>0)
+    {
+        NSUInteger arrayNum=xAxisTickValues.count;
+        for (NSUInteger count=0;count<arrayNum;count++)
+        {
+            AxisTickValue* tickVal=[NSEntityDescription insertNewObjectForEntityForName:@"AxisTickValue" inManagedObjectContext:context];
+            [tickVal setValue:[NSNumber numberWithInteger:count] forKey:@"index"];
+            [tickVal setValue:[xAxisTickValues objectAtIndex:count] forKey:@"value"];
+            [tickVal setValue:map forKey:@"mainMapData"];
+            [tickVal setValue:[NSNumber numberWithInteger:XAXISVALUE] forKey:@"axisValueType"];
+            [map addChartAxisTickValuesObject:tickVal];
+        }
+    }
+    if (yAxisTickValues!=nil&&yAxisTickValues.count>0)
+    {
+        NSUInteger arrayNum=yAxisTickValues.count;
+        for (NSUInteger count=0;count<arrayNum;count++)
+        {
+            AxisTickValue* tickVal=[NSEntityDescription insertNewObjectForEntityForName:@"AxisTickValue" inManagedObjectContext:context];
+            [tickVal setValue:[NSNumber numberWithInteger:count] forKey:@"index"];
+            [tickVal setValue:[yAxisTickValues objectAtIndex:count] forKey:@"value"];
+            [tickVal setValue:map forKey:@"mainMapData"];
+            [tickVal setValue:[NSNumber numberWithInteger:YAXISVALUE] forKey:@"axisValueType"];
+            [map addChartAxisTickValuesObject:tickVal];
+        }
+    }
+    if (zAxisTickValues!=nil&&zAxisTickValues.count>0)
+    {
+        NSUInteger arrayNum=zAxisTickValues.count;
+        for (NSUInteger count=0;count<arrayNum;count++)
+        {
+            AxisTickValue* tickVal=[NSEntityDescription insertNewObjectForEntityForName:@"AxisTickValue" inManagedObjectContext:context];
+            [tickVal setValue:[NSNumber numberWithInteger:count] forKey:@"index"];
+            [tickVal setValue:[zAxisTickValues objectAtIndex:count] forKey:@"value"];
+            [tickVal setValue:map forKey:@"mainMapData"];
+            [tickVal setValue:[NSNumber numberWithInteger:ZAXISVALUE] forKey:@"axisValueType"];
+            [map addChartAxisTickValuesObject:tickVal];
+        }
+    }
+   
+    
+    
+}
+-(void)addAxisValues:(NSArray*)axisValues serie:(Serie*)serie valueType:(AxisValueType)valueType context:(NSManagedObjectContext*)context
+{
+    NSUInteger arrayNum=axisValues.count;
+    for(NSUInteger count=0;count<arrayNum;count++)
+    {
+        AxisValue *axisVal = [NSEntityDescription insertNewObjectForEntityForName:@"AxisValue" inManagedObjectContext:context];
+        [axisVal setValue:[NSNumber numberWithInteger:count] forKey:@"index"];
+        [axisVal setValue:[axisValues objectAtIndex:count] forKey:@"value"];
+        [axisVal setValue:[NSNumber numberWithInteger:valueType] forKey:@"axisValueType"];
+        [axisVal setValue:serie forKey:@"serie"];
+        [serie addAxisValuesObject:axisVal];
+        
+        
+    }
+    
+}
+-(void)addSerieAxisValues:(NSDictionary*)seriesDic map:(MainMap*)mainMap context:(NSManagedObjectContext*)context
+{
+    NSArray* seriesKeys= seriesDic.allKeys;
+    for (NSString* strKey in seriesKeys)
+    {
+        PrototypeDataModel* serieData= [seriesDic objectForKey:strKey];
+        Serie *serie = [NSEntityDescription insertNewObjectForEntityForName:@"Serie" inManagedObjectContext:context];
+        [serie setValue:serieData.seriesName forKey:@"seriesName"];
+        //NSData* brushData= [NSData dataWithBytes:CFBridgingRetain(serieData.brushColor) length:sizeof(serieData.brushColor)];
+        [serie setValue:serieData.brushColor forKey:@"brushColor"];
+        [serie setValue:[NSNumber numberWithInteger:serieData.seriesType] forKey:@"seriesType"];
+        [serie setValue:mainMap forKey:@"mainMapData"];
+        
+        [self addAxisValues:serieData.chartAxisXValues serie:serie valueType:XAXISVALUE context:context];
+        [self addAxisValues:serieData.chartAxisYValues serie:serie valueType:YAXISVALUE context:context];
+        [self addAxisValues:serieData.chartAxisZValues serie:serie valueType:ZAXISVALUE context:context];
+        [mainMap addSeriesObject:serie];
+        
+        
+        
+        
+    }
+}
+
+-(void)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName
+{
+    //if (!chartData.empty)
+    //if (chartData!=nil)
+    {
+        NSManagedObjectContext *context = [self managedObjectContext];
+        //[serie setValue:[NSNumber numberWithInteger:serieData.seriesType] forKey:@"seriesType"];
+        
+        MainMap *mainMap = [NSEntityDescription insertNewObjectForEntityForName:@"MainMap" inManagedObjectContext:context];
+        [mainMap setValue:[NSNumber numberWithInteger:chartData.axisType] forKey:@"axisType"];
+        [mainMap setValue:chartData.chartAxisXCaption forKey:@"chartAxisXCaption"];
+        [mainMap setValue:chartData.chartAxisYCaption forKey:@"chartAxisYCaption"];
+        [mainMap setValue:chartData.chartAxisZCaption forKey:@"chartAxisZCaption"];
+        [mainMap setValue:chartData.chartCaption forKey:@"chartCaption"];
+        [mainMap setValue:[NSNumber numberWithInteger:chartData.chartType] forKey:@"chartType"];
+        //[mainMap setValue:[NSNumber numberWithBool:chartData.empty] forKey:@"empty"];
+        [mainMap setValue:chartData.floatingNumber forKey:@"floatingNumber"];
+        [mainMap setValue:chartData.labelText forKey:@"labelText"];
+        [mainMap setValue:pageName forKey:@"pageName"];
+        [mainMap setValue:chartData.percentage forKey:@"percentage"];
+        if (chartData.dataForNextView!=nil)
+        {
+            AddedMap* plusChartData=chartData.dataForNextView;
+            PlusMap *plusMap = [NSEntityDescription insertNewObjectForEntityForName:@"PlusMap" inManagedObjectContext:context];
+            [mainMap setValue:plusMap forKey:@"plusMapData"];
+//            NSData* color1Data=[NSData dataWithBytes:CFBridgingRetain(plusChartData.color1) length:sizeof(plusChartData.color1)];
+//            NSData* color2Data=[NSData dataWithBytes:CFBridgingRetain(plusChartData.color2) length:sizeof(plusChartData.color2)];
+            [plusMap setValue:plusChartData.color1 forKey:@"color1"];
+            [plusMap setValue:plusChartData.color2 forKey:@"color2"];
+            [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
+            [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
+            [plusMap setValue:mainMap forKey:@"mainMapData"];
+            
+        }
+        [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
+        [self addSerieAxisValues:chartData.chartDataForDrawing map:mainMap context:context];
+        
+        NSError* error;
+        if(![context save:&error])
+        {
+            NSLog(@"can not save：%@",[error localizedDescription]);
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+- (NSArray*)dataFetchRequest:(NSString*)pageName
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init] ;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MainMap" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSString* attributeName=@"pageName";
+    NSString* attributeValue=pageName;
+    [fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"%K = %@", attributeName, attributeValue]];
+    
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSMutableArray* chartDataArray=[NSMutableArray array];
+    if (fetchedObjects.count>0)
+    {
+        /*
+         @interface NChartDataModel : NSObject<NSCoding,NSCopying>
+         
+        
+         
+        
+         
+         
+         //not used
+         //key-value: prototypeDataModel.seriesname-prototypeDataModel instance
+         @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+         //@property(nonatomic,strong) NChartDataModel* dataForNextView;
+         
+         
+        
+         
+        */
+        
+        for (MainMap *info in fetchedObjects)
+        {
+       
+            NChartDataModel* chartData=[[NChartDataModel alloc] init];
+            chartData.chartCaption= [info valueForKey:@"chartCaption"];
+            chartData.chartAxisXCaption=[info valueForKey:@"chartAxisXCaption"];
+            chartData.chartAxisYCaption=[info valueForKey:@"chartAxisYCaption"];
+            chartData.chartAxisZCaption=[info valueForKey:@"chartAxisZCaption"];
+            chartData.labelText=[info valueForKey:@"labelText"];
+            chartData.percentage=[info valueForKey:@"percentage"];
+            chartData.floatingNumber=[info valueForKey:@"floatingNumber"];
+            chartData.axisType=(AxisType)[[info valueForKey:@"axisType"] integerValue];
+            chartData.chartType=(NSeriesType)[[info valueForKey:@"chartType"] integerValue];
+            //chartData.empty=[[info valueForKey:@"empty"] boolValue];
+            PlusMap* plusMap=[info valueForKey:@"plusMapData"];
+            if (plusMap!=nil&&[plusMap isKindOfClass:[plusMap class]]) {
+                AddedMap* addedMapData=[[AddedMap alloc] init];
+                addedMapData.color1=(UIColor*)[plusMap valueForKey:@"color1"];
+                addedMapData.color2=(UIColor*)[plusMap valueForKey:@"color2"];
+                addedMapData.percentage=[plusMap valueForKey:@"finalPercentage"];
+                addedMapData.floatingNumber=[plusMap valueForKey:@"floatingNumber"];
+                chartData.dataForNextView=addedMapData;
+            }
+                
+            
+            
+            NSSet* axisTickValues=[info valueForKey:@"chartAxisTickValues"];
+            chartData.chartAxisXTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:XAXISVALUE];
+            chartData.chartAxisYTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:YAXISVALUE];
+            chartData.chartAxisZTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:ZAXISVALUE];
+            NSSet* series=[info valueForKey:@"series"];
+            chartData.chartDataForDrawing=[self analyseSeries:series];
+            [chartDataArray addObject:chartData];
+        }
+        return chartDataArray;
+        
+    }
+    else
+        return nil;
+    
+}
+-(NSArray*)analyseTickOrValue:(NSSet*)tickSet axisValueType:(AxisValueType)valueType
+{
+    NSArray* sortedGroup = [[[tickSet filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"axisValueType = %ld", (NSUInteger)valueType]] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES]]] valueForKey:@"value"];
+    return sortedGroup;
+}
+-(NSMutableDictionary*)analyseSeries:(NSSet*)series
+{
+    NSMutableDictionary* seriesDic=[NSMutableDictionary dictionary];
+    [series enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[Serie class]])
+        {
+            PrototypeDataModel* serieData=[[PrototypeDataModel alloc] init];
+            Serie* serieVal=(Serie*)obj;
+            serieData.seriesName=[serieVal valueForKey:@"seriesName"];
+            serieData.seriesType=[[serieVal valueForKey:@"seriesType"] integerValue];
+            serieData.brushColor=(UIColor*) [serieVal valueForKey:@"brushColor"];
+            NSSet* axisValues=[serieVal valueForKey:@"axisValues"];
+            NSArray* xValues=[self analyseTickOrValue:axisValues axisValueType:XAXISVALUE];
+            NSArray* yValues=[self analyseTickOrValue:axisValues axisValueType:YAXISVALUE];
+            NSArray* zValues=[self analyseTickOrValue:axisValues axisValueType:ZAXISVALUE];
+            serieData.chartAxisXValues=xValues;
+            serieData.chartAxisYValues=yValues;
+            serieData.chartAxisZValues=zValues;
+            [seriesDic setObject:serieData forKey:serieData.seriesName];
+            
+        }
+    }];
+    return seriesDic;
+
+    
+}
+
 
 @end

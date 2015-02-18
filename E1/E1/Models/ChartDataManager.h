@@ -8,23 +8,27 @@
 
 #import <Foundation/Foundation.h>
 #import "NChartDataModel.h"
+#import <CoreData/CoreData.h>
 
 @interface ChartDataManager : NSObject
-@property(nonatomic,strong)NSMutableArray* defaultChartDataQueue;
-@property(nonatomic,strong)NSMutableArray* chartDataQueue;
 
 
--(void)storeChartDataToFile:(NSArray*) chartData fileName:(NSString*)file;
--(NSArray*)parseFromDefaultFile:(NSString*)file;
-+(NSString*)getStoredDefaultFilePath;
-+(NSString*)getStoredFilePath:(NSString*)pageName;
+
+-(void)storeChartDataToFile:(NSArray*) chartData fileName:(NSString*)file;//file is a whole file with directory
+-(NSArray*)parseFromFile:(NSString*)file;//file is a whole file with directory
+
 +(NChartDataModel*)templateBarChartData;
 +(NChartDataModel*)templateColumnChartData;
 +(NChartDataModel*)templateRadarChartData;
 +(NChartDataModel*)templateAreaChartData;
--(NSArray*)parseFromFile:(NSString*)file;
-+(BOOL)deleteChartFile:(NSString*)file;
 
-
++(BOOL)deleteChartFile:(NSString*)pageName;
++(NSString*)getStoredFilePath:(NSString*)pageName;
 +(id)defaultChartDataManager;
+
+-(void)saveContext;
+-(NSURL *)applicationDocumentsDirectory;
+-(void)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName;
+-(NSArray*)dataFetchRequest:(NSString*)pageName;
+
 @end

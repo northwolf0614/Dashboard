@@ -9,6 +9,7 @@
 #import "AbstractNChartViewController.h"
 #import "Definations.h"
 #import "NChartDataModel.h"
+#import "ProgressBar.h"
 
 
 
@@ -208,23 +209,35 @@
     
     //selection 2
     
-    [view.chart updateData];
-    if (isAnimated)
-    {
-        if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
-            //if ([[view.chart series] count]>0)
-        {
-            //[view.chart resetTransition];
-            [view.chart stopTransition];
-            [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
-            //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
-            [view.chart flushChanges];
-            
-        }
+    
+    if ([view isKindOfClass:[ProgressBar class]]&&chartData.dataForNextView!=nil) {
+//        if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
+        
+            [view setTextForMiddleLabel:chartData.dataForNextView.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
     }
-    if(chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]])
-
-        [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+    else
+    {
+        [view.chart updateData];
+        if (isAnimated)
+        {
+            if ([[view.chart series] count]>0&&![view.chart isTransitionPlaying])
+                //if ([[view.chart series] count]>0)
+            {
+                //[view.chart resetTransition];
+                [view.chart stopTransition];
+                [view.chart playTransition:kcTRANSITION_TIME reverse:NO];
+                //[self.chartView.chart resetTransformations:kcTRANSITION_TIME];
+                [view.chart flushChanges];
+                
+            }
+        }
+        if ([view isKindOfClass:[AbstractNChartView class]]&&chartData.floatingNumber!=nil&&[chartData.floatingNumber isKindOfClass:[NSNumber class]]) {
+            [view setTextForMiddleLabel:chartData.floatingNumber animation:isAnimated animationTime:kcTRANSITION_TIME];
+        }
+        
+    }
+    
+   
 
     
         //selcetion 2

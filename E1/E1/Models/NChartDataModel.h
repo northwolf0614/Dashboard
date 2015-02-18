@@ -37,6 +37,11 @@ typedef enum : NSUInteger {
     ADDITIVE,
     PERCENT,
 } AxisType;
+typedef enum : NSUInteger {
+    XAXISVALUE,
+    YAXISVALUE,
+    ZAXISVALUE,
+} AxisValueType;
 @interface PrototypeDataModel : NSObject<NSCoding,NSCopying>
 @property(nonatomic,copy)   NSString* seriesName;
 @property(nonatomic,strong) NSArray* chartAxisXValues;
@@ -47,33 +52,49 @@ typedef enum : NSUInteger {
 @end
 
 
+@interface AddedMap : NSObject<NSCoding,NSCopying>
+
+@property (nonatomic, retain) UIColor * color1;
+@property (nonatomic, retain) UIColor * color2;
+@property (nonatomic, retain) NSNumber * percentage;
+@property (nonatomic, retain) NSNumber * floatingNumber;
+@end
+
+
+
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
-@property(nonatomic,assign) BOOL isEmpty;
-@property(nonatomic,copy)   NSString* chartCaption;
+@property(nonatomic,copy) NSString* chartCaption;
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;
 @property(nonatomic,copy) NSString* chartAxisZCaption;
 @property(nonatomic,strong) NSArray* chartAxisXTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisYTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
-//@property(nonatomic,assign) NChartType chartType;
 @property(nonatomic,assign) NSeriesType chartType;
 @property(nonatomic,assign) AxisType axisType;
+
+//not used
 @property(nonatomic,assign) BOOL isToolTips;
 @property(nonatomic,strong) NSNumber* sliceNumber;
 @property(nonatomic,assign) BOOL isBorder;
-@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
-@property(nonatomic,strong) NChartDataModel* dataForNextView;
+//not used
+//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
+@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+//@property(nonatomic,strong) NChartDataModel* dataForNextView;
+@property(nonatomic,strong) AddedMap* dataForNextView;
 @property(nonatomic,strong) NSString* labelText;
 @property(nonatomic,strong) NSNumber* percentage;
 @property(nonatomic,strong) NSNumber* floatingNumber;
+//not stored permanantly only for programming
 @property(nonatomic,assign) BOOL isAnimated;
-+(NSString*)getStoredDefaultFilePath;
+@property(nonatomic,assign) BOOL empty;
+
+
+
+//+(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
 +(NSMutableDictionary*)radarSeriesData;
-//+(NChartDataModel*) radarChart;
--(void)adaptedForFloatingNumber;
--(void)updateSeries:(NSDictionary*) seriesData;
+
 
 
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SplitViewController.h"
 #import "MainWindow.h"
+#import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) MainWindow* window;

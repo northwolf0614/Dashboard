@@ -313,18 +313,16 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Apply" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action)
     {
         UITextField* name = self.alertViewController.textFields.firstObject;
-        //self.pageName=name.text;
         if (![self.pagesNameArray containsObject:name.text])
         {
-            //self.isApplyPressed=YES;
+            
             [self.pagesNameArray addObject:name.text];
             [self syncWithUserDefault:self.pagesNameArray];
             
-            //[[ChartDataManager defaultChartDataManager] syncwithPage:@"0" withKey:name.text];
-            
-            
-            NSString* filePath=[ChartDataManager  getStoredFilePath:name.text];
-            [[ChartDataManager defaultChartDataManager] storeChartDataToFile:nil fileName:filePath];//new a empty file for chart
+//            NSString* filePath=[ChartDataManager  getStoredFilePath:name.text];
+//            NChartDataModel* chartData=[[NChartDataModel alloc] init];
+//            chartData.empty=YES;
+//            [[ChartDataManager defaultChartDataManager] storeChartDataToFile:[NSArray arrayWithObject:chartData] fileName:filePath];//new a empty file for chart
             
             [self.tableView reloadData];
             [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:[self.pagesNameArray count]-1 inSection:0]];
@@ -392,21 +390,11 @@
     if ([userd.allKeys containsObject:kcPagesArrayName])
     {
         self.pagesNameArray= [[NSMutableArray alloc] initWithArray:[userd objectForKey:kcPagesArrayName]];
-        
-//        NSArray* chartsData=[NChartDataModel chartDataDefault];
-//        [manager storeChartDataToFile:chartsData fileName:[NChartDataModel getStoredDefaultFilePath]];
-//        for (NChartDataModel* oneChartData in chartsData)
-//        {
-//            
-//            [self.dashboardItemViewControllers addObject:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:oneChartData delegateHolder:self]];
-//            
-//        }
-        
     }
     else//there are default data in defualts for display
     {
         self.pagesNameArray=[NSMutableArray array];
-        [self.pagesNameArray addObject:kcDefaultChartName];
+        [self.pagesNameArray addObject:kcDefaultPageName];
         
         [userDefault setObject:self.pagesNameArray forKey:kcPagesArrayName];
         [userDefault synchronize];
@@ -427,18 +415,6 @@
     }
     
 }
-//-(void)syncwithPage:(NSMutableArray*)data withKey:(NSString*)pageName
-//{
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    NSDictionary *userd = [userDefault dictionaryRepresentation];
-//    if (![userd.allKeys containsObject:pageName])
-//    {
-//        
-//        [userDefault setObject:data forKey:pageName];
-//        [userDefault synchronize];
-//    }
-//
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

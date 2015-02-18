@@ -84,8 +84,8 @@
     [self.collectionView setDataSource:(id)self];
     [self.view addSubview:self.collectionView];
     self.chartNames=[NSMutableArray array];
-    [self.chartNames addObject:kcDefaultChartName];
-    self.detailItem=kcDefaultChartName;//default page name
+    [self.chartNames addObject:kcDefaultPageName];
+    self.detailItem=kcDefaultPageName;//default page name
     _leftEdgeGesture=[[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGestures:)];
     _leftEdgeGesture.edges=UIRectEdgeRight;
     _leftEdgeGesture.delegate=self;
@@ -199,41 +199,31 @@
         NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
         NSDictionary *userd = [userDefault dictionaryRepresentation];
         ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-        if (![userd.allKeys containsObject:self.detailItem]&&[self.detailItem isEqualToString:kcDefaultChartName])//initially new page file
+        if (![userd.allKeys containsObject:kcPagesArrayName]&&[self.detailItem isEqualToString:kcDefaultPageName])
         {
             
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
-            if (self.chartDataAssembly.count>0) {
-                self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0] ];
-            }
-            else
-                self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
-            
-
+            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
             [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
+//             test
+//             NSArray* chartForTest=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem]];
             
-//            for (NChartDataModel* d in self.chartDataAssembly) {
-//                DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
-//                itemViewController.delegate=self;
-//                [self addChildViewController:itemViewController];
-//            }
             
-
-
+            
+            
+            
+            
+            
             
         }
-
-
         else
         {
-            //dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^
+            
             {
-                NSArray* chartDataArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem] ];
+                NSArray* chartDataArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem]];
                 
-
-                //dispatch_async(dispatch_get_main_queue(), ^
                 {
                     if (chartDataArray==nil)
                     {
@@ -247,14 +237,8 @@
                             [dvc removeFromParentViewController];
                         }
                         NChartDataModel* emptyData=[[NChartDataModel alloc] init];
-                        emptyData.isEmpty=YES;
+                        emptyData.empty=YES;
                         [self.chartsForDisplay addObject:emptyData];
-                        
-                    
-
-                        
-                        
-                        
                     }
                     
                     else
@@ -267,33 +251,14 @@
                             [dvc removeFromParentViewController];
                         }
                         self.chartDataAssembly=[NSMutableArray arrayWithArray:chartDataArray];
-                        
-                        if (self.chartDataAssembly.count==0) {
+                        if (self.chartDataAssembly.count==0)
+                        {
                             NChartDataModel* emptyData=[[NChartDataModel alloc] init];
-                            emptyData.isEmpty=YES;
+                            emptyData.empty=YES;
                             [self.chartsForDisplay addObject:emptyData];
                         }
                         else
                             self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
-                        
-//                        for (NChartDataModel* d in self.chartDataAssembly)
-//                        {
-//                            DoubleNChartWithLabelViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:d delegateHolder:nil];
-//                            itemViewController.delegate=self;
-//                            [self addChildViewController:itemViewController];
-//                            
-//                        }
-                        
-
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                    
-                        
                     }
 
                     
@@ -402,36 +367,7 @@
 }
 -(void)changeColorScheme:(BOOL)isWhiteSheme
 {
-//    self.collectionView.backgroundColor=kcWholeBackColor;
-//    //for (DoubleNChartWithLabelViewController* dVC in self.dashboardItemViewControllers)
-//    for (DoubleNChartWithLabelViewController* dVC in self.childViewControllers)
-//    {
-//        dVC.chartView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
-//        dVC.label.backgroundColor=kcWidgetBackColor;
-//        dVC.contentView.backgroundColor=kcWidgetBackColor;
-//        if (dVC!=nil)
-//        {
-//            dVC.percentageView.chart.background = [NChartSolidColorBrush solidColorBrushWithColor:kcWidgetBackColor];
-//        }
-//        
-//        [dVC.naviBar setBarTintColor: kcNavigationBarColor];
-//        [dVC.naviBar setTranslucent: NO];
-//        [[UINavigationBar appearance]  setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-//        [[UINavigationBar appearance]  setShadowImage:[[UIImage alloc] init]];
-//        //dVC.naviBar.titleTextAttributes=@{UITextAttributeTextColor:kcCharColor};
-//        dVC.naviBar.titleTextAttributes=@{NSForegroundColorAttributeName:kcCharColor};
-//
-//
-//        
-//        
-//        
-//        
-//    }
-//    if (self.emptyCell!=nil)
-//    {
-//        self.emptyCell.backgroundColor=kcWidgetBackColor;
-//
-//    }
+
     self.collectionView.backgroundColor=kcWholeBackColor;
     NSArray* visibleCells=[self.collectionView visibleCells];
     for (AbstractCollectionViewCell* cell in visibleCells) {
@@ -494,7 +430,7 @@
 {
     UICollectionViewCell* cell=nil;
     NChartDataModel* data=[self.chartsForDisplay objectAtIndex:indexPath.row];
-    if (data.isEmpty)
+    if (data.empty)
     {
         cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
         cell.backgroundColor=kcWidgetBackColor;
@@ -503,27 +439,12 @@
     }
     else
     {
-//        cell=(GeneralCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class]) forIndexPath:indexPath];
-////        DashboardItemViewController* itemViewController=[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
-////        [self addChildViewController:itemViewController];
-//        DashboardItemViewController* itemViewController=[self.childViewControllers objectAtIndex:indexPath.row];
-//        UIView* cellView =(GeneralCollectionViewCell*)cell.contentView;
-//        //[[cellView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-//        itemViewController.view.frame = cellView.bounds;
-//        [cellView addSubview:itemViewController.view];
-//        [itemViewController didMoveToParentViewController:self];
-//        return cell;
-//    }
-    
-        
         NChartDataModel* chartData=[self.chartsForDisplay objectAtIndex:indexPath.row];
         if (chartData.dataForNextView!=nil)
         {
             
             cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
             ((TwoViewCell*)cell).yearLabel.text=chartData.labelText;
-            
-//            GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil]];
              GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,((TwoViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
             
             itemViewController.delegate=self;
@@ -547,7 +468,6 @@
             {
                 cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
                 ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
-//                GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil]];
                 GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,((OneViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
                 
                 itemViewController.delegate=self;
@@ -564,8 +484,6 @@
             {
                 cell=(NChartViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([NChartViewCell class]) forIndexPath:indexPath];
                 ((NChartViewCell*)cell).yearLabel.text=chartData.labelText;
-                
-                //GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil]];
                 GerneralChartViewController* itemViewController=[[GerneralChartViewController alloc] initWithDrawingData:[self.chartsForDisplay objectAtIndex:indexPath.row] views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,((NChartViewCell*)cell).controllerView,nil] index:indexPath mainView:collectionView];
                 
                 itemViewController.delegate=self;
@@ -597,9 +515,8 @@
     DetailChartViewController* detailViewController=nil;
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
-    
-    //if (indexPath.row>([self.dashboardItemViewControllers count]-1)||[self.dashboardItemViewControllers count]==0)
-    if (indexPath.row>([self.chartDataAssembly count]-1)||[self.chartDataAssembly count]==0)
+    NSUInteger count=self.chartDataAssembly.count;
+    if (count==indexPath.row)
     {
         detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
         detailViewController.isAdded=YES;
@@ -756,7 +673,9 @@
                 [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
                 
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-                [manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
+                //[manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
+                [manager storeChartDataToFile:[NSArray arrayWithObject:dvc.dataForNChart] fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
+
                 
             }
             [transitionContext completeTransition:YES];
@@ -811,20 +730,12 @@
     if (index==indexOfAssembly)
     {
         NChartDataModel* emptyData=[[NChartDataModel alloc] init];
-        emptyData.isEmpty=YES;
+        emptyData.empty=YES;
         
         [self.chartsForDisplay addObject:emptyData];
         [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
         
     }
-    
-    
-
-    
-    
-    
-    
-    
 }
 -(void)setAnimationStatus:(GerneralChartViewController*)vc value:(BOOL)isAnimating
 {
@@ -851,7 +762,7 @@
         {
             
             NChartDataModel* emptyData=[[NChartDataModel alloc] init];
-            emptyData.isEmpty=YES;
+            emptyData.empty=YES;
             [self.chartsForDisplay addObject:emptyData];
             [self.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
         }

@@ -149,6 +149,7 @@
     if (self.middleLabel==nil) {
         self.middleLabel=[[UILabel alloc] init];
         self.middleLabel.backgroundColor=[UIColor clearColor];
+        //self.middleLabel.backgroundColor=[UIColor blackColor];
         self.middleLabel.hidden=YES;
         self.middleLabel.textColor=kcLikeRed;
         

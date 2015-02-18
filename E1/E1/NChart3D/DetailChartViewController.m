@@ -242,19 +242,6 @@
     
     
 }
-//-(void)handleLeftButtonItem:(id) sender
-//{
-//
-//    [self dismissViewControllerAnimated:YES
-//                             completion:^{
-//
-//                             }];
-//    
-//    
-//    
-//}
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -653,7 +640,7 @@
 {
     
     NSMutableArray* result = [NSMutableArray array];
-    NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
+    //NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
     //NSLog(@"series data source  is %@",[series.dataSource class]);
     NSArray* keysArray=nil;
     NSArray* xValues=nil;
@@ -667,14 +654,14 @@
         yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
         seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
     }
-    else
-        
-    {
-        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
-        xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
-        yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
-        seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
-    }
+//    else
+//        
+//    {
+//        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+//        xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
+//        yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
+//        seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
+//    }
     if (seriesType==LINE)
     {
 //        if (!self.isAdded)

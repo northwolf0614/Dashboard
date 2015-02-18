@@ -53,7 +53,7 @@
         self.isNeedsUpdate=NO;
         [self updateChartData:self.chartView animated:YES dataModel:self.dataForNChart ];
         if (self.percentageView!=nil) 
-        [self updateChartData:self.percentageView animated:YES dataModel:self.dataForNChartPlus];
+        [self updateChartData:self.percentageView animated:YES dataModel:self.dataForNChart];
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             while (self.chartView.chart.isTransitionPlaying) ;
@@ -191,80 +191,80 @@
 -(void) setupSeriesForChartView
 {
     [super setupSeriesForChartView];
-    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
-    {
-        NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
-        NSUInteger base= [self.dataForNChart.chartDataForDrawing count];
-        for (int count=0; count<[keysArray count]; count++)//for every series
-        {
-                NSString* key=[keysArray objectAtIndex:count];
-                NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] seriesType];
-                UIColor* brushColor=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] brushColor];
-                switch (seriesType) {
-                    case COLUMN:
-                    {
-                        NChartColumnSeries* series = [NChartColumnSeries new];
-                        series.tag=(int)(count+base);
-                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                        series.dataSource = (id)self;
-                        [self.chartViewPlus.chart addSeries:series];
-                        //[self updateChartData:self.chartViewPlus animated:YES];
-                    }
-                        break;
-                    case LINE:
-                    {
-                        NChartLineSeries* series = [NChartLineSeries new];
-                        series.tag=(int)(count+base);
-                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                        series.dataSource = (id)self;
-                        [self.chartViewPlus.chart addSeries:series];
-                        //[self updateChartData:self.chartViewPlus animated:YES];
-                    }
-                        break;
-                    case BAR:
-                    {
-                        NChartBarSeries* series = [NChartBarSeries new];
-                        series.tag=(int)(count+base);
-                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                        series.dataSource = (id)self;
-                        //[self updateChartData:self.chartViewPlus animated:YES];
-                        
-                    }
-                        break;
-                    case DOUGHNUT:
-                    {
-                        NChartPieSeries* series = [NChartPieSeries new];
-                        series.tag=(int)(count+base);
-                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                        series.dataSource = (id)self;
-                        [self.chartViewPlus.chart addSeries:series];
-                        NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
-                        settings.holeRatio = 0.8f;
-                        [self.chartViewPlus.chart addSeriesSettings:settings];
-                        
-                        //[self updateChartData:self.chartViewPlus animated:YES];
-                    }
-                        break;
-                        
-                    case RADAR:
-                    {
-                        NChartRadarSeries* series = [NChartRadarSeries new];
-                        series.tag=(int)(count+base);
-                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
-                        series.dataSource = (id)self;
-                        [self.chartViewPlus.chart addSeries:series];
-                        //[self updateChartData:self.chartViewPlus animated:YES];
-                    }
-                        break;
-                    
-   
-                        
-                    default:
-                        break;
-                }
-                
-            }
-    }
+//    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
+//    {
+//        NSArray* keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+//        NSUInteger base= [self.dataForNChart.chartDataForDrawing count];
+//        for (int count=0; count<[keysArray count]; count++)//for every series
+//        {
+//                NSString* key=[keysArray objectAtIndex:count];
+//                NSeriesType seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] seriesType];
+//                UIColor* brushColor=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:key] brushColor];
+//                switch (seriesType) {
+//                    case COLUMN:
+//                    {
+//                        NChartColumnSeries* series = [NChartColumnSeries new];
+//                        series.tag=(int)(count+base);
+//                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+//                        series.dataSource = (id)self;
+//                        [self.chartViewPlus.chart addSeries:series];
+//                        //[self updateChartData:self.chartViewPlus animated:YES];
+//                    }
+//                        break;
+//                    case LINE:
+//                    {
+//                        NChartLineSeries* series = [NChartLineSeries new];
+//                        series.tag=(int)(count+base);
+//                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+//                        series.dataSource = (id)self;
+//                        [self.chartViewPlus.chart addSeries:series];
+//                        //[self updateChartData:self.chartViewPlus animated:YES];
+//                    }
+//                        break;
+//                    case BAR:
+//                    {
+//                        NChartBarSeries* series = [NChartBarSeries new];
+//                        series.tag=(int)(count+base);
+//                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+//                        series.dataSource = (id)self;
+//                        //[self updateChartData:self.chartViewPlus animated:YES];
+//                        
+//                    }
+//                        break;
+//                    case DOUGHNUT:
+//                    {
+//                        NChartPieSeries* series = [NChartPieSeries new];
+//                        series.tag=(int)(count+base);
+//                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+//                        series.dataSource = (id)self;
+//                        [self.chartViewPlus.chart addSeries:series];
+//                        NChartPieSeriesSettings *settings = [NChartPieSeriesSettings seriesSettings];
+//                        settings.holeRatio = 0.8f;
+//                        [self.chartViewPlus.chart addSeriesSettings:settings];
+//                        
+//                        //[self updateChartData:self.chartViewPlus animated:YES];
+//                    }
+//                        break;
+//                        
+//                    case RADAR:
+//                    {
+//                        NChartRadarSeries* series = [NChartRadarSeries new];
+//                        series.tag=(int)(count+base);
+//                        series.brush =[NChartSolidColorBrush solidColorBrushWithColor:brushColor];
+//                        series.dataSource = (id)self;
+//                        [self.chartViewPlus.chart addSeries:series];
+//                        //[self updateChartData:self.chartViewPlus animated:YES];
+//                    }
+//                        break;
+//                    
+//   
+//                        
+//                    default:
+//                        break;
+//                }
+//                
+//            }
+//    }
     
     
     
@@ -275,24 +275,24 @@
 
 {
     [super setupAxesType];
-    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
-        
-        switch (self.dataForNChartPlus.axisType)
-        {
-            case ABSOLUTE:
-                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
-                break;
-            case ADDITIVE:
-                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
-                break;
-            case PERCENT:
-                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
-                break;
-                
-                
-            default:
-                break;
-        }
+//    if (self.dataForNChartPlus!=nil&&[self.dataForNChartPlus isKindOfClass:[NChartDataModel class]])
+//        
+//        switch (self.dataForNChartPlus.axisType)
+//        {
+//            case ABSOLUTE:
+//                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAbsolute;
+//                break;
+//            case ADDITIVE:
+//                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypeAdditive;
+//                break;
+//            case PERCENT:
+//                self.chartViewPlus.chart.cartesianSystem.valueAxesType = NChartValueAxesTypePercent;
+//                break;
+//                
+//                
+//            default:
+//                break;
+//        }
 }
 
 
@@ -308,7 +308,7 @@
 {
 
     NSMutableArray* result = [NSMutableArray array];
-    NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
+    //NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
     //NSLog(@"series data source  is %@",[series.dataSource class]);
     NSArray* keysArray=nil;
     NSArray* xValues=nil;
@@ -322,14 +322,14 @@
         yValues=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] chartAxisYValues];
         seriesType=[[self.dataForNChart.chartDataForDrawing objectForKey:[keysArray objectAtIndex:series.tag]] seriesType];
     }
-    else
-
-    {
-        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
-        xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
-        yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
-        seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
-    }
+//    else
+//
+//    {
+//        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+//        xValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisXValues];
+//        yValues=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] chartAxisYValues];
+//        seriesType=[[self.dataForNChartPlus.chartDataForDrawing objectForKey:[keysArray objectAtIndex:(series.tag-base)]] seriesType];
+//    }
     if (seriesType==LINE)
     {
         for (int count=0;count<[xValues count];count++)
@@ -451,7 +451,7 @@
 - (NSString*)seriesDataSourceNameForSeries:(NChartSeries*)series
 {
     NSArray* keysArray=nil;
-    NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
+    //NSUInteger base=[self.dataForNChart.chartDataForDrawing count];
     if (series.tag< [self.dataForNChart.chartDataForDrawing count])
     {
        keysArray=self.dataForNChart.chartDataForDrawing.allKeys;
@@ -459,12 +459,13 @@
         
        
     }
-    else
-    {
-        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
-        return [keysArray objectAtIndex:series.tag-base];
-        
-    }
+    return nil;
+//    else
+//    {
+//        keysArray=self.dataForNChartPlus.chartDataForDrawing.allKeys;
+//        return [keysArray objectAtIndex:series.tag-base];
+//        
+//    }
     
    
     
@@ -477,25 +478,36 @@
     
     switch (axis.kind)
     {
-        
+            
         case NChartValueAxisX:
         {
+            if (self.dataForNChart.chartAxisXTicksValues.count==0) {
+                return nil;
+            }
             return self.dataForNChart.chartAxisXTicksValues;
         }
             break;
         case NChartValueAxisY:
         {
             
-            if (self.dataForNChart.chartType == BAR)
-                //NSArray* value=self.dataForNChart.chartAxisYTicksValues;
-                return self.dataForNChart.chartAxisYTicksValues;
-            
-            else
+            if (self.dataForNChart.chartAxisYTicksValues.count==0)
+            {
                 return nil;
+            }
+            return self.dataForNChart.chartAxisYTicksValues;
         }
+            break;
+            
+            
         case NChartValueAxisAzimuth:
             if (self.dataForNChart.chartType == RADAR)
+            {
+                if (self.dataForNChart.chartAxisXTicksValues.count==0) {
+                    return nil;
+                }
+                
                 return self.dataForNChart.chartAxisXTicksValues;
+            }
             else
                 return nil;
         case NChartValueAxisRadius:

@@ -3,7 +3,8 @@
 #import <Foundation/Foundation.h>
 
 @interface StatisticsModel : NSObject //MTLModel<MTLJSONSerializing>
-                             {
+
+{
 }
 @property (nonatomic, strong) NSString* statisticID;
 @property (nonatomic, strong) NSString* jsonrpc;

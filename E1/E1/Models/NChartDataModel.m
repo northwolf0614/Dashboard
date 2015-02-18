@@ -39,89 +39,8 @@
     
     return data;
 }
--(void)adaptedForFloatingNumber
-{
-    
-    NSArray* keysArray=self.chartDataForDrawing.allKeys;
-    NSUInteger seriesNumber=[keysArray count];
-    BOOL seriesTypeIndicator=YES;
-    BOOL dataNumberIndicator=YES;
-
-    for (int count=0; count<[keysArray count]; count++)//for every series
-    {
-        NSString* key=[keysArray objectAtIndex:count];
-        NSeriesType seriesType=[[self.chartDataForDrawing objectForKey:key] seriesType];
-        NSUInteger dataNumber=[[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] count];
-
-        if (dataNumber>1)
-        {
-            dataNumberIndicator=NO;
-            break;
-        }
-        if (seriesType!=BAR&&seriesType!=DOUGHNUT)
-        {
-            seriesTypeIndicator=NO;
-            break;
-        }
-    }
-    if (seriesNumber==2&&seriesTypeIndicator&&dataNumberIndicator)//is bar or doughnut and there is only one piece of data and in this chart only 2 series.
-    {
-        double firstValue=0.0f;
-        double total=0.0f;
-        NSArray* keysArray=self.chartDataForDrawing.allKeys;
-        for (int count=0; count<[keysArray count]; count++)//for every series
-        {
-            NSString* key=[keysArray objectAtIndex:count];
-            if ([[self.chartDataForDrawing objectForKey:key] seriesType]==BAR)
-            {
-
-                if ([[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] count]>1)
-                {
-                    return;
-                }
-                total+=[[[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] objectAtIndex:0] doubleValue];
-                
-                if (count==0)
-                {
-                    firstValue=[[[[self.chartDataForDrawing objectForKey:key] chartAxisXValues] objectAtIndex:0] doubleValue];
-                }
-            }
-             if ([[self.chartDataForDrawing objectForKey:key] seriesType]==DOUGHNUT)
-            {
-
-                if ([[[self.chartDataForDrawing objectForKey:key] chartAxisYValues] count]>1)
-                {
-                    return;
-                }
-                total+=[[[[self.chartDataForDrawing objectForKey:key] chartAxisYValues] objectAtIndex:0] doubleValue];
-                if (count==0)
-                {
-                    firstValue=[[[[self.chartDataForDrawing objectForKey:key] chartAxisYValues] objectAtIndex:0] doubleValue];
-                }
-
-            }
 
 
-
-        }
-//        if (total>=1)
-//            self.floatingNumber=[NSString stringWithFormat:@"%d",(int)total];
-//        if (total>0&&total<1)
-//            self.floatingNumber=[NSString stringWithFormat:@"0.%d",(int)(total*10)];
-        self.floatingNumber=[NSNumber numberWithFloat:total];
-        self.percentage=[NSNumber numberWithDouble:firstValue/total ];
-//        self.floatingNumber=total;
-//        self.percentage=firstValue/total;
-        
-        
-        
-        
-    }
-
-    
-
-    
-}
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.chartCaption forKey:@"chartCaption"];
@@ -179,109 +98,52 @@
 }
 
 
-//-(void)saveDataForKey:(NSString*)key
-//
+//+(NSString*)getStoredDefaultFilePath
 //{
-//#ifdef UsingFileStoreData
-//    NSMutableData   * data = [[NSMutableData alloc] init];
-//    NSString* fileString=[NChartDataModel getStoredDefaultFilePath];
-//    // 这个NSKeyedArchiver则是进行编码用的
-//    NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-//    [archiver encodeObject:self forKey:key];
-//    [archiver finishEncoding];
-//    // 编码完成后的NSData，使用其写文件接口写入文件存起来
-//    //[data writeToFile:[NChartDataModel getStoredDefaultFilePath] atomically:YES];
-//    NSFileManager* manager=[NSFileManager defaultManager];
-//    if (![manager fileExistsAtPath:fileString])
-//    {
-//        [manager createFileAtPath:fileString contents:nil attributes:nil];
-//    
-//    }
-//    NSFileHandle* handle=[NSFileHandle fileHandleForUpdatingAtPath:fileString];
-//    [handle seekToEndOfFile];
-//    [handle writeData:data];
-//    [handle closeFile];
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//#else
-//    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
-//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
-//    [userd setObject:data forKey:key];
-//    [userd synchronize];
-//    
-//    
-//#endif
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *docPath = [paths objectAtIndex:0];
+//    return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
 //}
-//+(NChartDataModel*)loadDataWithKey:(NSString*)key
-//{
-//#ifdef UsingFileStoreData
-//    NSData * codedData = [NSData dataWithContentsOfFile:[NChartDataModel getStoredDefaultFilePath]];
-//    if (codedData == nil)
-//        return nil;
-//    
-//    // NSKeyedUnarchiver用来解码
-//    NSKeyedUnarchiver * unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:codedData];
-//    // 解码后的数据被存在一个WSNSCodingData数据对象里面
-//    NChartDataModel* aData = (NChartDataModel*)[unarchiver decodeObjectForKey:key];
-//    [unarchiver finishDecoding];
-//    return aData;
-//#else
-//    NSUserDefaults *userd = [NSUserDefaults standardUserDefaults];
-//    NChartDataModel* bData = (NChartDataModel *)[NSKeyedUnarchiver unarchiveObjectWithData:[userd objectForKey:key]];
-//    
-//    return bData;
-//    
-//    
-//#endif
-//}
-+(NSString*)getStoredDefaultFilePath
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docPath = [paths objectAtIndex:0];
-    return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
-}
 
 
 +(NSArray*)chartDataDefault
 {
     NSMutableArray* chartsArray= [NSMutableArray array];
+    
+    //doughnut
+//    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
+//    chartData3.chartCaption=@"doughnut";
+//    chartData3.chartAxisXCaption=@"product percentage";
+//    chartData3.chartAxisYCaption=@"Years";
+//    //chartData3.chartType=Dimention2;
+//    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//    
+//    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
+//    
+//    //setup rawData3
+//    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
+//    rawData5.seriesName=@"percentage5";
+//    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
+//    rawData5.seriesType=DOUGHNUT;
+//    rawData5.brushColor=kcLikeBlue;
+//    //setup data4
+//    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
+//    rawData6.seriesName=@"percentage6";
+//    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
+//    rawData6.seriesType=DOUGHNUT;
+//    rawData6.brushColor=kcLikeRed;
+//    
+//    //additive
+//    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
+//    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
+//    chartData3.axisType=ABSOLUTE;
+    AddedMap* chartData3=[[AddedMap alloc] init];
+    chartData3.color1=kcLikeBlue;
+    chartData3.color2=kcLikeRed;
     int x;
     float percent;
-    //doughnut
-    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
-    chartData3.chartCaption=@"doughnut";
-    chartData3.chartAxisXCaption=@"product percentage";
-    chartData3.chartAxisYCaption=@"Years";
-    //chartData3.chartType=Dimention2;
-    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-    
-    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
-    
-    //setup rawData3
-    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
-    rawData5.seriesName=@"percentage5";
-    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-    rawData5.seriesType=DOUGHNUT;
-    rawData5.brushColor=kcLikeBlue;
-    //setup data4
-    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
-    rawData6.seriesName=@"percentage6";
-    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-    rawData6.seriesType=DOUGHNUT;
-    rawData6.brushColor=kcLikeRed;
-    
-    //additive
-    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
-    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
-    chartData3.axisType=ABSOLUTE;
-    //[chartData3 adaptedForFloatingNumber];
     percent = floorf(((double)arc4random() / ARC4RANDOM_MAX) * 100.0f)/100.0f;//0-1 random double number
     x = arc4random() % 100;
     chartData3.floatingNumber=[NSNumber numberWithFloat:x];
@@ -338,6 +200,7 @@
     chartData1.axisType=ADDITIVE;
     chartData1.dataForNextView=chartData3;
     chartData1.labelText=@"2014";
+    
     //[chartData1 adaptedForFloatingNumber];
     
     
@@ -381,6 +244,7 @@
     x = arc4random() % 100;
     chartData2.floatingNumber=[NSNumber numberWithFloat:x];
     
+    
    
    ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -417,38 +281,40 @@
     [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
     [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
     chartData4.axisType=ABSOLUTE;
+    
 
-     NChartDataModel* chartData5=[[NChartDataModel alloc] init];
-     chartData5.chartCaption=@"doughnut";
-     chartData5.chartAxisXCaption=@"product percentage";
-     chartData5.chartAxisYCaption=@"Years";
-     //chartData3.chartType=Dimention2;
-     chartData5.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-     
-     chartData5.chartDataForDrawing= [NSMutableDictionary dictionary];
-     
-     //setup rawData3
-     PrototypeDataModel* rawData9=[[PrototypeDataModel alloc] init];
-     rawData9.seriesName=@"percentage5";
-     rawData9.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-     rawData9.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-     rawData9.seriesType=DOUGHNUT;
-     rawData9.brushColor=kcLikeBlue;
-     //setup data4
-     PrototypeDataModel* rawData10=[[PrototypeDataModel alloc] init];
-     rawData10.seriesName=@"percentage6";
-     rawData10.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-     rawData10.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-     rawData10.seriesType=DOUGHNUT;
-     rawData10.brushColor=kcLikeRed;
-     
-     //additive
-     [chartData5.chartDataForDrawing setObject:rawData9 forKey:rawData9.seriesName];
-     [chartData5.chartDataForDrawing setObject:rawData10 forKey:rawData10.seriesName];
-     chartData5.axisType=ABSOLUTE;
-     //[chartData3 adaptedForFloatingNumber];
+//     NChartDataModel* chartData5=[[NChartDataModel alloc] init];
+//     chartData5.chartCaption=@"doughnut";
+//     chartData5.chartAxisXCaption=@"product percentage";
+//     chartData5.chartAxisYCaption=@"Years";
+//     //chartData3.chartType=Dimention2;
+//     chartData5.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
+//     
+//     chartData5.chartDataForDrawing= [NSMutableDictionary dictionary];
+//     
+//     //setup rawData3
+//     PrototypeDataModel* rawData9=[[PrototypeDataModel alloc] init];
+//     rawData9.seriesName=@"percentage5";
+//     rawData9.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//     rawData9.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
+//     rawData9.seriesType=DOUGHNUT;
+//     rawData9.brushColor=kcLikeBlue;
+//     //setup data4
+//     PrototypeDataModel* rawData10=[[PrototypeDataModel alloc] init];
+//     rawData10.seriesName=@"percentage6";
+//     rawData10.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
+//     rawData10.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
+//     rawData10.seriesType=DOUGHNUT;
+//     rawData10.brushColor=kcLikeRed;
+//     
+//     //additive
+//     [chartData5.chartDataForDrawing setObject:rawData9 forKey:rawData9.seriesName];
+//     [chartData5.chartDataForDrawing setObject:rawData10 forKey:rawData10.seriesName];
+//     chartData5.axisType=ABSOLUTE;
+     AddedMap* chartData5=[[AddedMap alloc] init];
+     chartData5.color2=kcLikeRed;
+     chartData5.color1=kcLikeBlue;
      percent = floorf(((double)arc4random() / ARC4RANDOM_MAX) * 100.0f)/100.0f;//0-1 random double number
-     //x = arc4random() % 100;
      chartData5.floatingNumber=[NSNumber numberWithFloat:percent];
      chartData5.percentage=[NSNumber numberWithFloat:percent];
      
@@ -503,6 +369,7 @@
      chartData6.axisType=ABSOLUTE;
      chartData6.dataForNextView=chartData5;
      chartData6.labelText=@"2014";
+    
 
 
     [chartsArray addObject:chartData1];
@@ -517,30 +384,10 @@
     
     return chartsArray ;
 }
--(void)updateSeries:(NSDictionary*) seriesData
-{
-    
-    if ([[seriesData allKeys] count]!=[[self.chartDataForDrawing allKeys] count]) {
-        return;
-    }
-    //[self willChangeValueForKey:@"seriesUpdate"];
-    for (NSString* key in self.chartDataForDrawing)//for every serie
-    {
-        [self.chartDataForDrawing setObject:[seriesData objectForKey:key] forKey:key];
-    }
-    //[self didChangeValueForKey:@"seriesUpdate"];
-    
-}
-//+ (BOOL) automaticallyNotifiesObserversForKey:(NSString *)key {
-//    if ([key isEqualToString:@"seriesUpdate"]) {
-//        return NO;
-//    }
-//    
-//    return [super automaticallyNotifiesObserversForKey:key];
-//}
 
- +(NSMutableDictionary*)radarSeriesData
- {
+
++(NSMutableDictionary*)radarSeriesData
+{
      
      NSMutableDictionary* chartSeries= [NSMutableDictionary dictionary];
      
@@ -563,52 +410,10 @@
      //additive
      [chartSeries setObject:rawData7 forKey:rawData7.seriesName];
      [chartSeries setObject:rawData8 forKey:rawData8.seriesName];
-    return chartSeries ;
+    
+     return chartSeries ;
  }
-//+(NChartDataModel*) radarChart
-//{
-//    NChartDataModel* chartData4=[[NChartDataModel alloc] init];
-//    chartData4.chartCaption=@"Personal Quote Conversion";
-//    chartData4.chartAxisXCaption=@"product percentage";
-//    chartData4.chartAxisYCaption=@"Years";
-//    chartData4.chartType=RADAR;
-//    chartData4.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Green Slip",@"Life",@"Home",@"Boat",nil];
-//    chartData4.labelText=@"2014";
-//    chartData4.chartDataForDrawing= [NSMutableDictionary dictionary];
-//    
-//    //setup rawData3
-//    PrototypeDataModel* rawData7=[[PrototypeDataModel alloc] init];
-//    rawData7.seriesName=@"Converted";
-//    rawData7.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-//    rawData7.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.10],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.6],[NSNumber numberWithFloat:0.7],nil];
-//    rawData7.seriesType=RADAR;
-//    //rawData7.brushColor=[UIColor orangeColor];
-//    rawData7.brushColor=kcLikeRed;
-//    //setup data4
-//    PrototypeDataModel* rawData8=[[PrototypeDataModel alloc] init];
-//    rawData8.seriesName=@"Quoted";
-//    rawData8.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],[NSNumber numberWithInt:2001],[NSNumber numberWithInt:2002],[NSNumber numberWithInt:2003],nil];//in this case, this data seems useless
-//    rawData8.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.9],[NSNumber numberWithFloat:0.3],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.9],nil];
-//    rawData8.seriesType=RADAR;
-//    //rawData8.brushColor=[UIColor grayColor];
-//    rawData8.brushColor=kcLikeBlue;
-//    //additive
-//    [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
-//    [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
-//    
-//    
-//    chartData4.axisType=ABSOLUTE;
-//    [chartData4 adaptedForFloatingNumber];
-//    
-//    return chartData4;
-//    
-//    
-//    
-//    
-//    
-//    
-//    
-//}
+
 
  
 
@@ -663,6 +468,52 @@
 
 
 
+
+
+
+@end
+
+@implementation AddedMap
+
+#pragma <NSCopying>
+-(id)copyWithZone:(NSZone *)zone
+{
+    AddedMap* data=[[AddedMap allocWithZone:zone] init];
+    data.color1= [self.color1 copy];
+    data.color2=[self.color2 copy];
+    data.percentage= [self.percentage copy];
+    data.floatingNumber= [self.floatingNumber copy];
+    
+    
+    return data;
+    
+}
+#pragma <NSCoding>
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.color1 forKey:@"color1"];
+    [aCoder encodeObject:self.color2 forKey:@"color2"];
+    [aCoder encodeObject:self.percentage forKey:@"percentage"];
+    [aCoder encodeObject:self.percentage forKey:@"floatingNumber"];
+    
+    
+    
+}
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self=[super init])
+    {
+        self.color1=[aDecoder decodeObjectForKey:@"color1"];
+        self.color2=[aDecoder decodeObjectForKey:@"color2"];
+        self.percentage=[aDecoder decodeObjectForKey:@"percentage"];
+        self.floatingNumber=[aDecoder decodeObjectForKey:@"floatingNumber"];
+        
+        
+        
+        
+    }
+    return self;
+}
 
 @end
 
