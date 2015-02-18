@@ -186,59 +186,30 @@
 
 -(UIColor*)colorForfirstBar:(Progress*)progressView;
 {
-//    if ([progressView isEqual:self.percentageView])
-//    {
-//        return self.dataForNChart.dataForNextView.color1;
-//        
-//    }
-//    else
-//            
-//        return nil;
-    
-//    if ([progressView isEqual:self.percentageView]) {
-//        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
-//            return nil;
-//        }
-//        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
-//        if ([keysArray count]<1) {
-//            return nil;
-//        }
-////        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:0]];
-////        return drawingData.brushColor;
-//        //work around here
-//        return kcLikeBlue;
-//    }
-//    return nil;
-    return kcLikeBlue;
+
+    if ([progressView isEqual:self.percentageView])
+    {
+        return self.dataForNChart.dataForNextView.color1;
+
+    }
+    else
+
+        return nil;
+    //return kcLikeBlue;
     
     
 }
 -(UIColor*)colorForSecondBar:(Progress*) progressView
 {
-//    if ([progressView isEqual:self.percentageView])
-//    {
-//        if (self.dataForNChart.dataForNextView.chartDataForDrawing==nil) {
-//            return nil;
-//        }
-//        NSArray* keysArray=[self.dataForNChart.dataForNextView.chartDataForDrawing allKeys];
-//        if ([keysArray count]<2) {
-//            return nil;
-//        }
-////        PrototypeDataModel* drawingData=[self.dataForNChart.dataForNextView.chartDataForDrawing objectForKey:[keysArray objectAtIndex:1]];
-////        return drawingData.brushColor;
-//        //work around here
-//        return kcLikeRed;
-//    }
-//    return nil;
-//    if ([progressView isEqual:self.percentageView])
-//    {
-//        return self.dataForNChart.dataForNextView.color2;
-//        
-//    }
-//    else
-//        
-//        return nil;
-    return kcLikeRed;
+    if ([progressView isEqual:self.percentageView])
+    {
+        return self.dataForNChart.dataForNextView.color2;
+
+    }
+    else
+
+        return nil;
+    //return kcLikeRed;
 
     
 }
