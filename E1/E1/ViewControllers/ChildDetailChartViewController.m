@@ -110,7 +110,7 @@
                 self.dataForNChart.dataForNextView.floatingNumber=num;
                 return num;
             }
-            if (self.dataForNChart.chartType==LINE) {
+            if (self.dataForNChart.chartType==AREA) {
                 self.dataForNChart.dataForNextView.floatingNumber=self.percent;
                 return self.percent;
             }

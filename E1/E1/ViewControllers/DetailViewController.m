@@ -436,6 +436,7 @@
         self.coverView.alpha=0.0f;
     }];
     self.dataForNChart.labelText=newValue;
+    self.isAdded=YES;
     [self.collectionView reloadData];
     
     
@@ -462,12 +463,15 @@
 {
     UICollectionViewCell* cell=nil;
     //NChartDataModel* data=self.dataForNChart;
-    if (self.isAdded)
+    if (self.dataForNChart==nil)
     {
-//        cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([EmptyCollectionViewCell class])  forIndexPath:indexPath];
-//        cell.backgroundColor=kcWidgetBackColor;
-//        self.emptyCell=(EmptyCollectionViewCell*)cell;
-//        return cell;
+        //if (self.isAdded)
+        {
+            cell=[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([GeneralCollectionViewCell class])  forIndexPath:indexPath];
+            cell.backgroundColor=kcWidgetBackColor;
+            return cell;
+        }
+        
     }
     else
     {
