@@ -46,7 +46,7 @@ extern BOOL isWhiteScheme;
 #define UsingFileStoreData
 
 
-#define kcPagesArrayName @"QBEPagesArray793"
+#define kcPagesArrayName @"QBEPagesArray794"
 
 #define kcDefaultPageName @"defaultPageName778"
 #define kcDataBaseFileName @"chartsDataBase778.sqlite"

@@ -436,7 +436,13 @@
         self.coverView.alpha=0.0f;
     }];
     self.dataForNChart.labelText=newValue;
-    self.isAdded=YES;
+    
+    //if (![newValue isEqualToString:self.dataForNChart.labelText])
+    {
+        self.isAdded=YES;
+    }
+    
+    
     [self.collectionView reloadData];
     
     

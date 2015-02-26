@@ -264,7 +264,7 @@
     chartData1.chartAxisYCaption=@"Products percentage";
     chartData1.chartType=COLUMN;
     chartData1.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"Jul",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec",nil];
-    
+    chartData1.chartAxisYTicksValues=[NSArray arrayWithObjects:@"0",@"5000",@"10000",nil];
     chartData1.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     
@@ -357,7 +357,7 @@
     chartData6.chartAxisYCaption=@"Products percentage";
     chartData6.chartType=AREA;
     chartData6.chartAxisXTicksValues=[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"May",@"Jun",@"Jul",@"Aug",@"Sep",@"Oct",@"Nov",@"Dec",nil];
-    
+    chartData6.chartAxisYTicksValues=[NSArray arrayWithObjects:@"0",@"5000",@"10000",nil];
     chartData6.chartDataForDrawing= [NSMutableDictionary dictionary];
     
     
