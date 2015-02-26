@@ -13,7 +13,7 @@
 #import "NChartDataModel.h"
 #import "GeneralNChartWithLabelViewController.h"
 #import "DoubleNChartWithLabelViewController.h"
-#import "DetailChartViewController.h"
+//#import "DetailChartViewController.h"
 #import "ChartDataManager.h"
 #import "DashBoardViewController.h"
 #import "GeneralCollectionViewCell.h"
@@ -29,6 +29,7 @@
 #import "NChartViewCell.h"
 #import "NChartDataModel.h"
 #import "AbstractCollectionViewCell.h"
+#import "DetailViewController.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -65,11 +66,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.flowLayout=[[TLSpringFlowLayout alloc] init];
-//    self.flowLayout=[[UICollectionViewFlowLayout alloc] init];
-//    self.flowLayout.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
-//    self.flowLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
-//    self.flowLayout.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
-    
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
     self.collectionView.pagingEnabled=NO;
     self.collectionView.delegate=self;
@@ -300,10 +296,23 @@
 }
 -(void)viewDidLayoutSubviews
 {
-    [self setupConstraints];
     [super viewDidLayoutSubviews];
-    
+    [self setupCellSize];
+    [self setupConstraints];
+        
 
+}
+-(void)setupCellSize
+{
+    NSUInteger gap=10;
+    NSUInteger width=self.view.frame.size.width;
+    NSUInteger height=self.view.frame.size.height;
+    NSUInteger cellWidth=(NSUInteger)((width-4*gap)/3);
+    NSUInteger cellHeight=(NSUInteger)((height-3*gap)/2);
+    self.flowLayout.itemSize=CGSizeMake(cellWidth,cellHeight);
+    self.flowLayout.scrollDirection=UICollectionViewScrollDirectionVertical;
+    self.flowLayout.sectionInset = UIEdgeInsetsMake(gap , gap, gap, gap);
+    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -512,21 +521,25 @@
 - (void)collectionView:(UICollectionView*)collectionView didSelectItemAtIndexPath:(NSIndexPath*)indexPath
 {
     //NSLog(@"did selected on %ld", indexPath.item);
-    DetailChartViewController* detailViewController=nil;
+    //DetailChartViewController* detailViewController=nil;
+    DetailViewController* detailViewController=nil;
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
     NSUInteger count=self.chartDataAssembly.count;
     if (count==indexPath.row)
     {
-        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
-        detailViewController.isAdded=YES;
+//        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
+//        detailViewController.isAdded=YES;
+        detailViewController=[[DetailViewController alloc] initWithDrawingData:nil isAddedChart:YES];
         
     }
     
     else
     {
-        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
-        detailViewController.isAdded=NO;
+//        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
+//        detailViewController.isAdded=NO;
+        detailViewController=[[DetailViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] isAddedChart:NO];
+        
     }
     
     detailViewController.transitioningDelegate=(id)self;
@@ -574,11 +587,11 @@
 #pragma ChartSubviewControllerResponse
 -(void)searchButtonClickedWithData:(NChartDataModel*)dataSubviewControllerHolding inView:(UIView *)contentView
 {
-    DetailChartViewController* detailViewController= [[DetailChartViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
-    detailViewController.transitioningDelegate=(id)self;
-    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
-    self.transitioningView=contentView;
-    [self presentViewController:detailViewController animated:YES completion:nil];
+//    DetailViewController* detailViewController= [[DetailViewController alloc] initWithDrawingData:dataSubviewControllerHolding delegateHolder:nil];
+//    detailViewController.transitioningDelegate=(id)self;
+//    detailViewController.modalTransitionStyle = UIModalPresentationCustom;
+//    self.transitioningView=contentView;
+//    [self presentViewController:detailViewController animated:YES completion:nil];
     
     
     
@@ -607,10 +620,10 @@
     UIView *containerView = [transitionContext containerView];
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailChartViewController class]])
+    if ([fromViewController isKindOfClass:[DashBoardViewController class]] && [toViewController isKindOfClass:[DetailViewController class]])
     {
         //Presenting DetailChartViewController from DashboardTableViewController
-        DetailChartViewController* dvc = (DetailChartViewController*)toViewController;
+        DetailViewController* dvc = (DetailViewController*)toViewController;
         DashBoardViewController* dashvc=(DashBoardViewController*) fromViewController;
         //DashboardTableViewController* dashvc = [naviVC.viewControllers objectAtIndex:0 ];
         
@@ -644,10 +657,10 @@
         }];
     }
     
-    if ([fromViewController isKindOfClass:[DetailChartViewController class]] && [toViewController isKindOfClass:[DashBoardViewController class]])
+    if ([fromViewController isKindOfClass:[DetailViewController class]] && [toViewController isKindOfClass:[DashBoardViewController class]])
         
     {
-        DetailChartViewController* dvc = (DetailChartViewController*)fromViewController;
+        DetailViewController* dvc = (DetailViewController*)fromViewController;
         DashBoardViewController* dashvc=(DashBoardViewController*)toViewController;
         CGRect transitioningFrame = [dashvc.transitioningView convertRect:dashvc.transitioningView.bounds toView:dashvc.view];//get the dashvc.transitoningview positon referencing to the dashvc.view
         dashvc.transitioningView.alpha = 0.0f;
@@ -666,14 +679,13 @@
             [dvc.view removeFromSuperview];
             if ([dvc shouldBeAddToPreviousPage])
             {
-                //[dashvc addChildViewController:[[DoubleNChartWithLabelViewController alloc] initWithDrawingData:dvc.dataForNChart delegateHolder:nil]];
+
                 NSInteger index=dashvc.chartDataAssembly.count;
                 [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
                 [dashvc.chartsForDisplay insertObject:dvc.dataForNChart atIndex:index];
                 [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
                 
                 ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-                //[manager storeChartDataToFile:dashvc.chartDataAssembly fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
                 [manager storeChartDataToFile:[NSArray arrayWithObject:dvc.dataForNChart] fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
 
                 

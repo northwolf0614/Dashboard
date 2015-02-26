@@ -35,13 +35,13 @@
         self.chartViews=chartViews;
         if ([chartViews count]==2) {
             self.chartView=[chartViews objectAtIndex:0];
-            self.controllerView=[chartViews objectAtIndex:1];
+            //self.controllerView=[chartViews objectAtIndex:1];
         }
         if ([chartViews count]==3) {
             
             self.chartView=[chartViews objectAtIndex:0];
             self.percentageView=[chartViews objectAtIndex:1];
-            self.controllerView=[chartViews objectAtIndex:2];
+            //self.controllerView=[chartViews objectAtIndex:2];
         }
         
 

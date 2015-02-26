@@ -7,8 +7,6 @@
 //
 
 #import "PushAnimation.h"
-#import "DetailChartViewController.h"
-//#import "DashboardTableViewController.h"
 #import "DashBoardViewController.h"
 
 @implementation PushAnimation

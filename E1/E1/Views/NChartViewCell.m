@@ -68,33 +68,43 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    
 }
 
 -(void)updateConstraints
 {
     [super updateConstraints];
-
+    
+    
+    
+    
     if (self.didSetupConstraintsOneViewCell) {
         return;
     }
     if ([self isKindOfClass:[NChartViewCell class]])
     {
+        NSNumber* labelWidth=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.width*0.2];
+        NSNumber* labelHeight=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.2];
+
+        NSDictionary* metrics=@{@"labelWidth":labelWidth,@"labelHeight":labelHeight};
+        
         NSArray* constraints=[self.viewContainer constraints];
         if ([constraints count]>0)
         {
             [self.viewContainer removeConstraints:constraints];
         }
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
+
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[label(labelWidth)]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(labelHeight)]->=0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
+
         self.didSetupConstraintsOneViewCell=YES;
     }
-    
-    
-    
-    
 }
+
+
 -(void)updateColorScheme
 {
     [super updateColorScheme];

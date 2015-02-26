@@ -7,7 +7,7 @@
 //
 
 #import "PopAnimation.h"
-#import "DetailChartViewController.h"
+//#import "DetailChartViewController.h"
 //#import "DashboardTableViewController.h"
 #import "Definations.h"
 #import "DashBoardViewController.h"

@@ -42,9 +42,9 @@
     _visibleIndexPathsSet = [NSMutableSet set];
     //_visibleHeaderAndFooterSet = [[NSMutableSet alloc] init];
     _visibleHeaderAndFooterSet = [NSMutableSet set];
-    self.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
-    self.scrollDirection=UICollectionViewScrollDirectionVertical;
-    self.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
+//    self.itemSize=CGSizeMake(kcCellWidth,kcCellHeight);
+//    self.scrollDirection=UICollectionViewScrollDirectionVertical;
+//    self.sectionInset = UIEdgeInsetsMake(kcCollectionViewCellPHSpace , kcCollectionViewCellPVSpace, kcCollectionViewCellPHSpace, kcCollectionViewCellPVSpace);
 }
 
 - (void)prepareLayout

@@ -97,8 +97,10 @@ extern BOOL isWhiteScheme;
 
 #define ARC4RANDOM_MAX      0x100000000
 #define kcMaxCellsinOneScreen 6
+
 #define kcCellWidth 328
 #define kcCellHeight 365
+
 #define kcOffsetBuffer 100
 
 

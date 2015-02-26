@@ -56,15 +56,19 @@
     
     if ([self isKindOfClass:[TwoViewCell class]])
     {
+        NSNumber* labelWidth=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.width*0.2];
+        NSNumber* labelHeight=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.2];
+        NSNumber* percentageHeight=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.3];
+        NSDictionary* metrics=@{@"labelWidth":labelWidth,@"labelHeight":labelHeight,@"percentageHeight":percentageHeight};
         NSArray* constraints=[self.viewContainer constraints];
         if ([constraints count]>0)
         {
             [self.viewContainer removeConstraints:constraints];
         }
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-[label(80)]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(100)]-0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
-        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(50)]->=0-[chartView]-0-|" options:0 metrics:0 views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[percentageView]-0-[label(labelWidth)]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(percentageHeight)]-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
+        [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(labelHeight)]->=0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
         self.didSetupConstraintsTwoViewCell=YES;
     }
     

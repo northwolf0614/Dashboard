@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Definations.h"
 #import "AbstractNChartViewController.h"
-//#import "PopAnimation.h"
-//#import "PushAnimation.h"
 #import "AnimatedTransitioningManager.h"
 #import "TLSpringFlowLayout.h"
 #import "DoubleNChartWithLabelViewController.h"

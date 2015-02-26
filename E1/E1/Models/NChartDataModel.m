@@ -14,7 +14,6 @@
 #pragma <NSCopying>
 -(id)copyWithZone:(NSZone *)zone
 {
-
     NChartDataModel* data= [[NChartDataModel allocWithZone:zone] init];
     data.chartCaption=[self.chartCaption copy];
     data.chartAxisXCaption= [self.chartAxisXCaption copy];
@@ -31,11 +30,10 @@
     data.chartDataForDrawing=[self.chartDataForDrawing copy];
     data.dataForNextView=[self.dataForNextView copy];
     data.labelText=[self.labelText copy];
-    //data.percentage=[self.percentage copy];
-    //data.floatingNumber=[self.floatingNumber copy];
-    data.percentage=self.percentage;
-    data.floatingNumber=self.floatingNumber;
+    data.percentage=[self.percentage copy];
+    data.floatingNumber=[self.floatingNumber copy];
     data.isAnimated=self.isAnimated;
+    data.empty=self.empty;
     
     return data;
 }
@@ -60,7 +58,7 @@
     [aCoder encodeObject:self.labelText forKey:@"labelText"];//dataForNextView
     [aCoder encodeObject:self.floatingNumber forKey:@"floatingNumber"];//dataForNextView
     [aCoder encodeObject:self.percentage forKey:@"percentage"];//percentage
-    //[aCoder encodeBool:self.isAnimated forKey:@"isAnimated"];
+    
     
 
     
@@ -88,7 +86,7 @@
         self.labelText=[aDecoder decodeObjectForKey:@"labelText"];
         self.floatingNumber=[aDecoder decodeObjectForKey:@"floatingNumber"];//floatingNumber
         self.percentage=[aDecoder decodeObjectForKey:@"percentage"];//percentage
-        //self.isAnimated=[aDecoder decodeBoolForKey:@"isAnimated"];
+        
 
         
         
@@ -109,36 +107,6 @@
 +(NSArray*)chartDataDefault
 {
     NSMutableArray* chartsArray= [NSMutableArray array];
-    
-    //doughnut
-//    NChartDataModel* chartData3=[[NChartDataModel alloc] init];
-//    chartData3.chartCaption=@"doughnut";
-//    chartData3.chartAxisXCaption=@"product percentage";
-//    chartData3.chartAxisYCaption=@"Years";
-//    //chartData3.chartType=Dimention2;
-//    chartData3.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-//    
-//    chartData3.chartDataForDrawing= [NSMutableDictionary dictionary];
-//    
-//    //setup rawData3
-//    PrototypeDataModel* rawData5=[[PrototypeDataModel alloc] init];
-//    rawData5.seriesName=@"percentage5";
-//    rawData5.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//    rawData5.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-//    rawData5.seriesType=DOUGHNUT;
-//    rawData5.brushColor=kcLikeBlue;
-//    //setup data4
-//    PrototypeDataModel* rawData6=[[PrototypeDataModel alloc] init];
-//    rawData6.seriesName=@"percentage6";
-//    rawData6.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//    rawData6.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-//    rawData6.seriesType=DOUGHNUT;
-//    rawData6.brushColor=kcLikeRed;
-//    
-//    //additive
-//    [chartData3.chartDataForDrawing setObject:rawData5 forKey:rawData5.seriesName];
-//    [chartData3.chartDataForDrawing setObject:rawData6 forKey:rawData6.seriesName];
-//    chartData3.axisType=ABSOLUTE;
     AddedMap* chartData3=[[AddedMap alloc] init];
     chartData3.color1=kcLikeBlue;
     chartData3.color2=kcLikeRed;
@@ -281,36 +249,6 @@
     [chartData4.chartDataForDrawing setObject:rawData7 forKey:rawData7.seriesName];
     [chartData4.chartDataForDrawing setObject:rawData8 forKey:rawData8.seriesName];
     chartData4.axisType=ABSOLUTE;
-    
-
-//     NChartDataModel* chartData5=[[NChartDataModel alloc] init];
-//     chartData5.chartCaption=@"doughnut";
-//     chartData5.chartAxisXCaption=@"product percentage";
-//     chartData5.chartAxisYCaption=@"Years";
-//     //chartData3.chartType=Dimention2;
-//     chartData5.chartAxisYTicksValues=[NSArray arrayWithObjects:@"2000",@"2001",@"2002",@"2003",nil];
-//     
-//     chartData5.chartDataForDrawing= [NSMutableDictionary dictionary];
-//     
-//     //setup rawData3
-//     PrototypeDataModel* rawData9=[[PrototypeDataModel alloc] init];
-//     rawData9.seriesName=@"percentage5";
-//     rawData9.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//     rawData9.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.21],nil];
-//     rawData9.seriesType=DOUGHNUT;
-//     rawData9.brushColor=kcLikeBlue;
-//     //setup data4
-//     PrototypeDataModel* rawData10=[[PrototypeDataModel alloc] init];
-//     rawData10.seriesName=@"percentage6";
-//     rawData10.chartAxisXValues=[NSArray arrayWithObjects:[NSNumber numberWithInt:2000],nil];//in this case, this data seems useless
-//     rawData10.chartAxisYValues=[NSArray arrayWithObjects:[NSNumber numberWithFloat:0.35],nil];
-//     rawData10.seriesType=DOUGHNUT;
-//     rawData10.brushColor=kcLikeRed;
-//     
-//     //additive
-//     [chartData5.chartDataForDrawing setObject:rawData9 forKey:rawData9.seriesName];
-//     [chartData5.chartDataForDrawing setObject:rawData10 forKey:rawData10.seriesName];
-//     chartData5.axisType=ABSOLUTE;
      AddedMap* chartData5=[[AddedMap alloc] init];
      chartData5.color2=kcLikeRed;
      chartData5.color1=kcLikeBlue;
@@ -494,7 +432,7 @@
     [aCoder encodeObject:self.color1 forKey:@"color1"];
     [aCoder encodeObject:self.color2 forKey:@"color2"];
     [aCoder encodeObject:self.percentage forKey:@"percentage"];
-    [aCoder encodeObject:self.percentage forKey:@"floatingNumber"];
+    [aCoder encodeObject:self.floatingNumber forKey:@"floatingNumber"];
     
     
     

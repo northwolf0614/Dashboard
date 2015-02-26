@@ -8,7 +8,6 @@
 
 #import "DetailChartViewController.h"
 #import "Definations.h"
-#import "SliderCell.h"
 #import "SwitchCell.h"
 #import "ChartDataManager.h"
 
