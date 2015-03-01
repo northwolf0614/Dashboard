@@ -14,6 +14,7 @@
 #import "AxisTickValue.h"
 #import "AxisValue.h"
 #import "Serie.h"
+#import "Prediction.h"
 
 @interface ChartDataManager()
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -35,38 +36,7 @@
         return ;
     }
     
-//    NSFileManager* manager=[NSFileManager defaultManager];
-//    if (chartData==nil)
-//    {
-//        if (![manager fileExistsAtPath:file])
-//        {
-//            [manager createFileAtPath:file contents:nil attributes:nil];
-//
-//        }
-//
-//        return;
-//    }
-//    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-//    NSMutableArray* chartNames=[NSMutableArray array];
-//
-//    int i=0;//
-//    for (NChartDataModel* dataChart in chartData)
-//    {
-//        
-//        if ([dataChart isKindOfClass:[NChartDataModel class]])
-//        {
-//            [chartNames addObject:[NSString stringWithFormat:@"%d",i]];
-//        }
-//        ++i;//
-//    }
-//    [userDefault setObject:chartNames forKey:[[file stringByDeletingPathExtension] lastPathComponent]];
-//    
-//    [userDefault synchronize];
 
-//    if (chartData==nil) {
-//        return ;
-//    }
-    //else
     {
 
         for (NChartDataModel* chart in chartData) {
@@ -604,9 +574,6 @@
         [self addAxisValues:serieData.chartAxisZValues serie:serie valueType:ZAXISVALUE context:context];
         [mainMap addSeriesObject:serie];
         
-        
-        
-        
     }
 }
 
@@ -616,8 +583,6 @@
     //if (chartData!=nil)
     {
         NSManagedObjectContext *context = [self managedObjectContext];
-        //[serie setValue:[NSNumber numberWithInteger:serieData.seriesType] forKey:@"seriesType"];
-        
         MainMap *mainMap = [NSEntityDescription insertNewObjectForEntityForName:@"MainMap" inManagedObjectContext:context];
         [mainMap setValue:[NSNumber numberWithInteger:chartData.axisType] forKey:@"axisType"];
         [mainMap setValue:chartData.chartAxisXCaption forKey:@"chartAxisXCaption"];
@@ -646,6 +611,25 @@
         }
         [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
         [self addSerieAxisValues:chartData.chartDataForDrawing map:mainMap context:context];
+        if (chartData.prediction!=nil)
+        {
+            for (ChartPrediction* p in chartData.prediction) {
+                Prediction *prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
+                [prediction setValue:p.multiplier1 forKey:@"multiplier1"];
+                [prediction setValue:p.multiplier2 forKey:@"multiplier2"];
+                [prediction setValue:p.base forKey:@"base"];
+                [prediction setValue:p.key forKey:@"key"];
+                [prediction setValue:chartData forKey:@"mainMapData"];
+                
+                [mainMap addPredictionObject:prediction];
+                
+
+            }
+            
+            
+            
+            
+        }
         
         NSError* error;
         if(![context save:&error])
@@ -679,23 +663,6 @@
     NSMutableArray* chartDataArray=[NSMutableArray array];
     if (fetchedObjects.count>0)
     {
-        /*
-         @interface NChartDataModel : NSObject<NSCoding,NSCopying>
-         
-        
-         
-        
-         
-         
-         //not used
-         //key-value: prototypeDataModel.seriesname-prototypeDataModel instance
-         @property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
-         //@property(nonatomic,strong) NChartDataModel* dataForNextView;
-         
-         
-        
-         
-        */
         
         for (MainMap *info in fetchedObjects)
         {
@@ -720,9 +687,21 @@
                 addedMapData.floatingNumber=[plusMap valueForKey:@"floatingNumber"];
                 chartData.dataForNextView=addedMapData;
             }
-                
             
-            
+            NSSet* predictionSet=[info valueForKey:@"prediction"];
+            if (predictionSet!=nil&&[predictionSet isKindOfClass:[NSSet class]]&&predictionSet.count>0)
+            {
+                chartData.prediction=[NSMutableSet set];
+                for (NSObject* o in predictionSet )
+                {
+                    ChartPrediction* chartPredictionData=[[ChartPrediction alloc] init];
+                    chartPredictionData.multiplier1=[o valueForKey:@"multiplier1"];
+                    chartPredictionData.multiplier2=[o valueForKey:@"multiplier2"];
+                    chartPredictionData.base=[o valueForKey:@"base"];
+                    chartPredictionData.key=[o valueForKey:@"key"];
+                    [chartData.prediction addObject:chartPredictionData];
+                }
+            }
             NSSet* axisTickValues=[info valueForKey:@"chartAxisTickValues"];
             chartData.chartAxisXTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:XAXISVALUE];
             chartData.chartAxisYTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:YAXISVALUE];

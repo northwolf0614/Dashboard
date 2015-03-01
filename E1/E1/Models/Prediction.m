@@ -1,21 +1,21 @@
 //
-//  PlusMap.m
+//  Prediction.m
 //  E1
 //
 //  Created by Jack Lin on 1/03/2015.
 //  Copyright (c) 2015 EY. All rights reserved.
 //
 
-#import "PlusMap.h"
+#import "Prediction.h"
 #import "MainMap.h"
 
 
-@implementation PlusMap
+@implementation Prediction
 
-@dynamic color1;
-@dynamic color2;
-@dynamic finalPercentage;
-@dynamic floatingNumber;
+@dynamic base;
+@dynamic multiplier1;
+@dynamic multiplier2;
+@dynamic key;
 @dynamic mainMapData;
 
 @end

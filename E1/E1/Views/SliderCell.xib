@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -21,7 +22,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="MAr-hD-bQM">
-                        <rect key="frame" x="131" y="7" width="430" height="24.5"/>
+                        <rect key="frame" x="357" y="7" width="204" height="24.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="6r8-0W-Qan"/>
+                        </constraints>
                         <connections>
                             <action selector="yearChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="TZE-Fu-meT"/>
                         </connections>
@@ -29,7 +33,6 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="MAr-hD-bQM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="0lf-Lk-UrC"/>
-                    <constraint firstItem="MAr-hD-bQM" firstAttribute="leading" secondItem="5Me-q7-Jp2" secondAttribute="trailing" constant="71" id="7fD-Nh-3ys"/>
                     <constraint firstAttribute="bottom" secondItem="5Me-q7-Jp2" secondAttribute="bottom" constant="12" id="88g-O6-xZz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MAr-hD-bQM" secondAttribute="trailing" constant="13" id="9QZ-UG-GF6"/>
                     <constraint firstItem="5Me-q7-Jp2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="9uF-s2-0b8"/>

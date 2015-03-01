@@ -2,14 +2,14 @@
 //  MainMap.h
 //  E1
 //
-//  Created by Jack Lin on 16/02/2015.
+//  Created by Jack Lin on 1/03/2015.
 //  Copyright (c) 2015 EY. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class AxisTickValue, PlusMap, Serie;
+@class AxisTickValue, PlusMap, Prediction, Serie;
 
 @interface MainMap : NSManagedObject
 
@@ -23,9 +23,9 @@
 @property (nonatomic, retain) NSString * labelText;
 @property (nonatomic, retain) NSString * pageName;
 @property (nonatomic, retain) NSNumber * percentage;
-@property (nonatomic, retain) NSNumber * empty;
 @property (nonatomic, retain) NSSet *chartAxisTickValues;
 @property (nonatomic, retain) PlusMap *plusMapData;
+@property (nonatomic, retain) NSSet *prediction;
 @property (nonatomic, retain) NSSet *series;
 @end
 
@@ -35,6 +35,11 @@
 - (void)removeChartAxisTickValuesObject:(AxisTickValue *)value;
 - (void)addChartAxisTickValues:(NSSet *)values;
 - (void)removeChartAxisTickValues:(NSSet *)values;
+
+- (void)addPredictionObject:(Prediction *)value;
+- (void)removePredictionObject:(Prediction *)value;
+- (void)addPrediction:(NSSet *)values;
+- (void)removePrediction:(NSSet *)values;
 
 - (void)addSeriesObject:(Serie *)value;
 - (void)removeSeriesObject:(Serie *)value;

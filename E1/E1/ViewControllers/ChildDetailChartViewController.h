@@ -16,5 +16,5 @@
 -(id)initWithDrawingData:(NChartDataModel*)drawingData views:(NSArray*)chartViews isAddedChart:(BOOL)isAdded;
 @property(nonatomic,strong) UIView* contentView;//used when added to the collectionView
 
-
+-(void)showCharts:(BOOL)isAnimated;
 @end

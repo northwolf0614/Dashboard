@@ -102,6 +102,12 @@ extern BOOL isWhiteScheme;
 #define kcCellHeight 365
 
 #define kcOffsetBuffer 100
+#define kcPredicitonNum 3
+
+#define kcPredictionBaseName @"Base:"
+#define kcPredictionM1Name @"Mult1:"
+#define kcPredictionM2Name @"Mult2:"
+
 
 
 

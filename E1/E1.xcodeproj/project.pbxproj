@@ -38,6 +38,14 @@
 		E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7732FC61A04B8D3002164CB /* GeneralNChartViewController.m */; };
 		E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */ = {isa = PBXBuildFile; fileRef = E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */; };
 		E78256D519F88461005E42C1 /* ClaimModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E78256D419F88461005E42C1 /* ClaimModel.m */; };
+		E78B79BA1AA3014200949871 /* PlusMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79B91AA3014200949871 /* PlusMap.m */; };
+		E78B79BD1AA3014200949871 /* AxisTickValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79BC1AA3014200949871 /* AxisTickValue.m */; };
+		E78B79C01AA3014200949871 /* MainMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79BF1AA3014200949871 /* MainMap.m */; };
+		E78B79C31AA3014200949871 /* Prediction.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79C21AA3014200949871 /* Prediction.m */; };
+		E78B79C61AA3014200949871 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79C51AA3014200949871 /* Serie.m */; };
+		E78B79C91AA3014200949871 /* AxisValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79C81AA3014200949871 /* AxisValue.m */; };
+		E78B79CD1AA30A9500949871 /* PredictionCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E78B79CB1AA30A9500949871 /* PredictionCellTableViewCell.m */; };
+		E78B79CE1AA30A9500949871 /* PredictionCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E78B79CC1AA30A9500949871 /* PredictionCellTableViewCell.xib */; };
 		E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E7938CFE1A1D65D300038CE4 /* ProgressBar.m */; };
 		E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E79531E31A76F39600B5CB40 /* NChartViewCell.m */; };
 		E79531E71A76F6E200B5CB40 /* SingleChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E79531E61A76F6E200B5CB40 /* SingleChartView.m */; };
@@ -63,6 +71,8 @@
 		E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A2549C1A15720100568E65 /* PopAnimation.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7A666ED1A4D44EA00D1E788 /* TLSpringFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A666EC1A4D44EA00D1E788 /* TLSpringFlowLayout.m */; };
+		E7C09F5D1AA0218800B526F8 /* PredictionConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C09F5B1AA0218800B526F8 /* PredictionConfigViewController.m */; };
+		E7C09F5E1AA0218800B526F8 /* PredictionConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C09F5C1AA0218800B526F8 /* PredictionConfigViewController.xib */; };
 		E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */; };
 		E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226F1A22E47500C9CAEE /* GeneralChartView.m */; };
 		E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */; };
@@ -72,11 +82,6 @@
 		E7C222A81A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */; };
 		E7C4364A1A6F655C00FB34CE /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C436491A6F655C00FB34CE /* CollectionViewCell.m */; };
 		E7C4364D1A6F6C6E00FB34CE /* GerneralChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C4364C1A6F6C6E00FB34CE /* GerneralChartViewController.m */; };
-		E7D39A2E1A91677A00037841 /* Serie.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A2D1A91677A00037841 /* Serie.m */; };
-		E7D39A311A91677A00037841 /* MainMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A301A91677A00037841 /* MainMap.m */; };
-		E7D39A341A91677A00037841 /* PlusMap.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A331A91677A00037841 /* PlusMap.m */; };
-		E7D39A371A91677A00037841 /* AxisTickValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A361A91677A00037841 /* AxisTickValue.m */; };
-		E7D39A3A1A91677A00037841 /* AxisValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E7D39A391A91677A00037841 /* AxisValue.m */; };
 		E7E092361A6F6294006A8752 /* ChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E0922F1A6F6294006A8752 /* ChartView.m */; };
 		E7E092371A6F6294006A8752 /* OneViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E092311A6F6294006A8752 /* OneViewCell.m */; };
 		E7E092381A6F6294006A8752 /* Progress.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E092331A6F6294006A8752 /* Progress.m */; };
@@ -145,6 +150,21 @@
 		E7760E9019F711E500AFFC4B /* CATransform3DPerspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CATransform3DPerspect.m; sourceTree = "<group>"; };
 		E78256D319F88461005E42C1 /* ClaimModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClaimModel.h; sourceTree = "<group>"; };
 		E78256D419F88461005E42C1 /* ClaimModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClaimModel.m; sourceTree = "<group>"; };
+		E78B79B81AA3014200949871 /* PlusMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlusMap.h; sourceTree = "<group>"; };
+		E78B79B91AA3014200949871 /* PlusMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlusMap.m; sourceTree = "<group>"; };
+		E78B79BB1AA3014200949871 /* AxisTickValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisTickValue.h; sourceTree = "<group>"; };
+		E78B79BC1AA3014200949871 /* AxisTickValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisTickValue.m; sourceTree = "<group>"; };
+		E78B79BE1AA3014200949871 /* MainMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMap.h; sourceTree = "<group>"; };
+		E78B79BF1AA3014200949871 /* MainMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMap.m; sourceTree = "<group>"; };
+		E78B79C11AA3014200949871 /* Prediction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prediction.h; sourceTree = "<group>"; };
+		E78B79C21AA3014200949871 /* Prediction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prediction.m; sourceTree = "<group>"; };
+		E78B79C41AA3014200949871 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
+		E78B79C51AA3014200949871 /* Serie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serie.m; sourceTree = "<group>"; };
+		E78B79C71AA3014200949871 /* AxisValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisValue.h; sourceTree = "<group>"; };
+		E78B79C81AA3014200949871 /* AxisValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisValue.m; sourceTree = "<group>"; };
+		E78B79CA1AA30A9500949871 /* PredictionCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredictionCellTableViewCell.h; sourceTree = "<group>"; };
+		E78B79CB1AA30A9500949871 /* PredictionCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredictionCellTableViewCell.m; sourceTree = "<group>"; };
+		E78B79CC1AA30A9500949871 /* PredictionCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PredictionCellTableViewCell.xib; sourceTree = "<group>"; };
 		E7938CFD1A1D65D300038CE4 /* ProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressBar.h; sourceTree = "<group>"; };
 		E7938CFE1A1D65D300038CE4 /* ProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressBar.m; sourceTree = "<group>"; };
 		E79531E21A76F39600B5CB40 /* NChartViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartViewCell.h; sourceTree = "<group>"; };
@@ -189,6 +209,9 @@
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
 		E7A666EB1A4D44EA00D1E788 /* TLSpringFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSpringFlowLayout.h; sourceTree = "<group>"; };
 		E7A666EC1A4D44EA00D1E788 /* TLSpringFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSpringFlowLayout.m; sourceTree = "<group>"; };
+		E7C09F5A1AA0218800B526F8 /* PredictionConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredictionConfigViewController.h; sourceTree = "<group>"; };
+		E7C09F5B1AA0218800B526F8 /* PredictionConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredictionConfigViewController.m; sourceTree = "<group>"; };
+		E7C09F5C1AA0218800B526F8 /* PredictionConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PredictionConfigViewController.xib; sourceTree = "<group>"; };
 		E7C2226B1A22DBC100C9CAEE /* ProgressColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressColumn.h; sourceTree = "<group>"; };
 		E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressColumn.m; sourceTree = "<group>"; };
 		E7C2226E1A22E47500C9CAEE /* GeneralChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralChartView.h; path = 3DPerspect/GeneralChartView.h; sourceTree = "<group>"; };
@@ -206,16 +229,6 @@
 		E7C436491A6F655C00FB34CE /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewCell.m; path = E1/Views/CollectionViewCell.m; sourceTree = SOURCE_ROOT; };
 		E7C4364B1A6F6C6E00FB34CE /* GerneralChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GerneralChartViewController.h; sourceTree = "<group>"; };
 		E7C4364C1A6F6C6E00FB34CE /* GerneralChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GerneralChartViewController.m; sourceTree = "<group>"; };
-		E7D39A2C1A91677A00037841 /* Serie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Serie.h; sourceTree = "<group>"; };
-		E7D39A2D1A91677A00037841 /* Serie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Serie.m; sourceTree = "<group>"; };
-		E7D39A2F1A91677A00037841 /* MainMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMap.h; sourceTree = "<group>"; };
-		E7D39A301A91677A00037841 /* MainMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMap.m; sourceTree = "<group>"; };
-		E7D39A321A91677A00037841 /* PlusMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlusMap.h; sourceTree = "<group>"; };
-		E7D39A331A91677A00037841 /* PlusMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlusMap.m; sourceTree = "<group>"; };
-		E7D39A351A91677A00037841 /* AxisTickValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisTickValue.h; sourceTree = "<group>"; };
-		E7D39A361A91677A00037841 /* AxisTickValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisTickValue.m; sourceTree = "<group>"; };
-		E7D39A381A91677A00037841 /* AxisValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxisValue.h; sourceTree = "<group>"; };
-		E7D39A391A91677A00037841 /* AxisValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxisValue.m; sourceTree = "<group>"; };
 		E7E0922E1A6F6294006A8752 /* ChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartView.h; sourceTree = "<group>"; };
 		E7E0922F1A6F6294006A8752 /* ChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartView.m; sourceTree = "<group>"; };
 		E7E092301A6F6294006A8752 /* OneViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewCell.h; sourceTree = "<group>"; };
@@ -270,16 +283,18 @@
 				E78256D419F88461005E42C1 /* ClaimModel.m */,
 				E76FA6361A1A0DE400FA4613 /* ChartDataManager.h */,
 				E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */,
-				E7D39A381A91677A00037841 /* AxisValue.h */,
-				E7D39A391A91677A00037841 /* AxisValue.m */,
-				E7D39A351A91677A00037841 /* AxisTickValue.h */,
-				E7D39A361A91677A00037841 /* AxisTickValue.m */,
-				E7D39A321A91677A00037841 /* PlusMap.h */,
-				E7D39A331A91677A00037841 /* PlusMap.m */,
-				E7D39A2F1A91677A00037841 /* MainMap.h */,
-				E7D39A301A91677A00037841 /* MainMap.m */,
-				E7D39A2C1A91677A00037841 /* Serie.h */,
-				E7D39A2D1A91677A00037841 /* Serie.m */,
+				E78B79C71AA3014200949871 /* AxisValue.h */,
+				E78B79C81AA3014200949871 /* AxisValue.m */,
+				E78B79C41AA3014200949871 /* Serie.h */,
+				E78B79C51AA3014200949871 /* Serie.m */,
+				E78B79C11AA3014200949871 /* Prediction.h */,
+				E78B79C21AA3014200949871 /* Prediction.m */,
+				E78B79BE1AA3014200949871 /* MainMap.h */,
+				E78B79BF1AA3014200949871 /* MainMap.m */,
+				E78B79BB1AA3014200949871 /* AxisTickValue.h */,
+				E78B79BC1AA3014200949871 /* AxisTickValue.m */,
+				E78B79B81AA3014200949871 /* PlusMap.h */,
+				E78B79B91AA3014200949871 /* PlusMap.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +352,9 @@
 				E7C222A11A26856A00C9CAEE /* GeneralCollectionViewCell.m */,
 				E7C222A71A26A2BD00C9CAEE /* EmptyCollectionViewCell.xib */,
 				E79531E81A76F7E600B5CB40 /* AbstractNChartViewDelegate.h */,
+				E78B79CA1AA30A9500949871 /* PredictionCellTableViewCell.h */,
+				E78B79CB1AA30A9500949871 /* PredictionCellTableViewCell.m */,
+				E78B79CC1AA30A9500949871 /* PredictionCellTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -487,6 +505,9 @@
 				E772CDD71A1D7D000034E553 /* SplitViewController.m */,
 				E7C2227F1A25A1C600C9CAEE /* DashBoardViewController.h */,
 				E7C222801A25A1C600C9CAEE /* DashBoardViewController.m */,
+				E7C09F5A1AA0218800B526F8 /* PredictionConfigViewController.h */,
+				E7C09F5B1AA0218800B526F8 /* PredictionConfigViewController.m */,
+				E7C09F5C1AA0218800B526F8 /* PredictionConfigViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -576,7 +597,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E78B79CE1AA30A9500949871 /* PredictionCellTableViewCell.xib in Resources */,
 				E79675811A43C6F100482C92 /* StartupViewController.xib in Resources */,
+				E7C09F5E1AA0218800B526F8 /* PredictionConfigViewController.xib in Resources */,
 				E79BCA511A9C44BC00335465 /* DetailViewController.xib in Resources */,
 				E796756E1A43C6BF00482C92 /* PageTableViewController.xib in Resources */,
 				E79675861A43C78E00482C92 /* SwitchCell.xib in Resources */,
@@ -607,15 +630,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E79531E71A76F6E200B5CB40 /* SingleChartView.m in Sources */,
-				E7D39A341A91677A00037841 /* PlusMap.m in Sources */,
+				E78B79BA1AA3014200949871 /* PlusMap.m in Sources */,
 				E772A4881A898CF800110CF7 /* Model.xcdatamodeld in Sources */,
 				E79675801A43C6F100482C92 /* StartupViewController.m in Sources */,
 				E7711AF81A0790280096650B /* NChartDataModel.m in Sources */,
 				E796757C1A43C6F100482C92 /* AnimatedTransitioningManager.m in Sources */,
+				E78B79C91AA3014200949871 /* AxisValue.m in Sources */,
 				E7A666ED1A4D44EA00D1E788 /* TLSpringFlowLayout.m in Sources */,
 				E79BCA501A9C44BC00335465 /* DetailViewController.m in Sources */,
+				E78B79C61AA3014200949871 /* Serie.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
-				E7D39A311A91677A00037841 /* MainMap.m in Sources */,
 				E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */,
 				E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */,
 				E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */,
@@ -625,16 +649,18 @@
 				E7E092381A6F6294006A8752 /* Progress.m in Sources */,
 				E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */,
 				E7C4364A1A6F655C00FB34CE /* CollectionViewCell.m in Sources */,
-				E7D39A3A1A91677A00037841 /* AxisValue.m in Sources */,
+				E78B79CD1AA30A9500949871 /* PredictionCellTableViewCell.m in Sources */,
 				E78256D519F88461005E42C1 /* ClaimModel.m in Sources */,
 				E7E092371A6F6294006A8752 /* OneViewCell.m in Sources */,
 				E796758C1A43CAA300482C92 /* MainWindow.m in Sources */,
 				E7C2229C1A2684C100C9CAEE /* AbstractCollectionViewCell.m in Sources */,
 				E796757F1A43C6F100482C92 /* OutlinePresentationViewController.m in Sources */,
 				090FB6ED19F5DA6A008F437F /* StatisticsModel.m in Sources */,
+				E78B79C31AA3014200949871 /* Prediction.m in Sources */,
 				090FB6EE19F5DA6A008F437F /* HTTPService.m in Sources */,
-				E7D39A371A91677A00037841 /* AxisTickValue.m in Sources */,
+				E78B79BD1AA3014200949871 /* AxisTickValue.m in Sources */,
 				E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */,
+				E7C09F5D1AA0218800B526F8 /* PredictionConfigViewController.m in Sources */,
 				E7E092391A6F6294006A8752 /* TwoViewCell.m in Sources */,
 				E79675891A43C7F800482C92 /* LoginPresentationController.m in Sources */,
 				E7760E9119F711E500AFFC4B /* CATransform3DPerspect.m in Sources */,
@@ -648,9 +674,9 @@
 				E79675901A43CD6800482C92 /* SliderCell.m in Sources */,
 				09B0B26F19F5D99A008DCE56 /* AppDelegate.m in Sources */,
 				E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */,
-				E7D39A2E1A91677A00037841 /* Serie.m in Sources */,
 				E7C2229F1A26852B00C9CAEE /* EmptyCollectionViewCell.m in Sources */,
 				E796757B1A43C6F100482C92 /* AlertController.m in Sources */,
+				E78B79C01AA3014200949871 /* MainMap.m in Sources */,
 				E772CDD81A1D7D000034E553 /* SplitViewController.m in Sources */,
 				E79BCA4F1A9C44BC00335465 /* ChildDetailChartViewController.m in Sources */,
 				E7EC7AD21A0D89DF00A989A4 /* DoubleNChartWithLabelViewController.m in Sources */,

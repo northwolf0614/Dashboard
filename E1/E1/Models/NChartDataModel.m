@@ -457,3 +457,47 @@
 
 @end
 
+@implementation ChartPrediction
+
+#pragma <NSCopying>
+-(id)copyWithZone:(NSZone *)zone
+{
+    ChartPrediction* data=[[ChartPrediction allocWithZone:zone] init];
+    data.base= [self.base copy];
+    data.multiplier1=[self.multiplier1 copy];
+    data.multiplier2= [self.multiplier2 copy];
+    data.key= [self.key copy];
+
+    return data;
+    
+}
+#pragma <NSCoding>
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.base forKey:@"base"];
+    [aCoder encodeObject:self.multiplier1 forKey:@"multiplier1"];
+    [aCoder encodeObject:self.multiplier2 forKey:@"multiplier2"];
+    [aCoder encodeObject:self.key forKey:@"key"];
+    
+    
+    
+}
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self=[super init])
+    {
+        self.multiplier2=[aDecoder decodeObjectForKey:@"multiplier2"];
+        self.multiplier1=[aDecoder decodeObjectForKey:@"multiplier1"];
+        self.base=[aDecoder decodeObjectForKey:@"base"];
+        self.key=[aDecoder decodeObjectForKey:@"key"];
+        
+        
+        
+        
+        
+    }
+    return self;
+}
+
+@end
+

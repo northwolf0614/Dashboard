@@ -16,6 +16,8 @@
 #import "OneViewCell.h"
 #import "TwoViewCell.h"
 #import "ChildDetailChartViewController.h"
+#import "PredictionConfigViewController.h"
+#import "PredictionCellTableViewCell.h"
 
 
 @interface DetailViewController ()
@@ -27,9 +29,16 @@
 @property(nonatomic,strong) NChartDataModel* chartDataBack;
 @property(nonatomic,assign) BOOL isAdded;
 
-@property(nonatomic,strong) UIView* coverView;
+//@property(nonatomic,strong) UIView* coverView;
 @property(nonatomic,strong) UICollectionView* collectionView;
 @property(nonatomic,strong) UICollectionViewFlowLayout* flowLayout;
+@property(nonatomic,strong) NSArray* sectionNames;
+@property(nonatomic,assign) float predictionViewRate;
+@property(nonatomic,strong) UIView* predictionView;
+@property(nonatomic,assign) unsigned int base;
+@property(nonatomic,assign) float multiplier1;
+@property(nonatomic,assign) float multiplier2;
+@property(nonatomic,assign) float cellHeightRate;
 @end
 
 @implementation DetailViewController
@@ -48,6 +57,7 @@
             self.dataForNChart=drawingData;
         }
         self.isAdded=isAdded;
+        self.predictionViewRate=0.1f;
         
     }
     return self;
@@ -80,6 +90,7 @@
     self.configView.delegate=self;
     [self.configView registerNib:[UINib nibWithNibName:NSStringFromClass([SwitchCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SwitchCell class])];
     [self.configView registerNib:[UINib nibWithNibName:NSStringFromClass([SliderCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SliderCell class])];
+    [self.configView registerNib:[UINib nibWithNibName:NSStringFromClass([PredictionCellTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([PredictionCellTableViewCell class])];
     [self.configView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"configTableViewCell"];
     self.configView.backgroundColor=kcdetailViewConrtollerTableViewBackColor;
     self.configView.bounces=NO;
@@ -109,6 +120,7 @@
     
     [self setupCollectionView];
     [self setupTableView];
+    [self setupPredictionView];
 
 
 }
@@ -119,16 +131,27 @@
     
     
 }
+-(void)setupPredictionView
+{
+    PredictionConfigViewController* pvc=[[PredictionConfigViewController alloc] init];
+    pvc.delegate=self;
+    self.predictionView=pvc.view;
+    [self.chartViewContainer addSubview:pvc.view];
+    [self addChildViewController:pvc];
+    [pvc didMoveToParentViewController:self];
+}
 -(void)initialization
 {
     self.chartTypeSeriesInfo=@{@"BAR":@[@"In call",@"Inactive"],@"COLUMN":@[@"Closed",@"Opened",@"Active"],@"RADAR":@[@"Converted",@"Quoted"],@"AREA":@[@"Bind",@"Quoted",@"EStimate"]};
-    if (self.dataForNChart!=nil) {
+    NSArray* sectionNames=@[@"Years",@"Serial Type",@"Serie Names",@"Rating Config"];
+    self.sectionNames=[NSMutableArray arrayWithArray:sectionNames];
+    if (self.dataForNChart!=nil)
+    {
         self.currentYear=self.dataForNChart.labelText;
     }
     else
         self.currentYear=@"2014";
-    
-    
+    _cellHeightRate=0.9;
 }
 -(BOOL)shouldBeAddToPreviousPage
 {
@@ -213,13 +236,6 @@
     [super loadView];
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([DetailViewController class]) owner:self options:nil];
     self.view = [nibs objectAtIndex:0];
-    
-    NSArray *nibs1 = [[NSBundle mainBundle] loadNibNamed:@"coverView" owner:self options:nil];
-    self.coverView = [nibs1 objectAtIndex:0];
-    self.coverView.backgroundColor=[UIColor clearColor];
-    
-    
-    
 }
 -(void)viewDidLayoutSubviews
 {
@@ -229,19 +245,39 @@
     NSUInteger height= self.chartViewContainer.frame.size.height;
     NSNumber* widthForCollectionView=[NSNumber numberWithInt:((int)((width*2)/3))];
     NSNumber* heightForCollectionView=[NSNumber numberWithInt:((int)(height))];
+    NSNumber* widthForPredictionView=[NSNumber numberWithInt:((int)((width)/3))];
+    NSNumber* heightForPredictionView=[NSNumber numberWithInt:((int)(height*self.predictionViewRate))];
+    NSNumber* heightForTableView=[NSNumber numberWithInt:((int)(height*(1-self.predictionViewRate)))];
+    NSNumber* widthForTableView=[NSNumber numberWithInt:((int)((width)/3))];
+    
+    
+    
     NSUInteger cellWidth=[widthForCollectionView integerValue]-2*sizebuffer;
-    NSUInteger cellHeight=[heightForCollectionView integerValue]*0.5-2*sizebuffer;
+    NSUInteger cellHeight=[heightForCollectionView integerValue]*_cellHeightRate-2*sizebuffer;
     self.flowLayout.itemSize=CGSizeMake(cellWidth,cellHeight);
     self.flowLayout.sectionInset = UIEdgeInsetsMake(sizebuffer,sizebuffer,sizebuffer,sizebuffer);
     NSArray* constraints=[self.chartViewContainer constraints];
+    NSDictionary* metrics=@{@"widthForCollectionView":widthForCollectionView,@"heightForPredictionView":heightForPredictionView,@"widthForPredictionView":widthForPredictionView,@"heightForTableView":heightForTableView,@"widthForTableview":widthForTableView};
+    NSDictionary* views=@{ @"chartView" : self.collectionView,@"tableView":self.configView,@"predictionView": self.predictionView};
     if ([constraints count]>0)
     {
         [self.chartViewContainer removeConstraints:constraints];
     }
     
-    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView(width)]-0-[tableView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
-    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
-    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
+//    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView(width)]-0-[tableView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
+//    
+//    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
+//    
+//    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView]-0-|" options:0 metrics:@{ @"width" :widthForCollectionView } views:@{ @"chartView" : self.collectionView,@"tableView":self.configView }]];
+    
+
+    
+    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-[tableView(widthForTableview)]-0-|" options:0 metrics:metrics views:views]];
+    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-[predictionView(widthForPredictionView)]-0-|" options:0 metrics:metrics views:views]];
+    
+    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:metrics views:views]];
+    
+    [self.chartViewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableView(heightForTableView)]-0-[predictionView]|" options:0 metrics:metrics views:views]];
     
     [self.chartViewContainer setNeedsUpdateConstraints];
     [self.chartViewContainer updateConstraintsIfNeeded];
@@ -255,10 +291,10 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (self.isAdded) {
-        return 3;
+        return self.sectionNames.count;
     }
     else
-        return 2;
+        return self.sectionNames.count-1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -287,11 +323,18 @@
                 return [[self.chartTypeSeriesInfo objectForKey:@"AREA"] count];
             }
         }
+        if (section==3)
+        {
+            return kcPredicitonNum;
+        }
     }
     else
     {
         if (section==1) {
             return [self.dataForNChart.chartDataForDrawing.allKeys count];
+        }
+        if (section==2) {
+            return kcPredicitonNum;
         }
     }
     return 0;
@@ -337,8 +380,42 @@
     }
     if (indexPath.section==2)
     {
-        cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SwitchCell class])];
-        ((SwitchCell*)cell).seriesName.text=[[self.chartTypeSeriesInfo objectForKey:self.chartType] objectAtIndex:indexPath.row];
+        if (self.isAdded)
+        {
+            cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SwitchCell class])];
+            ((SwitchCell*)cell).seriesName.text=[[self.chartTypeSeriesInfo objectForKey:self.chartType] objectAtIndex:indexPath.row];
+           
+        }
+        else
+        {
+            NSArray* strKeys=@[kcPredictionBaseName,kcPredictionM1Name,kcPredictionM2Name];
+            //NSDictionary* predictionItems=@{kcPredictionBaseName:[NSNumber numberWithFloat:250.0f],kcPredictionM1Name:[NSNumber numberWithFloat:1.0f],kcPredictionM2Name:[NSNumber numberWithFloat:1.0f]};
+            NSDictionary* predictionRanges=@{kcPredictionBaseName:@[[NSNumber numberWithFloat:200.0f],[NSNumber numberWithFloat:300.0f]],kcPredictionM1Name:@[[NSNumber numberWithFloat:0.8f],[NSNumber numberWithFloat:1.2f]],kcPredictionM2Name:@[[NSNumber numberWithFloat:0.8f],[NSNumber numberWithFloat:1.2f]]};
+            
+            NSString* strKey=[strKeys objectAtIndex:indexPath.row];
+            NSString* strName=[strKeys objectAtIndex:indexPath.row];
+            cell= [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PredictionCellTableViewCell class])];
+            ((PredictionCellTableViewCell*)cell).delegate=self;
+            ((PredictionCellTableViewCell*)cell).predictionName.text=strName;
+            ((PredictionCellTableViewCell*)cell).predictionSlide.minimumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:0] floatValue];
+            ((PredictionCellTableViewCell*)cell).predictionSlide.maximumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:1] floatValue];
+            
+        }
+    }
+    if (indexPath.section==3)
+    {
+        NSArray* strKeys=@[kcPredictionBaseName,kcPredictionM1Name,kcPredictionM2Name];
+        //NSDictionary* predictionItems=@{kcPredictionBaseName:[NSNumber numberWithFloat:250.0f],kcPredictionM1Name:[NSNumber numberWithFloat:1.0f],kcPredictionM2Name:[NSNumber numberWithFloat:1.0f]};
+        NSDictionary* predictionRanges=@{kcPredictionBaseName:@[[NSNumber numberWithFloat:200.0f],[NSNumber numberWithFloat:300.0f]],kcPredictionM1Name:@[[NSNumber numberWithFloat:0.8f],[NSNumber numberWithFloat:1.2f]],kcPredictionM2Name:@[[NSNumber numberWithFloat:0.8f],[NSNumber numberWithFloat:1.2f]]};
+        
+        NSString* strKey=[strKeys objectAtIndex:indexPath.row];
+        NSString* strName=[strKeys objectAtIndex:indexPath.row];
+        cell= [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PredictionCellTableViewCell class])];
+        ((PredictionCellTableViewCell*)cell).delegate=self;
+        ((PredictionCellTableViewCell*)cell).predictionName.text=strName;
+        ((PredictionCellTableViewCell*)cell).predictionSlide.minimumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:0] floatValue];
+        ((PredictionCellTableViewCell*)cell).predictionSlide.maximumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:1] floatValue];
+        
     }
     cell.backgroundColor=[UIColor clearColor];
     return cell;
@@ -361,20 +438,32 @@
     if (section==0) {
         return @"Years";
     }
-    if (section==1) {
-        if (self.isAdded) {
-            return @"Seriea Type";
+    if (self.isAdded) {
+        if (section==1) {
+            return @"Series Types";
         }
-        else
-        {
-            return @"Serie Names";
+        if (section==2) {
+            return @"Series Names";
         }
-    }
-    if (section==2) {
-        if (self.isAdded) {
-            return @"Serie Names";
+        if (section==3) {
+            return @"Rating Config";
         }
     }
+    else
+    {
+        if (section==1) {
+            return @"Series Names";
+        }
+        if (section==2) {
+            return @"Rating Config";
+        }
+        
+    }
+    
+    
+    
+    
+    
     return nil;
 }
 
@@ -386,7 +475,7 @@
     
     if (indexPath.section==1&&self.isAdded)
     {
-        self.coverView.hidden=NO;
+        //self.coverView.hidden=NO;
         NChartDataModel* chartData=nil;
         if (cellView.accessoryType == UITableViewCellAccessoryNone)
         {
@@ -431,10 +520,7 @@
 #pragma <SliderDelegate>
 -(void)sliderValueChaged:(NSString*)newValue
 {
-    NSLog(@"this is new value %@",newValue);
-    [UIView animateWithDuration:0.45 animations:^{
-        self.coverView.alpha=0.0f;
-    }];
+    //NSLog(@"this is new value %@",newValue);
     self.dataForNChart.labelText=newValue;
     
     //if (![newValue isEqualToString:self.dataForNChart.labelText])
@@ -551,6 +637,7 @@
 - (void)collectionView:(UICollectionView *)collectionView
        willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [cell setNeedsUpdateConstraints];
     
     NSLog(@"This is willDisplayCell ");
 }
@@ -562,8 +649,68 @@
 {
     return  YES;
 }
+#pragma <PredictionViewDelegate>
+-(void)saveConfig:(UIViewController*)vc
+{
+    self.predictionViewRate=0.22f;
+    [UIView animateWithDuration:0.45 animations:^{
+        [self viewDidLayoutSubviews];
+    }];
+    
 
 
+
+}
+-(void)submitSuccessfully:(UIViewController *)vc
+{
+    self.predictionViewRate=0.1f;
+    [UIView animateWithDuration:0.6 animations:^{
+        [self viewDidLayoutSubviews];
+    }];
+    
+}
+
+
+
+-(void)calculate:(UIViewController*)vc
+{
+    UICollectionViewFlowLayout* f=[[UICollectionViewFlowLayout alloc] init];
+    
+    f.scrollDirection=UICollectionViewScrollDirectionVertical;
+    float cellHeight=self.flowLayout.itemSize.height;
+    float cellWidth=self.flowLayout.itemSize.width;
+    UIEdgeInsets inset=self.flowLayout.sectionInset;
+    f.itemSize=CGSizeMake(cellWidth, cellHeight*0.5);
+    f.sectionInset=inset;
+    DetailViewController* __weak weak_self=self;
+    [self.collectionView setCollectionViewLayout:f animated:YES completion:^(BOOL finished) {
+        
+        [weak_self.collectionView reloadData];
+        for (UIViewController* vc in weak_self.childViewControllers) {
+            if ([vc isKindOfClass:[ChildDetailChartViewController class]]) {
+                if ([vc respondsToSelector:@selector(showCharts:)]) {
+                    [(ChildDetailChartViewController*)vc showCharts:NO];
+                }
+            }
+        }
+    }];
+    
+}
+#pragma <PredictionCellTableViewCellDelegate>
+-(void)baseSlideValueChanged:(unsigned int)newValue
+{
+    self.base=newValue;
+    
+
+}
+-(void)multiplier1SlideValueChanged:(float)newValue
+{
+    self.multiplier1=newValue;
+}
+-(void)multiplier2SlideValueChanged:(float)newValue
+{
+    self.multiplier2=newValue;
+}
 
 
 @end

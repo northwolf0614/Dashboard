@@ -60,6 +60,16 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSNumber * floatingNumber;
 @end
 
+@interface ChartPrediction : NSObject<NSCoding,NSCopying>
+
+@property (nonatomic,strong) NSNumber * base;
+@property (nonatomic,strong) NSNumber * multiplier1;
+@property (nonatomic,strong) NSNumber * multiplier2;
+@property (nonatomic,strong) NSString* key;
+
+
+@end
+
 
 
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
@@ -85,6 +95,8 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSString* labelText;
 @property(nonatomic,strong) NSNumber* percentage;
 @property(nonatomic,strong) NSNumber* floatingNumber;
+//@property(nonatomic,strong) ChartPrediction* prediction;
+@property(nonatomic,strong) NSMutableSet* prediction;
 //not stored permanantly only for programming
 @property(nonatomic,assign) BOOL isAnimated;
 @property(nonatomic,assign) BOOL empty;

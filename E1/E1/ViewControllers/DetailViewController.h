@@ -11,8 +11,10 @@
 #import "AbstractNChartView.h"
 #import "DoubleNChartWithLabelViewController.h"
 #import "SliderCell.h"
+#import "PredictionConfigViewController.h"
+#import "PredictionCellTableViewCell.h"
 
-@interface DetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SliderDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UINavigationBarDelegate>
+@interface DetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SliderDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UINavigationBarDelegate,PredictionViewDelegate,PredictionCellTableViewCellDelegate>
 
 
 -(BOOL)shouldBeAddToPreviousPage;

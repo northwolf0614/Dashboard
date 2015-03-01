@@ -50,9 +50,9 @@
 -(void)updateConstraints
 {
     [super updateConstraints];
-    if (self.didSetupConstraintsTwoViewCell) {
-        return;
-    }
+//    if (self.didSetupConstraintsTwoViewCell) {
+//        return;
+//    }
     
     if ([self isKindOfClass:[TwoViewCell class]])
     {
@@ -69,7 +69,7 @@
         [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
         [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[percentageView(percentageHeight)]-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
         [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(labelHeight)]->=0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel,@"percentageView":self.percentageView}]];
-        self.didSetupConstraintsTwoViewCell=YES;
+        //self.didSetupConstraintsTwoViewCell=YES;
     }
     
 

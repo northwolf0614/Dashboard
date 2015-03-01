@@ -25,6 +25,7 @@
         <attribute name="percentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="chartAxisTickValues" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AxisTickValue" inverseName="mainMapData" inverseEntity="AxisTickValue" syncable="YES"/>
         <relationship name="plusMapData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="PlusMap" inverseName="mainMapData" inverseEntity="PlusMap" syncable="YES"/>
+        <relationship name="prediction" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Prediction" inverseName="mainMapData" inverseEntity="Prediction" syncable="YES"/>
         <relationship name="series" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Serie" inverseName="mainMapData" inverseEntity="Serie" syncable="YES"/>
     </entity>
     <entity name="PlusMap" representedClassName="PlusMap" syncable="YES">
@@ -33,6 +34,13 @@
         <attribute name="finalPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="floatingNumber" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="plusMapData" inverseEntity="MainMap" syncable="YES"/>
+    </entity>
+    <entity name="Prediction" representedClassName="Prediction" syncable="YES">
+        <attribute name="base" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="multiplier1" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="multiplier2" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="prediction" inverseEntity="MainMap" syncable="YES"/>
     </entity>
     <entity name="Serie" representedClassName="Serie" syncable="YES">
         <attribute name="brushColor" optional="YES" attributeType="Transformable" valueTransformerName="ColorTransformer" syncable="YES"/>
@@ -44,8 +52,9 @@
     <elements>
         <element name="AxisTickValue" positionX="-110" positionY="-522" width="128" height="103"/>
         <element name="AxisValue" positionX="70" positionY="-396" width="128" height="103"/>
-        <element name="MainMap" positionX="-486" positionY="-531" width="128" height="238"/>
+        <element name="MainMap" positionX="-486" positionY="-531" width="128" height="253"/>
         <element name="PlusMap" positionX="-110" positionY="-649" width="128" height="120"/>
+        <element name="Prediction" positionX="-180" positionY="-855" width="128" height="118"/>
         <element name="Serie" positionX="-108" positionY="-396" width="128" height="118"/>
     </elements>
 </model>

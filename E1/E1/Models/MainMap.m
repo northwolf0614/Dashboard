@@ -2,13 +2,14 @@
 //  MainMap.m
 //  E1
 //
-//  Created by Jack Lin on 16/02/2015.
+//  Created by Jack Lin on 1/03/2015.
 //  Copyright (c) 2015 EY. All rights reserved.
 //
 
 #import "MainMap.h"
 #import "AxisTickValue.h"
 #import "PlusMap.h"
+#import "Prediction.h"
 #import "Serie.h"
 
 
@@ -24,9 +25,9 @@
 @dynamic labelText;
 @dynamic pageName;
 @dynamic percentage;
-@dynamic empty;
 @dynamic chartAxisTickValues;
 @dynamic plusMapData;
+@dynamic prediction;
 @dynamic series;
 
 @end
