@@ -91,7 +91,7 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
+    [self setupLayers];
     
     [self layoutLabel];
 }
@@ -142,7 +142,7 @@
 
 -(void)setPercent:(CGFloat)percent animated:(BOOL)animated
 {
-    [self setupLayers];
+    //[self setupLayers];
     self.animationLayer.mask=self.maskLayer;
 
     if (animated)
@@ -183,13 +183,10 @@
 -(void)deleteAnimatedProgress
 {
 
-//    [self.maskLayer removeAllAnimations];
-//    self.animationLayer.mask=nil;
-//    [self.progressLayerPlus removeFromSuperlayer];
-//    [self.progressLayer removeFromSuperlayer];
     [self.animationLayer removeFromSuperlayer];//delete the layer, then the layer will disappear
 
 }
+
 -(void)removeFromSuperview
 {
     [self deleteAnimatedProgress];

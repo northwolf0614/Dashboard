@@ -71,7 +71,11 @@
     //nomal procedure
     [self.percentageView showSeries:isAnimated];
     [self.chartView showSeries:isAnimated];
-    //[self.chartViews makeObjectsPerformSelector:@selector(showSeries:)];
+
+    
+    
+    
+    
     
     
     
@@ -84,7 +88,21 @@
 {
     [super viewDidAppear:animated];
     self.view.hidden=YES;
+//    BOOL isAnimated=!self.dataForNChart.isAnimated;
+//    if (isAnimated)
+//    {
+//        [self showCharts:YES];
+//        self.dataForNChart.isAnimated=YES;
+//    }
+//    else
+//        [self showCharts:NO];
+    
     [self showCharts:YES];
+    
+    
+    
+    
+    
 }
 
 

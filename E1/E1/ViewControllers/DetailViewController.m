@@ -686,13 +686,7 @@
     [self.collectionView setCollectionViewLayout:f animated:YES completion:^(BOOL finished) {
         
         [weak_self.collectionView reloadData];
-        for (UIViewController* vc in weak_self.childViewControllers) {
-            if ([vc isKindOfClass:[ChildDetailChartViewController class]]) {
-                if ([vc respondsToSelector:@selector(showCharts:)]) {
-                    [(ChildDetailChartViewController*)vc showCharts:NO];
-                }
-            }
-        }
+
     }];
     
 }

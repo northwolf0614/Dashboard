@@ -56,7 +56,7 @@
     
     if ([self isKindOfClass:[TwoViewCell class]])
     {
-        NSNumber* labelWidth=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.width*0.2];
+        NSNumber* labelWidth=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.2];
         NSNumber* labelHeight=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.2];
         NSNumber* percentageHeight=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.height*0.3];
         NSDictionary* metrics=@{@"labelWidth":labelWidth,@"labelHeight":labelHeight,@"percentageHeight":percentageHeight};

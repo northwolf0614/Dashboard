@@ -79,9 +79,9 @@
     
     
     
-    if (self.didSetupConstraintsOneViewCell) {
-        return;
-    }
+//    if (self.didSetupConstraintsOneViewCell) {
+//        return;
+//    }
     if ([self isKindOfClass:[NChartViewCell class]])
     {
         NSNumber* labelWidth=[NSNumber numberWithInteger:(NSUInteger)self.frame.size.width*0.2];
@@ -100,7 +100,7 @@
         [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[label(labelHeight)]->=0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
         [self.viewContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[chartView]-0-|" options:0 metrics:metrics views:@{ @"chartView" : self.chartView,@"label":self.yearLabel }]];
 
-        self.didSetupConstraintsOneViewCell=YES;
+        //self.didSetupConstraintsOneViewCell=YES;
     }
 }
 
