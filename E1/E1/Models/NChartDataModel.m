@@ -464,8 +464,8 @@
 {
     ChartPrediction* data=[[ChartPrediction allocWithZone:zone] init];
     data.base= [self.base copy];
-    data.multiplier1=[self.multiplier1 copy];
-    data.multiplier2= [self.multiplier2 copy];
+    data.mult1=[self.mult1 copy];
+    data.mult2= [self.mult2 copy];
     data.key= [self.key copy];
 
     return data;
@@ -475,8 +475,8 @@
 -(void) encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.base forKey:@"base"];
-    [aCoder encodeObject:self.multiplier1 forKey:@"multiplier1"];
-    [aCoder encodeObject:self.multiplier2 forKey:@"multiplier2"];
+    [aCoder encodeObject:self.mult1 forKey:@"mult1"];
+    [aCoder encodeObject:self.mult2 forKey:@"mult2"];
     [aCoder encodeObject:self.key forKey:@"key"];
     
     
@@ -486,8 +486,8 @@
 {
     if (self=[super init])
     {
-        self.multiplier2=[aDecoder decodeObjectForKey:@"multiplier2"];
-        self.multiplier1=[aDecoder decodeObjectForKey:@"multiplier1"];
+        self.mult2=[aDecoder decodeObjectForKey:@"mult2"];
+        self.mult1=[aDecoder decodeObjectForKey:@"mult1"];
         self.base=[aDecoder decodeObjectForKey:@"base"];
         self.key=[aDecoder decodeObjectForKey:@"key"];
         

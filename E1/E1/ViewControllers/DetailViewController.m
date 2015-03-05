@@ -28,6 +28,7 @@
 @property(nonatomic,strong) NSString* currentYear;
 @property(nonatomic,strong) NChartDataModel* chartDataBack;
 @property(nonatomic,assign) BOOL isAdded;
+@property(nonatomic,assign) BOOL shouldDynamic;
 
 //@property(nonatomic,strong) UIView* coverView;
 @property(nonatomic,strong) UICollectionView* collectionView;
@@ -39,6 +40,9 @@
 @property(nonatomic,assign) float multiplier1;
 @property(nonatomic,assign) float multiplier2;
 @property(nonatomic,assign) float cellHeightRate;
+@property(nonatomic,assign) NSArray* currentConfigs;
+
+
 @end
 
 @implementation DetailViewController
@@ -57,7 +61,14 @@
             self.dataForNChart=drawingData;
         }
         self.isAdded=isAdded;
-        self.predictionViewRate=0.1f;
+        self.shouldDynamic=isAdded;
+        if (isAdded)
+        {
+            self.predictionViewRate=0.1f;
+        }
+        else
+            self.predictionViewRate=0.22f;
+        
         
     }
     return self;
@@ -133,7 +144,8 @@
 }
 -(void)setupPredictionView
 {
-    PredictionConfigViewController* pvc=[[PredictionConfigViewController alloc] init];
+    //PredictionConfigViewController* pvc=[[PredictionConfigViewController alloc] init];
+    PredictionConfigViewController* pvc=[[PredictionConfigViewController alloc] initWithIndication:self.isAdded data:self.dataForNChart.prediction];
     pvc.delegate=self;
     self.predictionView=pvc.view;
     [self.chartViewContainer addSubview:pvc.view];
@@ -143,7 +155,7 @@
 -(void)initialization
 {
     self.chartTypeSeriesInfo=@{@"BAR":@[@"In call",@"Inactive"],@"COLUMN":@[@"Closed",@"Opened",@"Active"],@"RADAR":@[@"Converted",@"Quoted"],@"AREA":@[@"Bind",@"Quoted",@"EStimate"]};
-    NSArray* sectionNames=@[@"Years",@"Serial Type",@"Serie Names",@"Rating Config"];
+    NSArray* sectionNames=@[@"Years",@"Serial Type",@"Serie Names",@"Motor Rating Config"];
     self.sectionNames=[NSMutableArray arrayWithArray:sectionNames];
     if (self.dataForNChart!=nil)
     {
@@ -153,14 +165,18 @@
         self.currentYear=@"2014";
     _cellHeightRate=0.9;
 }
--(BOOL)shouldBeAddToPreviousPage
+-(RESULT)shouldBeAddToPreviousPage
 {
-    BOOL indicator=YES;
+    RESULT indicator=SHOULD_INSERT;
     NChartDataModel* data=self.dataForNChart;
-    NChartDataModel* dataBack=self.chartDataBack;
-    if (data==nil||!self.isAdded)
+    //NChartDataModel* dataBack=self.chartDataBack;
+    if (data==nil)
     {
-        return NO;
+        return SHOULD_NONE;
+    }
+    if (!self.isAdded)
+    {
+        return SHOULD_UPDATE;
     }
     else
     {
@@ -176,7 +192,7 @@
                         
                         if(((PrototypeDataModel*)[data.chartDataForDrawing objectForKey:key]).chartAxisXValues==nil)
                         {
-                            indicator=NO;
+                            indicator=SHOULD_NONE;
                             break;
                         }
                         break;
@@ -188,7 +204,7 @@
                     {
                         if(((PrototypeDataModel*)[data.chartDataForDrawing objectForKey:key]).chartAxisYValues==nil)
                         {
-                            indicator=NO;
+                            indicator=SHOULD_NONE;
                             break;
                         }
                         break;
@@ -202,13 +218,13 @@
                 
             }
         }
-        else
-        {
-            if (![data.chartDataForDrawing isEqualToDictionary:dataBack.chartDataForDrawing])
-            {
-                return NO;
-            }
-        }
+//        else
+//        {
+//            if (![data.chartDataForDrawing isEqualToDictionary:dataBack.chartDataForDrawing])
+//            {
+//                return NO;
+//            }
+//        }
         
     }
     return indicator;
@@ -241,6 +257,7 @@
 {
     [super viewDidLayoutSubviews];
     NSUInteger sizebuffer=20;
+    
     NSUInteger width= self.chartViewContainer.frame.size.width;
     NSUInteger height= self.chartViewContainer.frame.size.height;
     NSNumber* widthForCollectionView=[NSNumber numberWithInt:((int)((width*2)/3))];
@@ -397,8 +414,23 @@
             cell= [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PredictionCellTableViewCell class])];
             ((PredictionCellTableViewCell*)cell).delegate=self;
             ((PredictionCellTableViewCell*)cell).predictionName.text=strName;
-            ((PredictionCellTableViewCell*)cell).predictionSlide.minimumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:0] floatValue];
+            float minVal=[[[predictionRanges valueForKey:strKey] objectAtIndex:0] floatValue];
+            ((PredictionCellTableViewCell*)cell).predictionSlide.minimumValue=minVal;
             ((PredictionCellTableViewCell*)cell).predictionSlide.maximumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:1] floatValue];
+            if (self.currentConfigs==nil) {
+                ((PredictionCellTableViewCell*)cell).predictionSlide.value=minVal;
+                ((PredictionCellTableViewCell*)cell).predictionValue.text=[NSString stringWithFormat:@"%.2f",minVal];
+            }
+            
+            
+            
+            if (self.currentConfigs!=nil) {
+                float val=[[self.currentConfigs objectAtIndex:indexPath.row] floatValue];
+                ((PredictionCellTableViewCell*)cell).predictionSlide.value=val;
+                ((PredictionCellTableViewCell*)cell).predictionValue.text=[NSString stringWithFormat:@"%.2f",val];
+                
+            }
+            
             
         }
     }
@@ -415,6 +447,11 @@
         ((PredictionCellTableViewCell*)cell).predictionName.text=strName;
         ((PredictionCellTableViewCell*)cell).predictionSlide.minimumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:0] floatValue];
         ((PredictionCellTableViewCell*)cell).predictionSlide.maximumValue=[[[predictionRanges valueForKey:strKey] objectAtIndex:1] floatValue];
+        
+        
+        
+        
+        
         
     }
     cell.backgroundColor=[UIColor clearColor];
@@ -446,7 +483,7 @@
             return @"Series Names";
         }
         if (section==3) {
-            return @"Rating Config";
+            return @"Motor Rating Config";
         }
     }
     else
@@ -455,7 +492,7 @@
             return @"Series Names";
         }
         if (section==2) {
-            return @"Rating Config";
+            return @"Motor Rating Config";
         }
         
     }
@@ -525,7 +562,7 @@
     
     //if (![newValue isEqualToString:self.dataForNChart.labelText])
     {
-        self.isAdded=YES;
+        self.shouldDynamic=YES;
     }
     
     
@@ -573,7 +610,7 @@
             
             cell=(TwoViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([TwoViewCell class]) forIndexPath:indexPath];
             ((TwoViewCell*)cell).yearLabel.text=chartData.labelText;
-            ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,nil] isAddedChart:self.isAdded ];
+            ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((TwoViewCell*)cell).chartView,((TwoViewCell*)cell).percentageView,nil] isAddedChart:self.shouldDynamic ];
                                                                 
             [((TwoViewCell*)cell).chartView setupDelegate:itemViewController];
             ((TwoViewCell*)cell).percentageView.delegate=itemViewController;
@@ -590,7 +627,7 @@
                 cell=(OneViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([OneViewCell class]) forIndexPath:indexPath];
                 ((OneViewCell*)cell).yearLabel.text=chartData.labelText;
                 
-                ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,nil] isAddedChart:self.isAdded ];
+                ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((OneViewCell*)cell).chartView,nil] isAddedChart:self.shouldDynamic ];
                 [((OneViewCell*)cell).chartView setupDelegate:itemViewController];
                 
                 [self addChildViewController:itemViewController];
@@ -602,7 +639,7 @@
                 cell=(NChartViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([NChartViewCell class]) forIndexPath:indexPath];
                 ((NChartViewCell*)cell).yearLabel.text=chartData.labelText;
                 
-                ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,nil] isAddedChart:self.isAdded ];
+                ChildDetailChartViewController* itemViewController=[[ChildDetailChartViewController alloc] initWithDrawingData:chartData views:[NSArray arrayWithObjects:((NChartViewCell*)cell).chartView,nil] isAddedChart:self.shouldDynamic ];
                 [((NChartViewCell*)cell).chartView setupDelegate:itemViewController];
                 [self addChildViewController:itemViewController];
                 [((NChartViewCell*)cell).contentView addSubview:itemViewController.view];
@@ -663,10 +700,42 @@
 }
 -(void)submitSuccessfully:(UIViewController *)vc
 {
-    self.predictionViewRate=0.1f;
-    [UIView animateWithDuration:0.6 animations:^{
-        [self viewDidLayoutSubviews];
-    }];
+    if (self.isAdded) {
+        self.predictionViewRate=0.1f;
+        [UIView animateWithDuration:0.6 animations:^{
+            [self viewDidLayoutSubviews];
+        }];
+    }
+    
+    if ([vc isKindOfClass:[PredictionConfigViewController class]])
+    {
+        for (UISwitch* s in ((PredictionConfigViewController*)vc).switchArray )
+        {
+            if (s.enabled&&s.on) {
+                //NSString* strKey=[NSString stringWithFormat:@"%ld",(long)s.tag];
+                NSNumber* key=[NSNumber numberWithInteger:s.tag];
+                if(self.dataForNChart.prediction==nil)
+                    self.dataForNChart.prediction=[NSMutableSet set];
+                
+                ChartPrediction* cp=[[ChartPrediction alloc] init];
+                cp.base=[NSNumber numberWithInt:self.base];
+                cp.mult2=[NSNumber numberWithFloat:self.multiplier2];
+                cp.mult1=[NSNumber numberWithFloat:self.multiplier1];
+                cp.key=key;
+                
+                [self.dataForNChart.prediction addObject:cp];
+                
+                
+                
+                    
+            }
+        }
+    }
+    
+    
+    
+    
+    
     
 }
 
@@ -682,13 +751,29 @@
     UIEdgeInsets inset=self.flowLayout.sectionInset;
     f.itemSize=CGSizeMake(cellWidth, cellHeight*0.5);
     f.sectionInset=inset;
-    DetailViewController* __weak weak_self=self;
+    //DetailViewController* __weak weak_self=self;
     [self.collectionView setCollectionViewLayout:f animated:YES completion:^(BOOL finished) {
         
-        [weak_self.collectionView reloadData];
+        //[weak_self.collectionView reloadData];
 
     }];
     
+}
+-(void)switch1On:(UIViewController*)vc config:(NSArray*)configData
+{
+    if ([self.childViewControllers containsObject:vc]) {
+        self.currentConfigs=configData;
+    }
+    [self.configView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+    
+}
+-(void)switch2On:(UIViewController*)vc config:(NSArray*)configData
+{
+     if ([self.childViewControllers containsObject:vc])
+         self.currentConfigs=configData;
+    
+    [self.configView reloadSections:[NSIndexSet indexSetWithIndex:2] withRowAnimation:UITableViewRowAnimationNone ];
+
 }
 #pragma <PredictionCellTableViewCellDelegate>
 -(void)baseSlideValueChanged:(unsigned int)newValue

@@ -37,7 +37,7 @@
     </entity>
     <entity name="Prediction" representedClassName="Prediction" syncable="YES">
         <attribute name="base" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="multiplier1" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="multiplier2" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="mainMapData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainMap" inverseName="prediction" inverseEntity="MainMap" syncable="YES"/>

@@ -37,6 +37,7 @@
 @property(nonatomic,assign) BOOL isInitial;
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 @property(nonatomic,strong) NSMutableArray* controllerArray;
+@property(nonatomic,strong) NSIndexPath* currentSelectPath;
 @end
 
 
@@ -200,9 +201,13 @@
             
             
             NSArray* chartsData=[NChartDataModel chartDataDefault];
+//            self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
+//            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
+            [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
+            chartsData=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem]];
             self.chartDataAssembly=[NSMutableArray arrayWithArray:chartsData];
             self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
-            [manager storeChartDataToFile:chartsData fileName:[ChartDataManager getStoredFilePath:self.detailItem]];
+            
 //             test
 //             NSArray* chartForTest=[manager parseFromFile:[ChartDataManager getStoredFilePath:self.detailItem]];
             
@@ -522,6 +527,7 @@
 {
     //NSLog(@"did selected on %ld", indexPath.item);
     //DetailChartViewController* detailViewController=nil;
+    self.currentSelectPath=indexPath;
     DetailViewController* detailViewController=nil;
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
@@ -677,19 +683,45 @@
             dashvc.transitioningView.alpha = 1.0f;
         } completion:^(BOOL finished) {
             [dvc.view removeFromSuperview];
-            if ([dvc shouldBeAddToPreviousPage])
+            RESULT r=[dvc shouldBeAddToPreviousPage];
+            ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
+            switch (r)
             {
+                case SHOULD_INSERT:
+                {
+                    NSInteger index=dashvc.chartDataAssembly.count;
+                    //NSArray* oldArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
+                    [manager storeChartDataToFile:[NSArray arrayWithObject:dvc.dataForNChart] fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
+                    NChartDataModel* newInsertedObject=nil;
+                    NSArray* requestedArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
 
-                NSInteger index=dashvc.chartDataAssembly.count;
-                [dashvc.chartDataAssembly addObject:dvc.dataForNChart];
-                [dashvc.chartsForDisplay insertObject:dvc.dataForNChart atIndex:index];
-                [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-                
-                ChartDataManager* manager=[ChartDataManager defaultChartDataManager];
-                [manager storeChartDataToFile:[NSArray arrayWithObject:dvc.dataForNChart] fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
 
-                
+                    newInsertedObject=[requestedArray lastObject];
+                    [dashvc.chartDataAssembly addObject:newInsertedObject];
+                    [dashvc.chartsForDisplay insertObject:newInsertedObject atIndex:index];
+                    [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
+                    
+                    
+                    
+                }
+                    break;
+                    case SHOULD_UPDATE:
+                {
+                    NSInteger index=self.currentSelectPath.row;
+                    [dashvc.chartDataAssembly setObject:dvc.dataForNChart atIndexedSubscript:index];
+                    [dashvc.chartsForDisplay setObject:dvc.dataForNChart atIndexedSubscript:index];
+                    [dashvc.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
+                    
+                    [manager updateChartData:dvc.dataForNChart page:dvc.dataForNChart.pageName];
+                }
+                    break;
+                case SHOULD_NONE:
+                    break;
+                    
+                default:
+                    break;
             }
+            
             [transitionContext completeTransition:YES];
 
         }];

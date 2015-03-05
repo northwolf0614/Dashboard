@@ -30,5 +30,6 @@
 -(NSURL *)applicationDocumentsDirectory;
 -(void)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName;
 -(NSArray*)dataFetchRequest:(NSString*)pageName;
+-(BOOL)updateChartData:(NChartDataModel*)chartData page:(NSString*)pageName;
 
 @end

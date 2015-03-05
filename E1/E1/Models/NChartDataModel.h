@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 typedef enum : NSUInteger {
 Dimention2,
 Dimention3,
@@ -62,17 +63,16 @@ typedef enum : NSUInteger {
 
 @interface ChartPrediction : NSObject<NSCoding,NSCopying>
 
-@property (nonatomic,strong) NSNumber * base;
-@property (nonatomic,strong) NSNumber * multiplier1;
-@property (nonatomic,strong) NSNumber * multiplier2;
-@property (nonatomic,strong) NSString* key;
+@property (nonatomic,strong) NSNumber* base;
+@property (nonatomic,strong) NSNumber* mult1;
+@property (nonatomic,strong) NSNumber* mult2;
+@property (nonatomic,strong) NSNumber* key;
 
 
 @end
 
-
-
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
+@property(nonatomic,strong) NSManagedObjectID* objectID;
 @property(nonatomic,copy) NSString* chartCaption;
 @property(nonatomic,copy) NSString* chartAxisYCaption;
 @property(nonatomic,copy) NSString* chartAxisXCaption;
@@ -100,6 +100,7 @@ typedef enum : NSUInteger {
 //not stored permanantly only for programming
 @property(nonatomic,assign) BOOL isAnimated;
 @property(nonatomic,assign) BOOL empty;
+@property(nonatomic,strong) NSString* pageName;
 
 
 

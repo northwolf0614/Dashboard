@@ -13,11 +13,15 @@
 #import "SliderCell.h"
 #import "PredictionConfigViewController.h"
 #import "PredictionCellTableViewCell.h"
-
+typedef enum : NSUInteger {
+    SHOULD_UPDATE,
+    SHOULD_INSERT,
+    SHOULD_NONE,
+} RESULT;
 @interface DetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,SliderDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UINavigationBarDelegate,PredictionViewDelegate,PredictionCellTableViewCellDelegate>
 
 
--(BOOL)shouldBeAddToPreviousPage;
+-(RESULT)shouldBeAddToPreviousPage;
 -(id)initWithDrawingData:(NChartDataModel*)drawingData  isAddedChart:(BOOL)isAdded;
 @property(strong,nonatomic) NChartDataModel* dataForNChart;
 @property (weak, nonatomic) IBOutlet UIView *chartViewContainer;
