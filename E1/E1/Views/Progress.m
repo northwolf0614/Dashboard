@@ -255,6 +255,14 @@
     }
     else
     {
+        NSNumber* number=self.floatingNumber;
+        if ([number floatValue]>=1)
+            self.middleLabel.text=[NSString stringWithFormat:@"%d",(int)[number floatValue]] ;
+        if ([number floatValue]>0&&[number floatValue]<1)
+        {
+            NSString* str=[NSString stringWithFormat:@"%d",(int)([number floatValue]*100)];
+            self.middleLabel.text=[str stringByAppendingString:@"%"];
+        }
         //[self.timer setFireDate:[NSDate distantFuture]];
         [self.timer invalidate];
         self.timer=nil;
