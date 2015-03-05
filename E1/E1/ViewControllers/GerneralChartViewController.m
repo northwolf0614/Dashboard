@@ -129,11 +129,12 @@
         [self showCharts:YES];
         self.dataForNChart.isAnimated=YES;
     }
-//    else
-//    {
-//        [self showCharts:NO];
-//
-//    }
+    else
+    {
+        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+            [self.delegate setAnimationStatus:self value:NO];
+        [self showCharts:NO];
+    }
     
     
     
@@ -151,12 +152,12 @@
 -(void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    BOOL isAnimated=!self.dataForNChart.isAnimated;
-    if (!isAnimated) {
-        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
-            [self.delegate setAnimationStatus:self value:NO];
-        [self showCharts:NO];
-    }
+//    BOOL isAnimated=!self.dataForNChart.isAnimated;
+//    if (!isAnimated) {
+//        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(setAnimationStatus:value:)])
+//            [self.delegate setAnimationStatus:self value:NO];
+//        [self showCharts:NO];
+//    }
 }
 
 #pragma <ProgressBarDataSource>
