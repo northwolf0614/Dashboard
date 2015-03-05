@@ -788,16 +788,23 @@
                     PlusMap *plusMap =nil;
                     if ([mainMap valueForKey:@"plusMapData"]==nil) {
                         plusMap=[NSEntityDescription insertNewObjectForEntityForName:@"PlusMap" inManagedObjectContext:context];
+                        [plusMap setValue:plusChartData.color1 forKey:@"color1"];
+                        [plusMap setValue:plusChartData.color2 forKey:@"color2"];
+                        [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
+                        [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
+                        [plusMap setValue:mainMap forKey:@"mainMapData"];
                         [mainMap setValue:plusMap forKey:@"plusMapData"];
                     }
                     else
+                    {
                         plusMap=[mainMap valueForKey:@"plusMapData"];
                     
-                    [plusMap setValue:plusChartData.color1 forKey:@"color1"];
-                    [plusMap setValue:plusChartData.color2 forKey:@"color2"];
-                    [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
-                    [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
-                    [plusMap setValue:mainMap forKey:@"mainMapData"];
+                        [plusMap setValue:plusChartData.color1 forKey:@"color1"];
+                        [plusMap setValue:plusChartData.color2 forKey:@"color2"];
+                        [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
+                        [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
+                    }
+                    //[plusMap setValue:mainMap forKey:@"mainMapData"];
                     
                 }
                 [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
@@ -806,21 +813,31 @@
                 {
                     for (ChartPrediction* p in chartData.prediction)
                     {
-                        Prediction* prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
-//                        if ([mainMap valueForKey:@"prediction"]==nil) {
-//                            prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
-//                            [mainMap setValue:prediction forKey:@"prediction"];
-//                        }
-//                        else
-//                            prediction=[mainMap valueForKey:@"prediction"];
+                        Prediction* prediction=nil;
+//                        Prediction* prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
+                        if ([mainMap valueForKey:@"prediction"]==nil) {
+                            prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
+                            [prediction setValue:p.mult1 forKey:@"multiplier1"];
+                            [prediction setValue:p.mult2 forKey:@"multiplier2"];
+                            [prediction setValue:p.base forKey:@"base"];
+                            [prediction setValue:p.key forKey:@"key"];
+                            [prediction setValue:mainMap forKey:@"mainMapData"];
+                            
+                            [mainMap addPredictionObject:prediction];
+                            //[mainMap setValue:prediction forKey:@"prediction"];
+                        }
+                        else
+                        {
+                            prediction=[mainMap valueForKey:@"prediction"];
                         
-                        [prediction setValue:p.mult1 forKey:@"multiplier1"];
-                        [prediction setValue:p.mult2 forKey:@"multiplier2"];
-                        [prediction setValue:p.base forKey:@"base"];
-                        [prediction setValue:p.key forKey:@"key"];
-                        [prediction setValue:mainMap forKey:@"mainMapData"];
+                            [prediction setValue:p.mult1 forKey:@"multiplier1"];
+                            [prediction setValue:p.mult2 forKey:@"multiplier2"];
+                            [prediction setValue:p.base forKey:@"base"];
+                            [prediction setValue:p.key forKey:@"key"];
+                            [prediction setValue:mainMap forKey:@"mainMapData"];
+                        }
                         
-                        [mainMap addPredictionObject:prediction];
+                        //[mainMap addPredictionObject:prediction];
                         //addPredictionObject
                         
                     }

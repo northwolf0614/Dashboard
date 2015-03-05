@@ -705,7 +705,7 @@
                     
                 }
                     break;
-                    case SHOULD_UPDATE:
+                case SHOULD_UPDATE:
                 {
                     NSInteger index=self.currentSelectPath.row;
                     [dashvc.chartDataAssembly setObject:dvc.dataForNChart atIndexedSubscript:index];

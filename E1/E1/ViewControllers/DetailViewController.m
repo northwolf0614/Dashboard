@@ -698,6 +698,23 @@
 
 
 }
+-(ChartPrediction*)findChartprediction:(NSInteger)index data:(NSSet*)dataSet
+{
+    if (dataSet!=nil)
+    {
+        for (NSObject* o in dataSet) {
+            if ([o isKindOfClass:[ChartPrediction class]]&&[((ChartPrediction*)o).key integerValue]==index)
+            {
+                return (ChartPrediction*)o;
+                
+            }
+        }
+        return nil;
+    }
+    return nil;
+    
+}
+
 -(void)submitSuccessfully:(UIViewController *)vc
 {
     if (self.isAdded) {
@@ -716,14 +733,24 @@
                 NSNumber* key=[NSNumber numberWithInteger:s.tag];
                 if(self.dataForNChart.prediction==nil)
                     self.dataForNChart.prediction=[NSMutableSet set];
+                ChartPrediction* cp=nil;
+                if ((cp=[self findChartprediction:s.tag data:self.dataForNChart.prediction])!=nil) {
+                    cp.base=[NSNumber numberWithInt:self.base];
+                    cp.mult2=[NSNumber numberWithFloat:self.multiplier2];
+                    cp.mult1=[NSNumber numberWithFloat:self.multiplier1];
+                    cp.key=key;
+                }
+                else
+                {
+                    cp=[[ChartPrediction alloc] init];
+                    cp.base=[NSNumber numberWithInt:self.base];
+                    cp.mult2=[NSNumber numberWithFloat:self.multiplier2];
+                    cp.mult1=[NSNumber numberWithFloat:self.multiplier1];
+                    cp.key=key;
+                    [self.dataForNChart.prediction addObject:cp];
+                }
                 
-                ChartPrediction* cp=[[ChartPrediction alloc] init];
-                cp.base=[NSNumber numberWithInt:self.base];
-                cp.mult2=[NSNumber numberWithFloat:self.multiplier2];
-                cp.mult1=[NSNumber numberWithFloat:self.multiplier1];
-                cp.key=key;
                 
-                [self.dataForNChart.prediction addObject:cp];
                 
                 
                 
