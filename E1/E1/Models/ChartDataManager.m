@@ -496,6 +496,11 @@
 
 -(void)addTickValues:(NSArray*)xAxisTickValues yAxis:(NSArray*)yAxisTickValues zAxis:(NSArray*)zAxisTickValues mainMap:(MainMap*)map context:(NSManagedObjectContext*)context
 {
+    NSSet* tickValues=[map valueForKey:@"chartAxisTickValues"];
+    if (tickValues!=nil) {
+        [map removeChartAxisTickValues:tickValues];
+    }
+
     
     if (xAxisTickValues!=nil&&xAxisTickValues.count>0)
     {
@@ -559,6 +564,10 @@
 -(void)addSerieAxisValues:(NSDictionary*)seriesDic map:(MainMap*)mainMap context:(NSManagedObjectContext*)context
 {
     NSArray* seriesKeys= seriesDic.allKeys;
+    NSSet* series=[mainMap valueForKey:@"series"];
+    if (series!=nil) {
+        [mainMap removeSeries:series];
+    }
     for (NSString* strKey in seriesKeys)
     {
         PrototypeDataModel* serieData= [seriesDic objectForKey:strKey];
@@ -753,9 +762,9 @@
 -(BOOL)updateChartData:(NChartDataModel*)chartData page:(NSString*)pageName
 {
     NSManagedObjectContext *context = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init] ;
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MainMap" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
+    //NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init] ;
+    //NSEntityDescription *entity = [NSEntityDescription entityForName:@"MainMap" inManagedObjectContext:context];
+    //[fetchRequest setEntity:entity];
     //fetchRequest.resultType=NSManagedObjectIDResultType;
     
     NSError *error=nil;
@@ -777,7 +786,6 @@
                 [mainMap setValue:chartData.chartAxisZCaption forKey:@"chartAxisZCaption"];
                 [mainMap setValue:chartData.chartCaption forKey:@"chartCaption"];
                 [mainMap setValue:[NSNumber numberWithInteger:chartData.chartType] forKey:@"chartType"];
-                //[mainMap setValue:[NSNumber numberWithBool:chartData.empty] forKey:@"empty"];
                 [mainMap setValue:chartData.floatingNumber forKey:@"floatingNumber"];
                 [mainMap setValue:chartData.labelText forKey:@"labelText"];
                 [mainMap setValue:pageName forKey:@"pageName"];
@@ -809,6 +817,7 @@
                 }
                 [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
                 [self addSerieAxisValues:chartData.chartDataForDrawing map:mainMap context:context];
+        
                 if (chartData.prediction!=nil)
                 {
                     for (ChartPrediction* p in chartData.prediction)

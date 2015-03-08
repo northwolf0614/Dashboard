@@ -712,7 +712,8 @@
                     [dashvc.chartsForDisplay setObject:dvc.dataForNChart atIndexedSubscript:index];
                     [dashvc.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
                     
-                    [manager updateChartData:dvc.dataForNChart page:dvc.dataForNChart.pageName];
+                    //[manager updateChartData:dvc.dataForNChart page:dvc.dataForNChart.pageName];
+                    [manager updateChartData:dvc.dataForNChart page:[ChartDataManager getStoredFilePath:dashvc.detailItem].lastPathComponent];
                 }
                     break;
                 case SHOULD_NONE:

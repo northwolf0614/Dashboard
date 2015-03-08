@@ -12,6 +12,8 @@
 #import "DashBoardViewController.h"
 #import "StartupViewController.h"
 #import "ChartDataManager.h"
+#import "MeetingCoordinator.h"
+#import "GameNavigationController.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) UINavigationController* navigationController;
@@ -28,20 +30,17 @@
     
     
     self.window =(MainWindow*) [[MainWindow alloc] initWithFrame:[AppDelegate screenRectForLandscape]] ;
-    //self.window =(MainWindow*) [MainWindow new];
-
-    //self.window =(MainWindow*) [[MainWindow alloc] init] ;
 #ifndef MASTERDETAIL
-     //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
+    
      {
          StartupViewController* startupVC=[[StartupViewController alloc] init];
-         //DashBoardViewController *detailViewController = [[DashBoardViewController alloc] init] ;
-         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-         //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController] ;
-         
-         //self.window.rootViewController = detailNavigationController;
-         //self.window.rootViewController = detailViewController;
          self.window.rootViewController = startupVC;
+         
+//         MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
+//         GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
+//         self.window.rootViewController =navController;
+         
+         
      }
      //else
 #else

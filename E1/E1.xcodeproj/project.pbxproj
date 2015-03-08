@@ -30,6 +30,9 @@
 		AB7F115C1A0062CA00145E96 /* DashboardItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */; };
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
 		E704FA791A77472A00309805 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704FA781A77472A00309805 /* CoreData.framework */; };
+		E73300941AA9B24F006DA519 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E73300931AA9B24F006DA519 /* GameKitHelper.m */; };
+		E74CA0D11AA92AC80061E322 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74CA0D01AA92AC80061E322 /* GameKit.framework */; };
+		E74CA0D41AA94B3A0061E322 /* MeetingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = E74CA0D31AA94B3A0061E322 /* MeetingCoordinator.m */; };
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
 		E7711AF81A0790280096650B /* NChartDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7711AF71A0790280096650B /* NChartDataModel.m */; };
 		E772A4881A898CF800110CF7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E772A4861A898CF800110CF7 /* Model.xcdatamodeld */; };
@@ -65,6 +68,7 @@
 		E7A2549D1A15720100568E65 /* PopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A2549C1A15720100568E65 /* PopAnimation.m */; };
 		E7A5DB691A0428F800CA2D30 /* AbstractNChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */; };
 		E7A666ED1A4D44EA00D1E788 /* TLSpringFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A666EC1A4D44EA00D1E788 /* TLSpringFlowLayout.m */; };
+		E7A98FEB1AA9C16D003BC831 /* GameNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A98FEA1AA9C16D003BC831 /* GameNavigationController.m */; };
 		E7C09F5D1AA0218800B526F8 /* PredictionConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C09F5B1AA0218800B526F8 /* PredictionConfigViewController.m */; };
 		E7C09F5E1AA0218800B526F8 /* PredictionConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7C09F5C1AA0218800B526F8 /* PredictionConfigViewController.xib */; };
 		E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C2226C1A22DBC100C9CAEE /* ProgressColumn.m */; };
@@ -135,6 +139,11 @@
 		AB7F115B1A0062CA00145E96 /* DashboardItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardItemViewController.m; sourceTree = "<group>"; };
 		ABE8A46419FF5912004E35E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E704FA781A77472A00309805 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E73300921AA9B24F006DA519 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
+		E73300931AA9B24F006DA519 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
+		E74CA0D01AA92AC80061E322 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		E74CA0D21AA94B3A0061E322 /* MeetingCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingCoordinator.h; sourceTree = "<group>"; };
+		E74CA0D31AA94B3A0061E322 /* MeetingCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingCoordinator.m; sourceTree = "<group>"; };
 		E76FA6361A1A0DE400FA4613 /* ChartDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartDataManager.h; sourceTree = "<group>"; };
 		E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartDataManager.m; sourceTree = "<group>"; };
 		E7711AF61A0790280096650B /* NChartDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NChartDataModel.h; sourceTree = "<group>"; };
@@ -197,6 +206,8 @@
 		E7A5DB681A0428F800CA2D30 /* AbstractNChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNChartView.m; sourceTree = "<group>"; };
 		E7A666EB1A4D44EA00D1E788 /* TLSpringFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSpringFlowLayout.h; sourceTree = "<group>"; };
 		E7A666EC1A4D44EA00D1E788 /* TLSpringFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSpringFlowLayout.m; sourceTree = "<group>"; };
+		E7A98FE91AA9C16D003BC831 /* GameNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNavigationController.h; sourceTree = "<group>"; };
+		E7A98FEA1AA9C16D003BC831 /* GameNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameNavigationController.m; sourceTree = "<group>"; };
 		E7C09F5A1AA0218800B526F8 /* PredictionConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PredictionConfigViewController.h; sourceTree = "<group>"; };
 		E7C09F5B1AA0218800B526F8 /* PredictionConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PredictionConfigViewController.m; sourceTree = "<group>"; };
 		E7C09F5C1AA0218800B526F8 /* PredictionConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PredictionConfigViewController.xib; sourceTree = "<group>"; };
@@ -248,6 +259,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74CA0D11AA92AC80061E322 /* GameKit.framework in Frameworks */,
 				E704FA791A77472A00309805 /* CoreData.framework in Frameworks */,
 				AB18A96F1A01C44B006546D4 /* libstdc++.dylib in Frameworks */,
 				09331BC419F901F2004EDFEA /* QuartzCore.framework in Frameworks */,
@@ -382,6 +394,7 @@
 		09B0B25D19F5D99A008DCE56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E74CA0D01AA92AC80061E322 /* GameKit.framework */,
 				E704FA781A77472A00309805 /* CoreData.framework */,
 				AB18A96E1A01C44B006546D4 /* libstdc++.dylib */,
 				09331BC319F901F2004EDFEA /* QuartzCore.framework */,
@@ -396,6 +409,7 @@
 		09B0B26419F5D99A008DCE56 /* E1 */ = {
 			isa = PBXGroup;
 			children = (
+				E74CA0CC1AA915000061E322 /* GameCenter */,
 				E772CDD21A1D71210034E553 /* ViewControllers */,
 				AB18A9691A01C3F7006546D4 /* NChart3D */,
 				AB7F11591A0062A100145E96 /* DashboardItems */,
@@ -470,6 +484,19 @@
 				E7A2549C1A15720100568E65 /* PopAnimation.m */,
 			);
 			path = DashboardItems;
+			sourceTree = "<group>";
+		};
+		E74CA0CC1AA915000061E322 /* GameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E7A98FE91AA9C16D003BC831 /* GameNavigationController.h */,
+				E7A98FEA1AA9C16D003BC831 /* GameNavigationController.m */,
+				E73300921AA9B24F006DA519 /* GameKitHelper.h */,
+				E73300931AA9B24F006DA519 /* GameKitHelper.m */,
+				E74CA0D21AA94B3A0061E322 /* MeetingCoordinator.h */,
+				E74CA0D31AA94B3A0061E322 /* MeetingCoordinator.m */,
+			);
+			path = GameCenter;
 			sourceTree = "<group>";
 		};
 		E772CDD21A1D71210034E553 /* ViewControllers */ = {
@@ -639,12 +666,15 @@
 				E7E584C41AA6A7DA000755F7 /* PlusMap.m in Sources */,
 				E79BCA501A9C44BC00335465 /* DetailViewController.m in Sources */,
 				AB18A9721A01C49E006546D4 /* AbstractNChartViewController.m in Sources */,
+				E74CA0D41AA94B3A0061E322 /* MeetingCoordinator.m in Sources */,
+				E7A98FEB1AA9C16D003BC831 /* GameNavigationController.m in Sources */,
 				E772CDD51A1D71560034E553 /* PageTableViewController.m in Sources */,
 				E79531E41A76F39600B5CB40 /* NChartViewCell.m in Sources */,
 				E7938CFF1A1D65D300038CE4 /* ProgressBar.m in Sources */,
 				090FB6EF19F5DA6A008F437F /* StatisticsPostWorker.m in Sources */,
 				E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */,
 				E796757D1A43C6F100482C92 /* LoginViewController.m in Sources */,
+				E73300941AA9B24F006DA519 /* GameKitHelper.m in Sources */,
 				E7E092381A6F6294006A8752 /* Progress.m in Sources */,
 				E7C222811A25A1C600C9CAEE /* DashBoardViewController.m in Sources */,
 				E7C4364A1A6F655C00FB34CE /* CollectionViewCell.m in Sources */,

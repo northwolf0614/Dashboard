@@ -8,6 +8,7 @@
 
 #import "PredictionConfigViewController.h"
 #import "NChartDataModel.h"
+#import "MeetingCoordinator.h"
 
 @interface PredictionConfigViewController ()
 
@@ -103,6 +104,14 @@
     self.view = [nibs objectAtIndex:0];
     self.view.translatesAutoresizingMaskIntoConstraints=NO;
 
+}
+
+- (IBAction)onMeeting:(id)sender
+{
+    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
+    [self presentViewController:meetingController animated:YES completion:nil];
+    
+    
 }
 
 - (IBAction)onSaveConfig:(id)sender
@@ -287,4 +296,5 @@
     
     
 }
+
 @end

@@ -18,6 +18,8 @@
 #import "ChildDetailChartViewController.h"
 #import "PredictionConfigViewController.h"
 #import "PredictionCellTableViewCell.h"
+#import "MeetingCoordinator.h"
+#import "GameNavigationController.h"
 
 
 @interface DetailViewController ()
@@ -234,10 +236,12 @@
 -(void)handleRightButtonItem:(id) sender
 {
     //need save operation
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-                                 
-                             }];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+//    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
+//    GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
+//    [self presentViewController:navController animated:YES completion:nil];
     
     
     
