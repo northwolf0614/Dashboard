@@ -8,6 +8,7 @@
 
 #import "MeetingCoordinator.h"
 #import "GameKitHelper.h"
+
 @interface MeetingCoordinator()<GameKitHelperDelegate>
 @end
 
@@ -15,16 +16,32 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    
-    
-    
-    
-    
-    
-    
+    self.view.backgroundColor=[UIColor redColor];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerAuthenticated)
                                                  name:LocalPlayerIsAuthenticated object:nil];
+    
+    
+    
+    
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(showAuthenticationViewController)
+     name:PresentAuthenticationViewController
+     object:nil];
+    
+    [[GameKitHelper sharedGameKitHelper]
+     authenticateLocalPlayer];
+}
+- (void)showAuthenticationViewController
+{
+    GameKitHelper *gameKitHelper =
+    [GameKitHelper sharedGameKitHelper];
+    
+    [self presentViewController:
+     gameKitHelper.authenticationViewController
+                                         animated:YES
+                                       completion:nil];
 }
 
 
@@ -40,32 +57,73 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)sendDataToAll:(NSData*)data
+{
+    NSError *error;
+    GameKitHelper *gameKitHelper = [GameKitHelper sharedGameKitHelper];
+    
+    BOOL success = [gameKitHelper.match
+                    sendDataToAllPlayers:data
+                    withDataMode:GKMatchSendDataReliable
+                    error:&error];
+    
+    if (!success) {
+        NSLog(@"Error sending data:%@", error.localizedDescription);
+        [self matchEnded];
+    }
+}
+- (void)sendData:(NSData*)data toPlayers:(NSArray *)players
+{
+    NSError *error;
+    GameKitHelper *gameKitHelper = [GameKitHelper sharedGameKitHelper];
+    
+    BOOL success = [gameKitHelper.match
+                    sendData:data toPlayers:players withDataMode: GKMatchSendDataReliable
+                    error:&error];
+    
+    if (!success) {
+        NSLog(@"Error sending data:%@", error.localizedDescription);
+        [self matchEnded];
+    }
+}
+-(void)joinDefaultVoiceChannel
+{
+    
+    [[GameKitHelper sharedGameKitHelper] establishVoiceChatForAllPlayers];
+    
+    
+    
+}
 
 
-//-(void)sendChartDataToAllPalyers:(NSData *)data error:(NSError **)error
-//{
-//     [[GCHelper sharedInstance] sendDataToAllPlayers:data withDataMode:GKMatchSendDataReliable error:error];
-//    
-//}
-//-(void)sendVoiceToAllPalyers:(NSData *)data error:(NSError **)error
-//{
-//    [[GCHelper sharedInstance] sendDataToAllPlayers:data withDataMode:GKMatchSendDataUnreliable error:error];
-//}
 
 #pragma <GCHelperDelegate>
 - (void)matchStarted
 {
-    NSLog(@"matchStarted");
+    NSLog(@"The exciting meeting begain->matchStarted");
+    [self joinDefaultVoiceChannel];
+    
+    NSString *aString = @"Hello Game Data";
+    NSData *aData = [aString dataUsingEncoding: NSUTF8StringEncoding];
+    [self sendDataToAll:aData];
 }
 - (void)matchEnded
 {
     NSLog(@"matchEnded");
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data
    fromPlayer:(NSString *)playerID
 {
-    NSLog(@"received data");
+    
+    
+    NSString *aString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"received data:%@",aString);
+    
+    
+    
+    
     
 }
 @end

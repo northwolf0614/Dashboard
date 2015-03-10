@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DetailViewController.h"
 
-@interface MeetingCoordinator : UIViewController 
-////@property(nonatomic,strong) GCHelper* meetingHelper;
-//-(void)sendVoiceToAllPlayers:(NSData *)data error:(NSError **)error;
-//-(void)sendChartDataToAllPalyers:(NSData *)data error:(NSError **)error;
+@interface MeetingCoordinator : DetailViewController
+
 @end

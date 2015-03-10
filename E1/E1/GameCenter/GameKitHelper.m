@@ -7,13 +7,18 @@
 //
 
 #import "GameKitHelper.h"
+#import <AVFoundation/AVFoundation.h>
 
 NSString *const PresentAuthenticationViewController = @"present_authentication_view_controller";
 NSString *const LocalPlayerIsAuthenticated = @"local_player_authenticated";
-
+NSString *const GameCenterVoiceChannelForMeeting=@"GameCenterVoiceChannelNameOfChartDemo";
+@interface GameKitHelper()
+@property (strong,nonatomic) GKVoiceChat* chat;
+@end
 @implementation GameKitHelper {
     BOOL _enableGameCenter;
     BOOL _matchStarted;
+    
 }
 
 + (instancetype)sharedGameKitHelper
@@ -93,8 +98,6 @@ NSString *const LocalPlayerIsAuthenticated = @"local_player_authenticated";
     _matchStarted = NO;
     self.match = nil;
     _delegate = delegate;
-    [viewController dismissViewControllerAnimated:NO completion:nil];
-    
     GKMatchRequest *request = [[GKMatchRequest alloc] init];
     request.minPlayers = minPlayers;
     request.maxPlayers = maxPlayers;
@@ -105,38 +108,146 @@ NSString *const LocalPlayerIsAuthenticated = @"local_player_authenticated";
     
     [viewController presentViewController:mmvc animated:YES completion:nil];
 }
-
-// The user has cancelled matchmaking
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-    [viewController dismissViewControllerAnimated:YES completion:nil];
+- (void)lookupPlayers
+{
+    
+    NSLog(@"Looking up %lu players...", (unsigned long)_match.playerIDs.count);
+    
+    [GKPlayer loadPlayersForIdentifiers:_match.playerIDs withCompletionHandler:^(NSArray *players, NSError *error) {
+        
+        if (error != nil)
+        {
+            NSLog(@"Error retrieving player info: %@", error.localizedDescription);
+            _matchStarted = NO;
+            [_delegate matchEnded];
+        }
+        else
+        {
+            
+            // Populate players dict
+            _playersDict = [NSMutableDictionary dictionaryWithCapacity:players.count];
+            for (GKPlayer *player in players)
+            {
+                NSLog(@"Found player: %@", player.alias);
+                [_playersDict setObject:player forKey:player.playerID];
+            }
+//            [_playersDict setObject:[GKLocalPlayer localPlayer] forKey:[GKLocalPlayer localPlayer].playerID];
+            
+            // Notify delegate match can begin
+            _matchStarted = YES;
+            [_delegate matchStarted];
+        }
+    }];
 }
 
-// Matchmaking has failed with an error
+- (void)establishVoiceChatForAllPlayers
+{
+    if (![GKVoiceChat isVoIPAllowed])
+        return;
+    
+    if (![self establishPlayAndRecordAudioSession])
+        return;
+    
+    NSLog(@"Did stablish voice chat");
+    
+    _chat = [_match voiceChatWithName:GameCenterVoiceChannelForMeeting];
+    [_chat start]; // stop with [chat end];
+    
+    
+    _chat.playerStateUpdateHandler = ^(NSString *playerID, GKVoiceChatPlayerState state) {
+        switch (state)
+        {
+            case GKVoiceChatPlayerSpeaking:
+                // Highlight player's picture
+                NSLog(@"Speaking");
+                break;
+            case GKVoiceChatPlayerSilent:
+                // Dim player's picture
+                NSLog(@"Silent");
+                break;
+            case GKVoiceChatPlayerConnected:
+                // Show player name/picture
+                NSLog(@"Voice connected");
+                break;
+            case GKVoiceChatPlayerDisconnected:
+                // Hide player name/picture
+                NSLog(@"Voice disconnected");
+                break;
+            default:
+                break;
+        } };
+    
+    _chat.active = YES; // disable mic by setting to NO
+    _chat.volume = 1.0f; // adjust as needed.
+    
+}
+- (BOOL) establishPlayAndRecordAudioSession
+{
+    NSLog(@"Establishing Audio Session");
+    NSError *error;
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    BOOL success = [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    if (!success)
+    {
+        NSLog(@"Error setting session category: %@", error.localizedFailureReason);
+        return NO;
+    }
+    else
+    {
+        success = [audioSession setActive: YES error: &error];
+        if (success)
+        {
+            NSLog(@"Audio session is active (play and record)");
+            return YES;
+        }
+        else
+        {
+            NSLog(@"Error activating audio session: %@", error.localizedFailureReason);
+            return NO;
+        }
+    }
+    
+    return NO;
+}
+#pragma <GKMatchmakerViewControllerDelegate>
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
+    if(self.delegate!=nil)
+       [((UIViewController*)self.delegate) dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
     [viewController dismissViewControllerAnimated:YES completion:nil];
     NSLog(@"Error finding match: %@", error.localizedDescription);
+    if(self.delegate!=nil)
+        [((UIViewController*)self.delegate) dismissViewControllerAnimated:YES completion:nil];
 }
 
-// A peer-to-peer match has been found, the game should start
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match {
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFindMatch:(GKMatch *)match
+{
     [viewController dismissViewControllerAnimated:YES completion:nil];
     self.match = match;
     match.delegate = self;
     if (!_matchStarted && match.expectedPlayerCount == 0) {
         NSLog(@"Ready to start match!");
+        [self lookupPlayers];
     }
 }
 
-#pragma mark GKMatchDelegate
 
-// The match received data sent from the player.
+#pragma mark <GKMatchDelegate>
+
+
 - (void)match:(GKMatch *)match didReceiveData:(NSData *)data fromPlayer:(NSString *)playerID {
     if (_match != match) return;
     
     [_delegate match:match didReceiveData:data fromPlayer:playerID];
 }
 
-// The player state changed (eg. connected or disconnected)
+
 - (void)match:(GKMatch *)match player:(NSString *)playerID didChangeState:(GKPlayerConnectionState)state {
     if (_match != match) return;
     
@@ -148,6 +259,7 @@ NSString *const LocalPlayerIsAuthenticated = @"local_player_authenticated";
             
             if (!_matchStarted && match.expectedPlayerCount == 0) {
                 NSLog(@"Ready to start match!");
+                [self lookupPlayers];
             }
         }
             
@@ -165,23 +277,25 @@ NSString *const LocalPlayerIsAuthenticated = @"local_player_authenticated";
     }
 }
 
-// The match was unable to connect with the player due to an error.
+
 - (void)match:(GKMatch *)match connectionWithPlayerFailed:(NSString *)playerID withError:(NSError *)error {
     
     if (_match != match) return;
     
     NSLog(@"Failed to connect to player with error: %@", error.localizedDescription);
     _matchStarted = NO;
+    
     [_delegate matchEnded];
 }
 
-// The match was unable to be established with any players due to an error.
+
 - (void)match:(GKMatch *)match didFailWithError:(NSError *)error {
     
     if (_match != match) return;
-    
     NSLog(@"Match failed with error: %@", error.localizedDescription);
     _matchStarted = NO;
     [_delegate matchEnded];
+    
+    
 }
 @end

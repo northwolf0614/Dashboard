@@ -97,15 +97,6 @@
                         <accessibilityTraits key="traits" none="YES" notEnabled="YES" updatesFrequently="YES"/>
                     </accessibility>
                 </progressView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRM-AK-hA9">
-                    <rect key="frame" x="134" y="49" width="56" height="30"/>
-                    <state key="normal" title="Meeting">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="onMeeting:" destination="-1" eventType="touchUpInside" id="zRd-3r-MpL"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>

@@ -121,8 +121,10 @@
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(handleRightButtonItem:)];
+    UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(handleRightButtonItem:)];
+    UIBarButtonItem* leftBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(handleLeftButtonItem:)];
     self.navItem.rightBarButtonItem=rightBarButtonItem;
+    self.navItem.leftBarButtonItem=leftBarButtonItem;
     
     if (!self.isAdded) {
         self.navItem.title=self.dataForNChart.chartCaption;
@@ -235,13 +237,22 @@
 
 -(void)handleRightButtonItem:(id) sender
 {
-    //need save operation
+    
+    
+    
+    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
+    //GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
+    [self presentViewController:meetingController animated:YES completion:nil];
+    
+    
+    
+}
+-(void)handleLeftButtonItem:(id) sender
+{
+    
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
-//    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
-//    GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
-//    [self presentViewController:navController animated:YES completion:nil];
     
     
     

@@ -9,7 +9,7 @@
 @import GameKit;
 extern NSString *const PresentAuthenticationViewController;
 extern NSString *const LocalPlayerIsAuthenticated;
-
+extern NSString *const GameCenterVoiceChannel;
 @protocol GameKitHelperDelegate
 - (void)matchStarted;
 - (void)matchEnded;
@@ -18,7 +18,7 @@ extern NSString *const LocalPlayerIsAuthenticated;
 @end
 
 @interface GameKitHelper : NSObject<GKMatchmakerViewControllerDelegate, GKMatchDelegate>
-
+@property (nonatomic, strong) NSMutableDictionary *playersDict;
 @property (nonatomic, readonly) UIViewController *authenticationViewController;
 @property (nonatomic, readonly) NSError *lastError;
 
@@ -27,6 +27,7 @@ extern NSString *const LocalPlayerIsAuthenticated;
 
 + (instancetype)sharedGameKitHelper;
 - (void)authenticateLocalPlayer;
+- (void)establishVoiceChatForAllPlayers;
 
 - (void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers
                  viewController:(UIViewController *)viewController
