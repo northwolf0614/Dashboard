@@ -29,6 +29,6 @@
 @property(nonatomic,assign) BOOL isAnimating;
 -(void)setupDefaultDataForDrawing;
 -(void)changeColorScheme:(BOOL)isWhiteSheme;
-
+-(void)changeMeetingModelTo:(BOOL)meetingModelValue;
 
 @end

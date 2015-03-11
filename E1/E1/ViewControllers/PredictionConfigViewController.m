@@ -106,13 +106,6 @@
 
 }
 
-- (IBAction)onMeeting:(id)sender
-{
-    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
-    [self presentViewController:meetingController animated:YES completion:nil];
-    
-    
-}
 
 - (IBAction)onSaveConfig:(id)sender
 {

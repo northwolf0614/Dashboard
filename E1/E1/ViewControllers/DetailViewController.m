@@ -33,7 +33,7 @@
 @property(nonatomic,assign) BOOL shouldDynamic;
 
 //@property(nonatomic,strong) UIView* coverView;
-@property(nonatomic,strong) UICollectionView* collectionView;
+//@property(nonatomic,strong) UICollectionView* collectionView;
 @property(nonatomic,strong) UICollectionViewFlowLayout* flowLayout;
 @property(nonatomic,strong) NSArray* sectionNames;
 @property(nonatomic,assign) float predictionViewRate;
@@ -43,6 +43,7 @@
 @property(nonatomic,assign) float multiplier2;
 @property(nonatomic,assign) float cellHeightRate;
 @property(nonatomic,assign) NSArray* currentConfigs;
+@property(nonatomic,assign) BOOL isMeeting;
 
 
 @end
@@ -64,6 +65,7 @@
         }
         self.isAdded=isAdded;
         self.shouldDynamic=isAdded;
+        //self.isMeeting=isMeetingModel;
         if (isAdded)
         {
             self.predictionViewRate=0.1f;
@@ -773,6 +775,7 @@
             }
         }
     }
+    
     
     
     

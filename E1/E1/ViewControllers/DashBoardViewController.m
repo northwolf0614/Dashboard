@@ -690,29 +690,21 @@
                 case SHOULD_INSERT:
                 {
                     NSInteger index=dashvc.chartDataAssembly.count;
-                    //NSArray* oldArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
-                    [manager storeChartDataToFile:[NSArray arrayWithObject:dvc.dataForNChart] fileName:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
-                    NChartDataModel* newInsertedObject=nil;
-                    NSArray* requestedArray=[manager parseFromFile:[ChartDataManager getStoredFilePath:dashvc.detailItem]];
-
-
-                    newInsertedObject=[requestedArray lastObject];
+                    NSString* file=[ChartDataManager getStoredFilePath:dashvc.detailItem];
+                    NSManagedObjectID* oID=[manager insertChartData:dvc.dataForNChart pageName:file.lastPathComponent];
+                    NChartDataModel* newInsertedObject=[manager dataFetchRequestByObjectID:oID];
                     [dashvc.chartDataAssembly addObject:newInsertedObject];
                     [dashvc.chartsForDisplay insertObject:newInsertedObject atIndex:index];
                     [dashvc.collectionView insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index inSection:0]]];
-                    
-                    
-                    
                 }
                     break;
+                    
                 case SHOULD_UPDATE:
                 {
                     NSInteger index=self.currentSelectPath.row;
                     [dashvc.chartDataAssembly setObject:dvc.dataForNChart atIndexedSubscript:index];
                     [dashvc.chartsForDisplay setObject:dvc.dataForNChart atIndexedSubscript:index];
                     [dashvc.collectionView reloadItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:index inSection:0]]];
-                    
-                    //[manager updateChartData:dvc.dataForNChart page:dvc.dataForNChart.pageName];
                     [manager updateChartData:dvc.dataForNChart page:[ChartDataManager getStoredFilePath:dashvc.detailItem].lastPathComponent];
                 }
                     break;
@@ -722,6 +714,7 @@
                 default:
                     break;
             }
+
             
             [transitionContext completeTransition:YES];
 

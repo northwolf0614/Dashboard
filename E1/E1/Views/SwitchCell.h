@@ -10,7 +10,7 @@
 BOOL isWhiteScheme;
 @protocol SwitchDelegate <NSObject>
 
--(void)switchValueChaged:(BOOL)isOn;
+-(void)switchValueChaged:(BOOL)isOn sender:(id)sender;
 
 @end
 @interface SwitchCell : UITableViewCell

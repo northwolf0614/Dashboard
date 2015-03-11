@@ -23,6 +23,13 @@
 @property(nonatomic,strong) UITableView* tableView;
 @property(nonatomic,strong) NSIndexPath* currentPath;
 @property(nonatomic,strong) UIImageView* imageView;
+@property(nonatomic,strong) UISwitch* colorSwitch;
+@property(nonatomic,strong) UISwitch* meetingSwitch;
+@property(nonatomic,assign) BOOL isMeetingModel;
+@property(nonatomic,assign) BOOL colorScheme;
+
+
+
 
 
 //@property(nonatomic,strong)(id<UIViewControllerContextTransitioning>)transitionContext
@@ -54,6 +61,8 @@
         self.transitioningDelegate=self.interactionController;
         self.detailViewController=(DashBoardViewController*)detailController;
         self.detailViewController.interactionController=self.interactionController;
+        self.isMeetingModel=NO;
+        self.colorScheme=YES;
         
         //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"mainWindowTouch" object:nil];
     }
@@ -434,7 +443,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     //return [self.pagesNameArray count];
-    return ([self.pagesNameArray count]+1);
+    return ([self.pagesNameArray count]+1+1);//one for color scheme and the other for meeting model
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -493,17 +502,30 @@
         cell.backgroundColor=[UIColor clearColor];
         cell.textLabel.backgroundColor=[UIColor clearColor];
     }
-    else
+    else if(indexPath.row==self.pagesNameArray.count)
     {
         cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SwitchCell class])];
-        ((SwitchCell*)cell).seriesName.text=@"Dark-Light";
+        ((SwitchCell*)cell).seriesName.text=@"Light-Dark";
         cell.backgroundColor=[UIColor clearColor];
         cell.textLabel.backgroundColor=[UIColor clearColor];
         ((SwitchCell*)cell).seriesSwitch.enabled=YES;
         ((SwitchCell*)cell).delegate=self;
+        ((SwitchCell*)cell).seriesSwitch.on=_colorScheme;
+        _colorSwitch=((SwitchCell*)cell).seriesSwitch;
         
         
         
+    }
+    else
+    {
+        cell=[tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SwitchCell class])];
+        ((SwitchCell*)cell).seriesName.text=@"Meeting Mode";
+        cell.backgroundColor=[UIColor clearColor];
+        cell.textLabel.backgroundColor=[UIColor clearColor];
+        ((SwitchCell*)cell).seriesSwitch.enabled=YES;
+        ((SwitchCell*)cell).delegate=self;
+        ((SwitchCell*)cell).seriesSwitch.on=_isMeetingModel;
+        _meetingSwitch=((SwitchCell*)cell).seriesSwitch;
     }
     
         
@@ -650,15 +672,19 @@
     return UIBarPositionTopAttached;
 }
 #pragma <SwitchDelegate>
--(void)switchValueChaged:(BOOL)isOn
+-(void)switchValueChaged:(BOOL)isOn sender:(id)sender
 {
     NSLog(@"this is the call from switch");
-    
-    //if (isOn)
-    {
+    if ([_colorSwitch isEqual:sender]) {
+        _colorScheme=isOn;
         [self.detailViewController changeColorScheme:isOn];
+    }
+    if ([_meetingSwitch isEqual:sender]) {
+        _isMeetingModel=isOn;
+        [self.detailViewController changeMeetingModelTo:isOn];
         
     }
+    
     
         
     

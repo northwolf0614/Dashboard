@@ -586,75 +586,65 @@
     }
 }
 
--(void)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName
+-(NSManagedObjectID*)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName
 {
-    //if (!chartData.empty)
-    //if (chartData!=nil)
+    NSError* error=nil;
+    NSManagedObjectContext *context = [self managedObjectContext];
+    MainMap *mainMap = [NSEntityDescription insertNewObjectForEntityForName:@"MainMap" inManagedObjectContext:context];
+    [mainMap setValue:[NSNumber numberWithInteger:chartData.axisType] forKey:@"axisType"];
+    [mainMap setValue:chartData.chartAxisXCaption forKey:@"chartAxisXCaption"];
+    [mainMap setValue:chartData.chartAxisYCaption forKey:@"chartAxisYCaption"];
+    [mainMap setValue:chartData.chartAxisZCaption forKey:@"chartAxisZCaption"];
+    [mainMap setValue:chartData.chartCaption forKey:@"chartCaption"];
+    [mainMap setValue:[NSNumber numberWithInteger:chartData.chartType] forKey:@"chartType"];
+    //[mainMap setValue:[NSNumber numberWithBool:chartData.empty] forKey:@"empty"];
+    [mainMap setValue:chartData.floatingNumber forKey:@"floatingNumber"];
+    [mainMap setValue:chartData.labelText forKey:@"labelText"];
+    [mainMap setValue:pageName forKey:@"pageName"];
+    [mainMap setValue:chartData.percentage forKey:@"percentage"];
+    if (chartData.dataForNextView!=nil)
     {
-        NSManagedObjectContext *context = [self managedObjectContext];
-        MainMap *mainMap = [NSEntityDescription insertNewObjectForEntityForName:@"MainMap" inManagedObjectContext:context];
-        [mainMap setValue:[NSNumber numberWithInteger:chartData.axisType] forKey:@"axisType"];
-        [mainMap setValue:chartData.chartAxisXCaption forKey:@"chartAxisXCaption"];
-        [mainMap setValue:chartData.chartAxisYCaption forKey:@"chartAxisYCaption"];
-        [mainMap setValue:chartData.chartAxisZCaption forKey:@"chartAxisZCaption"];
-        [mainMap setValue:chartData.chartCaption forKey:@"chartCaption"];
-        [mainMap setValue:[NSNumber numberWithInteger:chartData.chartType] forKey:@"chartType"];
-        //[mainMap setValue:[NSNumber numberWithBool:chartData.empty] forKey:@"empty"];
-        [mainMap setValue:chartData.floatingNumber forKey:@"floatingNumber"];
-        [mainMap setValue:chartData.labelText forKey:@"labelText"];
-        [mainMap setValue:pageName forKey:@"pageName"];
-        [mainMap setValue:chartData.percentage forKey:@"percentage"];
-        if (chartData.dataForNextView!=nil)
-        {
-            AddedMap* plusChartData=chartData.dataForNextView;
-            PlusMap *plusMap = [NSEntityDescription insertNewObjectForEntityForName:@"PlusMap" inManagedObjectContext:context];
-            [mainMap setValue:plusMap forKey:@"plusMapData"];
+        AddedMap* plusChartData=chartData.dataForNextView;
+        PlusMap *plusMap = [NSEntityDescription insertNewObjectForEntityForName:@"PlusMap" inManagedObjectContext:context];
+        [mainMap setValue:plusMap forKey:@"plusMapData"];
 //            NSData* color1Data=[NSData dataWithBytes:CFBridgingRetain(plusChartData.color1) length:sizeof(plusChartData.color1)];
 //            NSData* color2Data=[NSData dataWithBytes:CFBridgingRetain(plusChartData.color2) length:sizeof(plusChartData.color2)];
-            [plusMap setValue:plusChartData.color1 forKey:@"color1"];
-            [plusMap setValue:plusChartData.color2 forKey:@"color2"];
-            [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
-            [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
-            [plusMap setValue:mainMap forKey:@"mainMapData"];
+        [plusMap setValue:plusChartData.color1 forKey:@"color1"];
+        [plusMap setValue:plusChartData.color2 forKey:@"color2"];
+        [plusMap setValue:plusChartData.percentage forKey:@"finalPercentage"];
+        [plusMap setValue:plusChartData.floatingNumber forKey:@"floatingNumber"];
+        [plusMap setValue:mainMap forKey:@"mainMapData"];
+        
+    }
+    [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
+    [self addSerieAxisValues:chartData.chartDataForDrawing map:mainMap context:context];
+    if (chartData.prediction!=nil)
+    {
+        for (ChartPrediction* p in chartData.prediction) {
+            Prediction *prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
+            [prediction setValue:p.mult1 forKey:@"multiplier1"];
+            [prediction setValue:p.mult2 forKey:@"multiplier2"];
+            [prediction setValue:p.base forKey:@"base"];
+            [prediction setValue:p.key forKey:@"key"];
+            [prediction setValue:mainMap forKey:@"mainMapData"];
             
-        }
-        [self addTickValues:chartData.chartAxisXTicksValues yAxis:chartData.chartAxisYTicksValues zAxis:chartData.chartAxisZTicksValues mainMap:mainMap context:context];
-        [self addSerieAxisValues:chartData.chartDataForDrawing map:mainMap context:context];
-        if (chartData.prediction!=nil)
-        {
-            for (ChartPrediction* p in chartData.prediction) {
-                Prediction *prediction = [NSEntityDescription insertNewObjectForEntityForName:@"Prediction" inManagedObjectContext:context];
-                [prediction setValue:p.mult1 forKey:@"multiplier1"];
-                [prediction setValue:p.mult2 forKey:@"multiplier2"];
-                [prediction setValue:p.base forKey:@"base"];
-                [prediction setValue:p.key forKey:@"key"];
-                [prediction setValue:mainMap forKey:@"mainMapData"];
-                
-                [mainMap addPredictionObject:prediction];
-                
+            [mainMap addPredictionObject:prediction];
+            
 
-            }
-            
-            
-            
-            
         }
         
-        NSError* error;
-        if(![context save:&error])
-        {
-            NSLog(@"can not save：%@",[error localizedDescription]);
-        }
+        
+        
+        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    if(![context save:&error])
+    {
+        NSLog(@"can not save：%@",[error localizedDescription]);
+        return nil;
+    }
+    else
+        return mainMap.objectID;
+        
 }
 
 - (NSArray*)dataFetchRequest:(NSString*)pageName
@@ -871,4 +861,108 @@
     return NO;
 }
 
+-(NChartDataModel*)convertJSONToChartData:(NSData*)receivedData error:(NSError**)error
+{
+    
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:error];
+    
+    if (error != nil) {
+        NSLog(@"converting data from internet into JSON format data fail %@", [(*error) localizedDescription]);
+        return nil;
+    }
+    
+    NChartDataModel* chartData = [[NChartDataModel alloc] init];
+
+    
+    chartData.objectID = [jsonObject objectForKey:@"objectID"];
+    chartData.chartCaption = [jsonObject objectForKey:@"chartCaption"];
+    chartData.chartAxisYCaption = [jsonObject objectForKey:@"chartAxisYCaption"];
+    chartData.chartAxisXCaption = [jsonObject objectForKey:@"chartAxisXCaption"];
+    chartData.chartAxisZCaption = [jsonObject objectForKey:@"chartAxisZCaption"];
+    chartData.chartAxisXTicksValues = [jsonObject objectForKey:@"chartAxisXTicksValues"];
+    chartData.chartAxisYTicksValues = [jsonObject objectForKey:@"chartAxisYTicksValues"];
+    chartData.chartAxisZTicksValues = [jsonObject objectForKey:@"chartAxisZTicksValues"];
+    chartData.chartType =(NSeriesType) [jsonObject objectForKey:@"chartType"];
+    chartData.axisType =(AxisType) [jsonObject objectForKey:@"axisType"];
+    chartData.chartDataForDrawing = [jsonObject objectForKey:@"chartDataForDrawing"];
+    chartData.dataForNextView = [jsonObject objectForKey:@"dataForNextView"];
+    chartData.labelText = [jsonObject objectForKey:@"labelText"];
+    chartData.percentage = [jsonObject objectForKey:@"percentage"];
+    chartData.floatingNumber = [jsonObject objectForKey:@"floatingNumber"];
+    chartData.labelText = [jsonObject objectForKey:@"labelText"];
+    chartData.prediction = [jsonObject objectForKey:@"prediction"];
+    chartData.pageName = [jsonObject objectForKey:@"pageName"];
+ 
+    return chartData;
+}
+
+
+-(NChartDataModel*)dataFetchRequestByObjectID:(NSManagedObjectID*)objectID
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *error=nil;
+    NSManagedObject* info=(MainMap*)[context existingObjectWithID:objectID error:&error];
+    if (error!=nil) {
+        NSLog(@"fetch data fail %@",[error localizedDescription]);
+        return nil;
+    }
+    else
+    {
+        NChartDataModel* chartData=[[NChartDataModel alloc] init];
+        chartData.objectID=[(NSManagedObject*)info objectID];
+        chartData.chartCaption= [info valueForKey:@"chartCaption"];
+        chartData.chartAxisXCaption=[info valueForKey:@"chartAxisXCaption"];
+        chartData.chartAxisYCaption=[info valueForKey:@"chartAxisYCaption"];
+        chartData.chartAxisZCaption=[info valueForKey:@"chartAxisZCaption"];
+        chartData.labelText=[info valueForKey:@"labelText"];
+        chartData.percentage=[info valueForKey:@"percentage"];
+        chartData.floatingNumber=[info valueForKey:@"floatingNumber"];
+        chartData.axisType=(AxisType)[[info valueForKey:@"axisType"] integerValue];
+        chartData.chartType=(NSeriesType)[[info valueForKey:@"chartType"] integerValue];
+        //chartData.empty=[[info valueForKey:@"empty"] boolValue];
+        PlusMap* plusMap=[info valueForKey:@"plusMapData"];
+        if (plusMap!=nil&&[plusMap isKindOfClass:[plusMap class]]) {
+            AddedMap* addedMapData=[[AddedMap alloc] init];
+            addedMapData.color1=(UIColor*)[plusMap valueForKey:@"color1"];
+            addedMapData.color2=(UIColor*)[plusMap valueForKey:@"color2"];
+            addedMapData.percentage=[plusMap valueForKey:@"finalPercentage"];
+            addedMapData.floatingNumber=[plusMap valueForKey:@"floatingNumber"];
+            chartData.dataForNextView=addedMapData;
+        }
+        
+        NSSet* predictionSet=[info valueForKey:@"prediction"];
+        if (predictionSet!=nil)
+        {
+            chartData.prediction=[NSMutableSet set];
+            for (NSObject* o in predictionSet )
+            {
+                ChartPrediction* chartPredictionData=[[ChartPrediction alloc] init];
+                chartPredictionData.mult1=[o valueForKey:@"multiplier1"];
+                chartPredictionData.mult2=[o valueForKey:@"multiplier2"];
+                chartPredictionData.base=[o valueForKey:@"base"];
+                chartPredictionData.key=[o valueForKey:@"key"];
+                [chartData.prediction addObject:chartPredictionData];
+            }
+        }
+        NSSet* axisTickValues=[info valueForKey:@"chartAxisTickValues"];
+        chartData.chartAxisXTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:XAXISVALUE];
+        chartData.chartAxisYTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:YAXISVALUE];
+        chartData.chartAxisZTicksValues=[self analyseTickOrValue:axisTickValues axisValueType:ZAXISVALUE];
+        NSSet* series=[info valueForKey:@"series"];
+        chartData.chartDataForDrawing=[self analyseSeries:series];
+        return chartData;
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 @end

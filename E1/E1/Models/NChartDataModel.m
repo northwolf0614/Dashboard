@@ -12,6 +12,70 @@
 @implementation NChartDataModel
 @synthesize chartDataForDrawing;
 #pragma <NSCopying>
+-(NSDictionary*)serializeToDicForJSON
+{
+    NSInteger count=self.accessibilityElementCount;
+    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
+    NSString* json_objectID=[self.objectID.URIRepresentation absoluteString];
+    [dic setObject:json_objectID forKey:@"objectID"];
+    NSString* json_chartCaption=self.chartCaption;
+    [dic setObject:json_chartCaption forKey:@"chartCaption"];
+    NSString* json_chartAxisYCaption=self.chartAxisYCaption;
+    [dic setObject:json_chartAxisYCaption forKey:@"chartAxisYCaption"];
+    NSString* json_chartAxisXCaption=self.chartAxisXCaption;
+    [dic setObject:json_chartAxisXCaption forKey:@"chartAxisXCaption"];
+    NSString* json_chartAxisZCaption=self.chartAxisZCaption;
+    [dic setObject:json_chartAxisZCaption forKey:@"chartAxisZCaption"];
+    NSArray* json_chartAxisXTicksValues=self.chartAxisXTicksValues;
+    [dic setObject:json_chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
+    NSArray* json_chartAxisYTicksValues=self.chartAxisYTicksValues;
+    [dic setObject:json_chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
+    NSArray* json_chartAxisZTicksValues=self.chartAxisZTicksValues;
+    [dic setObject:json_chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
+    NSeriesType json_chartType=self.chartType;
+    [dic setObject:[NSNumber numberWithInteger:json_chartType] forKey:@"chartType"];
+    AxisType json_axisType=self.axisType;
+    [dic setObject:[NSNumber numberWithInteger:json_axisType] forKey:@"axisType"];
+    NSString* json_pageName=self.pageName;
+    [dic setObject:json_pageName forKey:@"pageName"];
+    NSString* json_labelText=self.labelText;
+    [dic setObject:json_labelText forKey:@"labelText"];
+    NSNumber* json_percentage=self.percentage;
+    [dic setObject:json_percentage forKey:@"percentage"];
+    NSNumber* json_floatingNumber=self.floatingNumber;
+    [dic setObject:json_floatingNumber forKey:@"floatingNumber"];
+    
+    NSMutableDictionary* json_chartDataForDrawing=self.chartDataForDrawing;
+    [dic setObject:json_chartDataForDrawing forKey:chartDataForDrawing];
+    
+    AddedMap* json_dataForNextView=self.dataForNextView;
+    [dic setObject:[json_dataForNextView serializeToDicForJSON] forKey:@"dataForNextView"];
+    
+    
+    __block NSMutableArray* json_prediction=[NSMutableArray arrayWithCapacity:self.prediction.count];
+    
+    [self.prediction enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        if ([obj isKindOfClass:[ChartPrediction class]]) {
+            [json_prediction addObject:[obj serializeToDicForJSON]];
+        }
+    }];
+    [dic setObject:json_prediction forKey:@"json_prediction"];
+   
+    
+    
+    
+    return dic;
+    
+    
+    
+    
+    
+}
+//-(NChartDataModel*)deserializeFromJSON:(id)jsonData
+//{
+//    
+//}
+
 -(id)copyWithZone:(NSZone *)zone
 {
     NChartDataModel* data= [[NChartDataModel allocWithZone:zone] init];
@@ -453,6 +517,19 @@
         
     }
     return self;
+    
+}
+-(NSDictionary*)serializeToDicForJSON
+{
+    NSInteger count=self.accessibilityElementCount;
+    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
+    
+    NSNumber* json_percentage=self.percentage;
+    [dic setObject:json_percentage forKey:@"percentage"];
+    
+    NSNumber* json_floatingNumber=self.floatingNumber;
+    [dic setObject:json_floatingNumber forKey:@"floatingNumber"];
+    
 }
 
 @end
@@ -497,6 +574,32 @@
         
     }
     return self;
+}
+-(NSDictionary*)serializeToDicForJSON
+{
+    NSInteger count=self.accessibilityElementCount;
+    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
+    
+    NSNumber* json_mult2=self.mult2;
+    [dic setObject:json_mult2 forKey:@"mult2"];
+    
+    NSNumber* json_mult1=self.mult1;
+    [dic setObject:json_mult1 forKey:@"mult1"];
+    
+    NSNumber* json_base=self.base;
+    [dic setObject:json_base forKey:@"base"];
+    
+    NSNumber* json_key=self.key;
+    [dic setObject:json_key forKey:@"key"];
+    
+    
+    
+    
+    
+    
+    return dic;
+    
+    
 }
 
 @end

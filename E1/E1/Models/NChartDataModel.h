@@ -50,6 +50,8 @@ typedef enum : NSUInteger {
 @property(nonatomic,strong) NSArray* chartAxisZValues;
 @property(nonatomic,assign) NSeriesType seriesType;
 @property(nonatomic,strong) UIColor* brushColor;
+-(NSDictionary*)serializeToDicForJSON;
+-(PrototypeDataModel*)deserializeFromJSON:(id)jsonData;
 @end
 
 
@@ -59,54 +61,59 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) UIColor * color2;
 @property (nonatomic, retain) NSNumber * percentage;
 @property (nonatomic, retain) NSNumber * floatingNumber;
+-(NSDictionary*)serializeToDicForJSON;
+-(AddedMap*)deserializeFromJSON:(id)jsonData;
 @end
 
-@interface ChartPrediction : NSObject<NSCoding,NSCopying>
 
+@interface ChartPrediction : NSObject<NSCoding,NSCopying>
 @property (nonatomic,strong) NSNumber* base;
 @property (nonatomic,strong) NSNumber* mult1;
 @property (nonatomic,strong) NSNumber* mult2;
 @property (nonatomic,strong) NSNumber* key;
-
-
+-(NSDictionary*)serializeToDicForJSON;
+-(ChartPrediction*)deserializeFromJSON:(id)jsonData;
 @end
 
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
+
 @property(nonatomic,strong) NSManagedObjectID* objectID;
-@property(nonatomic,copy) NSString* chartCaption;
-@property(nonatomic,copy) NSString* chartAxisYCaption;
-@property(nonatomic,copy) NSString* chartAxisXCaption;
-@property(nonatomic,copy) NSString* chartAxisZCaption;
+@property(nonatomic,copy)   NSString* chartCaption;
+@property(nonatomic,copy)   NSString* chartAxisYCaption;
+@property(nonatomic,copy)   NSString* chartAxisXCaption;
+@property(nonatomic,copy)   NSString* chartAxisZCaption;
 @property(nonatomic,strong) NSArray* chartAxisXTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisYTicksValues;
 @property(nonatomic,strong) NSArray* chartAxisZTicksValues;
 @property(nonatomic,assign) NSeriesType chartType;
 @property(nonatomic,assign) AxisType axisType;
+@property(nonatomic,strong) NSString* pageName;
+@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+@property(nonatomic,strong) AddedMap* dataForNextView;
+@property(nonatomic,strong) NSString* labelText;
+@property(nonatomic,strong) NSNumber* percentage;
+@property(nonatomic,strong) NSNumber* floatingNumber;
+@property(nonatomic,strong) NSMutableSet* prediction;
+
+//not stored permanantly only for programming
+@property(nonatomic,assign) BOOL isAnimated;
+@property(nonatomic,assign) BOOL empty;
+//not stored permanantly only for programming
 
 //not used
 @property(nonatomic,assign) BOOL isToolTips;
 @property(nonatomic,strong) NSNumber* sliceNumber;
 @property(nonatomic,assign) BOOL isBorder;
 //not used
-//key-value: prototypeDataModel.seriesname-prototypeDataModel instance
-@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
-//@property(nonatomic,strong) NChartDataModel* dataForNextView;
-@property(nonatomic,strong) AddedMap* dataForNextView;
-@property(nonatomic,strong) NSString* labelText;
-@property(nonatomic,strong) NSNumber* percentage;
-@property(nonatomic,strong) NSNumber* floatingNumber;
-//@property(nonatomic,strong) ChartPrediction* prediction;
-@property(nonatomic,strong) NSMutableSet* prediction;
-//not stored permanantly only for programming
-@property(nonatomic,assign) BOOL isAnimated;
-@property(nonatomic,assign) BOOL empty;
-@property(nonatomic,strong) NSString* pageName;
 
 
 
 //+(NSString*)getStoredDefaultFilePath;
 +(NSArray*)chartDataDefault;
 +(NSMutableDictionary*)radarSeriesData;
+-(NSDictionary*)serializeToDicForJSON;
+-(NChartDataModel*)deserializeFromJSON:(id)jsonData;
+
 
 
 

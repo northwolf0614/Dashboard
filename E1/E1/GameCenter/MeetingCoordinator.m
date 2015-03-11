@@ -8,30 +8,33 @@
 
 #import "MeetingCoordinator.h"
 #import "GameKitHelper.h"
-
+#import "ChartDataManager.h"
 @interface MeetingCoordinator()<GameKitHelperDelegate>
 @end
 
 @implementation MeetingCoordinator
-
+-(void)submitSuccessfully:(UIViewController *)vc
+{
+    [super submitSuccessfully:vc];
+    NSError* error;
+    
+    if([NSJSONSerialization isValidJSONObject:self.dataForNChart])
+    {
+        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:self.dataForNChart options:0 error:&error];
+        if (error!=nil)
+            NSLog(@"Converting to JSON data fail:%@",[error localizedDescription]);
+        else
+            [self sendDataToAll:jsonData];
+    }
+    
+}
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.view.backgroundColor=[UIColor redColor];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerAuthenticated)
-                                                 name:LocalPlayerIsAuthenticated object:nil];
-    
-    
-    
-    
-    
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(showAuthenticationViewController)
-     name:PresentAuthenticationViewController
+    //self.view.backgroundColor=[UIColor redColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerAuthenticated) name:LocalPlayerIsAuthenticated object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showAuthenticationViewController) name:PresentAuthenticationViewController
      object:nil];
-    
-    [[GameKitHelper sharedGameKitHelper]
-     authenticateLocalPlayer];
+    [[GameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 }
 - (void)showAuthenticationViewController
 {
@@ -103,9 +106,9 @@
     NSLog(@"The exciting meeting begain->matchStarted");
     [self joinDefaultVoiceChannel];
     
-    NSString *aString = @"Hello Game Data";
-    NSData *aData = [aString dataUsingEncoding: NSUTF8StringEncoding];
-    [self sendDataToAll:aData];
+//    NSString *aString = @"Hello Game Data";
+//    NSData *aData = [aString dataUsingEncoding: NSUTF8StringEncoding];
+//    [self sendDataToAll:aData];
 }
 - (void)matchEnded
 {
@@ -117,9 +120,16 @@
    fromPlayer:(NSString *)playerID
 {
     
-    
+    NSError* error;
     NSString *aString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSLog(@"received data:%@",aString);
+    self.dataForNChart=[[ChartDataManager defaultChartDataManager] convertJSONToChartData:data error:&error];
+    if (self.dataForNChart!=nil)
+            [self.collectionView reloadData];
+    
+    
+    
+    
     
     
     

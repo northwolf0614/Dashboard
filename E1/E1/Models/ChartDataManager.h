@@ -12,24 +12,21 @@
 
 @interface ChartDataManager : NSObject
 
-
-
 -(void)storeChartDataToFile:(NSArray*) chartData fileName:(NSString*)file;//file is a whole file with directory
 -(NSArray*)parseFromFile:(NSString*)file;//file is a whole file with directory
+-(NSManagedObjectID*)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName;
+-(NChartDataModel*)dataFetchRequestByObjectID:(NSManagedObjectID*)objectID;
 
 +(NChartDataModel*)templateBarChartData;
 +(NChartDataModel*)templateColumnChartData;
 +(NChartDataModel*)templateRadarChartData;
 +(NChartDataModel*)templateAreaChartData;
-
 +(BOOL)deleteChartFile:(NSString*)pageName;
 +(NSString*)getStoredFilePath:(NSString*)pageName;
 +(id)defaultChartDataManager;
-
 -(void)saveContext;
 -(NSURL *)applicationDocumentsDirectory;
--(void)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName;
 -(NSArray*)dataFetchRequest:(NSString*)pageName;
 -(BOOL)updateChartData:(NChartDataModel*)chartData page:(NSString*)pageName;
-
+-(NChartDataModel*)convertJSONToChartData:(NSData*)receivedData error:(NSError**)error;
 @end

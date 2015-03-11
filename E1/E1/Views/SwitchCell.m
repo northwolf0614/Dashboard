@@ -26,11 +26,11 @@
 
 - (IBAction)isSwitched:(id)sender
 {
-    //extern BOOL isWhiteScheme;
+    
     isWhiteScheme=!self.seriesSwitch.isOn;
-    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(switchValueChaged:)])
+    if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(switchValueChaged:sender:)])
     {
-        [self.delegate switchValueChaged:self.seriesSwitch.isOn];
+        [self.delegate switchValueChaged:self.seriesSwitch.isOn sender:(id)sender];
         
     }
     

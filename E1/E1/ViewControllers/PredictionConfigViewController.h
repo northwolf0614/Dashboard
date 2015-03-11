@@ -26,7 +26,7 @@
 @property(weak,nonatomic) id<PredictionViewDelegate> delegate;
 @property(nonatomic,strong) NSArray* switchArray;
 @property(nonatomic,assign) BOOL isAdd;
-- (IBAction)onMeeting:(id)sender;
+
 
 
 - (IBAction)onSaveConfig:(id)sender;

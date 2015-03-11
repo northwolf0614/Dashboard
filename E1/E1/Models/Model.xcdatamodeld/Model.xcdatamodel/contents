@@ -53,7 +53,7 @@
         <element name="AxisTickValue" positionX="-110" positionY="-522" width="128" height="103"/>
         <element name="AxisValue" positionX="70" positionY="-396" width="128" height="103"/>
         <element name="MainMap" positionX="-486" positionY="-531" width="128" height="253"/>
-        <element name="PlusMap" positionX="-110" positionY="-649" width="128" height="120"/>
+        <element name="PlusMap" positionX="-110" positionY="-649" width="128" height="118"/>
         <element name="Prediction" positionX="-180" positionY="-855" width="128" height="118"/>
         <element name="Serie" positionX="-108" positionY="-396" width="128" height="118"/>
     </elements>
