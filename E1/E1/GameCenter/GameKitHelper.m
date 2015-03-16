@@ -55,14 +55,19 @@ NSString *const GameCenterVoiceChannelForMeeting=@"GameCenterVoiceChannelNameOfC
         //3
         [self setLastError:error];
         
-        if(viewController != nil) {
+        if(viewController != nil)
+        {
             //4
             [self setAuthenticationViewController:viewController];
-        } else if([GKLocalPlayer localPlayer].isAuthenticated) {
+        }
+        else if([GKLocalPlayer localPlayer].isAuthenticated)
+        {
             //5
             _enableGameCenter = YES;
             [[NSNotificationCenter defaultCenter] postNotificationName:LocalPlayerIsAuthenticated object:nil];
-        } else {
+        }
+        else
+        {
             //6
             _enableGameCenter = NO;
         }

@@ -17,10 +17,11 @@
 -(NSManagedObjectID*)insertChartData:(NChartDataModel*)chartData pageName:(NSString*)pageName;
 -(NChartDataModel*)dataFetchRequestByObjectID:(NSManagedObjectID*)objectID;
 
-+(NChartDataModel*)templateBarChartData;
-+(NChartDataModel*)templateColumnChartData;
-+(NChartDataModel*)templateRadarChartData;
-+(NChartDataModel*)templateAreaChartData;
++(NChartDataModel*)templateBarChartData:(NSString*)page;
++(NChartDataModel*)templateColumnChartData:(NSString*)page;
++(NChartDataModel*)templateRadarChartData:(NSString*)page;
++(NChartDataModel*)templateAreaChartData:(NSString*)page;
+
 +(BOOL)deleteChartFile:(NSString*)pageName;
 +(NSString*)getStoredFilePath:(NSString*)pageName;
 +(id)defaultChartDataManager;

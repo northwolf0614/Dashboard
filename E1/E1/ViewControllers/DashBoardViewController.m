@@ -30,6 +30,7 @@
 #import "NChartDataModel.h"
 #import "AbstractCollectionViewCell.h"
 #import "DetailViewController.h"
+#import "MeetingCoordinator.h"
 @interface DashBoardViewController()
 @property(nonatomic,strong)UICollectionView* collectionView;
 @property(nonatomic,strong)UICollectionViewFlowLayout* flowLayout;
@@ -38,6 +39,7 @@
 @property(nonatomic,strong) EmptyCollectionViewCell* emptyCell;
 @property(nonatomic,strong) NSMutableArray* controllerArray;
 @property(nonatomic,strong) NSIndexPath* currentSelectPath;
+@property(nonatomic,assign) BOOL isMeetingMode;
 @end
 
 
@@ -63,6 +65,10 @@
     }
     return self;
     
+}
+-(void)changeMeetingModelTo:(BOOL)meetingModelValue
+{
+    self.isMeetingMode=meetingModelValue;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -259,7 +265,10 @@
                             [self.chartsForDisplay addObject:emptyData];
                         }
                         else
-                            self.chartsForDisplay=[NSMutableArray arrayWithObject:[self.chartDataAssembly objectAtIndex:0]];
+                        {
+                            NChartDataModel* o=[self.chartDataAssembly objectAtIndex:0];
+                            self.chartsForDisplay=[NSMutableArray arrayWithObject:o];
+                        }
                     }
 
                     
@@ -532,19 +541,31 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell* cell=[collectionView cellForItemAtIndexPath:indexPath];
     NSUInteger count=self.chartDataAssembly.count;
+    NSString* file=[ChartDataManager getStoredFilePath:self.detailItem];
     if (count==indexPath.row)
     {
-//        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:nil delegateHolder:nil];
-//        detailViewController.isAdded=YES;
-        detailViewController=[[DetailViewController alloc] initWithDrawingData:nil isAddedChart:YES];
+        
+        if (!_isMeetingMode) {
+            detailViewController=[[DetailViewController alloc] initWithDrawingData:nil isAddedChart:YES page:[file lastPathComponent]];
+        }
+        else
+            detailViewController=[[MeetingCoordinator alloc] initWithDrawingData:nil isAddedChart:YES page:[file lastPathComponent]];
+    
+        
         
     }
     
     else
     {
-//        detailViewController= [[DetailChartViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] delegateHolder:nil];
-//        detailViewController.isAdded=NO;
-        detailViewController=[[DetailViewController alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] isAddedChart:NO];
+//        if (!_isMeetingMode)
+//        {
+            NChartDataModel* data=[self.chartDataAssembly objectAtIndex:indexPath.row];
+            detailViewController=[[DetailViewController alloc] initWithDrawingData:data isAddedChart:NO page:[file lastPathComponent]];
+//        }
+//        else
+//            detailViewController=[[MeetingCoordinator alloc] initWithDrawingData:[self.chartDataAssembly objectAtIndex:indexPath.row] isAddedChart:NO page:[file lastPathComponent]];
+        
+        
         
     }
     
@@ -714,7 +735,6 @@
                 default:
                     break;
             }
-
             
             [transitionContext completeTransition:YES];
 

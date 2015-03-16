@@ -30,7 +30,8 @@
 @property(nonatomic,strong) NSString* currentYear;
 @property(nonatomic,strong) NChartDataModel* chartDataBack;
 @property(nonatomic,assign) BOOL isAdded;
-@property(nonatomic,assign) BOOL shouldDynamic;
+
+@property(nonatomic,strong) NSString* pageName;
 
 //@property(nonatomic,strong) UIView* coverView;
 //@property(nonatomic,strong) UICollectionView* collectionView;
@@ -54,7 +55,7 @@
 {
     return  UIInterfaceOrientationMaskLandscape;
 }
--(id)initWithDrawingData:(NChartDataModel*)drawingData  isAddedChart:(BOOL)isAdded
+-(id)initWithDrawingData:(NChartDataModel*)drawingData  isAddedChart:(BOOL)isAdded page:(NSString*)pageName
 {
     NSLog(@"This is initWithDrawingData in GerneralChartViewController");
     if (self=[super init])
@@ -65,13 +66,15 @@
         }
         self.isAdded=isAdded;
         self.shouldDynamic=isAdded;
-        //self.isMeeting=isMeetingModel;
         if (isAdded)
         {
             self.predictionViewRate=0.1f;
         }
         else
             self.predictionViewRate=0.22f;
+        
+        self.pageName=[pageName copy];
+        
         
         
     }
@@ -123,10 +126,10 @@
     {
         [self setEdgesForExtendedLayout:UIRectEdgeNone];
     }
-    UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(handleRightButtonItem:)];
-    UIBarButtonItem* leftBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(handleLeftButtonItem:)];
+    
+    UIBarButtonItem* rightBarButtonItem=[[UIBarButtonItem  alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(handleRightButtonItem:)];
     self.navItem.rightBarButtonItem=rightBarButtonItem;
-    self.navItem.leftBarButtonItem=leftBarButtonItem;
+    
     
     if (!self.isAdded) {
         self.navItem.title=self.dataForNChart.chartCaption;
@@ -239,26 +242,12 @@
 
 -(void)handleRightButtonItem:(id) sender
 {
-    
-    
-    
-    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
-    //GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
-    [self presentViewController:meetingController animated:YES completion:nil];
-    
-    
-    
-}
--(void)handleLeftButtonItem:(id) sender
-{
-    
-    
-    
+//    MeetingCoordinator* meetingController=[[MeetingCoordinator alloc] init];
+//    //GameNavigationController* navController=[[GameNavigationController alloc] initWithRootViewController:meetingController];
+//    [self presentViewController:meetingController animated:YES completion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
-    
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -548,22 +537,22 @@
         }
         if ([cellView.textLabel.text isEqualToString:@"COLUMN"])
         {
-            chartData= [ChartDataManager templateColumnChartData];
+            chartData= [ChartDataManager templateColumnChartData:self.pageName];
         }
         if ([cellView.textLabel.text isEqualToString:@"BAR"])
         {
-            chartData= [ChartDataManager templateBarChartData];
+            chartData= [ChartDataManager templateBarChartData:self.pageName];
 
         }
         
         if ([cellView.textLabel.text isEqualToString:@"RADAR"])
         {
-            chartData= [ChartDataManager templateRadarChartData];
+            chartData= [ChartDataManager templateRadarChartData:self.pageName];
 
         }
         if ([cellView.textLabel.text isEqualToString:@"AREA"])
         {
-            chartData= [ChartDataManager templateAreaChartData];
+            chartData= [ChartDataManager templateAreaChartData:self.pageName];
 
             
         }
@@ -777,15 +766,34 @@
     }
     
     
-    
-    
-    
-    
-    
+
+//    NSError* error;
+//    NSDictionary* dicData=[self.dataForNChart serializeToDicForJSON];
+//    if([NSJSONSerialization isValidJSONObject:dicData])
+//    {
+//        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:dicData  options:0 error:&error];
+//        if (error!=nil)
+//        {
+//            NSLog(@"Converting to JSON data fail:%@",[error localizedDescription]);
+//            
+//           
+//        }
+//        /////////////////////////////sending the jsonData via Game Center- above code
+//        /////////////////////////////receiving the jsonData via Game Center- following code
+//        
+//        
+//        id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+//        
+//        if (error != nil)
+//        {
+//            NSLog(@"convert into JSON error: %@", [error localizedDescription]);
+//            return;
+//        }
+//
+//         NChartDataModel* dataForGame=[NChartDataModel deserializeFromJSON:jsonObject];
+//
+//    }
 }
-
-
-
 -(void)calculate:(UIViewController*)vc
 {
     UICollectionViewFlowLayout* f=[[UICollectionViewFlowLayout alloc] init];

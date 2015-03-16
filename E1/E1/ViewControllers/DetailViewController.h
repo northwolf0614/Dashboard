@@ -22,10 +22,11 @@ typedef enum : NSUInteger {
 
 
 -(RESULT)shouldBeAddToPreviousPage;
--(id)initWithDrawingData:(NChartDataModel*)drawingData  isAddedChart:(BOOL)isAdded ;
+-(id)initWithDrawingData:(NChartDataModel*)drawingData  isAddedChart:(BOOL)isAdded page:(NSString*)pageName;
 @property(strong,nonatomic) NChartDataModel* dataForNChart;
 @property (weak, nonatomic) IBOutlet UIView *chartViewContainer;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
 @property(nonatomic,strong) UICollectionView* collectionView;
+@property(nonatomic,assign) BOOL shouldDynamic;
 @end

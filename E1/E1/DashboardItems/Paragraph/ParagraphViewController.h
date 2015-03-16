@@ -7,7 +7,7 @@
 //
 
 #import "DashboardItemViewController.h"
-#import "CorePlot-CocoaTouch.h"
+//#import "CorePlot-CocoaTouch.h"
 
 @interface ParagraphViewController : DashboardItemViewController <CPTPlotDataSource, CPTPieChartDelegate>
 

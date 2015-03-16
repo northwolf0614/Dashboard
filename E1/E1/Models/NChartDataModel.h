@@ -51,7 +51,7 @@ typedef enum : NSUInteger {
 @property(nonatomic,assign) NSeriesType seriesType;
 @property(nonatomic,strong) UIColor* brushColor;
 -(NSDictionary*)serializeToDicForJSON;
--(PrototypeDataModel*)deserializeFromJSON:(id)jsonData;
++(PrototypeDataModel*)deserializeFromJSON:(id)jsonData;
 @end
 
 
@@ -62,7 +62,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSNumber * percentage;
 @property (nonatomic, retain) NSNumber * floatingNumber;
 -(NSDictionary*)serializeToDicForJSON;
--(AddedMap*)deserializeFromJSON:(id)jsonData;
++(AddedMap*)deserializeFromJSON:(id)jsonData;
 @end
 
 
@@ -72,7 +72,7 @@ typedef enum : NSUInteger {
 @property (nonatomic,strong) NSNumber* mult2;
 @property (nonatomic,strong) NSNumber* key;
 -(NSDictionary*)serializeToDicForJSON;
--(ChartPrediction*)deserializeFromJSON:(id)jsonData;
++(ChartPrediction*)deserializeFromJSON:(id)jsonData;
 @end
 
 @interface NChartDataModel : NSObject<NSCoding,NSCopying>
@@ -112,8 +112,7 @@ typedef enum : NSUInteger {
 +(NSArray*)chartDataDefault;
 +(NSMutableDictionary*)radarSeriesData;
 -(NSDictionary*)serializeToDicForJSON;
--(NChartDataModel*)deserializeFromJSON:(id)jsonData;
-
++(NChartDataModel*)deserializeFromJSON:(id)jsonData;
 
 
 

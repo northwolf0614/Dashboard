@@ -8,45 +8,81 @@
 
 #import "NChartDataModel.h"
 #import "Definations.h"
+#import "UIColor+colorDataConverter.h"
 
 @implementation NChartDataModel
 @synthesize chartDataForDrawing;
 #pragma <NSCopying>
 -(NSDictionary*)serializeToDicForJSON
 {
-    NSInteger count=self.accessibilityElementCount;
-    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
-    NSString* json_objectID=[self.objectID.URIRepresentation absoluteString];
-    [dic setObject:json_objectID forKey:@"objectID"];
+    
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+//    NSString* json_objectID=[[self.objectID URIRepresentation] absoluteString];
+//    if (json_objectID!=nil)
+//    [dic setObject:json_objectID forKey:@"objectID"];
+    
     NSString* json_chartCaption=self.chartCaption;
-    [dic setObject:json_chartCaption forKey:@"chartCaption"];
+    if (json_chartCaption!=nil)
+        [dic setObject:json_chartCaption forKey:@"chartCaption"];
+    
+    
     NSString* json_chartAxisYCaption=self.chartAxisYCaption;
-    [dic setObject:json_chartAxisYCaption forKey:@"chartAxisYCaption"];
+    if (json_chartAxisYCaption!=nil)
+        [dic setObject:json_chartAxisYCaption forKey:@"chartAxisYCaption"];
+    
     NSString* json_chartAxisXCaption=self.chartAxisXCaption;
-    [dic setObject:json_chartAxisXCaption forKey:@"chartAxisXCaption"];
+    if(json_chartAxisXCaption!=nil)
+        [dic setObject:json_chartAxisXCaption forKey:@"chartAxisXCaption"];
+    
     NSString* json_chartAxisZCaption=self.chartAxisZCaption;
-    [dic setObject:json_chartAxisZCaption forKey:@"chartAxisZCaption"];
+    if (json_chartAxisZCaption!=nil)
+        [dic setObject:json_chartAxisZCaption forKey:@"chartAxisZCaption"];
+    
     NSArray* json_chartAxisXTicksValues=self.chartAxisXTicksValues;
-    [dic setObject:json_chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
+    if (json_chartAxisXTicksValues!=nil)
+        [dic setObject:json_chartAxisXTicksValues forKey:@"chartAxisXTicksValues"];
+    
     NSArray* json_chartAxisYTicksValues=self.chartAxisYTicksValues;
-    [dic setObject:json_chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
+    if (json_chartAxisYTicksValues!=nil)
+        [dic setObject:json_chartAxisYTicksValues forKey:@"chartAxisYTicksValues"];
+    
     NSArray* json_chartAxisZTicksValues=self.chartAxisZTicksValues;
-    [dic setObject:json_chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
+    if (json_chartAxisZTicksValues!=nil)
+        [dic setObject:json_chartAxisZTicksValues forKey:@"chartAxisZTicksValues"];
+    
     NSeriesType json_chartType=self.chartType;
     [dic setObject:[NSNumber numberWithInteger:json_chartType] forKey:@"chartType"];
+    
     AxisType json_axisType=self.axisType;
     [dic setObject:[NSNumber numberWithInteger:json_axisType] forKey:@"axisType"];
-    NSString* json_pageName=self.pageName;
-    [dic setObject:json_pageName forKey:@"pageName"];
-    NSString* json_labelText=self.labelText;
-    [dic setObject:json_labelText forKey:@"labelText"];
-    NSNumber* json_percentage=self.percentage;
-    [dic setObject:json_percentage forKey:@"percentage"];
-    NSNumber* json_floatingNumber=self.floatingNumber;
-    [dic setObject:json_floatingNumber forKey:@"floatingNumber"];
     
+    NSString* json_pageName=self.pageName;
+    if(json_pageName!=nil)
+        [dic setObject:json_pageName forKey:@"pageName"];
+    
+    NSString* json_labelText=self.labelText;
+    if(json_labelText!=nil)
+        [dic setObject:json_labelText forKey:@"labelText"];
+    
+    NSNumber* json_percentage=self.percentage;
+    if(json_percentage!=nil)
+        [dic setObject:json_percentage forKey:@"percentage"];
+    
+    NSNumber* json_floatingNumber=self.floatingNumber;
+    if(json_floatingNumber!=nil)
+        [dic setObject:json_floatingNumber forKey:@"floatingNumber"];
+    
+    //
     NSMutableDictionary* json_chartDataForDrawing=self.chartDataForDrawing;
-    [dic setObject:json_chartDataForDrawing forKey:chartDataForDrawing];
+    NSArray* keys=json_chartDataForDrawing.allKeys;
+    NSMutableArray* drawingDataArray=[NSMutableArray array];
+    for (NSString* key in keys) {
+        NSDictionary* dic=[[json_chartDataForDrawing objectForKey:key] serializeToDicForJSON];
+        [drawingDataArray addObject:dic];
+        
+    }
+    [dic setObject:drawingDataArray forKey:@"chartDataForDrawing"];
+    //
     
     AddedMap* json_dataForNextView=self.dataForNextView;
     [dic setObject:[json_dataForNextView serializeToDicForJSON] forKey:@"dataForNextView"];
@@ -59,7 +95,7 @@
             [json_prediction addObject:[obj serializeToDicForJSON]];
         }
     }];
-    [dic setObject:json_prediction forKey:@"json_prediction"];
+    [dic setObject:json_prediction forKey:@"prediction"];
    
     
     
@@ -71,10 +107,79 @@
     
     
 }
-//-(NChartDataModel*)deserializeFromJSON:(id)jsonData
-//{
-//    
-//}
++(NChartDataModel*)deserializeFromJSON:(id)jsonData
+{
+    
+     
+     
+     
+    
+
+     
+     
+     //@property(nonatomic,strong) NSMutableSet* prediction;
+     //@property(nonatomic,strong) NSMutableDictionary* chartDataForDrawing;
+    
+    
+    NChartDataModel* ncm=[[NChartDataModel alloc] init];
+    ncm.chartCaption=[jsonData valueForKey:@"chartCaption"];
+    ncm.chartAxisYCaption=[jsonData valueForKey:@"chartAxisYCaption"];
+    ncm.chartAxisXCaption=[jsonData valueForKey:@"chartAxisXCaption"];
+    ncm.chartAxisZCaption=[jsonData valueForKey:@"chartAxisZCaption"];
+    ncm.chartAxisXTicksValues=[jsonData valueForKey:@"chartAxisXTicksValues"];
+    ncm.chartAxisYTicksValues=[jsonData valueForKey:@"chartAxisYTicksValues"];
+    ncm.chartAxisZTicksValues=[jsonData valueForKey:@"chartAxisZTicksValues"];
+    ncm.chartType=(NSeriesType)[[jsonData valueForKey:@"chartType"] integerValue];
+    ncm.axisType=(AxisType)[[jsonData valueForKey:@"axisType"] integerValue];
+    ncm.pageName=[jsonData valueForKey:@"pageName"];
+    ncm.labelText=[jsonData valueForKey:@"labelText"];
+    ncm.floatingNumber=[jsonData valueForKey:@"floatingNumber"];
+    
+    
+    
+    
+
+    NSArray* pArray=[jsonData valueForKey:@"prediction"];
+    __block NSMutableSet* mset=[NSMutableSet set];
+    [pArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        ChartPrediction* cp=[ChartPrediction deserializeFromJSON:obj];
+        if(cp!=nil)
+            [mset addObject:cp];
+        
+        
+    }];
+    
+    ncm.prediction=mset;
+    
+    NSArray* drawingDataArray=[jsonData valueForKey:@"chartDataForDrawing"];
+    __block NSMutableDictionary* mdic=[NSMutableDictionary dictionary];
+    [drawingDataArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        PrototypeDataModel* pd=[PrototypeDataModel deserializeFromJSON:obj];
+        if (pd!=nil)
+            [mdic setObject:pd forKey:pd.seriesName];
+        
+        
+    }];
+    ncm.chartDataForDrawing=mdic;
+    AddedMap* addMap=[AddedMap deserializeFromJSON:[jsonData valueForKey:@"dataForNextView"]];
+    ncm.dataForNextView=addMap;
+    
+    return ncm;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 -(id)copyWithZone:(NSZone *)zone
 {
@@ -158,15 +263,6 @@
     //[self adaptedForFloatingNumber];
     return self;
 }
-
-
-//+(NSString*)getStoredDefaultFilePath
-//{
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *docPath = [paths objectAtIndex:0];
-//    return [docPath stringByAppendingPathComponent:kcDefaultDataFielName];
-//}
-
 
 +(NSArray*)chartDataDefault
 {
@@ -470,8 +566,53 @@
     return self;
 }
 
-
-
+-(NSDictionary*)serializeToDicForJSON
+{
+    
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
+    
+    NSString* json_seriesName=self.seriesName;
+    [dic setObject:json_seriesName forKey:@"seriesName"];
+    [dic setObject:[self.brushColor converToArray] forKey:@"brushColor"];
+    [dic setObject:[NSNumber numberWithInt:self.seriesType] forKey:@"seriesType"];
+    if (self.chartAxisXValues!=nil)
+        [dic setObject:self.chartAxisXValues forKey:@"chartAxisXValues"];
+     if (self.chartAxisYValues!=nil)
+         [dic setObject:self.chartAxisYValues forKey:@"chartAxisYValues"];
+     if (self.chartAxisZValues!=nil)
+         [dic setObject:self.chartAxisZValues forKey:@"chartAxisZValues"];
+    return dic;
+    
+    
+}
++(PrototypeDataModel *)deserializeFromJSON:(id)jsonData
+{
+    PrototypeDataModel* pd=[[PrototypeDataModel alloc] init];
+    pd.seriesName=[jsonData valueForKey:@"seriesName"];
+    pd.seriesType=(NSeriesType) [[jsonData valueForKey:@"seriesType"] integerValue];
+    
+    NSArray* c1=[jsonData valueForKey:@"brushColor"];
+    
+    UIColor* br1=[UIColor colorWithRed:[c1[0] floatValue] green:[c1[1] floatValue] blue:[c1[2] floatValue] alpha:[c1[3] floatValue]];
+    pd.brushColor=br1;
+    
+    pd.chartAxisXValues=[jsonData valueForKey:@"chartAxisXValues"];
+    pd.chartAxisYValues=[jsonData valueForKey:@"chartAxisYValues"];
+    pd.chartAxisZValues=[jsonData valueForKey:@"chartAxisZValues"];
+    
+    return  pd;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
 
 
 
@@ -521,8 +662,8 @@
 }
 -(NSDictionary*)serializeToDicForJSON
 {
-    NSInteger count=self.accessibilityElementCount;
-    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
+    
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     
     NSNumber* json_percentage=self.percentage;
     [dic setObject:json_percentage forKey:@"percentage"];
@@ -530,7 +671,28 @@
     NSNumber* json_floatingNumber=self.floatingNumber;
     [dic setObject:json_floatingNumber forKey:@"floatingNumber"];
     
+    [dic setObject:[self.color1 converToArray] forKey:@"color1"];
+    [dic setObject:[self.color2 converToArray] forKey:@"color2"];
+    
+    return dic;
+    
 }
++(AddedMap *)deserializeFromJSON:(id)jsonData
+{
+    AddedMap* m=[[AddedMap alloc] init];
+    m.floatingNumber=[jsonData valueForKey:@"floatingNumber"];
+    m.percentage=[jsonData valueForKey:@"percentage"];
+    NSArray* c1=[jsonData valueForKey:@"color1"];
+    NSArray* c2=[jsonData valueForKey:@"color2"];
+    UIColor* cl1=[UIColor colorWithRed:[c1[0] floatValue] green:[c1[1] floatValue] blue:[c1[2] floatValue] alpha:[c1[3] floatValue]];
+    UIColor* cl2=[UIColor colorWithRed:[c2[0] floatValue] green:[c2[1] floatValue] blue:[c2[2] floatValue] alpha:[c2[3] floatValue]];
+    m.color1=cl1;
+    m.color2=cl2;
+    return m;
+    
+    
+}
+
 
 @end
 
@@ -577,19 +739,23 @@
 }
 -(NSDictionary*)serializeToDicForJSON
 {
-    NSInteger count=self.accessibilityElementCount;
-    NSMutableDictionary* dic=[NSMutableDictionary dictionaryWithCapacity:count];
+    
+    NSMutableDictionary* dic=[NSMutableDictionary dictionary];
     
     NSNumber* json_mult2=self.mult2;
-    [dic setObject:json_mult2 forKey:@"mult2"];
+    if (json_mult2!=nil)
+        [dic setObject:json_mult2 forKey:@"mult2"];
     
     NSNumber* json_mult1=self.mult1;
+    if (json_mult1!=nil)
     [dic setObject:json_mult1 forKey:@"mult1"];
     
     NSNumber* json_base=self.base;
+    if (json_base!=nil)
     [dic setObject:json_base forKey:@"base"];
     
     NSNumber* json_key=self.key;
+    if (json_key!=nil)
     [dic setObject:json_key forKey:@"key"];
     
     
@@ -600,6 +766,15 @@
     return dic;
     
     
+}
++(ChartPrediction*)deserializeFromJSON:(id)jsonData
+{
+    ChartPrediction* p=[[ChartPrediction alloc] init];
+    p.mult1=[jsonData valueForKey:@"mult1"];
+    p.mult2=[jsonData valueForKey:@"mult2"];
+    p.base=[jsonData valueForKey:@"base"];
+    p.key=[jsonData valueForKey:@"key"];
+    return p;
 }
 
 @end

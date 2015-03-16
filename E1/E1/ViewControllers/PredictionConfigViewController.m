@@ -151,8 +151,6 @@
     }
     else
     {
-//        [self.timer invalidate];
-//        self.timer=nil;
         [self.timer setFireDate:[NSDate distantFuture]];
         self.changingValue=[NSNumber numberWithFloat:0.0f];
 
@@ -161,16 +159,6 @@
         self.progress.progress=0.0f;
         self.submit.enabled=YES;
         self.calculate.enabled=YES;
-        
-//        self.saveConfig.enabled=NO;
-        
-        
-        
-        
-//        if (self.delegate!=nil&&[self.delegate respondsToSelector:@selector(submitSuccessfully:)])
-//        {
-//            [self.delegate submitSuccessfully:self];
-//        }
         for (UISwitch* s in self.switchArray) {
             if (s.enabled&&s.on)
             {

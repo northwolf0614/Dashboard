@@ -143,9 +143,10 @@
 }
 
 
-+(NChartDataModel*)templateBarChartData
++(NChartDataModel*)templateBarChartData:(NSString*)page
 {
     NChartDataModel* chartData2=[[NChartDataModel alloc] init];
+    chartData2.pageName=[page copy];
     chartData2.chartCaption=@"Calls Waiting in Line";
     chartData2.chartAxisXCaption=@"percentage";
     chartData2.chartAxisYCaption=@"Years";
@@ -185,7 +186,7 @@
     
     
 }
-+(NChartDataModel*)templateColumnChartData
++(NChartDataModel*)templateColumnChartData:(NSString*)page
 {
     
     
@@ -220,6 +221,7 @@
 //    chartData3.axisType=ABSOLUTE;
     
     AddedMap* chartData3=[[AddedMap alloc] init];
+    
     chartData3.color1=kcLikeBlue;
     chartData3.color2=kcLikeRed;
     chartData3.floatingNumber=[NSNumber numberWithFloat:10.0f];
@@ -229,6 +231,7 @@
     
     
     NChartDataModel* chartData1=[[NChartDataModel alloc] init];
+    chartData1.pageName=[page copy];
     chartData1.chartCaption=@"Claim Closed/Opened";
     chartData1.chartAxisXCaption=@"Years";
     chartData1.chartAxisYCaption=@"Products percentage";
@@ -280,7 +283,7 @@
     //[chartData1 adaptedForFloatingNumber];
     return chartData1;
 }
-+(NChartDataModel*)templateAreaChartData
++(NChartDataModel*)templateAreaChartData:(NSString*)page
 {
     float percent;
 //    NChartDataModel* chartData5=[[NChartDataModel alloc] init];
@@ -322,6 +325,7 @@
     
     
     NChartDataModel* chartData6=[[NChartDataModel alloc] init];
+    chartData6.pageName=[page copy];
     chartData6.chartCaption=@"Conversion Rate";
     chartData6.chartAxisXCaption=@"Years";
     chartData6.chartAxisYCaption=@"Products percentage";
@@ -372,9 +376,10 @@
     chartData6.labelText=@"2014";
     return chartData6;
 }
-+(NChartDataModel*)templateRadarChartData
++(NChartDataModel*)templateRadarChartData:(NSString*)page
 {
     NChartDataModel* chartData4=[[NChartDataModel alloc] init];
+    chartData4.pageName=[page copy];
     chartData4.chartCaption=@"Personal Quote Conversion";
     chartData4.chartAxisXCaption=@"product percentage";
     chartData4.chartAxisYCaption=@"Years";
@@ -669,6 +674,7 @@
        
             NChartDataModel* chartData=[[NChartDataModel alloc] init];
             chartData.objectID=[(NSManagedObject*)info objectID];
+            chartData.pageName=[info valueForKey:@"pageName"];
             chartData.chartCaption= [info valueForKey:@"chartCaption"];
             chartData.chartAxisXCaption=[info valueForKey:@"chartAxisXCaption"];
             chartData.chartAxisYCaption=[info valueForKey:@"chartAxisYCaption"];

@@ -31,6 +31,7 @@
 		ABE8A46519FF5912004E35E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = ABE8A46419FF5912004E35E1 /* .gitignore */; };
 		E704FA791A77472A00309805 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E704FA781A77472A00309805 /* CoreData.framework */; };
 		E73300941AA9B24F006DA519 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E73300931AA9B24F006DA519 /* GameKitHelper.m */; };
+		E73FB3691AB65ECF0013BA15 /* UIColor+colorDataConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E73FB3681AB65ECF0013BA15 /* UIColor+colorDataConverter.m */; };
 		E74CA0D11AA92AC80061E322 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E74CA0D01AA92AC80061E322 /* GameKit.framework */; };
 		E74CA0D41AA94B3A0061E322 /* MeetingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = E74CA0D31AA94B3A0061E322 /* MeetingCoordinator.m */; };
 		E76FA6381A1A0DE400FA4613 /* ChartDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E76FA6371A1A0DE400FA4613 /* ChartDataManager.m */; };
@@ -141,6 +142,8 @@
 		E704FA781A77472A00309805 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		E73300921AA9B24F006DA519 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameKitHelper.h; sourceTree = "<group>"; };
 		E73300931AA9B24F006DA519 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameKitHelper.m; sourceTree = "<group>"; };
+		E73FB3671AB65ECF0013BA15 /* UIColor+colorDataConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+colorDataConverter.h"; sourceTree = "<group>"; };
+		E73FB3681AB65ECF0013BA15 /* UIColor+colorDataConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+colorDataConverter.m"; sourceTree = "<group>"; };
 		E74CA0D01AA92AC80061E322 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		E74CA0D21AA94B3A0061E322 /* MeetingCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingCoordinator.h; sourceTree = "<group>"; };
 		E74CA0D31AA94B3A0061E322 /* MeetingCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingCoordinator.m; sourceTree = "<group>"; };
@@ -409,6 +412,7 @@
 		09B0B26419F5D99A008DCE56 /* E1 */ = {
 			isa = PBXGroup;
 			children = (
+				E73FB3661AB65ECF0013BA15 /* categories */,
 				E74CA0CC1AA915000061E322 /* GameCenter */,
 				E772CDD21A1D71210034E553 /* ViewControllers */,
 				AB18A9691A01C3F7006546D4 /* NChart3D */,
@@ -484,6 +488,15 @@
 				E7A2549C1A15720100568E65 /* PopAnimation.m */,
 			);
 			path = DashboardItems;
+			sourceTree = "<group>";
+		};
+		E73FB3661AB65ECF0013BA15 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				E73FB3671AB65ECF0013BA15 /* UIColor+colorDataConverter.h */,
+				E73FB3681AB65ECF0013BA15 /* UIColor+colorDataConverter.m */,
+			);
+			path = categories;
 			sourceTree = "<group>";
 		};
 		E74CA0CC1AA915000061E322 /* GameCenter */ = {
@@ -699,6 +712,7 @@
 				E7C2226D1A22DBC100C9CAEE /* ProgressColumn.m in Sources */,
 				E7732FC71A04B8D3002164CB /* GeneralNChartViewController.m in Sources */,
 				E7C222701A22E47500C9CAEE /* GeneralChartView.m in Sources */,
+				E73FB3691AB65ECF0013BA15 /* UIColor+colorDataConverter.m in Sources */,
 				E79675851A43C78E00482C92 /* SwitchCell.m in Sources */,
 				E7C222A21A26856A00C9CAEE /* GeneralCollectionViewCell.m in Sources */,
 				E79675901A43CD6800482C92 /* SliderCell.m in Sources */,

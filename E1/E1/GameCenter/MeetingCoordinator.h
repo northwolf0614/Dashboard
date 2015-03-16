@@ -10,6 +10,5 @@
 #import "DetailViewController.h"
 
 @interface MeetingCoordinator : DetailViewController
-//@interface MeetingCoordinator : DetailViewController
 
 @end

@@ -16,13 +16,32 @@
 -(void)submitSuccessfully:(UIViewController *)vc
 {
     [super submitSuccessfully:vc];
-    NSError* error;
+//    NSError* error;
+//    
+//    if([NSJSONSerialization isValidJSONObject:[self.dataForNChart serializeToDicForJSON]])
+//    {
+//        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:[self.dataForNChart serializeToDicForJSON]  options:0 error:&error];
+//        if (error!=nil)
+//            NSLog(@"Converting to JSON data fail:%@",[error localizedDescription]);
+//        else
+//            [self sendDataToAll:jsonData];
+//    }
     
-    if([NSJSONSerialization isValidJSONObject:self.dataForNChart])
+    
+    
+    
+    
+    NSError* error;
+    NSDictionary* dicData=[self.dataForNChart serializeToDicForJSON];
+    if([NSJSONSerialization isValidJSONObject:dicData])
     {
-        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:self.dataForNChart options:0 error:&error];
+        NSData* jsonData=[NSJSONSerialization dataWithJSONObject:dicData  options:0 error:&error];
         if (error!=nil)
+        {
             NSLog(@"Converting to JSON data fail:%@",[error localizedDescription]);
+            
+            
+        }
         else
             [self sendDataToAll:jsonData];
     }
@@ -88,6 +107,8 @@
         NSLog(@"Error sending data:%@", error.localizedDescription);
         [self matchEnded];
     }
+    
+    
 }
 -(void)joinDefaultVoiceChannel
 {
@@ -121,11 +142,30 @@
 {
     
     NSError* error;
-    NSString *aString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"received data:%@",aString);
-    self.dataForNChart=[[ChartDataManager defaultChartDataManager] convertJSONToChartData:data error:&error];
-    if (self.dataForNChart!=nil)
-            [self.collectionView reloadData];
+//    NSString *aString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSLog(@"received data:%@",aString);
+//    self.dataForNChart=[[ChartDataManager defaultChartDataManager] convertJSONToChartData:data error:&error];
+//    if (self.dataForNChart!=nil)
+//            [self.collectionView reloadData];
+    
+    
+    
+    
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    
+    if (error != nil)
+    {
+        NSLog(@"convert into JSON error: %@", [error localizedDescription]);
+        return;
+    }
+    
+    NChartDataModel* dataForGame=[NChartDataModel deserializeFromJSON:jsonObject];
+    if (dataForGame!=nil) {
+        self.dataForNChart=[dataForGame copy];
+        self.shouldDynamic=NO;
+        [self.collectionView reloadData];
+    }
+    
     
     
     
